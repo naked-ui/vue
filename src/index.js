@@ -3,4 +3,4 @@ import ComponentLibrary from './main.js'
 
 Vue.use(ComponentLibrary)
 
-// export { Carousel, CarouselItem } from './components/Carousel'
+export { Carousel, CarouselItem } from './components/Carousel'
