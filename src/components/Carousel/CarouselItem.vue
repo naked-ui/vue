@@ -26,9 +26,9 @@ export default {
   mixins: [carouselNavigation],
   props: {
     slideIndex: {
-      type: String,
+      type: Number,
       required: true,
-      default: ''
+      default: 0
     },
     carouselKey: {
       type: String,
