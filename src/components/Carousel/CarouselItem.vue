@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import carouselNavigation from './carouselNavigation'
+import carouselNavigation from './logic/carouselNavigation'
 
 export default {
   name: 'CarouselItem',

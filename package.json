@@ -10,7 +10,7 @@
     "src/**"
   ],
   "scripts": {
-    "serve": "vue-cli-service serve src/main.js",
+    "dev": "vue-cli-service serve src/main.js",
     "build": "vue-cli-service build --target lib --name naked-ui--vue src/main.js",
     "prepublishOnly": "$npm_execpath build",
     "lint": "vue-cli-service lint"
