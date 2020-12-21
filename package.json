@@ -10,8 +10,8 @@
     "src/**"
   ],
   "scripts": {
-    "dev": "vue-cli-service serve src/main.js",
-    "build": "vue-cli-service build --target lib --name naked-ui--vue src/main.js",
+    "dev": "yarn install && vue-cli-service serve src/main.js",
+    "build": "yarn install && vue-cli-service build --target lib --name naked-ui--vue src/main.js",
     "prepublishOnly": "$npm_execpath build",
     "lint": "vue-cli-service lint"
   },
@@ -31,7 +31,8 @@
     "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-vue": "^7.3.0",
     "prettier": "^2.2.1",
-    "vue-template-compiler": "^2.6.12"
+    "vue-template-compiler": "^2.6.12",
+    "sass-loader": "^10.1.0"
   },
   "repository": {
     "type": "git",
