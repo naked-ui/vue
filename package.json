@@ -1,11 +1,18 @@
 {
   "name": "@naked-ui/vue",
   "version": "0.0.4",
+  "main": "dist/naked-ui--vue.umd.min.js",
+  "unpkg": "dist/naked-ui--vue.umd.min.js",
+  "jsdelivr": "dist/naked-ui--vue.umd.min.js",
   "description": "Naked UI for Vue.js",
-  "main": "index.js",
+  "files": [
+    "dist/**",
+    "src/**"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name naked-ui--vue src/main.js",
+    "prepublishOnly": "$npm_execpath build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
