@@ -23,13 +23,12 @@ import carouselNavigation from './carouselNavigation'
 
 export default {
   name: 'CarouselItem',
-  mixins: [
-    carouselNavigation
-  ],
+  mixins: [carouselNavigation],
   props: {
     slideIndex: {
-      type: String | Number,
-      required: true
+      type: String,
+      required: true,
+      default: ''
     },
     carouselKey: {
       type: String,
