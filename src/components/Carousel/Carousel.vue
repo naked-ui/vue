@@ -30,9 +30,7 @@ import carouselNavigation from './carouselNavigation'
 
 export default {
   name: 'Carousel',
-  mixins: [
-    carouselNavigation
-  ],
+  mixins: [carouselNavigation],
   props: { 
     paginationItems: {
       type: Array,
