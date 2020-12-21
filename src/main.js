@@ -15,3 +15,5 @@ export default ComponentLibrary
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(ComponentLibrary)
 }
+
+export { Carousel, CarouselItem } from './components/Carousel'
