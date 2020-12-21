@@ -1,6 +1,6 @@
 {
   "name": "@naked-ui/vue",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "main": "dist/naked-ui--vue.umd.min.js",
   "unpkg": "dist/naked-ui--vue.umd.min.js",
   "jsdelivr": "dist/naked-ui--vue.umd.min.js",
@@ -31,8 +31,8 @@
     "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-vue": "^7.3.0",
     "prettier": "^2.2.1",
-    "vue-template-compiler": "^2.6.12",
-    "sass-loader": "^10.1.0"
+    "sass-loader": "^10.1.0",
+    "vue-template-compiler": "^2.6.12"
   },
   "repository": {
     "type": "git",
