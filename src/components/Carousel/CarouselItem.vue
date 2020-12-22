@@ -7,14 +7,18 @@
     <div class="carousel__snapper">
       <a
         :href="`#${carouselKey}--${prevSlide(slideIndex)}`"
+        @click.prevent
         class="carousel__prev"
       />
       <a
         :href="`#${carouselKey}--${nextSlide(slideIndex)}`"
+        @click.prevent
         class="carousel__next"
       />
     </div>
-    <slot />
+    <div class="carousel__slide-content">
+      <slot />
+    </div>
   </li>
 </template>
 
