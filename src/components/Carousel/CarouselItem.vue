@@ -4,7 +4,7 @@
     :tabindex="slideIndex"
     :id="`${carouselKey}--${slideIndex}`"
   >
-    <div class="carousel__snapper">
+    <div class="carousel__navigation">
       <a
         :href="`#${carouselKey}--${prevSlide(slideIndex)}`"
         class="carousel__prev"
