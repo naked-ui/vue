@@ -4,6 +4,7 @@
     :is="tag"
     :class="componentClasses"
     :noPadding="noPadding"
+    :disabled="disabled"
   >
     <div
       v-if="$slots['button-icon--left']"
@@ -16,21 +17,23 @@
       v-if="$slots.default"
       class="button__text"
     >
-      <slot />
+      <slot v-if="!busy" />
+      <slot
+        v-if="busy"
+        name="button__text--busy"
+      />
     </span>
      <div
       v-if="$slots['button-icon--solo']"
       class="button__slot-icon--solo"
     >
-      <slot name="button-icon--solo">
-      </slot>
+      <slot name="button-icon--solo" />
     </div>
     <div
       v-if="$slots['button-icon--right']"
       class="button__slot-icon--right"
     >
-      <slot name="button-icon--right">
-      </slot>
+      <slot name="button-icon--right" />
     </div>
   </component>
 </template>
@@ -52,6 +55,10 @@ export default {
       default: 'button'
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    busy: {
       type: Boolean,
       default: false
     },
@@ -107,12 +114,10 @@ export default {
         this.kind === 'danger' && 'button--danger',
         this.kind === 'success' && 'button--success',
         this.kind === 'warning' && 'button--warning',
-        this.disabled && 'disabled',
-        this.noPadding && 'no-padding',
-        this.$slots['button-icon--right'] || this.$slots['button-icon--left'] && 'has-slot-icon',
-        !this.$slots.default && 'no-button-text',
-        this.iconPosition === 'left' && 'button--icon-left',
-        this.iconPosition === 'right' && 'button--icon-right',
+        this.disabled && 'button--disabled',
+        this.busy && 'button--busy',
+        this.noPadding && 'button--no-padding',
+        !this.$slots.default && 'button--no-text',
         this.size === 'small' && 'button--small',
         this.size === 'big' && 'button--big'
       ]
