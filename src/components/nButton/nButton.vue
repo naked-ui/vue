@@ -103,7 +103,7 @@ export default {
     },
     componentClasses () {
       return [
-        'button',
+        'n-button',
         this.kind === 'primary' && 'n-button--primary',
         this.kind === 'secondary' && 'n-button--secondary',
         this.kind === 'tertiary' && 'n-button--tertiary',
