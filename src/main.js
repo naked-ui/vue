@@ -16,5 +16,5 @@ if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(ComponentLibrary)
 }
 
-export { Button } from './components/Button'
-export { Carousel, CarouselItem } from './components/Carousel'
+export { nButton } from './components/nButton'
+export { nCarousel, nCarouselItem } from './components/nCarousel'

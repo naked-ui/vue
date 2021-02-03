@@ -1,2 +1,2 @@
-export { Button } from './Button'
-export { Carousel, CarouselItem } from './Carousel'
+export { nButton } from './nButton'
+export { nCarousel, nCarouselItem } from './nCarousel'

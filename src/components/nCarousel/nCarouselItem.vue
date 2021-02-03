@@ -1,20 +1,20 @@
 <template>
   <li
-    class="carousel__slide"
+    class="n-carousel__slide"
     :tabindex="slideIndex"
-    :id="`${carouselKey}--${slideIndex}`"
+    :id="`${ref}--${slideIndex}`"
   >
-    <div class="carousel__navigation">
+    <div class="n-carousel__navigation">
       <a
-        :href="`#${carouselKey}--${prevSlide(slideIndex)}`"
-        class="carousel__prev"
+        :href="`#${ref}--${prevSlide(slideIndex)}`"
+        class="n-carousel__prev"
       />
       <a
-        :href="`#${carouselKey}--${nextSlide(slideIndex)}`"
-        class="carousel__next"
+        :href="`#${ref}--${nextSlide(slideIndex)}`"
+        class="n-carousel__next"
       />
     </div>
-    <div class="carousel__slide-content">
+    <div class="n-carousel__slide-content">
       <slot />
     </div>
   </li>
@@ -24,7 +24,7 @@
 import carouselNavigation from './logic/carouselNavigation'
 
 export default {
-  name: 'CarouselItem',
+  name: 'nCarouselItem',
   mixins: [carouselNavigation],
   props: {
     slideIndex: {
@@ -32,7 +32,7 @@ export default {
       required: true,
       default: 0
     },
-    carouselKey: {
+    ref: {
       type: String,
       default: 'slide'
     }

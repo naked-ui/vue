@@ -5,33 +5,30 @@
     :class="componentClasses"
     :noPadding="noPadding"
     :disabled="disabled"
+    :busy="busy"
   >
     <div
       v-if="$slots['button-icon--left']"
-      class="button__slot-icon--left"
+      class="n-button__slot-icon--left"
     >
       <slot name="button-icon--left">
       </slot>
     </div>
     <span
       v-if="$slots.default"
-      class="button__text"
+      class="n-button__text"
     >
-      <slot v-if="!busy" />
-      <slot
-        v-if="busy"
-        name="button__text--busy"
-      />
+      <slot />
     </span>
      <div
       v-if="$slots['button-icon--solo']"
-      class="button__slot-icon--solo"
+      class="n-button__slot-icon--solo"
     >
       <slot name="button-icon--solo" />
     </div>
     <div
       v-if="$slots['button-icon--right']"
-      class="button__slot-icon--right"
+      class="n-button__slot-icon--right"
     >
       <slot name="button-icon--right" />
     </div>
@@ -40,7 +37,7 @@
 
 <script>
 export default {
-  name: 'Button',
+  name: 'nButton',
   props: {
     kind: {
       type: String,
@@ -107,19 +104,19 @@ export default {
     componentClasses () {
       return [
         'button',
-        this.kind === 'primary' && 'button--primary',
-        this.kind === 'secondary' && 'button--secondary',
-        this.kind === 'tertiary' && 'button--tertiary',
-        this.kind === 'ghost' && 'button--ghost',
-        this.kind === 'danger' && 'button--danger',
-        this.kind === 'success' && 'button--success',
-        this.kind === 'warning' && 'button--warning',
-        this.disabled && 'button--disabled',
-        this.busy && 'button--busy',
-        this.noPadding && 'button--no-padding',
-        !this.$slots.default && 'button--no-text',
-        this.size === 'small' && 'button--small',
-        this.size === 'big' && 'button--big'
+        this.kind === 'primary' && 'n-button--primary',
+        this.kind === 'secondary' && 'n-button--secondary',
+        this.kind === 'tertiary' && 'n-button--tertiary',
+        this.kind === 'ghost' && 'n-button--ghost',
+        this.kind === 'danger' && 'n-button--danger',
+        this.kind === 'success' && 'n-button--success',
+        this.kind === 'warning' && 'n-button--warning',
+        this.disabled && 'n-button--disabled',
+        this.busy && 'n-button--busy',
+        this.noPadding && 'n-button--no-padding',
+        !this.$slots.default && 'n-button--no-text',
+        this.size === 'small' && 'n-button--small',
+        this.size === 'big' && 'n-button--big'
       ]
     }
   }
