@@ -3,23 +3,23 @@
     :class="componentClasses"
     :paginationEnabled="paginationEnabled"
   >
-    <div class="n-carousel__viewport-wrapper">
-      <div class="n-carousel__viewport">
+    <div class="nui-carousel__viewport-wrapper">
+      <div class="nui-carousel__viewport">
         <slot />
       </div>
     </div>
     <aside
       v-if="paginationEnabled"
-      class="n-carousel__pagination"
+      class="nui-carousel__pagination"
     >
-      <ol class="n-carousel__pagination-list">
+      <ol class="nui-carousel__pagination-list">
         <li
           v-for="(item, index) in paginationItems"
           :key="index"
-          class="n-carousel__pagination-item">
+          class="nui-carousel__pagination-item">
           <a
-            :href="`#${ref}--${index}`"
-            class="n-carousel__pagination-button"
+            :href="`#${refName}--${index}`"
+            class="nui-carousel__pagination-button"
           >Go to slide {{ index }}</a>
         </li>
       </ol>
@@ -29,10 +29,11 @@
 
 <script>
 import carouselNavigation from './logic/carouselNavigation'
+import namePrefixMixin from '~/packages/naked-ui/src/utils/namePrefix'
 
 export default {
   name: 'nCarousel',
-  mixins: [carouselNavigation],
+  mixins: [carouselNavigation, namePrefixMixin],
   props: { 
     paginationItems: {
       type: Array,
@@ -42,7 +43,7 @@ export default {
       type: Boolean,
       default: true
     },
-    ref: {
+    refName: {
       type: String,
       required: true,
       default: 'slide'
@@ -55,11 +56,11 @@ export default {
   computed: {
     componentClasses () {
       return [
-        'carousel',
-        this.kind === 'overflow' && 'carousel--overflow',
-        this.kind === 'overflow-desktop' && 'carousel--overflow-desktop',
-        this.kind === 'overflow-tablet' && 'carousel--overflow-tablet',
-        this.kind === 'overflow-mobile' && 'carousel--overflow-mobile',
+        `${this.namePrefix}carousel`,
+        this.kind === 'overflow' && `${this.namePrefix}carousel--overflow`,
+        this.kind === 'overflow-desktop' && `${this.namePrefix}carousel--overflow-desktop`,
+        this.kind === 'overflow-tablet' && `${this.namePrefix}carousel--overflow-tablet`,
+        this.kind === 'overflow-mobile' && `${this.namePrefix}carousel--overflow-mobile`,
       ]
     }
   },

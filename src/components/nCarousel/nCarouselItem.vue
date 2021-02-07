@@ -1,20 +1,20 @@
 <template>
   <li
-    class="n-carousel__slide"
+    :class="[`${namePrefix}carousel__slide`]"
     :tabindex="slideIndex"
     :id="`${ref}--${slideIndex}`"
   >
-    <div class="n-carousel__navigation">
+    <div :class="[`${namePrefix}carousel__navigation`]">
       <a
         :href="`#${ref}--${prevSlide(slideIndex)}`"
-        class="n-carousel__prev"
+        :class="[`${namePrefix}carousel__prev`]"
       />
       <a
         :href="`#${ref}--${nextSlide(slideIndex)}`"
-        class="n-carousel__next"
+        :class="[`${namePrefix}carousel__next`]"
       />
     </div>
-    <div class="n-carousel__slide-content">
+    <div :class="[`${namePrefix}carousel__content`]">
       <slot />
     </div>
   </li>
@@ -22,10 +22,11 @@
 
 <script>
 import carouselNavigation from './logic/carouselNavigation'
+import namePrefixMixin from '~/packages/naked-ui/src/utils/namePrefix'
 
 export default {
   name: 'nCarouselItem',
-  mixins: [carouselNavigation],
+  mixins: [carouselNavigation, namePrefixMixin],
   props: {
     slideIndex: {
       type: Number,

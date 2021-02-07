@@ -9,26 +9,26 @@
   >
     <div
       v-if="$slots['button-icon--left']"
-      class="n-button__slot-icon--left"
+      class="nui-button__slot-icon--left"
     >
       <slot name="button-icon--left">
       </slot>
     </div>
     <span
       v-if="$slots.default"
-      class="n-button__text"
+      class="nui-button__text"
     >
       <slot />
     </span>
      <div
       v-if="$slots['button-icon--solo']"
-      class="n-button__slot-icon--solo"
+      class="nui-button__slot-icon--solo"
     >
       <slot name="button-icon--solo" />
     </div>
     <div
       v-if="$slots['button-icon--right']"
-      class="n-button__slot-icon--right"
+      class="nui-button__slot-icon--right"
     >
       <slot name="button-icon--right" />
     </div>
