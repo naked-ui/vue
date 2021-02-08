@@ -2,6 +2,8 @@
   <div
     :class="componentClasses"
     :paginationEnabled="paginationEnabled"
+    :data-name-prefix="namePrefix"
+    :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
   >
     <div class="nui-carousel__viewport-wrapper">
       <div class="nui-carousel__viewport">
@@ -29,7 +31,7 @@
 
 <script>
 import carouselNavigation from './logic/carouselNavigation'
-import namePrefixMixin from '~/packages/naked-ui/src/utils/namePrefix'
+import namePrefixMixin from '../../utils/namePrefix'
 
 export default {
   name: 'nCarousel',

@@ -1,21 +1,11 @@
 <template>
   <li
-    :class="[`${namePrefix}carousel__slide`]"
+    :class="[`overflow-carousel__item`]"
     :tabindex="slideIndex"
-    :id="`${ref}--${slideIndex}`"
+    :id="`${refName}--${slideIndex}`"
     :data-name-prefix="namePrefix"
   >
-    <div :class="[`${namePrefix}carousel__navigation`]">
-      <a
-        :href="`#${ref}--${prevSlide(slideIndex)}`"
-        :class="[`${namePrefix}carousel__prev`]"
-      />
-      <a
-        :href="`#${ref}--${nextSlide(slideIndex)}`"
-        :class="[`${namePrefix}carousel__next`]"
-      />
-    </div>
-    <div :class="[`${namePrefix}carousel__content`]">
+    <div :class="[`overflow-carousel__item-content`]">
       <slot />
     </div>
   </li>
@@ -26,7 +16,7 @@ import carouselNavigation from './logic/carouselNavigation'
 import namePrefixMixin from '../../utils/namePrefix'
 
 export default {
-  name: 'nCarouselItem',
+  name: 'nOverflowCarouselItem',
   mixins: [carouselNavigation, namePrefixMixin],
   props: {
     slideIndex: {
@@ -34,7 +24,7 @@ export default {
       required: true,
       default: 0
     },
-    ref: {
+    refName: {
       type: String,
       default: 'slide'
     }

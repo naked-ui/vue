@@ -1,0 +1,14 @@
+@import '../../styles/variables/colors.scss';
+
+.button {
+  padding: 16px 24px;
+  font-size: 18px;
+
+  &--primary {
+    background-color: var(--black);
+
+    .button__text {
+      color: var(--white);
+    }
+  }
+}

@@ -6,6 +6,7 @@
     :noPadding="noPadding"
     :disabled="disabled"
     :busy="busy"
+    :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
   >
     <div
       v-if="$slots['button-icon--left']"
@@ -67,6 +68,10 @@ export default {
       type: String,
       default: '',
       required: false
+    },
+    baseClassname: {
+      type: String,
+      default: 'button'
     }
   },
   computed: {
@@ -103,20 +108,20 @@ export default {
     },
     componentClasses () {
       return [
-        'n-button',
-        this.kind === 'primary' && 'n-button--primary',
-        this.kind === 'secondary' && 'n-button--secondary',
-        this.kind === 'tertiary' && 'n-button--tertiary',
-        this.kind === 'ghost' && 'n-button--ghost',
-        this.kind === 'danger' && 'n-button--danger',
-        this.kind === 'success' && 'n-button--success',
-        this.kind === 'warning' && 'n-button--warning',
-        this.disabled && 'n-button--disabled',
-        this.busy && 'n-button--busy',
-        this.noPadding && 'n-button--no-padding',
-        !this.$slots.default && 'n-button--no-text',
-        this.size === 'small' && 'n-button--small',
-        this.size === 'big' && 'n-button--big'
+        baseClassname,
+        this.kind === 'primary' && `${baseClassname}--primary`,
+        this.kind === 'secondary' && `${baseClassname}--secondary`,
+        this.kind === 'tertiary' && `${baseClassname}--tertiary`,
+        this.kind === 'ghost' && `${baseClassname}--ghost`,
+        this.kind === 'danger' && `${baseClassname}--danger`,
+        this.kind === 'success' && `${baseClassname}--success`,
+        this.kind === 'warning' && `${baseClassname}--warning`,
+        this.disabled && `${baseClassname}--disabled`,
+        this.busy && `${baseClassname}--busy`,
+        this.noPadding && `${baseClassname}--no-padding`,
+        !this.$slots.default && `${baseClassname}--no-text`,
+        this.size === 'small' && `${baseClassname}--small`,
+        this.size === 'big' && `${baseClassname}--bi`
       ]
     }
   }
