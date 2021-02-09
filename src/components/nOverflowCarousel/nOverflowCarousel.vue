@@ -1,11 +1,11 @@
 <template>
   <div
-    :data-name-prefix="namePrefix"
-    :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
     :class="componentClasses"
+    :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
+    :data-name-prefix="namePrefix"
   >
-    <div class="overflow-carousel__viewport-wrapper">
-      <div class="overflow-carousel__viewport">
+    <div :class="`${baseClassname}__viewport-wrapper`">
+      <div :class="`${baseClassname}__viewport`">
         <slot />
       </div>
     </div>
@@ -13,12 +13,17 @@
 </template>
 
 <script>
-import carouselNavigation from './logic/carouselNavigation'
 import namePrefixMixin from '../../utils/namePrefix'
 
 export default {
   name: 'nOverflowCarousel',
-  mixins: [carouselNavigation, namePrefixMixin],
+  mixins: [namePrefixMixin],
+  props: {
+    baseClassname: {
+      type: String,
+      default: 'overflow-carousel'
+    }
+  },
   computed: {
     componentClasses () {
       return [

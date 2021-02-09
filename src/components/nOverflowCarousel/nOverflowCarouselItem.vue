@@ -1,11 +1,9 @@
 <template>
   <li
-    :class="[`overflow-carousel__item`]"
-    :tabindex="slideIndex"
-    :id="`${refName}--${slideIndex}`"
+    :class="componentClasses"
     :data-name-prefix="namePrefix"
   >
-    <div :class="[`overflow-carousel__item-content`]">
+    <div :class="[`${baseClassname}-content`]">
       <slot />
     </div>
   </li>
@@ -27,6 +25,17 @@ export default {
     refName: {
       type: String,
       default: 'slide'
+    },
+    baseClassname: {
+      type: String,
+      default: 'overflow-carousel__item'
+    }
+  },
+  computed: {
+    componentClasses () {
+      return [
+        `${this.baseClassname}`
+      ]
     }
   }
 }

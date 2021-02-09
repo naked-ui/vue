@@ -1,4 +1,4 @@
-.overflow-carousel {
+[data-name-prefix="nui"].overflow-carousel {
   @include overflow-carousel(
     $viewport-classname: '.overflow-carousel__viewport',
     $viewport-width: 100%,
@@ -8,26 +8,4 @@
     $slide-width: 300px,
     $slide-height: 300px
   );
-
-  .overflow-carousel__viewport {
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    & {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-    } 
-  }
-
-  .overflow-carousel__item {
-    @include flex($place: center);
-    background-color: #bbb;
-
-    &-content {
-      @include flex($place: center);
-      text-align: center;
-      font: 700 24px/32px -apple-system, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      color: car(--black) !important;
-    }
-  }
 }

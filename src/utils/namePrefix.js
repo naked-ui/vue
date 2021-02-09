@@ -1,9 +1,9 @@
 export default {
   computed: {
     namePrefix () {
-      if (this.nakedUiCustomNamePrefix) {
-        return `${this.nakedUiCustomNamePrefix}-`
-      } else return 'nui-'
+      if (this.customNamePrefix) {
+        return this.customNamePrefix
+      } else return 'nui'
     }
   }
 }
