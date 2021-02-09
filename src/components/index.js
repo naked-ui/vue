@@ -1,2 +1,3 @@
 export { nButton } from './nButton'
-export { nCarousel, nCarouselItem } from './nCarousel'
+export { nOverflowCarousel, nOverflowCarouselItem } from './nOverflowCarousel'
+export { nSliderCarousel, nSliderCarouselItem } from './nSliderCarousel'

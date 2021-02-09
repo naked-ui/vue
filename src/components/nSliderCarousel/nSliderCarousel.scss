@@ -1,0 +1,26 @@
+.slider-carousel {
+  @include flexbox-carousel(
+    $navigation-enabled: true,
+
+    $wrapper-height: 450px,
+    $wrapper-width: 100%,
+    $wrapper-max-width: 37.5rem,
+    $viewport-classname: '.slider-carousel__viewport',
+    $viewport-counter: true,
+
+    $slide-classname: '.slider-carousel__item',
+    $slide-flex: 0 0 100%,
+    $slide-width: 25%,
+    $slide-counter: true,
+    
+    $navigation-classname: '.slider-carousel__navigation',
+    $pagination-classname: '.slider-carousel__pagination',
+    $pagination-enabled: true,
+    
+    $gap: 16px
+  );
+
+  &::after {
+    right: 0;
+  }
+}

@@ -1,0 +1,11 @@
+[data-name-prefix="nui"].overflow-carousel {
+  @include overflow-carousel(
+    $viewport-classname: '.overflow-carousel__viewport',
+    $viewport-width: 100%,
+    $gap: 20px,
+    $viewport-padding-left: 20px,
+    $slide-classname: '.overflow-carousel__item',
+    $slide-width: 300px,
+    $slide-height: 300px
+  );
+}

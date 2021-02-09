@@ -6,29 +6,31 @@
     :noPadding="noPadding"
     :disabled="disabled"
     :busy="busy"
+    :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
+    :data-name-prefix="namePrefix"
   >
     <div
       v-if="$slots['button-icon--left']"
-      class="n-button__slot-icon--left"
+      class="button__slot-icon--left"
     >
       <slot name="button-icon--left">
       </slot>
     </div>
     <span
       v-if="$slots.default"
-      class="n-button__text"
+      class="button__text"
     >
       <slot />
     </span>
      <div
       v-if="$slots['button-icon--solo']"
-      class="n-button__slot-icon--solo"
+      class="button__slot-icon--solo"
     >
       <slot name="button-icon--solo" />
     </div>
     <div
       v-if="$slots['button-icon--right']"
-      class="n-button__slot-icon--right"
+      class="button__slot-icon--right"
     >
       <slot name="button-icon--right" />
     </div>
@@ -36,7 +38,10 @@
 </template>
 
 <script>
+import namePrefixMixin from '../../utils/namePrefix'
+
 export default {
+  mixins: [namePrefixMixin],
   name: 'nButton',
   props: {
     kind: {
@@ -67,6 +72,10 @@ export default {
       type: String,
       default: '',
       required: false
+    },
+    baseClassname: {
+      type: String,
+      default: 'button'
     }
   },
   computed: {
@@ -103,22 +112,24 @@ export default {
     },
     componentClasses () {
       return [
-        'n-button',
-        this.kind === 'primary' && 'n-button--primary',
-        this.kind === 'secondary' && 'n-button--secondary',
-        this.kind === 'tertiary' && 'n-button--tertiary',
-        this.kind === 'ghost' && 'n-button--ghost',
-        this.kind === 'danger' && 'n-button--danger',
-        this.kind === 'success' && 'n-button--success',
-        this.kind === 'warning' && 'n-button--warning',
-        this.disabled && 'n-button--disabled',
-        this.busy && 'n-button--busy',
-        this.noPadding && 'n-button--no-padding',
-        !this.$slots.default && 'n-button--no-text',
-        this.size === 'small' && 'n-button--small',
-        this.size === 'big' && 'n-button--big'
+        this.baseClassname,
+        this.kind === 'primary' && `${this.baseClassname}--primary`,
+        this.kind === 'secondary' && `${this.baseClassname}--secondary`,
+        this.kind === 'tertiary' && `${this.baseClassname}--tertiary`,
+        this.kind === 'ghost' && `${this.baseClassname}--ghost`,
+        this.kind === 'danger' && `${this.baseClassname}--danger`,
+        this.kind === 'success' && `${this.baseClassname}--success`,
+        this.kind === 'warning' && `${this.baseClassname}--warning`,
+        this.disabled && `${this.baseClassname}--disabled`,
+        this.busy && `${this.baseClassname}--busy`,
+        this.noPadding && `${this.baseClassname}--no-padding`,
+        !this.$slots.default && `${this.baseClassname}--no-text`,
+        this.size === 'small' && `${this.baseClassname}--small`,
+        this.size === 'big' && `${this.baseClassname}--bi`
       ]
     }
   }
 };
 </script>
+
+<style lang="scss" src="./nButton.scss" />
