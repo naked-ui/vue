@@ -1,14 +1,19 @@
-@import '../../styles/variables/colors.scss';
+@import '../../styles/variables/colors';
+@import '../../styles/utils/hover';
 
-[data-name-prefix="nui"].button {
-  padding: 16px 24px;
-  font-size: 18px;
+[data-name-prefix="nui"] {
 
-  &--primary {
-    background-color: var(--black);
+  &.button {
+    @include hover-effect($opacity: .36);
+    padding: 16px 24px;
+    font-size: 18px;
+  }
+
+  &.button--primary {
+    background-color: var(--nui-color-black);
 
     .button__text {
-      color: var(--white);
+      color: var(--nui-color-white);
     }
   }
 }

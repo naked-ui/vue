@@ -1,0 +1,10 @@
+@mixin hover-effect(
+  $opacity: .5,
+  $transition-time: .3s,
+  $transition-curve: ease-out
+) {
+  &:hover {
+    opacity: $opacity;
+  }
+  transition: opacity $transition-time $transition-curve;
+}
