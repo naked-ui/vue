@@ -11,9 +11,9 @@
   ],
   "scripts": {
     "dev": "yarn install && vue-cli-service serve src/main.js",
-    "build": "yarn install && vue-cli-service build --target lib --name index src/main.js",
-    "build:js": "yarn build && rm dist/index.umd.js dist/index.umd.js.map dist/index.common.js dist/index.common.js.map dist/demo.html dist/index.css",
-    "build:css": "yarn build && rm dist/index.umd.js dist/index.umd.js.map dist/index.common.js dist/index.common.js.map dist/demo.html dist/index.umd.min.js dist/index.umd.min.js.map",
+    "build": "yarn install && vue-cli-service build --target lib --name index src/main.js && rm dist/index.umd.js dist/index.umd.js.map dist/index.common.js dist/index.common.js.map dist/demo.html",
+    "build:js": "yarn build && rm dist/index.css",
+    "build:css": "yarn build && rm dist/index.umd.min.js dist/index.umd.min.js.map",
     "prepublishOnly": "$npm_execpath build",
     "lint": "vue-cli-service lint"
   },
