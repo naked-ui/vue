@@ -1,9 +1,9 @@
 {
   "name": "@naked-ui/vue",
   "version": "0.1.7",
-  "main": "dist/naked-ui--vue.umd.min.js",
-  "unpkg": "dist/naked-ui--vue.umd.min.js",
-  "jsdelivr": "dist/naked-ui--vue.umd.min.js",
+  "main": "dist/index.umd.min.js",
+  "unpkg": "dist/index.umd.min.js",
+  "jsdelivr": "dist/index.umd.min.js",
   "description": "Naked UI for Vue.js",
   "files": [
     "dist/**",
@@ -11,7 +11,9 @@
   ],
   "scripts": {
     "dev": "yarn install && vue-cli-service serve src/main.js",
-    "build": "yarn install && vue-cli-service build --target lib --name naked-ui--vue src/main.js",
+    "build": "yarn install && vue-cli-service build --target lib --name index src/main.js",
+    "build:js": "yarn build && rm dist/index.umd.js dist/index.umd.js.map dist/index.common.js dist/index.common.js.map dist/demo.html dist/index.css",
+    "build:css": "yarn build && rm dist/index.umd.js dist/index.umd.js.map dist/index.common.js dist/index.common.js.map dist/demo.html dist/index.umd.min.js dist/index.umd.min.js.map",
     "prepublishOnly": "$npm_execpath build",
     "lint": "vue-cli-service lint"
   },
