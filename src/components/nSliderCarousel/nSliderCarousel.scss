@@ -2,6 +2,7 @@
 
 [data-name-prefix="nui"].slider-carousel {
   @include flexbox-carousel(
+    $base-classname: '.slider-carousel',
     $navigation-enabled: true,
 
     $wrapper-height: 450px,

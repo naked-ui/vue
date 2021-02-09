@@ -20,7 +20,7 @@
   "dependencies": {
     "babel-loader": "^8.2.2",
     "core-js": "^3.8.1",
-    "sxcss": "^1.4.23",
+    "sxcss": "^1.4.24",
     "vue": "^2.6.12"
   },
   "devDependencies": {
