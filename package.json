@@ -1,6 +1,6 @@
 {
   "name": "@naked-ui/vue",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "main": "dist/index.umd.min.js",
   "unpkg": "dist/index.umd.min.js",
   "jsdelivr": "dist/index.umd.min.js",
