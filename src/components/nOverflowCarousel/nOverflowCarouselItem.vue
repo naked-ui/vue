@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import carouselNavigation from './logic/carouselNavigation'
+import carouselNavigation from '../../utils/carouselNavigation'
 import namePrefixMixin from '../../utils/namePrefix'
 
 export default {
