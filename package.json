@@ -1,6 +1,6 @@
 {
   "name": "@naked-ui/vue",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "main": "dist/naked-ui--vue.umd.min.js",
   "unpkg": "dist/naked-ui--vue.umd.min.js",
   "jsdelivr": "dist/naked-ui--vue.umd.min.js",
@@ -18,7 +18,7 @@
   "dependencies": {
     "babel-loader": "^8.2.2",
     "core-js": "^3.8.1",
-    "sxcss": "^1.3.2",
+    "sxcss": "^1.4.22",
     "vue": "^2.6.12"
   },
   "devDependencies": {

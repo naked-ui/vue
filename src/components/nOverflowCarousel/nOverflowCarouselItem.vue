@@ -9,13 +9,12 @@
   </li>
 </template>
 
-<script>
-import carouselNavigation from '../../utils/carouselNavigation'
+<script> 
 import namePrefixMixin from '../../utils/namePrefix'
 
 export default {
   name: 'nOverflowCarouselItem',
-  mixins: [carouselNavigation, namePrefixMixin],
+  mixins: [namePrefixMixin],
   props: {
     slideIndex: {
       type: Number,

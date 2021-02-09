@@ -1,4 +1,6 @@
-.slider-carousel {
+@import 'sxcss';
+
+[data-name-prefix="nui"].slider-carousel {
   @include flexbox-carousel(
     $navigation-enabled: true,
 

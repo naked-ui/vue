@@ -1,3 +1,5 @@
+@import 'sxcss';
+
 [data-name-prefix="nui"].overflow-carousel {
   @include overflow-carousel(
     $viewport-classname: '.overflow-carousel__viewport',
