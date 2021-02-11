@@ -125,7 +125,7 @@ export default {
         this.noPadding && `${this.baseClassname}--no-padding`,
         !this.$slots.default && `${this.baseClassname}--no-text`,
         this.size === 'small' && `${this.baseClassname}--small`,
-        this.size === 'big' && `${this.baseClassname}--bi`
+        this.size === 'big' && `${this.baseClassname}--big`
       ]
     }
   }
