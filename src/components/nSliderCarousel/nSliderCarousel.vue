@@ -10,6 +10,22 @@
         <slot />
       </div>
     </div>
+    <div :class="[`${baseClassname}__navigation`]">
+      <a
+        @click="prevSlide(slideIndex)"
+        :class="[
+          `${baseClassname}__prev`,
+          prevDisabled && `${this.baseClassname}__prev--disabled`
+        ]"
+      />
+      <a
+        @click="nextSlide(slideIndex)"
+        :class="[
+          `${baseClassname}__next`,
+          nextDisabled && `${this.baseClassname}__next--disabled`
+        ]"
+      />
+    </div>
     <aside
       v-if="paginationEnabled"
       :class="`${baseClassname}__pagination`"
@@ -20,9 +36,11 @@
           :key="index"
           :class="`${baseClassname}__pagination-item`">
           <a
-            :href="`#${refName}--${index + 1}`"
+            @click="navigateToSlide(index)"
             :class="`${baseClassname}__pagination-button`"
-          >Go to slide {{ index + 1 }}</a>
+          >
+            Go to slide {{ index + 1 }}
+          </a>
         </li>
       </ol>
     </aside>
@@ -30,33 +48,43 @@
 </template>
 
 <script>
-import carouselNavigation from '../../utils/carouselNavigation'
 import namePrefixMixin from '../../utils/namePrefix'
 
 export default {
   name: 'nSliderCarousel',
-  mixins: [carouselNavigation, namePrefixMixin],
+  mixins: [namePrefixMixin],
+  data () {
+    return {
+      slideIndex: 1
+    }
+  },
   props: { 
-    paginationItems: {
-      type: [Array, Number],
-      required: true
-    },
-    paginationEnabled: {
-      type: Boolean,
-      default: true
-    },
+
+    // Data props
+    
     refName: {
       type: String,
       required: true,
       default: 'slide'
     },
-    kind: {
-      type: String,
-      default: undefined
-    },
     baseClassname: {
       type: String,
       default: 'slider-carousel'
+    },
+    paginationItems: {
+      type: [Array, Number],
+      required: true
+    },
+
+    // Settings
+
+    paginationEnabled: {
+      type: Boolean,
+      default: true
+    },
+    infiniteScroll: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
@@ -64,16 +92,48 @@ export default {
       return [
         this.baseClassname
       ]
+    },
+    maxIndex () {
+      if(this.slideIndex > this.paginationItems.length) {
+        return this.paginationItems.length
+      } else return this.paginationItems 
+    },
+    prevDisabled () {
+      if (this.slideIndex > 1) {
+        return false
+      } else return true
+    },
+    nextDisabled () {
+      if (this.slideIndex < this.maxIndex) {
+        return false
+      } else return true
     }
   },
   methods: {
+    fetchSlideIndexFromUrl () {
+      var slideIndexUri = window.location.href.match(/#slider-carousel--(\d+)/) // 'slider-carousel' should be a dynamic value that is a String coming from refName property
+      if (slideIndexUri) { 
+        return this.slideIndex = parseFloat(slideIndexUri[1])
+      }
+    },
+    navigateToSlide (index) {
+      window.location.replace(`#${this.refName}--${index + 1}`)
+      this.slideIndex = index + 1
+    },
     prevSlide (index) {
-      return index - 1
+      if (index > 1) {
+        this.navigateToSlide(index - 2)
+      }
     },
     nextSlide (index) {
-      return index + 1
+      if (index < this.maxIndex) {
+        this.navigateToSlide(index)
+      }
     }
-  }
+  },
+  mounted () {
+    this.fetchSlideIndexFromUrl()
+  },
 }
 </script>
 

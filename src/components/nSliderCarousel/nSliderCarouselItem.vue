@@ -6,16 +6,6 @@
     :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
     :data-name-prefix="namePrefix"
   >
-    <div :class="[`${baseClassname}__navigation`]">
-      <a
-        :href="`#${refName}--${prevSlide(slideIndex)}`"
-        :class="[`${baseClassname}__prev`]"
-      />
-      <a
-        :href="`#${refName}--${nextSlide(slideIndex)}`"
-        :class="[`${baseClassname}__next`]"
-      />
-    </div>
     <div :class="[`${baseClassname}__item-content`]">
       <slot />
     </div>
@@ -23,17 +13,16 @@
 </template>
 
 <script>
-import carouselNavigation from '../../utils/carouselNavigation'
 import namePrefixMixin from '../../utils/namePrefix'
 
 export default {
   name: 'nSliderCarouselItem',
-  mixins: [carouselNavigation, namePrefixMixin],
+  mixins: [namePrefixMixin],
   props: {
     slideIndex: {
       type: Number,
       required: true,
-      default: 0
+      default: 1
     },
     refName: {
       type: String,
