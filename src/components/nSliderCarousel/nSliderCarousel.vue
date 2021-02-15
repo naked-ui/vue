@@ -1,16 +1,25 @@
 <template>
   <div
     :class="componentClasses"
-    :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
+    :style="`
+      --${baseClassname}__name-prefix: ${namePrefix};
+      --amount-to-scroll: ${amountToScroll}
+    `"
     :data-name-prefix="namePrefix"
     :paginationDisabled="paginationDisabled"
   >
+
+    <!--SLIDER VIEWPORT -->
+
     <div :class="`${baseClassname}__viewport-wrapper`">
       <div :class="`${baseClassname}__viewport`">
         <slot name="default" />
       </div>
     </div>
-    <div
+
+    <!--SLIDER NAVIGATION -->
+
+    <nav
       v-if="!navigationDisabled"
       :class="[`${baseClassname}__navigation`]"
     >
@@ -22,7 +31,7 @@
         ]"
         :disabled="prevDisabled"
       >
-        <slot name="prevButton"></slot>
+        <slot name="prev-button">Prev</slot>
       </button>
       <button
         @click.prevent="nextSlide(slideIndex)"
@@ -32,9 +41,12 @@
         ]"
         :disabled="nextDisabled"
       >
-        <slot name="nextButton"></slot>
+        <slot name="next-button">Next</slot>
       </button>
-    </div>
+    </nav>
+
+    <!--SLIDER PAGINATION -->
+
     <aside
       v-if="!paginationDisabled"
       :class="`${baseClassname}__pagination`"
@@ -46,13 +58,17 @@
           :class="`${baseClassname}__pagination-item`">
           <a
             @click.prevent="navigateToSlide(index + 1)"
-            :class="`${baseClassname}__pagination-button`"
+            :class="[
+              `${baseClassname}__pagination-button`,
+              index + 1 === slideIndex && `${baseClassname}__pagination-button--active`,
+            ]"
           >
             Go to slide {{ index + 1 }}
           </a>
         </li>
       </ol>
     </aside>
+
   </div>
 </template>
 
@@ -61,7 +77,9 @@ import namePrefixMixin from '../../utils/namePrefix'
 
 export default {
   name: 'nSliderCarousel',
-  mixins: [namePrefixMixin],
+  mixins: [
+    namePrefixMixin
+  ],
   data () {
     return {
       slideIndex: 1
@@ -99,7 +117,7 @@ export default {
       type: Boolean,
       default: true
     },
-    slideIdDisabled: {
+    slideIdEnabled: {
       type: Boolean,
       default: false
     },
@@ -133,7 +151,7 @@ export default {
       const sliderRegex = new RegExp(`#${this.refName}--(\\d+)`)
       const slideIndexUri = window.location.href.match(sliderRegex)
 
-      if (slideIndexUri && !this.slideIdDisabled) {
+      if (slideIndexUri && this.slideIdEnabled) {
         this.navigateToSlide(slideIndexUri[1])
         return this.slideIndex = parseFloat(slideIndexUri[1])
       }
@@ -144,7 +162,7 @@ export default {
 
       this.slideIndex = index
 
-      if (this.slideIdDisabled) return
+      if (!this.slideIdEnabled) return
       history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
     },
     prevSlide (index) {
