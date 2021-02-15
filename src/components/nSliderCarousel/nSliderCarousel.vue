@@ -3,31 +3,37 @@
     :class="componentClasses"
     :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
     :data-name-prefix="namePrefix"
-    :paginationEnabled="paginationEnabled"
+    :paginationDisabled="paginationDisabled"
   >
     <div :class="`${baseClassname}__viewport-wrapper`">
       <div :class="`${baseClassname}__viewport`">
-        <slot />
+        <slot name="default" />
       </div>
     </div>
     <div
       v-if="!navigationDisabled"
       :class="[`${baseClassname}__navigation`]"
     >
-      <a
+      <button
         @click.prevent="prevSlide(slideIndex)"
         :class="[
           `${baseClassname}__prev`,
           prevDisabled && `${this.baseClassname}__prev--disabled`
         ]"
-      />
-      <a
-        @click="nextSlide(slideIndex)"
+        :disabled="prevDisabled"
+      >
+        <slot name="prevButton"></slot>
+      </button>
+      <button
+        @click.prevent="nextSlide(slideIndex)"
         :class="[
           `${baseClassname}__next`,
           nextDisabled && `${this.baseClassname}__next--disabled`
         ]"
-      />
+        :disabled="nextDisabled"
+      >
+        <slot name="nextButton"></slot>
+      </button>
     </div>
     <aside
       v-if="!paginationDisabled"
@@ -39,7 +45,7 @@
           :key="index"
           :class="`${baseClassname}__pagination-item`">
           <a
-            @click.prevent="navigateToSlide(index)"
+            @click.prevent="navigateToSlide(index + 1)"
             :class="`${baseClassname}__pagination-button`"
           >
             Go to slide {{ index + 1 }}
@@ -61,10 +67,10 @@ export default {
       slideIndex: 1
     }
   },
-  props: { 
+  props: {
 
     // Data props
-    
+
     refName: {
       type: String,
       required: true,
@@ -92,6 +98,14 @@ export default {
     infiniteScroll: {
       type: Boolean,
       default: true
+    },
+    slideIdDisabled: {
+      type: Boolean,
+      default: false
+    },
+    amountToScroll: {
+      type: Number,
+      default: 1
     }
   },
   computed: {
@@ -103,39 +117,43 @@ export default {
     maxIndex () {
       if(this.slideIndex > this.paginationItems.length) {
         return this.paginationItems.length
-      } else return this.paginationItems 
+      } else return this.paginationItems
     },
     prevDisabled () {
-      if (this.slideIndex > 1) {
-        return false
-      } else return true
+      if (this.slideIndex > 1 || this.infiniteScroll) return false
+      else return true
     },
     nextDisabled () {
-      if (this.slideIndex < this.maxIndex) {
-        return false
-      } else return true
+      if (this.slideIndex < this.maxIndex || this.infiniteScroll) return false
+      else return true
     }
   },
   methods: {
     fetchSlideIndexFromUrl () {
-      var slideIndexUri = window.location.href.match(/#slider-carousel--(\d+)/) // 'slider-carousel' should be a dynamic value that is a String coming from refName property
-      if (slideIndexUri) { 
+      const sliderRegex = new RegExp(`#${this.refName}--(\\d+)`)
+      const slideIndexUri = window.location.href.match(sliderRegex)
+
+      if (slideIndexUri && !this.slideIdDisabled) {
+        this.navigateToSlide(slideIndexUri[1])
         return this.slideIndex = parseFloat(slideIndexUri[1])
       }
     },
     navigateToSlide (index) {
-      window.location.replace(`#${this.refName}--${index + 1}`)
-      this.slideIndex = index + 1
+      const slideElement = document.getElementById(`${this.refName}--${index}`)
+      slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+
+      this.slideIndex = index
+
+      if (this.slideIdDisabled) return
+      history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
     },
     prevSlide (index) {
-      if (index > 1) {
-        this.navigateToSlide(index - 2)
-      }
+      if (index - this.amountToScroll < 1) return this.navigateToSlide(this.maxIndex)
+      return this.navigateToSlide(index - this.amountToScroll)
     },
     nextSlide (index) {
-      if (index < this.maxIndex) {
-        this.navigateToSlide(index)
-      }
+      if (index + this.amountToScroll > this.maxIndex) return this.navigateToSlide(1)
+      return this.navigateToSlide(index + this.amountToScroll)
     }
   },
   mounted () {
