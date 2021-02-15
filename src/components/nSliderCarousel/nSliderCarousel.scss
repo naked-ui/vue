@@ -15,14 +15,14 @@
     $slide-flex: 0 0 100%,
     $slide-width: 25%,
     $slide-counter: true,
-    
+
     $navigation-classname: '.slider-carousel__navigation',
     $pagination-classname: '.slider-carousel__pagination',
     $pagination-enabled: true,
-    
+
     $gap: 16px
   );
-  
+
   overflow-y: hidden;
 
   &::after {
