@@ -1,34 +1,52 @@
 <template>
   <div
     :class="componentClasses"
-    :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
+    :style="`
+      --${baseClassname}__name-prefix: ${namePrefix};
+      --amount-to-scroll: ${amountToScroll}
+    `"
     :data-name-prefix="namePrefix"
-    :paginationEnabled="paginationEnabled"
+    :paginationDisabled="paginationDisabled"
   >
+
+    <!--SLIDER VIEWPORT -->
+
     <div :class="`${baseClassname}__viewport-wrapper`">
       <div :class="`${baseClassname}__viewport`">
-        <slot />
+        <slot name="default" />
       </div>
     </div>
-    <div
+
+    <!--SLIDER NAVIGATION -->
+
+    <nav
       v-if="!navigationDisabled"
       :class="[`${baseClassname}__navigation`]"
     >
-      <a
+      <button
         @click.prevent="prevSlide(slideIndex)"
         :class="[
           `${baseClassname}__prev`,
           prevDisabled && `${this.baseClassname}__prev--disabled`
         ]"
-      />
-      <a
-        @click="nextSlide(slideIndex)"
+        :disabled="prevDisabled"
+      >
+        <slot name="prev-button">Prev</slot>
+      </button>
+      <button
+        @click.prevent="nextSlide(slideIndex)"
         :class="[
           `${baseClassname}__next`,
           nextDisabled && `${this.baseClassname}__next--disabled`
         ]"
-      />
-    </div>
+        :disabled="nextDisabled"
+      >
+        <slot name="next-button">Next</slot>
+      </button>
+    </nav>
+
+    <!--SLIDER PAGINATION -->
+
     <aside
       v-if="!paginationDisabled"
       :class="`${baseClassname}__pagination`"
@@ -39,14 +57,18 @@
           :key="index"
           :class="`${baseClassname}__pagination-item`">
           <a
-            @click.prevent="navigateToSlide(index)"
-            :class="`${baseClassname}__pagination-button`"
+            @click.prevent="navigateToSlide(index + 1)"
+            :class="[
+              `${baseClassname}__pagination-button`,
+              index + 1 === slideIndex && `${baseClassname}__pagination-button--active`,
+            ]"
           >
             Go to slide {{ index + 1 }}
           </a>
         </li>
       </ol>
     </aside>
+
   </div>
 </template>
 
@@ -55,16 +77,18 @@ import namePrefixMixin from '../../utils/namePrefix'
 
 export default {
   name: 'nSliderCarousel',
-  mixins: [namePrefixMixin],
+  mixins: [
+    namePrefixMixin
+  ],
   data () {
     return {
       slideIndex: 1
     }
   },
-  props: { 
+  props: {
 
     // Data props
-    
+
     refName: {
       type: String,
       required: true,
@@ -92,6 +116,14 @@ export default {
     infiniteScroll: {
       type: Boolean,
       default: true
+    },
+    slideIdEnabled: {
+      type: Boolean,
+      default: false
+    },
+    amountToScroll: {
+      type: Number,
+      default: 1
     }
   },
   computed: {
@@ -103,39 +135,45 @@ export default {
     maxIndex () {
       if(this.slideIndex > this.paginationItems.length) {
         return this.paginationItems.length
-      } else return this.paginationItems 
+      } else return this.paginationItems
     },
     prevDisabled () {
-      if (this.slideIndex > 1) {
-        return false
-      } else return true
+      if (this.slideIndex > 1 || this.infiniteScroll) return false
+      else return true
     },
     nextDisabled () {
-      if (this.slideIndex < this.maxIndex) {
-        return false
-      } else return true
+      if (this.slideIndex < this.maxIndex || this.infiniteScroll) return false
+      else return true
     }
   },
   methods: {
     fetchSlideIndexFromUrl () {
-      var slideIndexUri = window.location.href.match(/#slider-carousel--(\d+)/) // 'slider-carousel' should be a dynamic value that is a String coming from refName property
-      if (slideIndexUri) { 
+      const sliderRegex = new RegExp(`#${this.refName}--(\\d+)`)
+      const slideIndexUri = window.location.href.match(sliderRegex)
+
+      if (slideIndexUri && this.slideIdEnabled) {
+        this.navigateToSlide(slideIndexUri[1])
         return this.slideIndex = parseFloat(slideIndexUri[1])
       }
     },
     navigateToSlide (index) {
-      window.location.replace(`#${this.refName}--${index + 1}`)
-      this.slideIndex = index + 1
+      const slideElement = document.getElementById(`${this.refName}--${index}`)
+      slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+
+      this.slideIndex = index
+
+      if (!this.slideIdEnabled) return
+      history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
     },
     prevSlide (index) {
-      if (index > 1) {
-        this.navigateToSlide(index - 2)
-      }
+      if (index === 1 && this.infiniteScroll) return this.navigateToSlide(this.maxIndex)
+      if (index - this.amountToScroll < 1) return this.navigateToSlide(1)
+      return this.navigateToSlide(index - this.amountToScroll)
     },
     nextSlide (index) {
-      if (index < this.maxIndex) {
-        this.navigateToSlide(index)
-      }
+      if (index === this.maxIndex && this.infiniteScroll) return this.navigateToSlide(1)
+      if (index + this.amountToScroll > this.maxIndex) return this.navigateToSlide(this.maxIndex)
+      return this.navigateToSlide(index + this.amountToScroll)
     }
   },
   mounted () {
