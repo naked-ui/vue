@@ -3,7 +3,7 @@
     :class="[`${baseClassname}__item`]"
     :tabindex="slideIndex"
     :id="`${refName}--${slideIndex}`"
-    :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
+    :style="` --${baseClassname}__name-prefix: ${namePrefix}; flex: 0 0 calc(100% / ${visibleItems});`"
     :data-name-prefix="namePrefix"
   >
     <div :class="[`${baseClassname}__item-content`]">
@@ -31,7 +31,11 @@ export default {
     baseClassname: {
       type: String,
       default: 'slider-carousel'
+    },
+    visibleItems: {
+      type: Number,
+      default: 1
     }
-  }
+  },
 }
 </script>
