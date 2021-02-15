@@ -22,8 +22,25 @@
     
     $gap: 16px
   );
+  
+  overflow-y: hidden;
 
   &::after {
     right: 0;
+  }
+
+  &::before,
+  &::after {
+    @include hide;
+  }
+
+  .slider-carousel__prev,
+  .slider-carousel__next {
+    background-color: var(--nui-color-black);
+
+    &--disabled {
+      cursor: not-allowed;
+      opacity: .3;
+    }
   }
 }

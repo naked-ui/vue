@@ -10,9 +10,12 @@
         <slot />
       </div>
     </div>
-    <div :class="[`${baseClassname}__navigation`]">
+    <div
+      v-if="!navigationDisabled"
+      :class="[`${baseClassname}__navigation`]"
+    >
       <a
-        @click="prevSlide(slideIndex)"
+        @click.prevent="prevSlide(slideIndex)"
         :class="[
           `${baseClassname}__prev`,
           prevDisabled && `${this.baseClassname}__prev--disabled`
@@ -27,7 +30,7 @@
       />
     </div>
     <aside
-      v-if="paginationEnabled"
+      v-if="!paginationDisabled"
       :class="`${baseClassname}__pagination`"
     >
       <ol :class="`${baseClassname}__pagination-list`">
@@ -36,7 +39,7 @@
           :key="index"
           :class="`${baseClassname}__pagination-item`">
           <a
-            @click="navigateToSlide(index)"
+            @click.prevent="navigateToSlide(index)"
             :class="`${baseClassname}__pagination-button`"
           >
             Go to slide {{ index + 1 }}
@@ -78,9 +81,13 @@ export default {
 
     // Settings
 
-    paginationEnabled: {
+    navigationDisabled: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    paginationDisabled: {
+      type: Boolean,
+      default: false
     },
     infiniteScroll: {
       type: Boolean,
