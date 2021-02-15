@@ -22,29 +22,4 @@
 
     $gap: 16px
   );
-
-  .slider-carousel__navigation {
-    pointer-events: none;
-  }
-
-  .slider-carousel__viewport {
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .slider-carousel__pagination-button--active {
-    background-color: var(--nui-color-black);
-  }
-
-  .slider-carousel__prev,
-  .slider-carousel__next {
-    pointer-events: all;
-    background-color: var(--nui-color-black);
-    color: var(--nui-color-white);
-
-    &--disabled {
-      cursor: not-allowed;
-      opacity: .3;
-    }
-  }
 }
