@@ -140,7 +140,7 @@ export default {
     },
     navigateToSlide (index) {
       const slideElement = document.getElementById(`${this.refName}--${index}`)
-      slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+      slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
 
       this.slideIndex = index
 
@@ -148,11 +148,13 @@ export default {
       history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
     },
     prevSlide (index) {
-      if (index - this.amountToScroll < 1) return this.navigateToSlide(this.maxIndex)
+      if (index === 1 && this.infiniteScroll) return this.navigateToSlide(this.maxIndex)
+      if (index - this.amountToScroll < 1) return this.navigateToSlide(1)
       return this.navigateToSlide(index - this.amountToScroll)
     },
     nextSlide (index) {
-      if (index + this.amountToScroll > this.maxIndex) return this.navigateToSlide(1)
+      if (index === this.maxIndex && this.infiniteScroll) return this.navigateToSlide(1)
+      if (index + this.amountToScroll > this.maxIndex) return this.navigateToSlide(this.maxIndex)
       return this.navigateToSlide(index + this.amountToScroll)
     }
   },
