@@ -2,6 +2,10 @@
   <li
     :class="componentClasses"
     :data-name-prefix="namePrefix"
+    :style="`
+      --width: ${width};
+      --height: ${height};
+    `"
   >
     <div :class="[`${baseClassname}-content`]">
       <slot />
@@ -16,18 +20,17 @@ export default {
   name: 'nOverflowCarouselItem',
   mixins: [namePrefixMixin],
   props: {
-    slideIndex: {
-      type: Number,
-      required: true,
-      default: 0
-    },
-    refName: {
-      type: String,
-      default: 'slide'
-    },
     baseClassname: {
       type: String,
       default: 'overflow-carousel__item'
+    },
+    width: {
+      type: String,
+      default: 'auto'
+    },
+    height: {
+      type: String,
+      default: 'auto'
     }
   },
   computed: {

@@ -1,7 +1,10 @@
 <template>
   <div
     :class="componentClasses"
-    :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
+    :style="`
+      --items-gap: ${itemsGap};
+      --viewport-padding: ${viewportPadding};
+    `"
     :data-name-prefix="namePrefix"
   >
     <div :class="`${baseClassname}__viewport-wrapper`">
@@ -22,6 +25,14 @@ export default {
     baseClassname: {
       type: String,
       default: 'overflow-carousel'
+    },
+    itemsGap: {
+      type: String,
+      default: '0'
+    },
+    viewportPadding: {
+      type: String,
+      default: '0'
     }
   },
   computed: {
