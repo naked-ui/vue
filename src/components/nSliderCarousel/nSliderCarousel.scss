@@ -1,7 +1,7 @@
 @import 'sxcss';
 
 [data-name-prefix="nui"].slider-carousel {
-  @include flexbox-carousel(
+  @include slider-carousel(
     $base-classname: '.slider-carousel',
     $navigation-enabled: true,
 
@@ -11,10 +11,11 @@
     $viewport-classname: '.slider-carousel__viewport',
     $viewport-counter: true,
 
-    $slide-classname: '.slider-carousel__item',
-    $slide-flex: 0 0 100%,
-    $slide-width: 25%,
-    $slide-counter: true,
+    $item-classname: '.slider-carousel__item',
+    $item-flex: 0 0 100%,
+    $item-width: 25%,
+    $item-counter: true,
+    $visible-items: var(--visible-items),
 
     $navigation-classname: '.slider-carousel__navigation',
     $pagination-classname: '.slider-carousel__pagination',

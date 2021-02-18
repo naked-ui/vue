@@ -2,23 +2,21 @@
   <div
     :class="componentClasses"
     :style="`
-      --${baseClassname}__name-prefix: ${namePrefix};
       --amount-to-scroll: ${amountToScroll}
     `"
     :data-name-prefix="namePrefix"
     :paginationDisabled="paginationDisabled"
   >
-
     <!--SLIDER VIEWPORT -->
-
     <div :class="`${baseClassname}__viewport-wrapper`">
-      <div :class="`${baseClassname}__viewport`">
+      <div
+        :class="`${baseClassname}__viewport`"
+        :id="`${baseClassname}__viewport`"
+      >
         <slot name="default" />
       </div>
     </div>
-
     <!--SLIDER NAVIGATION -->
-
     <nav
       v-if="!navigationDisabled"
       :class="[`${baseClassname}__navigation`]"
@@ -44,9 +42,7 @@
         <slot name="next-button">Next</slot>
       </button>
     </nav>
-
     <!--SLIDER PAGINATION -->
-
     <aside
       v-if="!paginationDisabled"
       :class="`${baseClassname}__pagination`"
@@ -68,7 +64,6 @@
         </li>
       </ol>
     </aside>
-
   </div>
 </template>
 
@@ -86,9 +81,7 @@ export default {
     }
   },
   props: {
-
     // Data props
-
     refName: {
       type: String,
       required: true,
@@ -102,9 +95,7 @@ export default {
       type: [Array, Number],
       required: true
     },
-
     // Settings
-
     navigationDisabled: {
       type: Boolean,
       default: false
@@ -116,6 +107,10 @@ export default {
     infiniteScroll: {
       type: Boolean,
       default: true
+    },
+    loopItems: {
+      type: Boolean,
+      default: false
     },
     slideIdEnabled: {
       type: Boolean,
@@ -135,7 +130,7 @@ export default {
     maxIndex () {
       if(this.slideIndex > this.paginationItems.length) {
         return this.paginationItems.length
-      } else return this.paginationItems
+      } else return this.paginationItems.length
     },
     prevDisabled () {
       if (this.slideIndex > 1 || this.infiniteScroll) return false
@@ -166,18 +161,39 @@ export default {
       history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
     },
     prevSlide (index) {
+      // var item = document.getElementById(`slider-carousel3--${this.slideIndex}`)
       if (index === 1 && this.infiniteScroll) return this.navigateToSlide(this.maxIndex)
       if (index - this.amountToScroll < 1) return this.navigateToSlide(1)
       return this.navigateToSlide(index - this.amountToScroll)
     },
     nextSlide (index) {
+      // if (this.infiniteScroll && this.loopItems && index === this.maxIndex - 1) {
+      //   var item = document.getElementById(`${this.refName}--${(this.slideIndex - this.maxIndex) * -1}`)
+      //   item.parentNode.appendChild(item);
+      // }
       if (index === this.maxIndex && this.infiniteScroll) return this.navigateToSlide(1)
+      if (this.infiniteScroll && this.loopItems) {
+        var itemsViewport = document.getElementById(`${this.baseClassname}__viewport`);
+        var firstItem = itemsViewport.firstChild;
+        var firstItemClone = firstItem.cloneNode(true);
+        itemsViewport.appendChild(firstItemClone);
+        firstItem.remove()      
+      }
       if (index + this.amountToScroll > this.maxIndex) return this.navigateToSlide(this.maxIndex)
       return this.navigateToSlide(index + this.amountToScroll)
+    },
+    generateAdditionalSlide () {
+      if (this.loopItems) {
+        var itemsViewport = document.getElementById(`${this.baseClassname}__viewport`);
+        var firstItem = itemsViewport.firstChild;
+        var firstItemClone = firstItem.cloneNode(true);
+        itemsViewport.appendChild(firstItemClone);
+      }
     }
   },
   mounted () {
     this.fetchSlideIndexFromUrl()
+    this.generateAdditionalSlide()
   },
 }
 </script>
