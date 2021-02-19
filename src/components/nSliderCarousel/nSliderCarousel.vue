@@ -151,17 +151,29 @@ export default {
         return this.slideIndex = parseFloat(slideIndexUri[1])
       }
     },
-    navigateToSlide (index) {
-      const slideElement = document.getElementById(`${this.refName}--${index}`)
+    navigateToSlide (index, toClone = false) {
+      const elementId = toClone ? `${this.refName}--${index}__clone` : `${this.refName}--${index}`
+      let slideElement = document.getElementById(elementId)
       slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
 
       this.slideIndex = index
 
+      if (toClone) {
+        setTimeout(() => {
+          document.getElementById(`${this.refName}--${index}`).remove()
+          slideElement.id = `${this.refName}--${index}`
+          this.addCloneBefore()
+        }, 1000)
+      }
       if (!this.slideIdEnabled) return
       history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
     },
     prevSlide (index) {
       // var item = document.getElementById(`slider-carousel3--${this.slideIndex}`)
+      if (this.loopItems) {
+        const indexToScroll = this.slideIndex === 1 ? this.maxIndex : index - this.amountToScroll
+        return this.navigateToSlide(indexToScroll, this.loopItems)
+      }
       if (index === 1 && this.infiniteScroll) return this.navigateToSlide(this.maxIndex)
       if (index - this.amountToScroll < 1) return this.navigateToSlide(1)
       return this.navigateToSlide(index - this.amountToScroll)
@@ -177,23 +189,41 @@ export default {
         var firstItem = itemsViewport.firstChild;
         var firstItemClone = firstItem.cloneNode(true);
         itemsViewport.appendChild(firstItemClone);
-        firstItem.remove()      
+        firstItem.remove()
       }
       if (index + this.amountToScroll > this.maxIndex) return this.navigateToSlide(this.maxIndex)
       return this.navigateToSlide(index + this.amountToScroll)
     },
-    generateAdditionalSlide () {
-      if (this.loopItems) {
-        var itemsViewport = document.getElementById(`${this.baseClassname}__viewport`);
-        var firstItem = itemsViewport.firstChild;
-        var firstItemClone = firstItem.cloneNode(true);
-        itemsViewport.appendChild(firstItemClone);
-      }
+    // generateAdditionalSlide () {
+    //   if (this.loopItems) {
+    //     var itemsViewport = document.getElementById(`${this.baseClassname}__viewport`);
+    //     var lastItem = itemsViewport.lastChild;
+    //     var lastItemClone = lastItem.cloneNode(true);
+    //     lastItemClone.id = `${lastItemClone.id}__clone`
+    //     itemsViewport.prepend(lastItemClone);
+    //   }
+    // },
+    addCloneBefore () {
+      if (!this.loopItems) return
+      const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`);
+      const lastItem = itemsViewport.lastChild;
+      let lastItemClone = lastItem.cloneNode(true);
+      lastItemClone.id = `${lastItemClone.id}__clone`
+      itemsViewport.prepend(lastItemClone);
+    },
+    addCloneAfter () {
+      if (!this.loopItems) return
+      const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`);
+      const firstItem = itemsViewport.firstChild;
+      let firstItemClone = firstItem.cloneNode(true);
+      firstItemClone.id = `${firstItemClone.id}__clone`
+      itemsViewport.prepend(firstItemClone);
     }
   },
   mounted () {
     this.fetchSlideIndexFromUrl()
-    this.generateAdditionalSlide()
+    // this.generateAdditionalSlide()
+    this.addCloneBefore()
   },
 }
 </script>
