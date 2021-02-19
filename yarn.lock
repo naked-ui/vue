@@ -8705,6 +8705,11 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
+smoothscroll-polyfill@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/smoothscroll-polyfill/-/smoothscroll-polyfill-0.4.4.tgz#3a259131dc6930e6ca80003e1cb03b603b69abf8"
+  integrity sha512-TK5ZA9U5RqCwMpfoMq/l1mrH0JAR7y7KRvOBx0n2869aLxch+gT9GhN3yUfjiw+d/DiF1mKo14+hd62JyMmoBg==
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
@@ -9193,10 +9198,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-sxcss@^1.4.24:
-  version "1.4.24"
-  resolved "https://registry.yarnpkg.com/sxcss/-/sxcss-1.4.24.tgz#a61b8a05e7e20c33aa84c4acb360772c3f4f4efc"
-  integrity sha512-SQpPAo4gDN31udX8oPAgoiM23FNhomnJ5E1Rn2TeDEs7oOWSxfsVnDHL6BpCBT91NDMeI9/aZhlI/uexBwU/YQ==
+sxcss@^1.5.8:
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/sxcss/-/sxcss-1.5.8.tgz#00125fbf59e0b7a27a21d60e94569cda2d8854fc"
+  integrity sha512-Pt5DSmdJcd3DrolgtGXv0P/IS/wvkASvR1+frorXK5czZksijrxo7OT8S3IUAPvX9y/LJidj1OOkgQUskN9pKw==
   dependencies:
     gulp "^4.0.2"
     gulp-concat "^2.6.1"

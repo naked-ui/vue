@@ -3,7 +3,9 @@
     :class="[`${baseClassname}__item`]"
     :tabindex="slideIndex"
     :id="`${refName}--${slideIndex}`"
-    :style="` --${baseClassname}__name-prefix: ${namePrefix}; flex: 0 0 calc(100% / ${visibleItems});`"
+    :style="`
+      --visible-items: ${visibleItems};
+    `"
     :data-name-prefix="namePrefix"
   >
     <div :class="[`${baseClassname}__item-content`]">
