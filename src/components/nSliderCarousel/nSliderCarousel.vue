@@ -151,84 +151,28 @@ export default {
         return this.slideIndex = parseFloat(slideIndexUri[1])
       }
     },
-    navigateToSlide (index, toCloneDirection = '') {
-      const elementId = toCloneDirection ? `${this.refName}--${index}__clone` : `${this.refName}--${index}`
-      let slideElement = document.getElementById(elementId)
-
-      if (toCloneDirection) {
-          document.getElementById(`${this.refName}--${index}`).remove()
-          slideElement.id = `${this.refName}--${index}`
-
-          toCloneDirection === 'prev' ? this.addCloneBefore() : this.addCloneAfter()
-      }
+    navigateToSlide (index) {
+      const slideElement = document.getElementById(`${this.refName}--${index}`)
       slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
 
       this.slideIndex = index
+
       if (!this.slideIdEnabled) return
       history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
     },
     prevSlide (index) {
-      // var item = document.getElementById(`slider-carousel3--${this.slideIndex}`)
-      if (this.loopItems) {
-        const indexToScroll = this.slideIndex === 1 ? this.maxIndex : index - this.amountToScroll
-        return this.navigateToSlide(indexToScroll, 'prev')
-      }
       if (index === 1 && this.infiniteScroll) return this.navigateToSlide(this.maxIndex)
       if (index - this.amountToScroll < 1) return this.navigateToSlide(1)
       return this.navigateToSlide(index - this.amountToScroll)
     },
     nextSlide (index) {
-      // if (this.infiniteScroll && this.loopItems && index === this.maxIndex - 1) {
-      //   var item = document.getElementById(`${this.refName}--${(this.slideIndex - this.maxIndex) * -1}`)
-      //   item.parentNode.appendChild(item);
-      // }
       if (index === this.maxIndex && this.infiniteScroll) return this.navigateToSlide(1)
-      if (this.infiniteScroll && this.loopItems) {
-        var itemsViewport = document.getElementById(`${this.baseClassname}__viewport`);
-        var firstItem = itemsViewport.firstChild;
-        var firstItemClone = firstItem.cloneNode(true);
-        itemsViewport.appendChild(firstItemClone);
-        firstItem.remove()
-      }
       if (index + this.amountToScroll > this.maxIndex) return this.navigateToSlide(this.maxIndex)
       return this.navigateToSlide(index + this.amountToScroll)
-    },
-    // generateAdditionalSlide () {
-    //   if (this.loopItems) {
-    //     var itemsViewport = document.getElementById(`${this.baseClassname}__viewport`);
-    //     var lastItem = itemsViewport.lastChild;
-    //     var lastItemClone = lastItem.cloneNode(true);
-    //     lastItemClone.id = `${lastItemClone.id}__clone`
-    //     itemsViewport.prepend(lastItemClone);
-    //   }
-    // },
-    addCloneBefore () {
-      if (!this.loopItems) return
-      const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`);
-      const lastItem = itemsViewport.lastChild;
-
-      if (lastItem.id.includes('__clone')) return lastItem.remove()
-
-      let lastItemClone = lastItem.cloneNode(true);
-      lastItemClone.id = `${lastItemClone.id}__clone`
-      itemsViewport.prepend(lastItemClone);
-    },
-    addCloneAfter () {
-      if (!this.loopItems) return
-      const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`);
-      const firstItem = itemsViewport.firstChild;
-
-      if (firstItem.id.includes('__clone')) return firstItem.remove()
-
-      let firstItemClone = firstItem.cloneNode(true);
-      firstItemClone.id = `${firstItemClone.id}__clone`
-      itemsViewport.prepend(firstItemClone);
     }
   },
   mounted () {
     this.fetchSlideIndexFromUrl()
-    // this.generateAdditionalSlide()
-    this.addCloneBefore()
   },
 }
 </script>
