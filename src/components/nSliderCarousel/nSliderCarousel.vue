@@ -151,7 +151,11 @@ export default {
         return this.slideIndex = parseFloat(slideIndexUri[1])
       }
     },
-    navigateToSlide (index) {
+    navigateToSlide (index, toClone = false, toDirection = null) {
+      if (toClone) {
+        toDirection === 'prev' ? this.addCloneBefore() : this.addCloneAfter()
+      }
+
       const slideElement = document.getElementById(`${this.refName}--${index}`)
       slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
 
@@ -161,6 +165,10 @@ export default {
       history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
     },
     prevSlide (index) {
+      if (this.loopItems) {
+        const slideIndex = index === 1 ? this.maxIndex : index - this.amountToScroll
+        return this.navigateToSlide(slideIndex, true, 'prev')
+      }
       if (index === 1 && this.infiniteScroll) return this.navigateToSlide(this.maxIndex)
       if (index - this.amountToScroll < 1) return this.navigateToSlide(1)
       return this.navigateToSlide(index - this.amountToScroll)
@@ -169,6 +177,14 @@ export default {
       if (index === this.maxIndex && this.infiniteScroll) return this.navigateToSlide(1)
       if (index + this.amountToScroll > this.maxIndex) return this.navigateToSlide(this.maxIndex)
       return this.navigateToSlide(index + this.amountToScroll)
+    },
+    addCloneBefore () {
+      if (!this.loopItems) return
+      const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`)
+      const lastChild = itemsViewport.lastChild
+      const lastChildClone = lastChild.cloneNode(true)
+      lastChild.remove()
+      itemsViewport.prepend(lastChildClone)
     }
   },
   mounted () {
