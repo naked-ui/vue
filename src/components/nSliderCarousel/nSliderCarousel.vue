@@ -155,10 +155,11 @@ export default {
       const slideElement = document.getElementById(`${this.refName}--${index}`)
 
       if (jump) {
-        // slideElement.focus() firefox
-        slideElement.scrollIntoView() // chrome i safari
+        slideElement.focus()
+        slideElement.scrollIntoView()
         return
       }
+
       slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
 
       this.slideIndex = index
@@ -172,14 +173,10 @@ export default {
       return this.navigateToSlide(index - this.amountToScroll)
     },
     prevLoopSlide (index) {
-      const prevLastChild = this.addCloneBefore()
+      this.addCloneBefore()
       this.navigateToSlide(index, true)
       const slideIndex = index === 1 ? this.maxIndex : index - this.amountToScroll
       this.navigateToSlide(slideIndex)
-
-      setTimeout(() => {
-        prevLastChild.remove()
-      }, 500)
     },
     nextSlide (index) {
       if (index === this.maxIndex && this.infiniteScroll) return this.navigateToSlide(1)
@@ -190,9 +187,8 @@ export default {
       const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`)
       const lastChild = itemsViewport.lastChild
       const lastChildClone = lastChild.cloneNode(true)
+      lastChild.remove()
       itemsViewport.prepend(lastChildClone)
-
-      return lastChild
     }
   },
   mounted () {
