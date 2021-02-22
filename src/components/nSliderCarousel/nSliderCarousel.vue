@@ -22,7 +22,7 @@
       :class="[`${baseClassname}__navigation`]"
     >
       <button
-        @click.prevent="prevSlide(slideIndex)"
+        @click.prevent="loopItems ? prevLoopSlide(slideIndex) : prevSlide(slideIndex)"
         :class="[
           `${baseClassname}__prev`,
           prevDisabled && `${this.baseClassname}__prev--disabled`
@@ -151,9 +151,14 @@ export default {
         return this.slideIndex = parseFloat(slideIndexUri[1])
       }
     },
-    navigateToSlide (index) {
+    navigateToSlide (index, jump = false) {
       const slideElement = document.getElementById(`${this.refName}--${index}`)
 
+      if (jump) {
+        // slideElement.focus() firefox
+        slideElement.scrollIntoView() // chrome i safari
+        return
+      }
       slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
 
       this.slideIndex = index
@@ -162,14 +167,19 @@ export default {
       history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
     },
     prevSlide (index) {
-      if (this.loopItems) {
-        this.addCloneBefore()
-        const slideIndex = index === 1 ? this.maxIndex : index - this.amountToScroll
-        return this.navigateToSlide(slideIndex)
-      }
       if (index === 1 && this.infiniteScroll) return this.navigateToSlide(this.maxIndex)
       if (index - this.amountToScroll < 1) return this.navigateToSlide(1)
       return this.navigateToSlide(index - this.amountToScroll)
+    },
+    prevLoopSlide (index) {
+      const prevLastChild = this.addCloneBefore()
+      this.navigateToSlide(index, true)
+      const slideIndex = index === 1 ? this.maxIndex : index - this.amountToScroll
+      this.navigateToSlide(slideIndex)
+
+      setTimeout(() => {
+        prevLastChild.remove()
+      }, 500)
     },
     nextSlide (index) {
       if (index === this.maxIndex && this.infiniteScroll) return this.navigateToSlide(1)
@@ -180,8 +190,9 @@ export default {
       const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`)
       const lastChild = itemsViewport.lastChild
       const lastChildClone = lastChild.cloneNode(true)
-      lastChild.remove()
       itemsViewport.prepend(lastChildClone)
+
+      return lastChild
     }
   },
   mounted () {
