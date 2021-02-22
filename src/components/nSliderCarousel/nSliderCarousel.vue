@@ -2,29 +2,27 @@
   <div
     :class="componentClasses"
     :style="`
-      --${baseClassname}__name-prefix: ${namePrefix};
       --amount-to-scroll: ${amountToScroll}
     `"
     :data-name-prefix="namePrefix"
     :paginationDisabled="paginationDisabled"
   >
-
     <!--SLIDER VIEWPORT -->
-
     <div :class="`${baseClassname}__viewport-wrapper`">
-      <div :class="`${baseClassname}__viewport`">
+      <div
+        :class="`${baseClassname}__viewport`"
+        :id="`${baseClassname}__viewport`"
+      >
         <slot name="default" />
       </div>
     </div>
-
     <!--SLIDER NAVIGATION -->
-
     <nav
       v-if="!navigationDisabled"
       :class="[`${baseClassname}__navigation`]"
     >
       <button
-        @click.prevent="prevSlide(slideIndex)"
+        @click.prevent="loopItems ? prevLoopSlide(slideIndex) : prevSlide(slideIndex)"
         :class="[
           `${baseClassname}__prev`,
           prevDisabled && `${this.baseClassname}__prev--disabled`
@@ -34,7 +32,7 @@
         <slot name="prev-button">Prev</slot>
       </button>
       <button
-        @click.prevent="nextSlide(slideIndex)"
+        @click.prevent="loopItems ? nextLoopSlide(slideIndex) : nextSlide(slideIndex)"
         :class="[
           `${baseClassname}__next`,
           nextDisabled && `${this.baseClassname}__next--disabled`
@@ -44,9 +42,7 @@
         <slot name="next-button">Next</slot>
       </button>
     </nav>
-
     <!--SLIDER PAGINATION -->
-
     <aside
       v-if="!paginationDisabled"
       :class="`${baseClassname}__pagination`"
@@ -68,7 +64,6 @@
         </li>
       </ol>
     </aside>
-
   </div>
 </template>
 
@@ -86,9 +81,7 @@ export default {
     }
   },
   props: {
-
     // Data props
-
     refName: {
       type: String,
       required: true,
@@ -102,9 +95,7 @@ export default {
       type: [Array, Number],
       required: true
     },
-
     // Settings
-
     navigationDisabled: {
       type: Boolean,
       default: false
@@ -116,6 +107,10 @@ export default {
     infiniteScroll: {
       type: Boolean,
       default: true
+    },
+    loopItems: {
+      type: Boolean,
+      default: false
     },
     slideIdEnabled: {
       type: Boolean,
@@ -135,7 +130,7 @@ export default {
     maxIndex () {
       if(this.slideIndex > this.paginationItems.length) {
         return this.paginationItems.length
-      } else return this.paginationItems
+      } else return this.paginationItems.length
     },
     prevDisabled () {
       if (this.slideIndex > 1 || this.infiniteScroll) return false
@@ -156,8 +151,15 @@ export default {
         return this.slideIndex = parseFloat(slideIndexUri[1])
       }
     },
-    navigateToSlide (index) {
+    navigateToSlide (index, jump = false) {
       const slideElement = document.getElementById(`${this.refName}--${index}`)
+
+      if (jump) {
+        slideElement.focus()
+        slideElement.scrollIntoView()
+        return
+      }
+
       slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
 
       this.slideIndex = index
@@ -170,10 +172,38 @@ export default {
       if (index - this.amountToScroll < 1) return this.navigateToSlide(1)
       return this.navigateToSlide(index - this.amountToScroll)
     },
+    prevLoopSlide (index) {
+      this.addCloneBefore()
+      this.navigateToSlide(index, true)
+      const slideIndex = index === 1 ? this.maxIndex : index - this.amountToScroll
+      this.navigateToSlide(slideIndex)
+    },
     nextSlide (index) {
       if (index === this.maxIndex && this.infiniteScroll) return this.navigateToSlide(1)
       if (index + this.amountToScroll > this.maxIndex) return this.navigateToSlide(this.maxIndex)
       return this.navigateToSlide(index + this.amountToScroll)
+    },
+    nextLoopSlide (index) {
+      const slideIndex = index === this.maxIndex ? 1 : index + this.amountToScroll
+      this.navigateToSlide(slideIndex)
+      setTimeout(() => {
+        this.addCloneAfter()
+        this.navigateToSlide(slideIndex, true)
+      }, 500)
+    },
+    addCloneBefore () {
+      const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`)
+      const lastChild = itemsViewport.lastChild
+      const lastChildClone = lastChild.cloneNode(true)
+      lastChild.remove()
+      itemsViewport.prepend(lastChildClone)
+    },
+    addCloneAfter () {
+      const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`)
+      const firstChild = itemsViewport.firstChild
+      const firstChildClone = firstChild.cloneNode(true)
+      firstChild.remove()
+      itemsViewport.append(firstChildClone)
     }
   },
   mounted () {
