@@ -10,7 +10,7 @@
     :aria-label="title"
     :title="title"
   >
-    <img
+    <!-- <img
       v-if="src"
       :src="src"
       :alt="alt"
@@ -19,29 +19,27 @@
       :height="height || size"
       :width="width || size"
       :style="{ fill : iconColor }"
-    >
+    > -->
 
     <slot
-      v-else
-      name="icon"
       class="icon__slot-icon"
     >
     </slot>
 
-    <span
+    <!-- <span
       v-if="isTextProvided"
       class="icon__slot-text"
       :class="textPositionClass"
     >
       <slot>
       </slot>
-    </span>
+    </span> -->
   </component>
 </template>
 
 <script>
 export default {
-  name: 'BaseIcon',
+  name: 'nIcon',
   props: {
     title: {
       type: String,
@@ -120,3 +118,4 @@ export default {
 };
 </script>
 
+<style lang="scss" src="./nIcon.scss" />
