@@ -6,7 +6,8 @@
   "jsdelivr": "dist/index.umd.min.js",
   "description": "Naked UI for Vue.js",
   "files": [
-    "dist/**"
+    "dist/index.umd.js",
+    "dist/index.css"
   ],
   "scripts": {
     "dev": "yarn install && vue-cli-service serve src/main.js",
