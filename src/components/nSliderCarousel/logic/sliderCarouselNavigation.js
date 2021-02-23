@@ -79,7 +79,7 @@ export default {
         setTimeout(() => {
           this.nextSlide(this.slideIndex)
           console.log('Lel')
-        }, i * 1000);
+        }, i * this.autoplayInterval);
       });
     }
 
@@ -87,7 +87,7 @@ export default {
       setInterval(() => {
         if (this.slideIndex === this.maxIndex) return this.navigateToSlide(1)
         this.navigateToSlide(this.slideIndex + this.amountToScroll)
-      }, 2000)
+      }, this.autoplayInterval)
     }
   }
 }

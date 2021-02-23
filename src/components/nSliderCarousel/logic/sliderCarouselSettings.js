@@ -34,6 +34,10 @@ export default {
       type: Boolean,
       default: false
     },
+    autoplayInterval: {
+      type: Number,
+      default: 3000
+    },
     slideIdEnabled: {
       type: Boolean,
       default: false
