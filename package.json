@@ -6,12 +6,11 @@
   "jsdelivr": "dist/index.umd.min.js",
   "description": "Naked UI for Vue.js",
   "files": [
-    "dist/**",
-    "src/**"
+    "dist/**"
   ],
   "scripts": {
     "dev": "yarn install && vue-cli-service serve src/main.js",
-    "build": "yarn install && vue-cli-service build --target lib --name index src/main.js && rm dist/index.umd.js dist/index.umd.js.map dist/index.common.js dist/index.common.js.map dist/demo.html",
+    "build": "yarn install && vue-cli-service build --target lib --name index src/main.js && rm dist/index.umd.js dist/index.umd.js.map dist/index.common.js dist/index.common.js.map dist/demo.html dist/index.umd.min.js.map",
     "build:js": "yarn build && rm dist/index.css",
     "build:css": "yarn build && rm dist/index.umd.min.js dist/index.umd.min.js.map",
     "prepublishOnly": "$npm_execpath build",
