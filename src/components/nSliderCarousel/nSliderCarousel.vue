@@ -20,27 +20,34 @@
     <!--SLIDER NAVIGATION -->
     <nav
       v-if="!navigationDisabled"
-      :class="[`${baseClassname}__navigation`]"
+      :class="[
+        `${baseClassname}__navigation`
+      ]"
+      :style="[this.navigationAutohide ? {'--navigation-initial-opacity': 0} : {'--navigation-initial-opacity': 1}]"
     >
       <button
-        @click.prevent="loopItems ? prevLoopSlide(slideIndex) : prevSlide(slideIndex)"
+        @click.prevent="loopEnabled ? prevLoopSlide(slideIndex) : prevSlide(slideIndex)"
         :class="[
           `${baseClassname}__prev`,
           prevDisabled && `${this.baseClassname}__prev--disabled`
         ]"
         :disabled="prevDisabled"
       >
-        <slot name="prev-button">Prev</slot>
+        <slot name="prev-button">
+          <span style="font-size:42px;">&larr;</span>
+        </slot>
       </button>
       <button
-        @click.prevent="loopItems ? nextLoopSlide(slideIndex) : nextSlide(slideIndex)"
+        @click.prevent="loopEnabled ? nextLoopSlide(slideIndex) : nextSlide(slideIndex)"
         :class="[
           `${baseClassname}__next`,
           nextDisabled && `${this.baseClassname}__next--disabled`
         ]"
         :disabled="nextDisabled"
       >
-        <slot name="next-button">Next</slot>
+        <slot name="next-button">
+          <span style="font-size:42px;">&rarr;</span>
+        </slot>
       </button>
     </nav>
 
@@ -54,6 +61,7 @@
     <nav
       v-if="!paginationDisabled"
       :class="`${baseClassname}__pagination`"
+      :style="[this.paginationAutohide ? {'--pagination-initial-opacity': 0} : {'--pagination-initial-opacity': 1}]"
     >
       <ol :class="`${baseClassname}__pagination-list`">
         <li

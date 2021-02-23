@@ -18,7 +18,15 @@ export default {
       type: Boolean,
       default: false
     },
+    navigationAutohide: {
+      type: Boolean,
+      default: false
+    },
     paginationDisabled: {
+      type: Boolean,
+      default: false
+    },
+    paginationAutohide: {
       type: Boolean,
       default: false
     },
@@ -26,7 +34,7 @@ export default {
       type: Boolean,
       default: true
     },
-    loopItems: {
+    loopEnabled: {
       type: Boolean,
       default: false
     },
