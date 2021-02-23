@@ -4,53 +4,7 @@ export default {
       slideIndex: 1
     }
   },
-  props: {
-    // Data props
-    refName: {
-      type: String,
-      required: true,
-      default: 'slide'
-    },
-    baseClassname: {
-      type: String,
-      default: 'slider-carousel'
-    },
-    paginationItems: {
-      type: [Array, Number],
-      required: true
-    },
-    // Settings
-    navigationDisabled: {
-      type: Boolean,
-      default: false
-    },
-    paginationDisabled: {
-      type: Boolean,
-      default: false
-    },
-    infiniteScroll: {
-      type: Boolean,
-      default: true
-    },
-    loopItems: {
-      type: Boolean,
-      default: false
-    },
-    slideIdEnabled: {
-      type: Boolean,
-      default: false
-    },
-    amountToScroll: {
-      type: Number,
-      default: 1
-    }
-  },
   computed: {
-    componentClasses () {
-      return [
-        this.baseClassname
-      ]
-    },
     maxIndex () {
       if(this.slideIndex > this.paginationItems.length) {
         return this.paginationItems.length
@@ -128,13 +82,14 @@ export default {
         this.navigateToSlide(slideIndexUri[1])
         return this.slideIndex = parseFloat(slideIndexUri[1])
       }
+    },
+    setActivePaginationItem () {
+      const slidePaginationItem = document.getElementById(`${this.baseClassname}__pagination-input--${this.slideIndex}`)
+      slidePaginationItem.checked = true;
     }
   },
   mounted () {
     this.fetchSlideIndexFromUrl()
-
-    // Check active pagination item
-    const slidePaginationItem = document.getElementById(`${this.baseClassname}__pagination-input--${this.slideIndex}`)
-    slidePaginationItem.checked = true;
+    this.setActivePaginationItem()
   },
 }
