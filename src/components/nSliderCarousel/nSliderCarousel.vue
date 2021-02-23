@@ -43,7 +43,7 @@
       </button>
     </nav>
     <!--SLIDER PAGINATION -->
-    <aside
+    <nav
       v-if="!paginationDisabled"
       :class="`${baseClassname}__pagination`"
     >
@@ -52,18 +52,20 @@
           v-for="(item, index) in paginationItems"
           :key="index"
           :class="`${baseClassname}__pagination-item`">
-          <a
-            @click.prevent="navigateToSlide(index + 1)"
+          <input
+            type="radio"
+            :name="`${baseClassname}__pagination-input`"
+            @click="navigateToSlide(index + amountToScroll)"
+            :value="index + amountToScroll"
+            :id="`${baseClassname}__pagination-input--${index + amountToScroll}`"
             :class="[
-              `${baseClassname}__pagination-button`,
-              index + 1 === slideIndex && `${baseClassname}__pagination-button--active`,
+              `${baseClassname}__pagination-input`
             ]"
-          >
-            Go to slide {{ index + 1 }}
-          </a>
+            :aria-label="`Go to slide ${index + amountToScroll}`"
+          />
         </li>
       </ol>
-    </aside>
+    </nav>
   </div>
 </template>
 
@@ -144,6 +146,7 @@ export default {
   methods: {
     navigateToSlide (index, jump = false) {
       const slideElement = document.getElementById(`${this.refName}--${index}`)
+      const slidePaginationItem = document.getElementById(`${this.baseClassname}__pagination-input--${index}`)
       if (jump) {
         slideElement.focus()
         slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
@@ -152,6 +155,8 @@ export default {
       slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
       // Update slideIndex
       this.slideIndex = index
+      // Update pagination
+      slidePaginationItem.checked = true;
       // Conditional Slide ID in URL path
       if (!this.slideIdEnabled) return
       history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
@@ -197,7 +202,6 @@ export default {
     fetchSlideIndexFromUrl () {
       const sliderRegex = new RegExp(`#${this.refName}--(\\d+)`)
       const slideIndexUri = window.location.href.match(sliderRegex)
-
       if (slideIndexUri && this.slideIdEnabled) {
         this.navigateToSlide(slideIndexUri[1])
         return this.slideIndex = parseFloat(slideIndexUri[1])
@@ -206,6 +210,10 @@ export default {
   },
   mounted () {
     this.fetchSlideIndexFromUrl()
+
+    // Check active pagination item
+    const slidePaginationItem = document.getElementById(`${this.baseClassname}__pagination-input--${this.slideIndex}`)
+    slidePaginationItem.checked = true;
   },
 }
 </script>
