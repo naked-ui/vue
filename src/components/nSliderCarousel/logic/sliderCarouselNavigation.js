@@ -72,5 +72,22 @@ export default {
         this.navigateToSlide(slideIndex, true)
       }, 500)
     }
+  },
+  mounted () {
+    if (this.autoplayEnabled && !this.nextDisabled && this.infiniteScroll == false) {
+      this.paginationItems.forEach((slide, i) => {
+        setTimeout(() => {
+          this.nextSlide(this.slideIndex)
+          console.log('Lel')
+        }, i * 1000);
+      });
+    }
+
+    if (this.autoplayEnabled && this.infiniteScroll) {
+      setInterval(() => {
+        if (this.slideIndex === this.maxIndex) return this.navigateToSlide(1)
+        this.navigateToSlide(this.slideIndex + this.amountToScroll)
+      }, 2000)
+    }
   }
 }

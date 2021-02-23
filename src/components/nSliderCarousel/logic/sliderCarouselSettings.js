@@ -30,6 +30,10 @@ export default {
       type: Boolean,
       default: false
     },
+    autoplayEnabled: {
+      type: Boolean,
+      default: false
+    },
     slideIdEnabled: {
       type: Boolean,
       default: false
