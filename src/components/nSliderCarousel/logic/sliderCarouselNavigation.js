@@ -75,10 +75,9 @@ export default {
   },
   mounted () {
     if (this.autoplayEnabled && !this.nextDisabled && this.infiniteScroll == false) {
-      this.paginationItems.forEach((slide, i) => {
+      this.paginationItems.forEach((slide, i) => { // needs improving for amountToScroll > 1
         setTimeout(() => {
           this.nextSlide(this.slideIndex)
-          console.log('Lel')
         }, i * this.autoplayInterval);
       });
     }
