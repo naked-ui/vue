@@ -142,28 +142,17 @@ export default {
     }
   },
   methods: {
-    fetchSlideIndexFromUrl () {
-      const sliderRegex = new RegExp(`#${this.refName}--(\\d+)`)
-      const slideIndexUri = window.location.href.match(sliderRegex)
-
-      if (slideIndexUri && this.slideIdEnabled) {
-        this.navigateToSlide(slideIndexUri[1])
-        return this.slideIndex = parseFloat(slideIndexUri[1])
-      }
-    },
     navigateToSlide (index, jump = false) {
       const slideElement = document.getElementById(`${this.refName}--${index}`)
-
       if (jump) {
         slideElement.focus()
-        slideElement.scrollIntoView()
+        slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
         return
       }
-
       slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
-
+      // Update slideIndex
       this.slideIndex = index
-
+      // Conditional Slide ID in URL path
       if (!this.slideIdEnabled) return
       history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
     },
@@ -172,24 +161,10 @@ export default {
       if (index - this.amountToScroll < 1) return this.navigateToSlide(1)
       return this.navigateToSlide(index - this.amountToScroll)
     },
-    prevLoopSlide (index) {
-      this.addCloneBefore()
-      this.navigateToSlide(index, true)
-      const slideIndex = index === 1 ? this.maxIndex : index - this.amountToScroll
-      this.navigateToSlide(slideIndex)
-    },
     nextSlide (index) {
       if (index === this.maxIndex && this.infiniteScroll) return this.navigateToSlide(1)
       if (index + this.amountToScroll > this.maxIndex) return this.navigateToSlide(this.maxIndex)
       return this.navigateToSlide(index + this.amountToScroll)
-    },
-    nextLoopSlide (index) {
-      const slideIndex = index === this.maxIndex ? 1 : index + this.amountToScroll
-      this.navigateToSlide(slideIndex)
-      setTimeout(() => {
-        this.addCloneAfter()
-        this.navigateToSlide(slideIndex, true)
-      }, 500)
     },
     addCloneBefore () {
       const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`)
@@ -204,6 +179,29 @@ export default {
       const firstChildClone = firstChild.cloneNode(true)
       firstChild.remove()
       itemsViewport.append(firstChildClone)
+    },
+    prevLoopSlide (index) {
+      const slideIndex = index === 1 ? this.maxIndex : index - this.amountToScroll
+      this.addCloneBefore()
+      this.navigateToSlide(index, true)
+      this.navigateToSlide(slideIndex)
+    },
+    nextLoopSlide (index) {
+      const slideIndex = index === this.maxIndex ? 1 : index + this.amountToScroll
+      this.navigateToSlide(slideIndex)
+      setTimeout(() => {
+        this.addCloneAfter()
+        this.navigateToSlide(slideIndex, true)
+      }, 500)
+    },
+    fetchSlideIndexFromUrl () {
+      const sliderRegex = new RegExp(`#${this.refName}--(\\d+)`)
+      const slideIndexUri = window.location.href.match(sliderRegex)
+
+      if (slideIndexUri && this.slideIdEnabled) {
+        this.navigateToSlide(slideIndexUri[1])
+        return this.slideIndex = parseFloat(slideIndexUri[1])
+      }
     }
   },
   mounted () {
