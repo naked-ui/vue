@@ -33,4 +33,26 @@
       background-color: var(--nui-color-white);
     }
   }
+
+  .slider-carousel__navigation {
+    opacity: var(--navigation-initial-opacity);
+    transition: opacity .2s ease-out;
+  }
+
+  &:hover {
+    .slider-carousel__navigation {
+      opacity: 1;
+    }
+  }
+
+  .slider-carousel__pagination {
+    opacity: var(--pagination-initial-opacity);
+    transition: opacity .2s ease-out;
+  }
+
+  &:hover {
+    .slider-carousel__pagination {
+      opacity: 1;
+    }
+  }
 }

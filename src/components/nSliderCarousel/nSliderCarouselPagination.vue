@@ -2,6 +2,7 @@
   <nav
     v-if="!paginationDisabled"
     :class="`${baseClassname}__pagination`"
+    :style="[this.paginationAutohide ? {'--pagination-initial-opacity': 0} : {'--pagination-initial-opacity': 1}]"
   >
     <ol :class="`${baseClassname}__pagination-list`">
       <li
@@ -47,7 +48,11 @@ export default {
     paginationItems: {
       type: [Array, Number],
       required: true
-    }
+    },
+    paginationAutohide: {
+      type: Boolean,
+      default: false
+    },
   },
   methods: {
     setActivePaginationItem () {
