@@ -2,29 +2,27 @@
   <div
     :class="componentClasses"
     :style="`
-      --${baseClassname}__name-prefix: ${namePrefix};
       --amount-to-scroll: ${amountToScroll}
     `"
     :data-name-prefix="namePrefix"
     :paginationDisabled="paginationDisabled"
   >
-
     <!--SLIDER VIEWPORT -->
-
     <div :class="`${baseClassname}__viewport-wrapper`">
-      <div :class="`${baseClassname}__viewport`">
+      <div
+        :class="`${baseClassname}__viewport`"
+        :id="`${baseClassname}__viewport`"
+      >
         <slot name="default" />
       </div>
     </div>
-
     <!--SLIDER NAVIGATION -->
-
     <nav
       v-if="!navigationDisabled"
       :class="[`${baseClassname}__navigation`]"
     >
       <button
-        @click.prevent="prevSlide(slideIndex)"
+        @click.prevent="loopItems ? prevLoopSlide(slideIndex) : prevSlide(slideIndex)"
         :class="[
           `${baseClassname}__prev`,
           prevDisabled && `${this.baseClassname}__prev--disabled`
@@ -34,7 +32,7 @@
         <slot name="prev-button">Prev</slot>
       </button>
       <button
-        @click.prevent="nextSlide(slideIndex)"
+        @click.prevent="loopItems ? nextLoopSlide(slideIndex) : nextSlide(slideIndex)"
         :class="[
           `${baseClassname}__next`,
           nextDisabled && `${this.baseClassname}__next--disabled`
@@ -44,10 +42,8 @@
         <slot name="next-button">Next</slot>
       </button>
     </nav>
-
     <!--SLIDER PAGINATION -->
-
-    <aside
+    <nav
       v-if="!paginationDisabled"
       :class="`${baseClassname}__pagination`"
     >
@@ -56,39 +52,35 @@
           v-for="(item, index) in paginationItems"
           :key="index"
           :class="`${baseClassname}__pagination-item`">
-          <a
-            @click.prevent="navigateToSlide(index + 1)"
+          <input
+            type="radio"
+            :name="`${baseClassname}__pagination-input`"
+            @click="navigateToSlide(index + amountToScroll)"
+            :value="index + amountToScroll"
+            :id="`${baseClassname}__pagination-input--${index + amountToScroll}`"
             :class="[
-              `${baseClassname}__pagination-button`,
-              index + 1 === slideIndex && `${baseClassname}__pagination-button--active`,
+              `${baseClassname}__pagination-input`
             ]"
-          >
-            Go to slide {{ index + 1 }}
-          </a>
+            :aria-label="`Go to slide ${index + amountToScroll}`"
+          />
         </li>
       </ol>
-    </aside>
-
+    </nav>
   </div>
 </template>
 
 <script>
 import namePrefixMixin from '../../utils/namePrefix'
+import nSliderCarouselNavigation from './nSliderCarouselNavigation'
 
 export default {
   name: 'nSliderCarousel',
   mixins: [
-    namePrefixMixin
+    namePrefixMixin,
+    nSliderCarouselNavigation
   ],
-  data () {
-    return {
-      slideIndex: 1
-    }
-  },
   props: {
-
     // Data props
-
     refName: {
       type: String,
       required: true,
@@ -102,9 +94,7 @@ export default {
       type: [Array, Number],
       required: true
     },
-
     // Settings
-
     navigationDisabled: {
       type: Boolean,
       default: false
@@ -116,6 +106,10 @@ export default {
     infiniteScroll: {
       type: Boolean,
       default: true
+    },
+    loopItems: {
+      type: Boolean,
+      default: false
     },
     slideIdEnabled: {
       type: Boolean,
@@ -131,54 +125,8 @@ export default {
       return [
         this.baseClassname
       ]
-    },
-    maxIndex () {
-      if(this.slideIndex > this.paginationItems.length) {
-        return this.paginationItems.length
-      } else return this.paginationItems
-    },
-    prevDisabled () {
-      if (this.slideIndex > 1 || this.infiniteScroll) return false
-      else return true
-    },
-    nextDisabled () {
-      if (this.slideIndex < this.maxIndex || this.infiniteScroll) return false
-      else return true
     }
-  },
-  methods: {
-    fetchSlideIndexFromUrl () {
-      const sliderRegex = new RegExp(`#${this.refName}--(\\d+)`)
-      const slideIndexUri = window.location.href.match(sliderRegex)
-
-      if (slideIndexUri && this.slideIdEnabled) {
-        this.navigateToSlide(slideIndexUri[1])
-        return this.slideIndex = parseFloat(slideIndexUri[1])
-      }
-    },
-    navigateToSlide (index) {
-      const slideElement = document.getElementById(`${this.refName}--${index}`)
-      slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
-
-      this.slideIndex = index
-
-      if (!this.slideIdEnabled) return
-      history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
-    },
-    prevSlide (index) {
-      if (index === 1 && this.infiniteScroll) return this.navigateToSlide(this.maxIndex)
-      if (index - this.amountToScroll < 1) return this.navigateToSlide(1)
-      return this.navigateToSlide(index - this.amountToScroll)
-    },
-    nextSlide (index) {
-      if (index === this.maxIndex && this.infiniteScroll) return this.navigateToSlide(1)
-      if (index + this.amountToScroll > this.maxIndex) return this.navigateToSlide(this.maxIndex)
-      return this.navigateToSlide(index + this.amountToScroll)
-    }
-  },
-  mounted () {
-    this.fetchSlideIndexFromUrl()
-  },
+  }
 }
 </script>
 

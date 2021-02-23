@@ -9198,10 +9198,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-sxcss@^1.5.8:
-  version "1.5.8"
-  resolved "https://registry.yarnpkg.com/sxcss/-/sxcss-1.5.8.tgz#00125fbf59e0b7a27a21d60e94569cda2d8854fc"
-  integrity sha512-Pt5DSmdJcd3DrolgtGXv0P/IS/wvkASvR1+frorXK5czZksijrxo7OT8S3IUAPvX9y/LJidj1OOkgQUskN9pKw==
+sxcss@^1.5.9:
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/sxcss/-/sxcss-1.5.9.tgz#522e96cc04e82c1599567e9feba93ac3e557ffeb"
+  integrity sha512-3kJQEK6yefvj66ROsRgNLDbpkxXLfgZ1gxcDNJZF2N1PEhgdkJDqSxUE/9vUT4P5BxQNHoAdxMgpjspyJ4Z00Q==
   dependencies:
     gulp "^4.0.2"
     gulp-concat "^2.6.1"
