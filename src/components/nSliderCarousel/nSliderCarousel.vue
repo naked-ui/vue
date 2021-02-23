@@ -43,7 +43,7 @@
       </button>
     </nav>
     <!--SLIDER PAGINATION -->
-    <aside
+    <nav
       v-if="!paginationDisabled"
       :class="`${baseClassname}__pagination`"
     >
@@ -52,34 +52,33 @@
           v-for="(item, index) in paginationItems"
           :key="index"
           :class="`${baseClassname}__pagination-item`">
-          <a
-            @click.prevent="navigateToSlide(index + 1)"
+          <input
+            type="radio"
+            :name="`${baseClassname}__pagination-input`"
+            @click="navigateToSlide(index + amountToScroll)"
+            :value="index + amountToScroll"
+            :id="`${baseClassname}__pagination-input--${index + amountToScroll}`"
             :class="[
-              `${baseClassname}__pagination-button`,
-              index + 1 === slideIndex && `${baseClassname}__pagination-button--active`,
+              `${baseClassname}__pagination-input`
             ]"
-          >
-            Go to slide {{ index + 1 }}
-          </a>
+            :aria-label="`Go to slide ${index + amountToScroll}`"
+          />
         </li>
       </ol>
-    </aside>
+    </nav>
   </div>
 </template>
 
 <script>
 import namePrefixMixin from '../../utils/namePrefix'
+import nSliderCarouselNavigation from './nSliderCarouselNavigation'
 
 export default {
   name: 'nSliderCarousel',
   mixins: [
-    namePrefixMixin
+    namePrefixMixin,
+    nSliderCarouselNavigation
   ],
-  data () {
-    return {
-      slideIndex: 1
-    }
-  },
   props: {
     // Data props
     refName: {
@@ -126,89 +125,8 @@ export default {
       return [
         this.baseClassname
       ]
-    },
-    maxIndex () {
-      if(this.slideIndex > this.paginationItems.length) {
-        return this.paginationItems.length
-      } else return this.paginationItems.length
-    },
-    prevDisabled () {
-      if (this.slideIndex > 1 || this.infiniteScroll) return false
-      else return true
-    },
-    nextDisabled () {
-      if (this.slideIndex < this.maxIndex || this.infiniteScroll) return false
-      else return true
     }
-  },
-  methods: {
-    fetchSlideIndexFromUrl () {
-      const sliderRegex = new RegExp(`#${this.refName}--(\\d+)`)
-      const slideIndexUri = window.location.href.match(sliderRegex)
-
-      if (slideIndexUri && this.slideIdEnabled) {
-        this.navigateToSlide(slideIndexUri[1])
-        return this.slideIndex = parseFloat(slideIndexUri[1])
-      }
-    },
-    navigateToSlide (index, jump = false) {
-      const slideElement = document.getElementById(`${this.refName}--${index}`)
-
-      if (jump) {
-        slideElement.focus()
-        slideElement.scrollIntoView()
-        return
-      }
-
-      slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
-
-      this.slideIndex = index
-
-      if (!this.slideIdEnabled) return
-      history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
-    },
-    prevSlide (index) {
-      if (index === 1 && this.infiniteScroll) return this.navigateToSlide(this.maxIndex)
-      if (index - this.amountToScroll < 1) return this.navigateToSlide(1)
-      return this.navigateToSlide(index - this.amountToScroll)
-    },
-    prevLoopSlide (index) {
-      this.addCloneBefore()
-      this.navigateToSlide(index, true)
-      const slideIndex = index === 1 ? this.maxIndex : index - this.amountToScroll
-      this.navigateToSlide(slideIndex)
-    },
-    nextSlide (index) {
-      if (index === this.maxIndex && this.infiniteScroll) return this.navigateToSlide(1)
-      if (index + this.amountToScroll > this.maxIndex) return this.navigateToSlide(this.maxIndex)
-      return this.navigateToSlide(index + this.amountToScroll)
-    },
-    nextLoopSlide (index) {
-      const slideIndex = index === this.maxIndex ? 1 : index + this.amountToScroll
-      this.navigateToSlide(slideIndex)
-      setTimeout(() => {
-        this.addCloneAfter()
-        this.navigateToSlide(slideIndex, true)
-      }, 500)
-    },
-    addCloneBefore () {
-      const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`)
-      const lastChild = itemsViewport.lastChild
-      const lastChildClone = lastChild.cloneNode(true)
-      lastChild.remove()
-      itemsViewport.prepend(lastChildClone)
-    },
-    addCloneAfter () {
-      const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`)
-      const firstChild = itemsViewport.firstChild
-      const firstChildClone = firstChild.cloneNode(true)
-      firstChild.remove()
-      itemsViewport.append(firstChildClone)
-    }
-  },
-  mounted () {
-    this.fetchSlideIndexFromUrl()
-  },
+  }
 }
 </script>
 

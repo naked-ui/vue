@@ -18,9 +18,19 @@
     $visible-items: var(--visible-items),
 
     $navigation-classname: '.slider-carousel__navigation',
-    $pagination-classname: '.slider-carousel__pagination',
+
     $pagination-enabled: true,
+    $pagination-classname: '.slider-carousel__pagination',
+    $pagination-list-classname: '.slider-carousel__pagination-list',
+    $pagination-item-classname: '.slider-carousel__pagination-item',
+    $pagination-input-classname: '.slider-carousel__pagination-input',
 
     $gap: 16px
   );
+
+  .slider-carousel__pagination-button {
+    &:checked {
+      background-color: var(--nui-color-white);
+    }
+  }
 }

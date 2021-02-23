@@ -21,7 +21,7 @@
     "babel-loader": "^8.2.2",
     "core-js": "^3.8.1",
     "smoothscroll-polyfill": "^0.4.4",
-    "sxcss": "^1.5.8",
+    "sxcss": "^1.5.9",
     "vue": "^2.6.12"
   },
   "devDependencies": {
