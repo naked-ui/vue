@@ -5,11 +5,6 @@ export default {
     }
   },
   computed: {
-    maxIndex () {
-      if(this.slideIndex > this.paginationItems.length) {
-        return this.paginationItems.length
-      } else return this.paginationItems.length
-    },
     prevDisabled () {
       if (this.slideIndex > 1 || this.infiniteScroll) return false
       else return true
@@ -20,10 +15,10 @@ export default {
     }
   },
   methods: {
-    navigateToSlide (index, jump = false) {
+    navigateToSlide (index, loop = false) {
       const slideElement = document.getElementById(`${this.refName}--${index}`)
-      const slidePaginationItem = document.getElementById(`${this.baseClassname}__pagination-input--${index}`)
-      if (jump) {
+      const slidePaginationItem = document.getElementById(`${this.refName}__pagination-input--${index}`)
+      if (loop) {
         slideElement.focus()
         slideElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
         return
@@ -32,7 +27,9 @@ export default {
       // Update slideIndex
       this.slideIndex = index
       // Update pagination
-      slidePaginationItem.checked = true;
+      if (!this.paginationDisabled) {
+        slidePaginationItem.checked = true;
+      }
       // Conditional Slide ID in URL path
       if (!this.slideIdEnabled) return
       history.replaceState(null, null, document.location.pathname + `#${this.refName}--${index}`);
@@ -74,22 +71,6 @@ export default {
         this.addCloneAfter()
         this.navigateToSlide(slideIndex, true)
       }, 500)
-    },
-    fetchSlideIndexFromUrl () {
-      const sliderRegex = new RegExp(`#${this.refName}--(\\d+)`)
-      const slideIndexUri = window.location.href.match(sliderRegex)
-      if (slideIndexUri && this.slideIdEnabled) {
-        this.navigateToSlide(slideIndexUri[1])
-        return this.slideIndex = parseFloat(slideIndexUri[1])
-      }
-    },
-    setActivePaginationItem () {
-      const slidePaginationItem = document.getElementById(`${this.baseClassname}__pagination-input--${this.slideIndex}`)
-      slidePaginationItem.checked = true;
     }
-  },
-  mounted () {
-    this.fetchSlideIndexFromUrl()
-    this.setActivePaginationItem()
-  },
+  }
 }
