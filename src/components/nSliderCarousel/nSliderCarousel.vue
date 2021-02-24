@@ -11,7 +11,7 @@
     <div :class="`${baseClassname}__viewport-wrapper`">
       <div
         :class="`${baseClassname}__viewport`"
-        :id="`${baseClassname}__viewport`"
+        :id="`${refName}__viewport`"
       >
         <slot name="default" />
       </div>

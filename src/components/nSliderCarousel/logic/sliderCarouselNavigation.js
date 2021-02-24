@@ -45,14 +45,14 @@ export default {
       return this.navigateToSlide(index + this.amountToScroll)
     },
     addCloneBefore () {
-      const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`)
+      const itemsViewport = document.getElementById(`${this.refName}__viewport`)
       const lastChild = itemsViewport.lastChild
       const lastChildClone = lastChild.cloneNode(true)
       lastChild.remove()
       itemsViewport.prepend(lastChildClone)
     },
     addCloneAfter () {
-      const itemsViewport = document.getElementById(`${this.baseClassname}__viewport`)
+      const itemsViewport = document.getElementById(`${this.refName}__viewport`)
       const firstChild = itemsViewport.firstChild
       const firstChildClone = firstChild.cloneNode(true)
       firstChild.remove()
