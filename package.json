@@ -21,7 +21,6 @@
     "babel-loader": "^8.2.2",
     "core-js": "^3.8.1",
     "smoothscroll-polyfill": "^0.4.4",
-    "sxcss": "^1.5.10",
     "vue": "^2.6.12"
   },
   "devDependencies": {
@@ -35,6 +34,7 @@
     "eslint-plugin-vue": "^7.3.0",
     "prettier": "^2.2.1",
     "sass-loader": "^10.1.0",
+    "sxcss": "^1.5.10",
     "vue-template-compiler": "^2.6.12"
   },
   "repository": {
