@@ -1,8 +1,7 @@
 <template>
   <component
     :is="iconType"
-    :to="iconType === 'router-link' ? url : false"
-    :href="iconType === 'a' ? url : false"
+    v-bind="attrs"
     :class="componentClasses"
     type="button"
     :target="url && url.includes('http') ? '_blank' : false"
@@ -94,6 +93,18 @@ export default {
       } else {
         return 'span';
       }
+    },
+    urlIsExternal () {
+      if (this.url.includes('http') || this.url.includes('mailto:') || this.url.includes('tel:')) return true
+      else return false
+    },
+    attrs () {
+      if (!this.url) return
+      if (this.urlIsExternal) return {
+        href: this.url,
+        rel: 'noreferrer'
+      }
+      else return { to: this.url }
     },
     componentClasses () {
       return [
