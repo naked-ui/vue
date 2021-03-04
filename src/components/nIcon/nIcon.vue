@@ -21,10 +21,7 @@
       :style="{ fill : iconColor }"
     > -->
 
-    <slot
-      class="icon__slot-icon"
-    >
-    </slot>
+    <slot />
 
     <!-- <span
       v-if="isTextProvided"
