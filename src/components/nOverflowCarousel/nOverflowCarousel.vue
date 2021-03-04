@@ -1,5 +1,5 @@
 <template>
-  <div
+  <ul
     :class="componentClasses"
     :style="`
       --items-gap: ${itemsGap};
@@ -12,7 +12,7 @@
         <slot />
       </div>
     </div>
-  </div>
+  </ul>
 </template>
 
 <script>
