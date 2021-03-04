@@ -24,6 +24,7 @@
     "core-js": "^3.8.1",
     "smoothscroll-polyfill": "^0.4.4",
     "storybook": "^6.1.21",
+    "style-loader": "^2.0.0",
     "vue": "^2.6.12"
   },
   "devDependencies": {
