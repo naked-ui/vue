@@ -1,5 +1,5 @@
 <template>
-  <ul
+  <div
     :class="componentClasses"
     :style="`
       --items-gap: ${itemsGap};
@@ -8,11 +8,11 @@
     :data-name-prefix="namePrefix"
   >
     <div :class="`${baseClassname}__viewport-wrapper`">
-      <div :class="`${baseClassname}__viewport`">
+      <ul :class="`${baseClassname}__viewport`">
         <slot />
-      </div>
+      </ul>
     </div>
-  </ul>
+  </div>
 </template>
 
 <script>
