@@ -1,11 +1,11 @@
 <template>
   <component
     :is="iconType"
-    :to="iconType === 'router-link' ? href : false"
-    :href="iconType === 'a' ? href : false"
+    :to="iconType === 'router-link' ? url : false"
+    :href="iconType === 'a' ? url : false"
     :class="componentClasses"
     type="button"
-    :target="href && href.includes('http') ? '_blank' : false"
+    :target="url && url.includes('http') ? '_blank' : false"
     :alt="title"
     :aria-label="title"
     :title="title"
@@ -58,7 +58,7 @@ export default {
       required: false,
       default: false
     },
-    href: {
+    url: {
       type: String,
       required: false,
       default: ''
@@ -89,8 +89,8 @@ export default {
   },
   computed: {
     iconType () {
-      if (this.href) {
-        return this.href.includes('http') || this.$route.path === '/error' ? 'a' : 'router-link';
+      if (this.url) {
+        return this.url.includes('http') || this.$route.path === '/error' ? 'a' : 'router-link';
       } else {
         return 'span';
       }
