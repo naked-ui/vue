@@ -16,7 +16,7 @@
     "build:css": "yarn build && rm dist/index.umd.min.js dist/index.umd.min.js.map",
     "prepublishOnly": "$npm_execpath build",
     "lint": "vue-cli-service lint",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "yarn install && start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
@@ -43,7 +43,7 @@
     "eslint-plugin-vue": "^7.3.0",
     "prettier": "^2.2.1",
     "sass-loader": "^10.1.0",
-    "sxcss": "^1.5.12",
+    "sxcss": "^1.5.14",
     "vue-template-compiler": "^2.6.12"
   },
   "repository": {
