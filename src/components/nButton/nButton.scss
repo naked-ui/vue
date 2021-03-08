@@ -4,24 +4,43 @@
 [nui-namespace="nui"] {
 
   &.button {
-    @include hover-effect($opacity: .36);
-    padding: 16px 24px;
+    &:not(.button[disabled="disabled"]) {
+      @include hover-effect($opacity: .36);
+    }
+    &.button[disabled="disabled"] {
+      cursor: not-allowed;
+      opacity: .75;
+    }
+    &:active,
+    &:focus {
+      opacity: .9 !important;
+    }
+    height: 48px;
+    padding: 0 16px;
+    display: flex;
     font-size: 18px;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    border: unset;
+    cursor: pointer;
+    background-color: var(--button-background-color);
   }
 
-  &.button--primary {
-    background-color: var(--nui-color-primary);
-
-    .button__text {
-      color: var(--nui-color-white);
+  .button__text,
+  .button__icon {
+    @include flex($place: center);
+    color: var(--button-text-color);
+    svg {
+      fill: var(--button-text-color) !important;
     }
   }
 
-  &.button--secondary {
-    background-color: var(--nui-color-secondary);
-
-    .button__text {
-      color: var(--nui-color-black);
+  .button__icon {
+    &--left {
+      margin-right: 12px;
+    }
+    &--right {
+      margin-left: 12px;
     }
   }
 }

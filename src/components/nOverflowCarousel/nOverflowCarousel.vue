@@ -2,8 +2,8 @@
   <div
     :class="componentClasses"
     :style="`
-      --items-gap: ${itemsGap};
-      --viewport-padding: ${viewportPadding};
+      --items-gap: ${itemsGap}px;
+      --viewport-padding: ${viewportPadding}px;
     `"
     :nui-namespace="uiNamespace"
   >
@@ -11,7 +11,7 @@
       <ul
         :class="`${baseClassname}__viewport`"
         :style="
-          itemsSnap ? `--snap: ${itemsSnap};` : false
+          !snapItems ? `scroll-snap-type: none !important;` : false
         "
       >
         <slot />
@@ -32,17 +32,17 @@ export default {
       default: 'overflow-carousel'
     },
     itemsGap: {
-      type: String,
-      default: '0'
-    },
-    itemsSnap: {
-      type: Boolean,
-      default: false
+      type: Number,
+      default: 0
     },
     viewportPadding: {
-      type: String,
-      default: '0'
-    }
+      type: Number,
+      default: 0
+    },
+    snapItems: {
+      type: Boolean,
+      default: true
+    },
   },
   computed: {
     componentClasses () {
