@@ -8,7 +8,12 @@
     :data-name-prefix="namePrefix"
   >
     <div :class="`${baseClassname}__viewport-wrapper`">
-      <ul :class="`${baseClassname}__viewport`">
+      <ul
+        :class="`${baseClassname}__viewport`"
+        :style="
+          itemsSnap ? `--snap: ${itemsSnap};` : false
+        "
+      >
         <slot />
       </ul>
     </div>
@@ -29,6 +34,10 @@ export default {
     itemsGap: {
       type: String,
       default: '0'
+    },
+    itemsSnap: {
+      type: Boolean,
+      default: false
     },
     viewportPadding: {
       type: String,
