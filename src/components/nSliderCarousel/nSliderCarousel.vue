@@ -1,6 +1,6 @@
 <template>
   <div
-    :data-name-prefix="namePrefix"
+    :nui-namespace="uiNamespace"
     :class="componentClasses"
     :style="`
       --amount-to-scroll: ${amountToScroll}
@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import namePrefixMixin from '../../utils/namePrefix'
+import namespaceMixin from '../../utils/namespace'
 import sliderCarouselIndex from './logic/sliderCarouselIndex'
 import sliderCarouselNavigation from './logic/sliderCarouselNavigation'
 import sliderCarouselPagination from './logic/sliderCarouselPagination'
@@ -96,7 +96,7 @@ import sliderCarouselSettings from './logic/sliderCarouselSettings'
 export default {
   name: 'nSliderCarousel',
   mixins: [
-    namePrefixMixin,
+    namespaceMixin,
     sliderCarouselIndex,
     sliderCarouselNavigation,
     sliderCarouselPagination,

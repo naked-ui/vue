@@ -6,7 +6,7 @@
     :style="`
       --visible-items: ${visibleItems};
     `"
-    :data-name-prefix="namePrefix"
+    :nui-namespace="uiNamespace"
   >
     <div :class="[`${baseClassname}__item-content`]">
       <slot />
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import namePrefixMixin from '../../utils/namePrefix'
+import namespaceMixin from '../../utils/namespace'
 
 export default {
   name: 'nSliderCarouselItem',
-  mixins: [namePrefixMixin],
+  mixins: [namespaceMixin],
   props: {
     refName: {
       type: String,

@@ -1,7 +1,7 @@
 @import 'sxcss';
 @import '../../styles/variables/colors';
 
-[data-name-prefix="nui"] {
+[nui-namespace="nui"] {
 
   &.button {
     @include hover-effect($opacity: .36);

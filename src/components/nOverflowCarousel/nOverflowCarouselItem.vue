@@ -1,7 +1,7 @@
 <template>
   <li
     :class="componentClasses"
-    :data-name-prefix="namePrefix"
+    :nui-namespace="uiNamespace"
     :style="`
       --width: ${width};
       --height: ${height};
@@ -14,11 +14,11 @@
 </template>
 
 <script> 
-import namePrefixMixin from '../../utils/namePrefix'
+import namespaceMixin from '../../utils/namespace'
 
 export default {
   name: 'nOverflowCarouselItem',
-  mixins: [namePrefixMixin],
+  mixins: [namespaceMixin],
   props: {
     baseClassname: {
       type: String,

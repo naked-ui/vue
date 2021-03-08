@@ -3,7 +3,7 @@
 $ref-name: 'overflow-carousel-item';
 
 
-[data-name-prefix="nui"].overflow-carousel {
+[nui-namespace="nui"].overflow-carousel {
   @include overflow-carousel(
     $viewport-classname: '.overflow-carousel__viewport',
     $viewport-width: 100%,

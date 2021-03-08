@@ -1,6 +1,6 @@
 @import 'sxcss';
 
-[data-name-prefix="nui"].slider-carousel {
+[nui-namespace="nui"].slider-carousel {
   @include slider-carousel(
     $base-classname: '.slider-carousel',
     $navigation-enabled: true,

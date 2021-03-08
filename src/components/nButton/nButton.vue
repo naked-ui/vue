@@ -7,7 +7,7 @@
     :disabled="disabled"
     :busy="busy"
     :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
-    :data-name-prefix="namePrefix"
+    :nui-namespace="uiNamespace"
   >
     <div
       v-if="$slots['button-icon--left']"
@@ -38,10 +38,10 @@
 </template>
 
 <script>
-import namePrefixMixin from '../../utils/namePrefix'
+import namespaceMixin from '../../utils/namespace'
 
 export default {
-  mixins: [namePrefixMixin],
+  mixins: [namespaceMixin],
   name: 'nButton',
   props: {
     kind: {
