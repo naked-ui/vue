@@ -34,5 +34,5 @@ export default create({
 
   brandTitle: 'Naked UI',
   brandUrl: 'https://naked-ui.org',
-  brandImage: '/naked-ui-logo.svg',
+  brandImage: 'https://docs.naked-ui.org/img/naked-ui-logo.svg',
 });
