@@ -14,6 +14,14 @@ export default {
       required: true
     },
     // Settings
+    visibleItems: {
+      type: Number,
+      default: 1
+    },
+    amountToScroll: {
+      type: Number,
+      default: 1
+    },
     navigationDisabled: {
       type: Boolean,
       default: false
@@ -49,10 +57,6 @@ export default {
     slideIdEnabled: {
       type: Boolean,
       default: false
-    },
-    amountToScroll: {
-      type: Number,
-      default: 1
     }
   },
   computed: {
