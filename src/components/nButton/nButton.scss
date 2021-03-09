@@ -4,43 +4,71 @@
 [nui-namespace="nui"] {
 
   &.button {
-    &:not(.button[disabled="disabled"]) {
-      @include hover-effect($opacity: .36);
-    }
-    &.button[disabled="disabled"] {
-      cursor: not-allowed;
-      opacity: .75;
-    }
-    &:active,
-    &:focus {
-      opacity: .9 !important;
-    }
-    height: 48px;
-    padding: 0 16px;
     display: flex;
-    font-size: 18px;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     border: unset;
     cursor: pointer;
     background-color: var(--button-background-color);
-  }
 
-  .button__text,
-  .button__icon {
-    @include flex($place: center);
-    color: var(--button-text-color);
-    svg {
-      fill: var(--button-text-color) !important;
-    }
-  }
+    /** SIZES **/
 
-  .button__icon {
-    &--left {
-      margin-right: 12px;
+    &.button--small {
+      height: 36px;
+      padding: 0 12px;
+      font-size: 14px;
     }
-    &--right {
-      margin-left: 12px;
+
+    &.button--medium {
+      height: 48px;
+      padding: 0 16px;
+      font-size: 16px;
+    }
+
+    &.button--big {
+      height: 64px;
+      padding: 0 20px;
+      font-size: 18px;
+    }
+
+    /** STATES **/
+
+    &:not(.button[disabled="disabled"]) {
+      @include hover-effect($opacity: .36);
+    }
+
+    &.button[disabled="disabled"] {
+      cursor: not-allowed;
+      opacity: .75;
+    }
+
+    &:not(.button[disabled="disabled"]):active,
+    &:not(.button[disabled="disabled"]):focus {
+      opacity: .9 !important;
+    }
+
+    /** CONTENT **/
+
+    /// Text & icons color
+
+    .button__text,
+    .button__icon {
+      @include flex($place: center);
+      color: var(--button-text-color);
+      svg {
+        fill: var(--button-text-color) !important;
+      }
+    }
+
+    /// Icons
+
+    .button__icon {
+      &--left {
+        margin-right: 12px;
+      }
+      &--right {
+        margin-left: 12px;
+      }
     }
   }
 }

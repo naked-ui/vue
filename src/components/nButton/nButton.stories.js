@@ -6,8 +6,10 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
     textColor: { control: 'color' },
-    size: { control: { type: 'select', options: ['small', 'big'] } },
+    size: { control: { type: 'select', options: ['small', 'medium', 'big'] } },
     kind: { control: { type: 'select', options: ['primary', 'secondary', 'tertiary', 'ghost', 'success', 'danger', 'warning'] } },
+    buttonText: { control: { type: 'text'}, defaultValue: 'Button text' },
+    buttonBusyText: { control: { type: 'text'}, defaultValue: 'Button busy text' }
   },
 }
 
@@ -18,7 +20,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
     <nButton
       v-bind="$props"
     >
-      Button
+      {{ buttonText }}
+      <template v-slot:button-busy-text>
+        {{ buttonBusyText }}
+      </template>
     </nButton>
   `,
 });
@@ -37,7 +42,10 @@ const IconLeftTemplate = (args, { argTypes }) => ({
         <circle cx="16" cy="16" r="16" :fill="textColor" />
       </svg>
       </template>
-      Button
+      {{ buttonText }}
+      <template v-slot:button-busy-text>
+        {{ buttonBusyText }}
+      </template>
     </nButton>
   `,
 });
@@ -56,7 +64,7 @@ const IconRightTemplate = (args, { argTypes }) => ({
         <circle cx="16" cy="16" r="16" :fill="textColor" />
       </svg>
       </template>
-      Button
+      {{ buttonText }}
     </nButton>
   `,
 });

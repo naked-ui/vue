@@ -66,7 +66,7 @@ export default {
     },
     size: {
       type: String,
-      default: 'regular'
+      default: 'medium'
     },
     disabled: {
       type: Boolean,
@@ -140,6 +140,7 @@ export default {
         this.kind === 'success' && `${this.baseClassname}--success`,
         this.kind === 'warning' && `${this.baseClassname}--warning`,
         this.size === 'small' && `${this.baseClassname}--small`,
+        this.size === 'medium' && `${this.baseClassname}--medium`,
         this.size === 'big' && `${this.baseClassname}--big`,
         this.busy && `${this.baseClassname}--busy`,
       ]
