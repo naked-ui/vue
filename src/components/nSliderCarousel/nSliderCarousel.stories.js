@@ -2,7 +2,7 @@ import nSliderCarousel from './nSliderCarousel.vue'
 import nSliderCarouselItem from './nSliderCarouselItem.vue'
 
 export default {
-  title: 'nSliderCarousel',
+  title: 'Content/SliderCarousel',
   component: nSliderCarousel,
   argTypes: {
     visibleItems: { control: 'range', min: 1, max: 100, defaultValue: 1 },
@@ -105,6 +105,7 @@ const TemplateDefault = (args, { argTypes }) => ({
         :slideIndex="index + 1"
         :visibleItems="visibleItems"
         :refName="refName"
+        style="background-color: #ddd; width: 100%; height: 100%; color: #fff; display: grid; place-content: center; font-size: 32px;"
       >
         {{ item.title }}
       </nSliderCarouselItem>

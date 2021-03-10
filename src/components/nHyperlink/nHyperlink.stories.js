@@ -1,7 +1,7 @@
 import nHyperlink from './nHyperlink.vue'
 
 export default {
-    title: 'nHyperlink',
+    title: 'Core/Hyperlink',
     component: nHyperlink
 }
 

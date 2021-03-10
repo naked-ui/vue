@@ -1,7 +1,7 @@
 import nButton from './nButton.vue'
 
 export default {
-  title: 'nButton',
+  title: 'Form/Button',
   component: nButton,
   argTypes: {
     backgroundColor: { control: 'color' },

@@ -2,7 +2,7 @@ import nOverflowCarousel from './nOverflowCarousel.vue'
 import nOverflowCarouselItem from './nOverflowCarouselItem.vue'
 
 export default {
-  title: 'nOverflowCarousel',
+  title: 'Content/OverflowCarousel',
   component: nOverflowCarousel,
   argTypes: {
     viewportPadding: { control: 'range', min: 0, max: 100, defaultValue: 12 },
@@ -34,7 +34,7 @@ const Template = (args, { argTypes }) => ({
       :height="itemHeight"
     >
       <div
-        style="background-color: #ddd; width: 100%; height: 100%; color: #fff; display: grid; place-content: center; font-size: 24px;"
+        style="background-color: #ddd; width: 100%; height: 100%; color: #fff; display: grid; place-content: center; font-size: 32px;"
       >
         Item {{ index + 1 }}
       </div>
