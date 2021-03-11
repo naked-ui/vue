@@ -9,6 +9,7 @@ export default {
     itemsGap: { control: 'range', min: 0, max: 100, defaultValue: 12 },
     itemWidth: { control: 'text', defaultValue: '300px' },
     itemHeight: { control: 'text', defaultValue: '300px' },
+    carouselItems: { control: 'range', min: 1, max: 100, defaultValue: 16 }
   },
 }
 
@@ -17,9 +18,9 @@ const Template = (args, { argTypes }) => ({
     nOverflowCarousel,
     nOverflowCarouselItem
   },
-  data: () => ({
-    carouselItems: 12
-  }),
+  // data: () => ({
+  //   carouselItems: 12
+  // }),
   props: Object.keys(argTypes),
   template: `
   <nOverflowCarousel

@@ -3,7 +3,8 @@ export default {
     // Data props
     refName: {
       type: String,
-      required: true
+      required: true,
+      default: 'slider-carousel'
     },
     baseClassname: {
       type: String,

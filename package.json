@@ -16,7 +16,7 @@
     "build:css": "yarn build && rm dist/index.umd.min.js dist/index.umd.min.js.map",
     "prepublishOnly": "$npm_execpath build",
     "lint": "vue-cli-service lint",
-    "storybook": "yarn install && start-storybook -p 6006 --no-manager-cache -s .storybook/assets",
+    "storybook": "yarn install && start-storybook -h 0.0.0.0 -p 6006 --no-manager-cache -s .storybook/assets",
     "build-storybook": "build-storybook"
   },
   "dependencies": {

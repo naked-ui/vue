@@ -2,6 +2,7 @@
   <div
     :nui-namespace="uiNamespace"
     :class="componentClasses"
+    :ref="refName"
     :style="`
       --amount-to-scroll: ${amountToScroll}
     `"

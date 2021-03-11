@@ -34,7 +34,7 @@
     /** STATES **/
 
     &:not(.button[disabled="disabled"]) {
-      @include hover-effect($opacity: .36);
+      @include hover-effect($opacity: .6);
     }
 
     &.button[disabled="disabled"] {

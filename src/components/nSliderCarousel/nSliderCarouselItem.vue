@@ -2,6 +2,7 @@
   <li
     :class="[`${baseClassname}__item`]"
     :tabindex="slideIndex"
+    :ref="refName"
     :id="`${refName}--${slideIndex}`"
     :style="`
       --visible-items: ${visibleItems};
