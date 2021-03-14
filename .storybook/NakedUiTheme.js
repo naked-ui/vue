@@ -14,7 +14,7 @@ export default create({
   appBorderRadius: 2,
 
   // Typography
-  fontBase: '"Inter", sans-serif',
+  fontBase: 'Inter',
   fontCode: 'monospace',
 
   // Text colors
