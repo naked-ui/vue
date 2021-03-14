@@ -6,6 +6,7 @@
     padding: var(--padding);
     width: var(--width);
     height: var(--height);
+    box-sizing: border-box;
   }
 
   .cover {
@@ -28,7 +29,11 @@
       }
     }
 
-    &__background,
+    &__background {
+      width: 100%;
+      height: var(--height);
+    }
+
     &__content,
     &__overlay {
       @include size(100%);

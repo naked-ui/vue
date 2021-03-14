@@ -4,7 +4,7 @@ export default {
   title: 'Content/Cover',
   component: nCover,
   argTypes: {
-    width: { control: 'text', defaultValue: '980px' },
+    width: { control: 'text', defaultValue: '100%' },
     height: { control: 'text', defaultValue: '480px' },
     hasOverlay: {
       defaultValue: true
@@ -12,8 +12,22 @@ export default {
     overlayColor: {
       control: 'color',
       defaultValue: '#000'
-    }
-    
+    },
+    overlayOpacity: {
+      control: 'range',
+      min: 0,
+      max: 100,
+      defaultValue: 30
+    },
+    backgroundVideo: {
+      type: 'object'
+    },
+    backgroundImage: {
+      type: 'object'
+    },
+    padding: {
+      defaultValue: '48px'
+    },
   },
 }
 
@@ -24,7 +38,7 @@ export const BackgroundImageTemplate = (args, { argTypes }) => ({
       <nCover
         v-bind="$props"
         :backgroundImage="backgroundImage"
-        :srcsetBackgroundImages="srcsetBackgroundImages"
+        :overlayOpacity="overlayOpacity / 100"
       >
         <template v-slot:content>
           <h2 style="color: #fff; margin: 0 0 24px 0;">Enim labore laboris dolor laboris veniam voluptate sunt velit.</h2>
@@ -34,13 +48,25 @@ export const BackgroundImageTemplate = (args, { argTypes }) => ({
     `
 });
 BackgroundImageTemplate.args = {
-  srcsetBackgroundImages: [
-    {
-      srcset: 'https://images.pexels.com/photos/6762258/pexels-photo-6762258.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-      media: '(max-width: 1280px)'
-    }
-  ],
-  backgroundImage: 'https://images.pexels.com/photos/5232570/pexels-photo-5232570.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'
+  backgroundImage: {
+    src: 'https://images.pexels.com/photos/5232570/pexels-photo-5232570.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
+    alt: 'Alt text',
+    srcset: [
+      {
+        srcset: 'https://images.pexels.com/photos/6762258/pexels-photo-6762258.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        media: '(max-width: 980px)'
+      },
+      {
+        srcset: 'https://images.pexels.com/photos/7082674/pexels-photo-7082674.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        media: '(min-width: 981px) and (max-width: 1580px)'
+      }
+    ]    
+},
+  // backgroundImage: 'https://images.pexels.com/photos/5232570/pexels-photo-5232570.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
+  content: `
+    <h2 style="color: #fff; margin: 0 0 24px 0;">Enim labore laboris dolor laboris veniam voluptate sunt velit.</h2>
+    <p style="color: #fff; margin: 0;">Quis aliqua exercitation duis occaecat ex est aliquip esse in tempor cillum labore aute. Ipsum occaecat aute exercitation laboris ullamco sint non fugiat. Aute deserunt consectetur cupidatat consectetur consequat aliqua occaecat ad dolore eu magna commodo. Ut nostrud sint eu cillum adipisicing exercitation. Duis ad irure incididunt nulla minim cillum ut. Officia pariatur ad esse adipisicing.</p>
+  `
 }
 
 export const VideoTemplate = (args, { argTypes }) => ({
@@ -50,7 +76,7 @@ export const VideoTemplate = (args, { argTypes }) => ({
     <nCover
       v-bind="$props"
       :backgroundVideo="backgroundVideo"
-      :backgroundVideoType="backgroundVideoType"
+      :overlayOpacity="overlayOpacity / 100"
     >
       <template v-slot:content>
         <h2 style="color: #fff; margin: 0 0 24px 0;">Enim labore laboris dolor laboris veniam voluptate sunt velit.</h2>
@@ -60,8 +86,8 @@ export const VideoTemplate = (args, { argTypes }) => ({
   `
 });
 VideoTemplate.args = {
-  backgroundVideo: 'https://file-examples-com.github.io/uploads/2020/03/file_example_WEBM_1280_3_6MB.webm',
-  backgroundVideoType:'video/webm'
+  backgroundVideo: {
+    src: 'https://file-examples-com.github.io/uploads/2020/03/file_example_WEBM_1280_3_6MB.webm',
+    type:'video/webm'
+  }
 }
-
-// export const BackgroundVideo = VideoTemplate.bind({});

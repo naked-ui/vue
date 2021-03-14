@@ -4,13 +4,12 @@
       loading="lazy"
       decoding="async"
       style="content-visibility: auto"
-      v-if="props.backgroundImage"
     >
       <source
         loading="lazy"
         decoding="async"
         style="content-visibility: auto"
-        v-for="(image, index) in props.srcsetBackgroundImages"
+        v-for="(image, index) in props.backgroundImage.srcset"
         :key="index"
         v-bind="image"
       >
@@ -18,8 +17,8 @@
         loading="lazy"
         decoding="async"
         style="content-visibility: auto"
-        :src="props.backgroundImage"
-        :alt="props.backgroundAltText"
+        :src="props.backgroundImage.src"
+        :alt="props.backgroundImage.alt"
       >
     </picture>
     <video
@@ -27,7 +26,7 @@
       decoding="async"
       style="content-visibility: auto"
       class="cover__background-video"
-      v-if="props.backgroundVideo"
+      v-if="props.backgroundVideo.src"
       autoplay
       loop
     >
@@ -35,8 +34,7 @@
         loading="lazy"
         decoding="async"
         style="content-visibility: auto"
-        :src="props.backgroundVideo"
-        :type="props.backgroundVideoType"
+        v-bind="props.backgroundVideo"
       >
     </video>
   </div>
@@ -46,17 +44,18 @@
 export default {
   props: {
     backgroundImage: {
-      type: String,
-      default: ''
-    },
-    srcsetBackgroundImages: {
-      type: Array,
-      default: () => []
+      type: Object,
+      default: () => {}
     },
     backgroundVideo: {
-      type: String,
-      default: ''
+      type: Object,
+      default: () => {}
     }
-  }
+  },
+  // computed: {
+  //   extractImage () {
+  //     return this.image.find(obj => obj.src)
+  //   }
+  // }
 }
 </script>

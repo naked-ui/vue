@@ -5,7 +5,7 @@
     :style="`
       --width: ${width};
       --height: ${height};
-      --padding: ${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft};
+      --padding: ${padding};
     `"
   >
     <div
@@ -27,7 +27,7 @@
       <div
         class="cover__content-inner"
         :style="`
-          --content-place-content: ${alignContent} ${justifyContent};
+          --content-place-content: ${placeContent};
         `"
       >
         <slot name="content" />
@@ -74,41 +74,21 @@ export default {
       type: String,
       default: ''
     },
-    alignContent: {
+    placeContent: {
       type: String,
       default: 'center'
     },
-    justifyContent: {
+    padding: {
       type: String,
-      default: 'center'
-    },
-    paddingTop: {
-      type: String,
-      default: '40px'
-    },
-    paddingRight: {
-      type: String,
-      default: '40px'
-    },
-    paddingBottom: {
-      type: String,
-      default: '40px'
-    },
-    paddingLeft: {
-      type: String,
-      default: '40px'
+      default: '0'
     },
     backgroundImage: {
-      type: String,
-      default: ''
-    },
-    srcsetBackgroundImages: {
-      type: Array,
-      default: () => []
+      type: Object,
+      default: () => {}
     },
     backgroundVideo: {
-      type: String,
-      default: ''
+      type: Object,
+      default: () => {}
     }
   }
 }
