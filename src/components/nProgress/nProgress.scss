@@ -1,0 +1,13 @@
+[nui-namespace="nui"].progress {
+  
+  progress {
+    -webkit-appearance: none;
+    appearance: none;
+    color: var(--color);
+
+    &::-webkit-progress-value,
+    &::-moz-progress-bar {
+      background-color: var(--color);
+    }
+  }
+}
