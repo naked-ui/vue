@@ -2,6 +2,9 @@
   <div
     class="progress"
     :nui-namespace="uiNamespace"
+    :style="`
+      --height: ${calculatedHeight}
+    `"
   >
     <label
       :for="id"
@@ -51,6 +54,32 @@ export default {
       type: String,
       default: '',
       required: true
+    },
+    height: {
+      type: String,
+      defeault: ''
+    }
+  },
+  computed: {
+    calculatedHeight () {
+      if (
+        isNaN(this.height) == true
+        && this.height.includes('em')
+        || this.height.includes('ex')
+        || this.height.includes('px')
+        || this.height.includes('cm')
+        || this.height.includes('mm')
+        || this.height.includes('in')
+        || this.height.includes('pc')
+        || this.height.includes('pt')
+        || this.height.includes('em')
+        || this.height.includes('rem')
+        || this.height.includes('vh')
+        || this.height.includes('vmin')
+        || this.height.includes('vmax')
+      ) {
+        return height
+      } else return this.height + 'px'
     }
   }
 }
