@@ -1,0 +1,125 @@
+@import 'sxcss';
+
+[nui-namespace="nui"].range-input {
+    $filldot: rgb(58, 58, 58);
+    $fillbg: rgb(128, 128, 128);
+    $t: .3s;
+    $pad: 2em;
+
+    @mixin track() {
+        width: 100%;
+        height: 100%;
+        background: none /* get rid of Firefox track background */
+    }
+
+    @mixin thumb() {
+        box-sizing: border-box;
+        border: solid calc(.5*var(--r)) transparent;
+        width: var(--d);
+        height: var(--h);
+        border-radius: 50%;
+        background: $filldot;
+        pointer-events: auto;
+    }
+
+    /* fix too small font-size in both Chrome & Firefox */
+    * {
+        --hl: 0;
+        --nothl: calc(1 - var(--hl));
+        margin: 0;
+        font: inherit;
+     }
+
+    .range-input__wrap {
+        --d: var(--h);
+        --r: calc(.5*var(--d));
+        --uw: calc(var(--w) - var(--d));
+        --dif: calc(var(--max) - var(--min));
+
+        display: grid;
+        grid-template-rows: max-content var(--h) max-content;
+        grid-gap: .625em;
+        overflow: hidden;
+        padding: 0 $pad;
+        width: var(--w);
+
+        &::before, &::after {
+            grid-column: 1;
+            grid-row: 2;
+            border-radius: var(--r);
+            background: rgb(231, 231, 231);
+            content: '';
+            color: #eee;
+        }
+
+        &::after {
+            /* non-standard WebKit version */
+            -webkit-mask: var(--fill);
+            -webkit-mask-composite: xor;
+
+            /* standard version, supported in Firefox */
+            mask: var(--fill);
+            mask-composite: exclude;
+
+            background: $fillbg;
+            transition: filter $t ease-out;
+        }
+
+        &:focus-within { --hl: 1 }
+    }
+
+    .range-input__sr-only {
+        position: absolute;
+        clip-path: inset(50%)
+    }
+
+    input[type='range'] {
+        &::-webkit-slider-runnable-track,
+        &::-webkit-slider-thumb, & {
+            -webkit-appearance: none
+        }
+
+        grid-column: 1;
+        grid-row: 2;
+        z-index: calc(1 + var(--hl));
+        top: 0;
+        left: 0;
+        background: none; /* get rid of white Chrome background */
+        cursor: grab;
+        pointer-events: none;
+
+        &::-webkit-slider-runnable-track { @include track }
+        &::-moz-range-track { @include track }
+
+        &::-webkit-slider-thumb { @include thumb }
+        &::-moz-range-thumb { @include thumb }
+
+        &:focus {
+            outline: solid 0 transparent;
+
+            &, & + output { --hl: 1 }
+        }
+
+        &:active { cursor: grabbing; }
+    }
+
+    output {
+        grid-column: 1;
+        grid-row: 3;
+        margin-left: var(--r);
+        width: max-content;
+        transform: translate(calc((var(--c) - var(--min))/var(--dif)*var(--uw)));
+
+        &::after {
+            display: block;
+            border-radius: 5px;
+            padding: 0 .375em;
+            transform: translate(-50%) scale(var(--hl));
+            background: $filldot;
+            color: #fff;
+            transition: transform $t ease-out;
+            content: counter(c);
+            counter-reset: c var(--c);
+        }
+    }
+}

@@ -8,7 +8,10 @@ export default {
 const Template = (args, { argTypes }) => ({
     components: { nRangeInput },
     props: Object.keys(argTypes),
-    template: '<nRangeInput v-bind="$props" />',
+    data: () => ({
+        test: []
+    }),
+    template: '<div><nRangeInput v-bind="$props" v-model="test" /><br/>{{ test }}</div>',
 });
 
 export const Default = Template.bind({});
