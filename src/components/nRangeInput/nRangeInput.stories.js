@@ -2,7 +2,13 @@ import nRangeInput from './nRangeInput.vue'
 
 export default {
     title: 'Form/Input/RangeInput',
-    component: nRangeInput
+    component: nRangeInput,
+    argTypes: {
+        dotColor: { control: 'color' },
+        rangeColor: { control: 'color' },
+        bgColor: { control: 'color' },
+        outputFontColor: { control: 'color' },
+    }
 }
 
 const Template = (args, { argTypes }) => ({
