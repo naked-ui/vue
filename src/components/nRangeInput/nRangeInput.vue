@@ -3,13 +3,14 @@
     class="range-input"
     role="group"
     aria-labelledby="range-input--label"
+    :style="colorVariables"
     :nui-namespace="uiNamespace"
   >
     <div
       class="range-input__wrap"
       role="group"
       aria-labelledby="range-input--label"
-      :style="styleVariables"
+      :style="rangeVariables"
     >
       <div id="range-input--label" v-if="label">{{ label }}</div>
       <template v-for="index in dots">
@@ -74,6 +75,22 @@ export default {
     liveInput: {
       type: Boolean,
       default: false
+    },
+    dotColor: {
+      type: String,
+      required: false
+    },
+    rangeColor: {
+      type: String,
+      required: false
+    },
+    bgColor: {
+      type: String,
+      required: false
+    },
+    outputFontColor: {
+      type: String,
+      required: false
     }
   },
   data: () => ({
@@ -89,7 +106,7 @@ export default {
     dots() {
       return this.ranges * 2
     },
-    styleVariables() {
+    rangeVariables() {
       const limitationsVariables = `
         --min: ${this.min};
         --max: ${this.max};
@@ -100,13 +117,21 @@ export default {
       let valuesVariables = ``
       let fill = `--fill: `
 
-      for(let i of [...Array(this.dots).keys()]) {
+      for (let i of [...Array(this.dots).keys()]) {
         valuesVariables += `--v${i}: ${this.rangeValues[i]};`
         fill += `linear-gradient(90deg, red calc(var(--r) + (var(--v${i}) - var(--min))/var(--dif)*var(--uw)), transparent 0)`
-        i === ((2*this.ranges) - 1) ? fill += `;` : fill += `,`
+        i === this.dots - 1 ? fill += `;` : fill += `,`
       }
 
       return valuesVariables + limitationsVariables + fill
+    },
+    colorVariables() {
+      const dotColor = this.dotColor ? `--fillDot: ${this.dotColor};` : ''
+      const rangeColor = this.rangeColor ? `--fillRange: ${this.rangeColor};` : ''
+      const bgColor = this.bgColor ? `--fillBg: ${this.bgColor};` : ''
+      const outputFontColor = this.outputFontColor ? `--outpurFontColor: ${this.outputFontColor};` : ''
+
+      return dotColor + rangeColor + bgColor + outputFontColor
     }
   },
   methods: {
@@ -115,11 +140,12 @@ export default {
 
       let values = []
       for (let i of [...Array(this.dots).keys()]) {
-        if (i === 0) values.push(this.min)
+        if (i === this.dots) break
+        else if (i === 0) values.push(this.min)
         else if (i === (this.dots - 1)) values.push(this.max)
-        else if (i === this.dots) break
         else values.push(+(values[+i-1] + perDotValue).toFixed(0))
       }
+
       this.rangeValues = values
       this.handleChange()
     },

@@ -1,12 +1,12 @@
 @import "sxcss";
 
 [nui-namespace="nui"].range-input {
-    $fillDot: rgb(58, 58, 58);
-    $fillRange: rgb(128, 128, 128);
-    $fillBg: rgb(231, 231, 231);
+    --fillDot: rgb(58, 58, 58);
+    --fillRange: rgb(128, 128, 128);
+    --fillBg: rgb(231, 231, 231);
+    --outputFontColor: #fff;
     $transitionTime: 0.3s;
     $outputPadding: 2em;
-    $outputFontColor: #fff;
 
     @mixin track() {
         @include size($x: 100%, $y: 100%);
@@ -16,7 +16,7 @@
     @mixin thumb() {
         @include border($style: solid, $width: calc(0.5 * var(--r)), $color: transparent, $radius: 50%);
         @include size($x: var(--d), $y: var(--h));
-        @include background($fillDot);
+        @include background(var(--fillDot));
         @include pointer-events(auto);
         box-sizing: border-box;
     }
@@ -44,7 +44,7 @@
         &::after {
             @include grid($column: 1, $row: 2);
             @include border($radius: var(--r));
-            @include background($fillBg);
+            @include background(var(--fillBg));
             @include content("");
         }
 
@@ -57,7 +57,7 @@
             mask: var(--fill);
             mask-composite: exclude;
 
-            @include background($fillRange);
+            @include background(var(--fillRange));
             @include transition($property: filter, $duration: $transitionTime, $timing-function: ease-out);
         }
 
@@ -122,8 +122,8 @@
             @include display(block);
             @include border($radius: 5px);
             @include padding($y: 0, $x: 0.375em);
-            @include background($fillDot);
-            @include color($outputFontColor);
+            @include background(var(--fillDot));
+            @include color(var(--outputFontColor));
             @include transition($property: transform, $duration: $transitionTime, $timing-function: ease-out);
             @include content(counter(c));
             counter-reset: c var(--c);
