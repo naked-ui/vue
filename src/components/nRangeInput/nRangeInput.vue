@@ -129,7 +129,7 @@ export default {
       const dotColor = this.dotColor ? `--fillDot: ${this.dotColor};` : ''
       const rangeColor = this.rangeColor ? `--fillRange: ${this.rangeColor};` : ''
       const bgColor = this.bgColor ? `--fillBg: ${this.bgColor};` : ''
-      const outputFontColor = this.outputFontColor ? `--outpurFontColor: ${this.outputFontColor};` : ''
+      const outputFontColor = this.outputFontColor ? `--outputFontColor: ${this.outputFontColor};` : ''
 
       return dotColor + rangeColor + bgColor + outputFontColor
     }
