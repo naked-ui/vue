@@ -13,9 +13,28 @@
     >
       <div id="range-input--label" v-if="label">{{ label }}</div>
       <template v-for="index in dots">
-        <label class="range-input__sr-only" :for="`v${index-1}`" :key="`label_${index-1}`">Value {{index - 1}}</label>
-        <input type="range" :id="`v${index-1}`" :min="min" v-model.number="rangeValues[index-1]" :max="max" @change="handleChange" :key="`input_${index-1}`"/>
-        <output :for="`v${index-1}`" :style="`--c: var(--v${index-1})`" :key="`output_${index-1}`"></output>
+        <label
+          class="range-input__sr-only"
+          :for="`v${index-1}`"
+          :key="`label_${index-1}`"
+        >
+          Value {{index - 1}}
+        </label>
+        <input
+          type="range"
+          :id="`v${index-1}`"
+          :min="min"
+          v-model.number="rangeValues[index-1]"
+          :max="max"
+          @input="liveInput ? handleChange() : null"
+          @change="!liveInput ? handleChange() : null"
+          :key="`input_${index-1}`"
+        />
+        <output
+          :for="`v${index-1}`"
+          :style="`--c: var(--v${index-1})`"
+          :key="`output_${index-1}`"
+        />
       </template>
     </div>
   </div>
@@ -51,6 +70,10 @@ export default {
     ranges: {
       type: Number,
       default: 1
+    },
+    liveInput: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({
