@@ -1,0 +1,45 @@
+@import "sxcss";
+
+[nui-namespace="nui"].select {
+    --w: 10em;
+    --h: 1em;
+    --borderWidth: 0.1em;
+    --padding: 0.5em;
+
+    @include position($position: relative);
+    @include border($style: solid, $width: var(--borderWidth), $radius: 0%);
+    @include size($x: var(--w), $y: var(--h));
+    @include padding($x: var(--padding), $y: var(--padding));
+    line-height: var(--h);
+
+    .select--selected {
+        user-select: none;
+    }
+
+    .select--items {
+        @include size($x: 100%);
+        @include position(
+            $position: absolute,
+            $top: calc(calc(2*var(--padding)) + var(--borderWidth) + var(--h)),
+            $left: 0,
+            $z-index: 1
+        );
+        @include border($style: solid, $width: var(--borderWidth), $radius: 0%, $top: 0);
+        @include margin($left: calc(0em - var(--borderWidth)));
+    }
+
+
+    &:focus {
+        @include outline(none);
+    }
+
+    .select--item {
+        @include padding($x: var(--padding), $y: var(--padding));
+        @include cursor(pointer);
+        user-select: none;
+
+        &:hover {
+            @include background(#eee);
+        }
+    }
+}
