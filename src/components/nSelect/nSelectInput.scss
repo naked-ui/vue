@@ -1,45 +1,56 @@
 @import "sxcss";
 
-[nui-namespace="nui"].select {
-    --w: 10em;
-    --h: 1em;
-    --borderWidth: 0.1em;
-    --padding: 0.5em;
+[nui-namespace="nui"] {
+    --w: 20em;
+    --h: 4em;
 
-    @include position($position: relative);
-    @include border($style: solid, $width: var(--borderWidth), $radius: 0%);
-    @include size($x: var(--w), $y: var(--h));
-    @include padding($x: var(--padding), $y: var(--padding));
-    line-height: var(--h);
-
-    .select--selected {
-        user-select: none;
+    *, *:before, *:after {
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box;
     }
 
-    .select--items {
-        @include size($x: 100%);
-        @include position(
-            $position: absolute,
-            $top: calc(calc(2*var(--padding)) + var(--borderWidth) + var(--h)),
-            $left: 0,
-            $z-index: 1
-        );
-        @include border($style: solid, $width: var(--borderWidth), $radius: 0%, $top: 0);
-        @include margin($left: calc(0em - var(--borderWidth)));
-    }
+    &.select {
+        @include position($position: relative);
+        @include flex($direction: column);
+        @include size($x: var(--w));
 
+        .select-label {
+            @include margin($bottom: 0.25em);
+        }
 
-    &:focus {
-        @include outline(none);
-    }
+        .select-input__wrapper {
+            @include position($position: relative);
+            @include size($x: var(--w), $y: var(--h));
+            @include line-height(var(--h));
+        }
 
-    .select--item {
-        @include padding($x: var(--padding), $y: var(--padding));
-        @include cursor(pointer);
-        user-select: none;
+        .select-input__inner {
+            @include flex();
+            @include size($x: 100%, $y: 100%);
 
-        &:hover {
-            @include background(#eee);
+            .select-input__input {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                -ms-appearance: none;
+                appearance: none;
+
+                @include flex(1);
+                @include cursor(pointer);
+                @include border($style: solid, $width: 0.1em, $color: black, $radius: 0.25em);
+
+                &:focus {
+                    @include outline(none);
+                }
+            }
+
+            &:after {
+                @include content("\25BC");
+                @include position($position: absolute, $top: 0, $right: 0);
+                @include padding($x: .5em);
+                @include cursor(pointer);
+                @include pointer-events(none);
+            }
         }
     }
 }

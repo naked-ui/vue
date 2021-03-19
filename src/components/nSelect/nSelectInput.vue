@@ -1,16 +1,11 @@
 <template>
-    <div class="select" :nui-namespace="uiNamespace" :tabindex="tabindex" @blur="open = false">
-      <div class="select--selected" @click="open = !open">
-        {{ selected }}
-      </div>
-      <div class="select--items" v-show="open">
-        <div
-          class="select--item"
-          v-for="(option, $index) of options"
-          :key="$index"
-          @click="handleSelectOption(option)"
-        >
-          {{ option }}
+    <div class="select" :nui-namespace="uiNamespace">
+      <label class="select-label" for="">{{ label }}</label>
+      <div class="select-input__wrapper">
+        <div class="select-input__inner">
+          <select class="select-input__input" v-bind="$attrs" v-on="listeners">
+            <slot />
+          </select>
         </div>
       </div>
     </div>
@@ -23,45 +18,30 @@ export default {
   name: 'nSelect',
   mixins: [namespaceMixin],
   props: {
+    value: {
+      type: String,
+      default: undefined
+    },
     label: {
       type: String,
-      required: false,
-      default: null
-    },
-    options: {
-      type: Array,
-      required: true
+      default: undefined
     },
     default: {
       type: String,
-      required: false,
-      default: null
+      default: undefined
     },
-    tabindex: {
-      type: Number,
-      required: false,
-      default: 0
-    }
   },
-  data() {
-    return {
-      selected: this.default
-        ? this.default
-        : this.options.length > 0
-        ? this.options[0]
-        : null,
-      open: false
+  computed: {
+    listeners () {
+      return {
+        ...this.$listeners,
+        input: e => this.$emit('input', e.target.value),
+        change: e => this.$emit('change', e.target.value)
+      }
+    },
+    initialValue () {
+      return this.default ? this.default : this.value
     }
-  },
-  methods: {
-    handleSelectOption(option) {
-      this.selected = option
-      this.open = false
-      this.$emit('input', option)
-    }
-  },
-  mounted() {
-    this.$emit('input', this.selected)
   }
 }
 </script>
