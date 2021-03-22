@@ -2,7 +2,7 @@
 
 [nui-namespace="nui"] {
     --w: 20em;
-    --h: 4em;
+    --h: 3em;
 
     *, *:before, *:after {
         -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -38,6 +38,7 @@
                 @include flex(1);
                 @include cursor(pointer);
                 @include border($style: solid, $width: 0.1em, $color: black, $radius: 0.25em);
+                @include padding($x: .5em);
 
                 &:focus {
                     @include outline(none);
