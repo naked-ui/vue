@@ -19,12 +19,12 @@ const Template = (args, { argTypes }) => ({
     test: []
   }),
   template: `
-        <div>
-          <nRangeInput v-bind="$props" v-model="test" />
-          <br>
-          <code>{{ test }}</code>
-        </div>
-    `,
+    <div>
+      <nRangeInput v-bind="$props" v-model="test" />
+      <br>
+      <code>{{ test }}</code>
+    </div>
+  `,
 });
 
 export const Default = Template.bind({});
