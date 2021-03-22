@@ -1,133 +1,148 @@
-@import "sxcss";
+@import 'sxcss';
 
-[nui-namespace="nui"].range-input {
-    --fillDot: rgb(58, 58, 58);
-    --fillRange: rgb(128, 128, 128);
-    --fillBg: rgb(231, 231, 231);
-    --outputFontColor: #fff;
-    $transitionTime: 0.3s;
-    $outputPadding: 2em;
+[nui-namespace='nui'].range-input {
+  --fillDot: rgb(58, 58, 58);
+  --fillRange: rgb(128, 128, 128);
+  --fillBg: rgb(231, 231, 231);
+  --outputFontColor: #fff;
+  $transitionTime: 0.3s;
 
-    @mixin track() {
-        @include size($x: 100%, $y: 100%);
-        @include background(none); /* get rid of Firefox track background */
+  @mixin range-input-track {
+    @include size(100%);
+    background: none; /* get rid of Firefox track background */
+  }
+
+  @mixin range-input-thumb {
+    border: calc(0.5 * var(--r)) solid transparent;
+    border-radius: 50%;
+    width: var(--d);
+    height: var(--h);
+    background-color: var(--fillDot);
+    pointer-events: auto;
+    box-sizing: border-box;
+  }
+
+  /* fix too small font-size in both Chrome & Firefox */
+  * {
+    --hl: 0;
+    --nothl: calc(1 - var(--hl));
+    margin: 0;
+    font-size: inherit;
+  }
+
+  .range-input__wrap {
+    --d: var(--h);
+    --r: calc(0.5 * var(--d));
+    --uw: calc(var(--w) - var(--d));
+    --dif: calc(var(--max) - var(--min));
+
+    display: grid;
+    grid-template-rows: max-content var(--h) max-content;
+    grid-gap: 0.625em;
+    width: var(--w);
+    overflow: visible;
+
+    &::before,
+    &::after {
+      grid-column: 1;
+      grid-row: 2;
+      border-radius: var(--r);
+      background-color: var(--fillBg);
+      content: '';
     }
 
-    @mixin thumb() {
-        @include border($style: solid, $width: calc(0.5 * var(--r)), $color: transparent, $radius: 50%);
-        @include size($x: var(--d), $y: var(--h));
-        @include background(var(--fillDot));
-        @include pointer-events(auto);
-        box-sizing: border-box;
+    &::after {
+      /* non-standard WebKit version */
+      -webkit-mask: var(--fill);
+      -webkit-mask-composite: xor;
+
+      /* standard version, supported in Firefox */
+      mask: var(--fill);
+      mask-composite: exclude;
+      background-color: var(--fillRange);
+      @include transition(
+        $property: filter,
+        $duration: $transitionTime,
+        $timing-function: ease-out
+      );
     }
 
-    /* fix too small font-size in both Chrome & Firefox */
-    * {
-        --hl: 0;
-        --nothl: calc(1 - var(--hl));
-        @include margin($margin: 0);
-        @include font($size: inherit);
+    &:focus-within {
+      --hl: 1;
+    }
+  }
+
+  .range-input__sr-only {
+    position: absolute;
+    clip-path: inset(50%);
+  }
+
+  input[type='range'] {
+    &::-webkit-slider-runnable-track,
+    &::-webkit-slider-thumb,
+    & {
+      -webkit-appearance: none;
     }
 
-    .range-input__wrap {
-        --d: var(--h);
-        --r: calc(0.5 * var(--d));
-        --uw: calc(var(--w) - var(--d));
-        --dif: calc(var(--max) - var(--min));
+    @include grid($column: 1, $row: 2);
+    top: 0;
+    left: 0;
+    z-index: calc(1 + var(--hl));
+    background: none; /* get rid of white Chrome background */
+    cursor: grab;
+    pointer-events: none;
 
-        @include grid($template-rows: max-content var(--h) max-content, $gap: 0.625em);
-        @include padding($y: 0, $x: $outputPadding);
-        @include size($x: var(--w));
-        overflow: hidden;
-
-        &::before,
-        &::after {
-            @include grid($column: 1, $row: 2);
-            @include border($radius: var(--r));
-            @include background(var(--fillBg));
-            @include content("");
-        }
-
-        &::after {
-            /* non-standard WebKit version */
-            -webkit-mask: var(--fill);
-            -webkit-mask-composite: xor;
-
-            /* standard version, supported in Firefox */
-            mask: var(--fill);
-            mask-composite: exclude;
-
-            @include background(var(--fillRange));
-            @include transition($property: filter, $duration: $transitionTime, $timing-function: ease-out);
-        }
-
-        &:focus-within {
-            --hl: 1;
-        }
+    &::-webkit-slider-runnable-track {
+      @include range-input-track;
+    }
+    &::-moz-range-track {
+      @include range-input-track;
     }
 
-    .range-input__sr-only {
-        @include position($position: absolute);
-        @include clip-path(inset(50%));
+    &::-webkit-slider-thumb {
+      @include range-input-thumb;
+    }
+    &::-moz-range-thumb {
+      @include range-input-thumb;
     }
 
-    input[type="range"] {
-        &::-webkit-slider-runnable-track,
-        &::-webkit-slider-thumb,
-        & {
-            -webkit-appearance: none;
-        }
+    &:focus {
+      outline: solid 0 transparent;
 
-        @include grid($column: 1, $row: 2);
-        @include position($top: 0, $left: 0, $z-index: calc(1 + var(--hl)));
-        @include background(none); /* get rid of white Chrome background */
-        @include cursor(grab);
-        @include pointer-events(none);
-
-        &::-webkit-slider-runnable-track {
-            @include track;
-        }
-        &::-moz-range-track {
-            @include track;
-        }
-
-        &::-webkit-slider-thumb {
-            @include thumb;
-        }
-        &::-moz-range-thumb {
-            @include thumb;
-        }
-
-        &:focus {
-            @include outline(solid 0 transparent);
-
-            &,
-            & + output {
-                --hl: 1;
-            }
-        }
-
-        &:active {
-            @include cursor(grabbing);
-        }
+      &,
+      & + output {
+        --hl: 1;
+      }
     }
 
-    output {
-        @include grid($column: 1, $row: 3);
-        @include margin($left: var(--r));
-        @include size($x: max-content);
-        transform: translate(calc((var(--c) - var(--min)) / var(--dif) * var(--uw)));
-
-        &::after {
-            @include display(block);
-            @include border($radius: 5px);
-            @include padding($y: 0, $x: 0.375em);
-            @include background(var(--fillDot));
-            @include color(var(--outputFontColor));
-            @include transition($property: transform, $duration: $transitionTime, $timing-function: ease-out);
-            @include content(counter(c));
-            counter-reset: c var(--c);
-            transform: translate(-50%) scale(var(--hl));
-        }
+    &:active {
+      cursor: grabbing;
     }
+  }
+
+  output {
+    grid-column: 1;
+    grid-row: 3;
+    margin-left: var(--r);
+    width: max-content;
+    transform: translate(
+      calc((var(--c) - var(--min)) / var(--dif) * var(--uw))
+    );
+
+    &::after {
+      display: block;
+      border-radius: 5px;
+      padding: 0 0.375em 0 0.375em;
+      background-color: var(--fillDot);
+      color: var(--outputFontColor);
+      @include transition(
+        $property: transform,
+        $duration: $transitionTime,
+        $timing-function: ease-out
+      );
+      content: counter(c);
+      counter-reset: c var(--c);
+      transform: translate(-50%) scale(var(--hl));
+    }
+  }
 }
