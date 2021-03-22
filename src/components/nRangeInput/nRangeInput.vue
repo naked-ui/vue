@@ -50,19 +50,19 @@ export default {
   props: {
     min: {
       type: Number,
-      default: -50
+      default: 0
     },
     max: {
       type: Number,
-      default: 50
+      default: 100
     },
     width: {
       type: String,
-      default: '20em'
+      default: ''
     },
     height: {
       type: String,
-      default: '2em'
+      default: ''
     },
     label: {
       type: String,
@@ -84,7 +84,7 @@ export default {
       type: String,
       required: false
     },
-    bgColor: {
+    backgroundColor: {
       type: String,
       required: false
     },
@@ -128,10 +128,10 @@ export default {
     colorVariables() {
       const dotColor = this.dotColor ? `--fillDot: ${this.dotColor};` : ''
       const rangeColor = this.rangeColor ? `--fillRange: ${this.rangeColor};` : ''
-      const bgColor = this.bgColor ? `--fillBg: ${this.bgColor};` : ''
+      const backgroundColor = this.backgroundColor ? `--fillBg: ${this.backgroundColor};` : ''
       const outputFontColor = this.outputFontColor ? `--outputFontColor: ${this.outputFontColor};` : ''
 
-      return dotColor + rangeColor + bgColor + outputFontColor
+      return dotColor + rangeColor + backgroundColor + outputFontColor
     }
   },
   methods: {

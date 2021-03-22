@@ -6,7 +6,7 @@ export default {
     argTypes: {
         dotColor: { control: 'color' },
         rangeColor: { control: 'color' },
-        bgColor: { control: 'color' },
+        backgroundColor: { control: 'color' },
         outputFontColor: { control: 'color' },
     }
 }
@@ -17,10 +17,17 @@ const Template = (args, { argTypes }) => ({
     data: () => ({
         test: []
     }),
-    template: '<div><nRangeInput v-bind="$props" v-model="test" /><br/>{{ test }}</div>',
+    template: '<div><nRangeInput v-bind="$props" v-model="test" /><code>{{ test }}</code></div>',
 });
 
 export const Default = Template.bind({});
 Default.args = {
-    url: 'https://naked-ui.org/'
+    min: -50,
+    max: 50,
+    height: '24px',
+    width: '320px',
+    ranges: 1,
+    dotColor: '#111',
+    rangeColor: '#999',
+    backgroundColor: '#ddd'
 }
