@@ -93,16 +93,12 @@
     cursor: grab;
     pointer-events: none;
 
-    &::-webkit-slider-runnable-track {
-      @include range-input-track;
-    }
-    &::-moz-range-track {
+    &::-webkit-slider-runnable-track,
+    &::-moz-range-track  {
       @include range-input-track;
     }
 
-    &::-webkit-slider-thumb {
-      @include range-input-thumb;
-    }
+    &::-webkit-slider-thumb,
     &::-moz-range-thumb {
       @include range-input-thumb;
     }
@@ -129,8 +125,11 @@
     transform: translate(
       calc((var(--c) - var(--min)) / var(--dif) * var(--uw))
     );
+    position: relative;
+    bottom: 0;
 
     &::after {
+      position: absolute;
       display: block;
       border-radius: 5px;
       padding: 0 0.375em 0 0.375em;
