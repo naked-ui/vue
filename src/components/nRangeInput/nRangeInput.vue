@@ -88,6 +88,10 @@ export default {
       type: String,
       required: false
     },
+    outputBackgroundColor: {
+      type: String,
+      required: false
+    },
     outputFontColor: {
       type: String,
       required: false
@@ -129,9 +133,10 @@ export default {
       const dotColor = this.dotColor ? `--fillDot: ${this.dotColor};` : ''
       const rangeColor = this.rangeColor ? `--fillRange: ${this.rangeColor};` : ''
       const backgroundColor = this.backgroundColor ? `--fillBg: ${this.backgroundColor};` : ''
+      const outputBackgroundColor = this.outputBackgroundColor ? `--fillOutput: ${this.outputBackgroundColor};` : ''
       const outputFontColor = this.outputFontColor ? `--outputFontColor: ${this.outputFontColor};` : ''
 
-      return dotColor + rangeColor + backgroundColor + outputFontColor
+      return dotColor + rangeColor + backgroundColor + outputFontColor + outputBackgroundColor
     }
   },
   methods: {

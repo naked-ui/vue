@@ -4,6 +4,7 @@
   --fillDot: rgb(58, 58, 58);
   --fillRange: rgb(128, 128, 128);
   --fillBg: rgb(231, 231, 231);
+  --fillOutput: rgb(231, 231, 231);
   --outputFontColor: #fff;
   $transitionTime: 0.3s;
 
@@ -133,7 +134,7 @@
       display: block;
       border-radius: 5px;
       padding: 0 0.375em 0 0.375em;
-      background-color: var(--fillDot);
+      background-color: var(--fillOutput);
       color: var(--outputFontColor);
       @include transition(
         $property: transform,

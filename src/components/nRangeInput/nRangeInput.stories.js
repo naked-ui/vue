@@ -7,6 +7,7 @@ export default {
         dotColor: { control: 'color' },
         rangeColor: { control: 'color' },
         backgroundColor: { control: 'color' },
+        outputBackgroundColor: { control: 'color' },
         outputFontColor: { control: 'color' },
     }
 }
@@ -29,5 +30,6 @@ Default.args = {
     ranges: 1,
     dotColor: '#111',
     rangeColor: '#999',
-    backgroundColor: '#ddd'
+    backgroundColor: '#ddd',
+    outputBackgroundColor: '#ddd'
 }
