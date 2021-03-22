@@ -3,7 +3,7 @@
       <label class="select-label" for="">{{ label }}</label>
       <div class="select-input__wrapper">
         <div class="select-input__inner">
-          <select class="select-input__input" v-bind="$attrs" v-on="listeners">
+          <select class="select-input__input" v-bind="$attrs" v-on="listeners" :value="initialValue">
             <slot />
           </select>
         </div>
