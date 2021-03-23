@@ -57,29 +57,29 @@ export default {
     },
     height: {
       type: String,
-      defeault: ''
+      default: ''
     }
   },
   computed: {
     calculatedHeight () {
+      if (isNaN(this.height) == false) return this.height + 'px'
       if (
-        isNaN(this.height) == true
-        && this.height.includes('em')
-        || this.height.includes('ex')
-        || this.height.includes('px')
-        || this.height.includes('cm')
-        || this.height.includes('mm')
-        || this.height.includes('in')
-        || this.height.includes('pc')
-        || this.height.includes('pt')
-        || this.height.includes('em')
-        || this.height.includes('rem')
-        || this.height.includes('vh')
-        || this.height.includes('vmin')
-        || this.height.includes('vmax')
+        this.height.includes('em') ||
+        this.height.includes('ex') ||
+        this.height.includes('px') ||
+        this.height.includes('cm') ||
+        this.height.includes('mm') ||
+        this.height.includes('in') ||
+        this.height.includes('pc') ||
+        this.height.includes('pt') ||
+        this.height.includes('em') ||
+        this.height.includes('rem') ||
+        this.height.includes('vh') ||
+        this.height.includes('vmin') ||
+        this.height.includes('vmax')
       ) {
-        return height
-      } else return this.height + 'px'
+        return this.height
+      }
     }
   }
 }
