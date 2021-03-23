@@ -98,7 +98,10 @@
       @include range-input-track;
     }
 
-    &::-webkit-slider-thumb,
+    &::-webkit-slider-thumb {
+      @include range-input-thumb;
+    }
+
     &::-moz-range-thumb {
       @include range-input-thumb;
     }
