@@ -3,9 +3,9 @@
     class="cover"
     :nui-namespace="uiNamespace"
     :style="`
-      --width: ${width};
-      --height: ${height};
-      --padding: ${padding};
+      --width: ${width ? width : '100%'};
+      --height: ${height ? height : '100%'};
+      --padding: ${padding ? padding : '0'};
     `"
   >
     <div

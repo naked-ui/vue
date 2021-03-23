@@ -1,6 +1,7 @@
 <template functional>
   <div class="cover__background">
     <picture
+      v-if="props.backgroundImage && props.backgroundImage.src"
       loading="lazy"
       decoding="async"
       style="content-visibility: auto"
@@ -9,7 +10,7 @@
         loading="lazy"
         decoding="async"
         style="content-visibility: auto"
-        v-for="(image, index) in props.backgroundImage.srcset"
+        v-for="(image, index) in props.backgroundImage.sources"
         :key="index"
         v-bind="image"
       >
@@ -22,11 +23,11 @@
       >
     </picture>
     <video
+      v-if="props.backgroundVideo && props.backgroundVideo.src"
       loading="lazy"
       decoding="async"
       style="content-visibility: auto"
       class="cover__background-video"
-      v-if="props.backgroundVideo.src"
       autoplay
       loop
     >
