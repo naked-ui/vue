@@ -1,16 +1,16 @@
 @import "sxcss";
 
 [nui-namespace="nui"] {
-    --w: 20em;
-    --h: 3em;
-
-    *, *:before, *:after {
-        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-        box-sizing: border-box;
-    }
-
     &.select {
+        --w: 20em;
+        --h: 3em;
+
+        *, *:before, *:after {
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;
+        }
+
         @include position($position: relative);
         @include flex($direction: column);
         @include size($x: var(--w));
