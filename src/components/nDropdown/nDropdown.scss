@@ -1,0 +1,75 @@
+@import 'sxcss';
+
+button {
+    background: none;
+    appearance: none;
+    outline: none;
+    border: none;
+}
+
+[nui-namespace="nui"] {
+    &.dropdown {
+        @include size($x: 100%);
+
+        .dropdown--label {
+            @include display(inline-block);
+            @include margin($bottom: .5em);
+        }
+
+        .dropdown--list {
+            @include position($position: relative);
+            @include size($x: 100%, $y: 3em);
+            @include cursor(pointer);
+            @include display(block);
+            @include background(rgb(245, 245, 245));
+            outline: 1px solid rgb(126, 126, 126);
+        }
+
+        .dropdown--list__field {
+            @include display(inline-block);
+            @include size($y: 100%);
+            @include font($size: inherit);
+            @include cursor(pointer);
+            @include color(rgb(51, 51, 51));
+        }
+
+        .dropdown--list__options {
+            @include position($position: absolute, $right: 0, $left: 0);
+            @include list-style(none);
+            @include margin(0);
+            @include padding(0);
+            @include background(rgb(245, 245, 245));
+            outline: 1px solid rgb(126, 126, 126);
+            @include color(rgb(51, 51, 51));
+        }
+
+        .dropdown--list__option {
+            @include margin(0);
+
+            &:hover {
+                @include background(rgb(230, 230, 230));
+            }
+
+            &.selected {
+                @include background(rgb(235, 235, 235));
+
+                &:hover {
+                    @include background(rgb(230, 230, 230));
+                }
+            }
+
+            &.default {
+                @include padding($x: .5em, $y: .75em);
+            }
+
+            &.link {
+                a {
+                    @include display(block);
+                    @include padding($x: .5em, $y: .75em);
+                    @include color(inherit);
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
