@@ -11,23 +11,25 @@
             box-sizing: border-box;
         }
 
-        @include position($position: relative);
         @include flex($direction: column);
-        @include size($x: var(--w));
+        position: relative;
+        width: var(--w);
 
         .select-label {
-            @include margin($bottom: 0.25em);
+            margin-bottom: 0.25em
         }
 
         .select-input__wrapper {
-            @include position($position: relative);
-            @include size($x: var(--w), $y: var(--h));
-            @include line-height(var(--h));
+            position: relative;
+            line-height: var(--h);
+            width: var(--w);
+            height: var(--h);
         }
 
         .select-input__inner {
-            @include flex();
-            @include size($x: 100%, $y: 100%);
+            display: flex;
+            width: 100%;
+            height: 100%;
 
             .select-input__input {
                 -webkit-appearance: none;
@@ -35,22 +37,28 @@
                 -ms-appearance: none;
                 appearance: none;
 
-                @include flex(1);
-                @include cursor(pointer);
-                @include border($style: solid, $width: 0.1em, $color: black, $radius: 0.25em);
-                @include padding($x: .5em);
+                flex: 1;
+                cursor: pointer;
+                @include border(
+                    $style: solid,
+                    $width: 0.1em,
+                    $color: black,
+                    $radius: 0.25em
+                );
+                padding: 0 .5em;
+                background: rgb(245, 245, 245);
 
                 &:focus {
-                    @include outline(none);
+                    outline: none;
                 }
             }
 
             &:after {
-                @include content("\25BC");
                 @include position($position: absolute, $top: 0, $right: 0);
-                @include padding($x: .5em);
-                @include cursor(pointer);
-                @include pointer-events(none);
+                content: "\25BC";
+                padding: 0 .5em;
+                cursor: pointer;
+                pointer-events: none;
             }
         }
     }
