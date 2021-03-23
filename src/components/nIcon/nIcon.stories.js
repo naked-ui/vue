@@ -1,7 +1,7 @@
 import nIcon from './nIcon.vue'
 
 export default {
-    title: 'Core/Icon',
+    title: 'Content/Icon',
     component: nIcon
 }
 
