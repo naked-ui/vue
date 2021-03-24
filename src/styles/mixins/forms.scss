@@ -13,7 +13,6 @@
     font-size: inherit;
   }
 
-  // #{$form-element}:not(:valid) + #{$validations-classname},
   #{$form-element}:not(:invalid) + #{$validations-classname} {
     display: none;
   }
@@ -27,10 +26,9 @@
 
 @mixin input-box(
   $height,
-  $width
-  // $form-element
+  $width,
+  $padding: 0
 ) {
-  // display: flex;
   height: $height;
   width: $width;
   -webkit-appearance: none;
@@ -39,9 +37,6 @@
   border: none;
   outline: var(--outline-width) solid;
   outline-offset: -var(--outline-width);
-  padding: var(--padding);
-
-  // #{$form-element} {
-  //   @include size(100%);
-  // }
+  padding: $padding;
+  font-family: inherit;
 }

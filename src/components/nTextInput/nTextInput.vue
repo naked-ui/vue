@@ -14,6 +14,7 @@
   >
     <label
       class="text-input__label"
+      :disabled="disabled"
       :for="id"
     >
       {{ label }}
@@ -31,7 +32,7 @@
       :type="type"
     >
     <div
-      v-if="validationMessages.length > 0"
+      v-if="validationMessages.length > 0 && !disabled"
       class="text-input__validations"
       :style="`
         --validation-color: ${validationColor};
@@ -154,4 +155,4 @@ export default {
 
 </script>
 
-<style lang="scss" src="./TextInput.scss" />
+<style lang="scss" src="./nTextInput.scss" />

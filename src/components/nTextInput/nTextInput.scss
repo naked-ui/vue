@@ -12,9 +12,9 @@
 
     input {
       @include input-box(
-        // $form-element: 'input',
         $height: var(--height),
-        $width: var(--width)
+        $width: var(--width),
+        $padding: var(--padding)
       );
 
       &:invalid {
@@ -23,6 +23,16 @@
       &:valid {
         outline-color: var(--color-valid);
       }
+
+      &[disabled="disabled"] {
+        cursor: not-allowed;
+      }
     }
-  }    
+
+    label {
+      &[disabled="disabled"] {
+        opacity: .3;
+      }
+    }
+  }
 }
