@@ -1,0 +1,48 @@
+@import '../../styles/mixins/forms.scss';
+
+[nui-namespace="nui"] {
+
+  &.textarea {
+    @include form-item(
+      $form-element: 'textarea',
+      $validations-classname: '.textarea__validations',
+      $gap: var(--gap),
+      $validation-color: var(--validation-color)
+    );
+
+    textarea {
+      @include input-box(
+        $height: var(--height),
+        $width: var(--width),
+        $padding: var(--padding)
+      );
+      resize: var(--resize);
+
+      &:invalid {
+        outline-color: var(--color-invalid);
+      }
+
+      &:not(:placeholder-shown):valid {
+      // &:valid {
+        outline-color: var(--color-valid);
+      }
+
+      &:not(:invalid) ~ .text-input__validations,
+      &[disabled="disabled"] ~ .text-input__validations {
+        @include hide;
+      }
+
+      &[disabled="disabled"],
+      &:disabled {
+        cursor: not-allowed;
+      }
+    }
+
+    label {
+      &[disabled="disabled"],
+      &:disabled {
+        opacity: .3;
+      }
+    }
+  }
+}
