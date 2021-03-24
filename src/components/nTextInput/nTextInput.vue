@@ -32,7 +32,6 @@
       :type="type"
     >
     <div
-      v-if="validationMessages.length > 0 && !disabled"
       class="text-input__validations"
       :style="`
         --validation-color: ${validationColor};

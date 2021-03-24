@@ -17,22 +17,35 @@
         $padding: var(--padding)
       );
 
+      /////// TO BE REFACTORED AS MIXIN
+
       &:invalid {
         outline-color: var(--color-invalid);
       }
-      &:valid {
+
+      &:not(:placeholder-shown):valid {
+      // &:valid {
         outline-color: var(--color-valid);
       }
 
-      &[disabled="disabled"] {
+      &:not(:invalid) ~ .text-input__validations,
+      &[disabled="disabled"] ~ .text-input__validations {
+        @include hide;
+      }
+
+      &[disabled="disabled"],
+      &:disabled {
         cursor: not-allowed;
       }
     }
 
     label {
-      &[disabled="disabled"] {
+      &[disabled="disabled"],
+      &:disabled {
         opacity: .3;
       }
     }
+
+    ///////
   }
 }
