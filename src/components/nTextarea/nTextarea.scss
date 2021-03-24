@@ -18,6 +18,8 @@
       );
       resize: var(--resize);
 
+      /////// TO BE REFACTORED AS MIXIN
+
       &:invalid {
         outline-color: var(--color-invalid);
       }
@@ -44,5 +46,7 @@
         opacity: .3;
       }
     }
+
+    ///////
   }
 }
