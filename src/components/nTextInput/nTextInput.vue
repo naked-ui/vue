@@ -7,38 +7,46 @@
       --height: ${isNaN(height) ? height : height + 'px'};
       --width: ${isNaN(width) ? width : width + 'px'};
       --padding: ${padding};
-      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
+      --outline-width: ${
+        isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'
+      };
       --color-invalid: ${colorInvalid};
       --color-valid: ${colorValid};
     `"
   >
-    <label
-      class="text-input__label"
-      :for="id"
-    >
+    <label class="text-input__label" :for="id">
       {{ label }}
     </label>
     <input
       :autofocus="autofocus"
       :autocorrect="autocorrect"
+      :autocomplete="autocomplete"
       :disabled="disabled"
       :id="id"
-      :maxlength="maxlength"
-      :minlength="minlength"
       :placeholder="placeholder"
       :readonly="readonly"
       :title="title"
       :type="type"
-    >
+      :value="value"
+      :maxlength="maxlength"
+      :minlength="minlength"
+      :max="max"
+      :min="min"
+      :required="required"
+      :pattern="pattern"
+      @input="$emit('input', $event.target.value)"
+      v-on="$_validationEvents"
+      formnovalidate
+    />
     <div
-      v-if="validationMessages.length > 0"
+      v-if="validationErrors.length"
       class="text-input__validations"
       :style="`
         --validation-color: ${validationColor};
       `"
     >
       <span
-        v-for="(message, index) in validationMessages"
+        v-for="(message, index) in validationErrors"
         :key="index"
         :class="[
           'text-input__validations__message',
@@ -52,15 +60,25 @@
 
 <script>
 import namespaceMixin from '../../utils/namespace'
+import inputValidation from '../../utils/inputValidation'
 
 export default {
-  mixins: [namespaceMixin],
+  mixins: [namespaceMixin, inputValidation],
   name: 'nTextInput',
   props: {
+    valid: {
+      type: String,
+      default: ''
+    },
+    value: String,
     // Settings props
     autocorrect: {
       type: String,
       default: 'on'
+    },
+    autocomplete: {
+      type: Boolean,
+      default: true
     },
     autofocus: {
       type: Boolean,
@@ -83,6 +101,14 @@ export default {
       type: String,
       default: ''
     },
+    min: {
+      type: Number,
+      default: null
+    },
+    max: {
+      type: Number,
+      default: null
+    },
     maxlength: {
       type: Number,
       default: null
@@ -95,6 +121,10 @@ export default {
       type: String,
       default: ''
     },
+    pattern: {
+      type: String,
+      default: null
+    },
     readonly: {
       type: Boolean,
       default: false
@@ -105,7 +135,7 @@ export default {
     },
     title: {
       type: String,
-      default: ''
+      default: null
     },
     type: {
       type: String,
@@ -149,9 +179,12 @@ export default {
       type: String,
       default: 'green'
     },
-  },
+    required: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
-
 </script>
 
 <style lang="scss" src="./TextInput.scss" />
