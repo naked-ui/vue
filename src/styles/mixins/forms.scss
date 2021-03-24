@@ -1,0 +1,47 @@
+@import 'sxcss';
+
+@mixin form-item(
+  $form-element,
+  $validations-classname,
+  $gap: null,
+  $validation-color: null,
+) {
+  display: grid;
+  gap: $gap;
+  
+  #{$form-element} {
+    font-size: inherit;
+  }
+
+  // #{$form-element}:not(:valid) + #{$validations-classname},
+  #{$form-element}:not(:invalid) + #{$validations-classname} {
+    display: none;
+  }
+  
+  #{$validations-classname} {
+    display: grid;
+    gap: calc(#{$gap} / 4);
+    color: $validation-color;
+  }
+}
+
+@mixin input-box(
+  $height,
+  $width
+  // $form-element
+) {
+  // display: flex;
+  height: $height;
+  width: $width;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  outline: var(--outline-width) solid;
+  outline-offset: -var(--outline-width);
+  padding: var(--padding);
+
+  // #{$form-element} {
+  //   @include size(100%);
+  // }
+}

@@ -1,0 +1,28 @@
+@import '../../styles/mixins/forms.scss';
+
+[nui-namespace="nui"] {
+
+  &.text-input {
+    @include form-item(
+      $form-element: 'input',
+      $validations-classname: '.text-input__validations',
+      $gap: var(--gap),
+      $validation-color: var(--validation-color)
+    );
+
+    input {
+      @include input-box(
+        // $form-element: 'input',
+        $height: var(--height),
+        $width: var(--width)
+      );
+
+      &:invalid {
+        outline-color: var(--color-invalid);
+      }
+      &:valid {
+        outline-color: var(--color-valid);
+      }
+    }
+  }    
+}
