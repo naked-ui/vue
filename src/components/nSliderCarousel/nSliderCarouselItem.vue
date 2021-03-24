@@ -2,11 +2,12 @@
   <li
     :class="[`${baseClassname}__item`]"
     :tabindex="slideIndex"
+    :ref="refName"
     :id="`${refName}--${slideIndex}`"
     :style="`
       --visible-items: ${visibleItems};
     `"
-    :data-name-prefix="namePrefix"
+    :nui-namespace="uiNamespace"
   >
     <div :class="[`${baseClassname}__item-content`]">
       <slot />
@@ -15,24 +16,24 @@
 </template>
 
 <script>
-import namePrefixMixin from '../../utils/namePrefix'
+import namespaceMixin from '../../utils/namespace'
 
 export default {
   name: 'nSliderCarouselItem',
-  mixins: [namePrefixMixin],
+  mixins: [namespaceMixin],
   props: {
-    slideIndex: {
-      type: Number,
-      required: true,
-      default: 1
-    },
     refName: {
       type: String,
-      default: 'slide'
+      required: true
     },
     baseClassname: {
       type: String,
       default: 'slider-carousel'
+    },
+    slideIndex: {
+      type: Number,
+      required: true,
+      default: 1
     },
     visibleItems: {
       type: Number,

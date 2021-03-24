@@ -2,38 +2,47 @@
   <div
     :class="componentClasses"
     :style="`
-      --items-gap: ${itemsGap};
-      --viewport-padding: ${viewportPadding};
+      --items-gap: ${itemsGap}px;
+      --viewport-padding: ${viewportPadding}px;
     `"
-    :data-name-prefix="namePrefix"
+    :nui-namespace="uiNamespace"
   >
     <div :class="`${baseClassname}__viewport-wrapper`">
-      <div :class="`${baseClassname}__viewport`">
+      <ul
+        :class="`${baseClassname}__viewport`"
+        :style="
+          !snapItems ? `scroll-snap-type: none !important;` : false
+        "
+      >
         <slot />
-      </div>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import namePrefixMixin from '../../utils/namePrefix'
+import namespaceMixin from '../../utils/namespace'
 
 export default {
   name: 'nOverflowCarousel',
-  mixins: [namePrefixMixin],
+  mixins: [namespaceMixin],
   props: {
     baseClassname: {
       type: String,
       default: 'overflow-carousel'
     },
     itemsGap: {
-      type: String,
-      default: '0'
+      type: Number,
+      default: 0
     },
     viewportPadding: {
-      type: String,
-      default: '0'
-    }
+      type: Number,
+      default: 0
+    },
+    snapItems: {
+      type: Boolean,
+      default: true
+    },
   },
   computed: {
     componentClasses () {

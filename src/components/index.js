@@ -1,3 +1,6 @@
 export { nButton } from './nButton'
+export { nCover } from './nCover'
+export { nHyperlink } from './nHyperlink'
+export { nIcon } from './nIcon'
 export { nOverflowCarousel, nOverflowCarouselItem } from './nOverflowCarousel'
 export { nSliderCarousel, nSliderCarouselItem } from './nSliderCarousel'

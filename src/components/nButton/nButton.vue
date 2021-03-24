@@ -3,15 +3,14 @@
     v-bind="attrs"
     :is="tag"
     :class="componentClasses"
-    :noPadding="noPadding"
-    :disabled="disabled"
+    :disabled="disabled || busy"
     :busy="busy"
-    :style="` --${baseClassname}__name-prefix: ${namePrefix};`"
-    :data-name-prefix="namePrefix"
+    :style="style"
+    :nui-namespace="uiNamespace"
   >
     <div
       v-if="$slots['button-icon--left']"
-      class="button__slot-icon--left"
+      class="button__icon button__icon--left"
     >
       <slot name="button-icon--left">
       </slot>
@@ -20,7 +19,12 @@
       v-if="$slots.default"
       class="button__text"
     >
-      <slot />
+      <slot v-if="!busy">
+        Button text
+      </slot>
+      <slot v-else name="button-busy-text">
+        Button busy text
+      </slot>
     </span>
      <div
       v-if="$slots['button-icon--solo']"
@@ -30,7 +34,7 @@
     </div>
     <div
       v-if="$slots['button-icon--right']"
-      class="button__slot-icon--right"
+      class="button__icon button__icon--right"
     >
       <slot name="button-icon--right" />
     </div>
@@ -38,23 +42,31 @@
 </template>
 
 <script>
-import namePrefixMixin from '../../utils/namePrefix'
+import namespaceMixin from '../../utils/namespace'
 
 export default {
-  mixins: [namePrefixMixin],
+  mixins: [namespaceMixin],
   name: 'nButton',
   props: {
+    baseClassname: {
+      type: String,
+      default: 'button'
+    },
     kind: {
       type: String,
       default: 'primary'
     },
+    backgroundColor: {
+      type: String,
+      default: '#333'
+    },
+    textColor: {
+      type: String,
+      default: '#fff'
+    },
     size: {
       type: String,
-      default: 'regular'
-    },
-    type: {
-      type: String,
-      default: 'button'
+      default: 'medium'
     },
     disabled: {
       type: Boolean,
@@ -72,10 +84,6 @@ export default {
       type: String,
       default: '',
       required: false
-    },
-    baseClassname: {
-      type: String,
-      default: 'button'
     }
   },
   computed: {
@@ -99,6 +107,17 @@ export default {
       ) return { href: this.link }
       else return { to: this.link }
     },
+    style () {
+      return [
+        {
+          '--button-text-color' : this.textColor,
+          '--button-background-color' : this.backgroundColor
+        },
+        {
+          'padding' : this.noPadding ? '0' : false
+        }
+      ]
+    },
     iconPosition () {
       if(this.$slots['button-icon--left']) {
         return 'left'
@@ -120,14 +139,14 @@ export default {
         this.kind === 'danger' && `${this.baseClassname}--danger`,
         this.kind === 'success' && `${this.baseClassname}--success`,
         this.kind === 'warning' && `${this.baseClassname}--warning`,
-        this.disabled && `${this.baseClassname}--disabled`,
-        this.busy && `${this.baseClassname}--busy`,
-        this.noPadding && `${this.baseClassname}--no-padding`,
-        !this.$slots.default && `${this.baseClassname}--no-text`,
         this.size === 'small' && `${this.baseClassname}--small`,
-        this.size === 'big' && `${this.baseClassname}--big`
+        this.size === 'medium' && `${this.baseClassname}--medium`,
+        this.size === 'big' && `${this.baseClassname}--big`,
+        this.busy && `${this.baseClassname}--busy`,
       ]
     }
   }
 };
 </script>
+
+<style lang="scss" src="./nButton.scss" scoped />

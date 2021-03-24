@@ -17,5 +17,8 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export { nButton } from './components/nButton'
+export { nCover } from './components/nCover'
+export { nHyperlink } from './components/nHyperlink'
+export { nIcon } from './components/nIcon'
 export { nSliderCarousel, nSliderCarouselItem } from './components/nSliderCarousel'
 export { nOverflowCarousel, nOverflowCarouselItem } from './components/nOverflowCarousel'

@@ -1,40 +1,55 @@
 {
   "name": "@naked-ui/vue",
-  "version": "0.1.13",
-  "main": "dist/index.umd.min.js",
-  "unpkg": "dist/index.umd.min.js",
-  "jsdelivr": "dist/index.umd.min.js",
+  "version": "0.4.2",
+  "main": "dist/index.js",
+  "unpkg": "dist/index.js",
+  "jsdelivr": "dist/index.js",
   "description": "Naked UI for Vue.js",
   "files": [
-    "dist/**",
-    "src/**"
+    "dist/index.js",
+    "dist/index.css"
   ],
   "scripts": {
     "dev": "yarn install && vue-cli-service serve src/main.js",
-    "build": "yarn install && vue-cli-service build --target lib --name index src/main.js && rm dist/index.umd.js dist/index.umd.js.map dist/index.common.js dist/index.common.js.map dist/demo.html",
-    "build:js": "yarn build && rm dist/index.css",
-    "build:css": "yarn build && rm dist/index.umd.min.js dist/index.umd.min.js.map",
+    "build": "yarn install && vue-cli-service build --target lib --name index src/main.js && cp dist/index.umd.min.js dist/index.js && yarn optimize:css && yarn remove:js",
+    "build:js": "yarn install && vue-cli-service build --target lib --name index src/main.js && yarn remove:css",
+    "build:css": "yarn install && vue-cli-service build --target lib --name index src/main.js && yarn optimize:css && yarn remove:js",
+    "optimize:css": "csso dist/index.css --output dist/index_csso.css && rm dist/index.css && mv dist/index_csso.css dist/index.css",
+    "remove:js": "rm dist/demo.html dist/index.common.js dist/index.common.js.map dist/index.umd.js dist/index.umd.js.map dist/index.umd.min.js dist/index.umd.min.js.map",
+    "remove:css": "rm dist/demo.html dist/index.css",
     "prepublishOnly": "$npm_execpath build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "storybook": "yarn install && start-storybook -h 0.0.0.0 -p 6006 --no-manager-cache -s .storybook/assets",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "babel-loader": "^8.2.2",
     "core-js": "^3.8.1",
     "smoothscroll-polyfill": "^0.4.4",
-    "sxcss": "^1.5.9",
+    "style-loader": "^2.0.0",
     "vue": "^2.6.12"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@storybook/addon-actions": "^6.1.21",
+    "@storybook/addon-essentials": "^6.1.21",
+    "@storybook/addon-links": "^6.1.21",
+    "@storybook/addons": "^6.1.21",
+    "@storybook/theming": "^6.1.21",
+    "@storybook/vue": "^6.1.21",
     "@vue/cli-plugin-babel": "^4.5.9",
     "@vue/cli-plugin-eslint": "^4.5.9",
     "@vue/cli-service": "^4.5.9",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
+    "csso": "^4.2.0",
     "eslint": "^7.16.0",
     "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-vue": "^7.3.0",
     "prettier": "^2.2.1",
     "sass-loader": "^10.1.0",
+    "storybook": "^6.1.21",
+    "sxcss": "^1.5.14",
     "vue-template-compiler": "^2.6.12"
   },
   "repository": {
