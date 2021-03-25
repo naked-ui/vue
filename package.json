@@ -19,7 +19,7 @@
     "remove:css": "rm dist/demo.html dist/index.css",
     "prepublishOnly": "$npm_execpath build",
     "lint": "vue-cli-service lint",
-    "storybook": "yarn install && start-storybook -h 0.0.0.0 -p 6006 --no-manager-cache -s .storybook/assets",
+    "storybook": "yarn install && start-storybook -p 6006 --no-manager-cache -s .storybook/assets",
     "build-storybook": "build-storybook"
   },
   "dependencies": {

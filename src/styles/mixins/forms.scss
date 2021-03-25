@@ -1,0 +1,75 @@
+@import 'sxcss';
+
+@mixin form-item(
+  $form-element,
+  $alerts-classname,
+  $gap: null,
+  $alerts-color: null,
+) {
+  display: grid;
+  gap: $gap;
+  
+  #{$form-element} {
+    font-size: inherit;
+    box-sizing: border-box;
+
+    &:not(:required):invalid,
+    &:focus:required:invalid {
+      outline-color: var(--color-invalid);
+    }
+
+    &:not(:placeholder-shown):valid {
+      outline-color: var(--color-valid);
+    }
+
+    &:not(:invalid) ~ .text-input__alerts,
+    &[disabled="disabled"] ~ .text-input__alerts {
+      @include hide;
+    }
+
+    &[disabled="disabled"],
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:not(:focus):required:invalid {
+      outline-color: inherit;
+    }
+    
+    &:required:valid {
+      outline-color: var(--color-valid) !important;
+    }
+  }
+
+  #{$form-element}:not(:invalid) ~ #{$alerts-classname},
+  #{$form-element}:not(:focus):required:invalid ~ #{$alerts-classname} {
+    display: none;
+  }
+  
+  #{$alerts-classname} {
+    display: grid;
+    gap: calc(#{$gap} / 4);
+    color: $alerts-color;
+
+    &-item {
+      color: var(--color);
+    }
+  }
+}
+
+@mixin input-box(
+  $height,
+  $width,
+  $padding: 0
+) {
+  height: $height;
+  width: $width;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  outline: var(--outline-width) solid;
+  outline-offset: -var(--outline-width);
+  padding: $padding;
+  font-family: inherit;
+}
