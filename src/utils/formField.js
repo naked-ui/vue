@@ -1,5 +1,5 @@
 export default {
-  data () {
+  data() {
     return {
       formFieldContent: '',
       // validity: 'lelelel',
@@ -8,6 +8,7 @@ export default {
     }
   },
   props: {
+    value: null,
     // Settings
     autocorrect: {
       type: String,
@@ -48,7 +49,7 @@ export default {
     },
     pattern: {
       type: String,
-      default: '.*\S.*'
+      default: '.*S.*'
     },
     placeholder: {
       type: String,
@@ -99,79 +100,86 @@ export default {
       type: String,
       default: 'green'
     },
+    alertsColor: String
+  },
+  computed: {
+    inputEvents() {
+      return {
+        input: (e) => this.$emit('input', e.target.value),
+        keyup: (e) => {
+          this.countCharacters(e)
+          this.validate(e)
+        }
+      }
+    },
+    inputProps() {
+      return {
+        // value: this.value
+      }
+    }
   },
   methods: {
-    countCharacters () {
-      this.totalCharacters = this.formFieldContent.length
+    countCharacters(e) {
+      this.totalCharacters = e.target.value.length
     },
-    validate () {
-      let formItem = document.getElementById(this.id);
-      var validityState = formItem.validity;
+    validate(e) {
+      const formItem = e.target
+      var validityState = formItem.validity
 
-      if(validityState.valueMissing) {
-        formItem.setCustomValidity('This field can\'t be empty');
-        this.validationMessages.push(
-          {
-            content: '&cross; This field is required',
-            color: this.colorInvalid
-          }
-        )
+      if (validityState.valueMissing) {
+        formItem.setCustomValidity("This field can't be empty")
+        this.validationMessages.push({
+          content: '&cross; This field is required',
+          color: this.colorInvalid
+        })
       } else {
         this.validationMessages = []
       }
 
       if (validityState.patternMismatch && formItem.type == 'email') {
-        formItem.setCustomValidity('Provide valid e-mail address');
-        this.validationMessages.push(
-          {
-            content: '&cross; Provide valid e-mail address',
-            color: this.colorInvalid
-          }
-        )
+        formItem.setCustomValidity('Provide valid e-mail address')
+        this.validationMessages.push({
+          content: '&cross; Provide valid e-mail address',
+          color: this.colorInvalid
+        })
       }
 
       if (validityState.patternMismatch && formItem.type == 'tel') {
-        formItem.setCustomValidity('Provide valid phone number');
-        this.validationMessages.push(
-          {
-            content: '&cross; Provide valid phone number',
-            color: this.colorInvalid
-          }
-        )
+        formItem.setCustomValidity('Provide valid phone number')
+        this.validationMessages.push({
+          content: '&cross; Provide valid phone number',
+          color: this.colorInvalid
+        })
       }
 
       if (validityState.tooLong) {
-        formItem.setCustomValidity('Value is too long');
-        this.validationMessages.push(
-          {
-            content: '&cross; Value is too long',
-            color: this.colorInvalid
-          }
-        )
+        formItem.setCustomValidity('Value is too long')
+        this.validationMessages.push({
+          content: '&cross; Value is too long',
+          color: this.colorInvalid
+        })
       }
 
       if (validityState.tooShort) {
-        formItem.setCustomValidity('Value is too short');
-        this.validationMessages.push(
-          {
-            content: '&cross; Value is too short',
-            color: this.colorInvalid
-          }
-        )
+        formItem.setCustomValidity('Value is too short')
+        this.validationMessages.push({
+          content: '&cross; Value is too short',
+          color: this.colorInvalid
+        })
       }
 
       if (formItem.rangeUnderflow) {
-        formItem.setCustomValidity('Your value is too low');
+        formItem.setCustomValidity('Your value is too low')
       }
       if (formItem.rangeOverflow) {
-        formItem.setCustomValidity('Your value is too high');
+        formItem.setCustomValidity('Your value is too high')
       } else {
-        formItem.setCustomValidity('');
+        formItem.setCustomValidity('')
       }
 
       console.dir(validityState)
     }
-  },
+  }
   // computed: {
   //   validity () {
   //     const element = document.getElementsByTagName('input')

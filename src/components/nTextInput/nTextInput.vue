@@ -1,75 +1,32 @@
 <template>
-  <div
-    class="text-input"
-    :nui-namespace="uiNamespace"
-    :style="`
-      --gap: ${isNaN(gap) ? gap : gap + 'px'};
-      --height: ${isNaN(height) ? height : height + 'px'};
-      --width: ${isNaN(width) ? width : width + 'px'};
-      --padding: ${padding};
-      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
-      --color-invalid: ${colorInvalid};
-      --color-valid: ${colorValid};
-    `"
+<BaseInput v-bind="$props" v-slot="{ inputEvents, inputProps }">
+  <input
+    type="text"
+    v-on="inputEvents"
+    v-bind="inputProps"
+    :autofocus="autofocus"
+    :autocorrect="autocorrect"
+    :disabled="disabled"
+    :id="id"
+    :maxlength="maxlength"
+    :minlength="minlength"
+    :placeholder="placeholder"
+    :readonly="readonly"
+    :required="required"
+    :title="title"
   >
-    <label
-      class="text-input__label"
-      :disabled="disabled"
-      :for="id"
-    >
-      {{ label }}
-    </label>
-    <input
-      type="text"
-      v-model="formFieldContent"
-      @keyup="countCharacters(); validate()"
-      :autofocus="autofocus"
-      :autocorrect="autocorrect"
-      :disabled="disabled"
-      :id="id"
-      :maxlength="maxlength"
-      :minlength="minlength"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :required="required"
-      :title="title"
-    >
-    <div
-      class="text-input__alerts"
-      :style="`
-        --alerts-color: ${alertsColor ? alertsColor : '--'};
-      `"
-    >
-      <span
-        v-for="(message, index) in validationMessages"
-        :key="index"
-        :class="[
-          'text-input__alerts-item'
-        ]"
-        :style="`
-          --color: ${message.color}
-        `"
-        v-html="message.content"
-      />
-    </div>
-    <div
-      class="text-input__counter"
-      v-if="maxlength && counterEnabled"
-    >
-      <span>{{ totalCharacters }}</span>
-      <slot name="counter-separator">/</slot>
-      <span>{{ maxlength }}</span>
-    </div>
-  </div>
+</BaseInput>
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
-import formField from '../../utils/formField'
-
+// import namespaceMixin from '@/utils/namespace'
+// import formField from '@/utils/formField'
+import BaseInput from '@/components/utils/BaseInput'
+import baseInputMixin from '@/utils/baseInput'
 export default {
-  mixins: [ namespaceMixin, formField ],
-  name: 'nTextInput'
+  mixins: [ baseInputMixin ],
+  name: 'nTextInput',
+  components:{ BaseInput }
 }
 
 </script>

@@ -1,0 +1,28 @@
+@import '../../styles/mixins/forms.scss';
+
+[nui-namespace="nui"] {
+
+  &.base-input {
+    @include form-item(
+      $form-element: '.nInput', // generic class
+      $alerts-classname: '.base-input__alerts',
+      $gap: var(--gap),
+      $alerts-color: var(--alerts-color)
+    );
+
+    .nInput {
+      @include input-box(
+        $height: var(--height),
+        $width: var(--width),
+        $padding: var(--padding)
+      );
+    }
+
+    label {
+      &[disabled="disabled"],
+      &:disabled {
+        opacity: .3;
+      }
+    }
+  }
+}
