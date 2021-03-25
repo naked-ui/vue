@@ -18,7 +18,10 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export { nButton } from './components/nButton'
 export { nCover } from './components/nCover'
+export { nEmailInput } from './components/nEmailInput'
 export { nHyperlink } from './components/nHyperlink'
 export { nIcon } from './components/nIcon'
 export { nSliderCarousel, nSliderCarouselItem } from './components/nSliderCarousel'
 export { nOverflowCarousel, nOverflowCarouselItem } from './components/nOverflowCarousel'
+export { nTextarea } from './components/nTextarea'
+export { nTextInput } from './components/nTextInput'

@@ -18,7 +18,8 @@
       outline-color: var(--color-invalid);
     }
 
-    &:not(:placeholder-shown):valid {
+    &:not(:placeholder-shown):valid,
+    &:required:valid {
       outline-color: var(--color-valid);
     }
 
@@ -34,10 +35,6 @@
 
     &:not(:focus):required:invalid {
       outline-color: inherit;
-    }
-    
-    &:required:valid {
-      outline-color: var(--color-valid) !important;
     }
   }
 
