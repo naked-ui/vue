@@ -4,6 +4,7 @@
     &.n-select {
         --w: 20em;
         --h: 3em;
+        --textColor: #333;
         --bgSelectColor: #f5f5f5;
         --bgOptionColor: #f5f5f5;
         --bgOptgroupColor: #f5f5f5;
@@ -40,6 +41,7 @@
                 border: 1px solid var(--outlineColor);
                 padding: 0 .5em;
                 background: var(--bgSelectColor);
+                color: var(--textColor);
 
                 &:focus {
                     outline: none;

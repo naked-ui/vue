@@ -46,6 +46,10 @@ export default {
       type: String,
       default: undefined
     },
+    textColor: {
+      type: String,
+      default: undefined
+    },
     bgSelectColor: {
       type: String,
       default: undefined
@@ -74,12 +78,13 @@ export default {
     styleVariables () {
       const height = this.height ? `--h: ${this.height};` : ''
       const width = this.width ? `--w: ${this.width};` : ''
+      const textColor = this.textColor ? `--textColor: ${this.textColor};` : ''
       const bgSelectColor = this.bgSelectColor ? `--bgSelectColor: ${this.bgSelectColor};` : ''
       const bgOptionColor = this.bgOptionColor ? `--bgOptionColor: ${this.bgOptionColor};` : ''
       const bgOptgroupColor = this.bgOptgroupColor ? `--bgOptgroupColor: ${this.bgOptgroupColor};` : ''
       const outlineColor = this.outlineColor ? `--outlineColor: ${this.outlineColor};` : ''
 
-      return height + width + bgSelectColor + bgOptionColor + bgOptgroupColor + outlineColor
+      return height + width + textColor + bgSelectColor + bgOptionColor + bgOptgroupColor + outlineColor
     },
     initialValue () {
       return this.default ? this.default : this.value

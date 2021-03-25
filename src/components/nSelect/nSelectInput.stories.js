@@ -6,10 +6,11 @@ export default {
     title: 'Form/Input/Select',
     component: nSelectInput,
     argTypes: {
+        textColor: { control: { type: 'color' } },
         bgSelectColor: { control: { type: 'color' } },
         bgOptionColor: { control: { type: 'color' } },
         bgOptgroupColor: { control: { type: 'color' } },
-        outlineColor: { control: { type: 'color' } },
+        outlineColor: { control: { type: 'color' } }
     }
 }
 
