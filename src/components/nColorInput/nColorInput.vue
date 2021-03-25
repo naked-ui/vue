@@ -62,6 +62,17 @@ import formField from '../../utils/formField'
 
 export default {
   mixins: [ namespaceMixin, formField ],
+  data () {
+    return {
+      formFieldValue: this.color
+    }
+  },
+  props: {
+    color: {
+      type: String,
+      default: '#ffffff'
+    }
+  },
   methods: {
     updateColorValue (e) {
     	e.target.value = this.formFieldValue
