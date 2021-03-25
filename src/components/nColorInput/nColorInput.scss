@@ -1,0 +1,13 @@
+[nui-namespace="nui"] {
+
+  &.color-input {
+
+    input[type="text"]:invalid {
+      border: 1px red solid;
+    }
+
+    input[type="text"]:valid {
+      border: 1px green solid;
+    }
+  }
+}
