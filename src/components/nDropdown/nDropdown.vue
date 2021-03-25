@@ -23,7 +23,7 @@ import namespaceMixin from '../../utils/namespace'
 import SlotsEventListener from '../../utils/slotsEventListener'
 
 export default {
-  name: 'nn-dropdown',
+  name: 'nDropdown',
   mixins: [namespaceMixin, uuidMixin],
   components: { SlotsEventListener },
   directives: { clickout },
