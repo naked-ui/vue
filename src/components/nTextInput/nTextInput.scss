@@ -5,9 +5,9 @@
   &.text-input {
     @include form-item(
       $form-element: 'input',
-      $validations-classname: '.text-input__validations',
+      $alerts-classname: '.text-input__alerts',
       $gap: var(--gap),
-      $validation-color: var(--validation-color)
+      $alerts-color: var(--alerts-color)
     );
 
     input {
@@ -16,27 +16,6 @@
         $width: var(--width),
         $padding: var(--padding)
       );
-
-      /////// TO BE REFACTORED AS MIXIN
-
-      &:invalid {
-        outline-color: var(--color-invalid);
-      }
-
-      &:not(:placeholder-shown):valid {
-      // &:valid {
-        outline-color: var(--color-valid);
-      }
-
-      &:not(:invalid) ~ .text-input__validations,
-      &[disabled="disabled"] ~ .text-input__validations {
-        @include hide;
-      }
-
-      &[disabled="disabled"],
-      &:disabled {
-        cursor: not-allowed;
-      }
     }
 
     label {
@@ -45,7 +24,5 @@
         opacity: .3;
       }
     }
-
-    ///////
   }
 }

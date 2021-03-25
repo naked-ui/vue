@@ -20,6 +20,9 @@
       {{ label }}
     </label>
     <input
+      type="text"
+      v-model="formFieldContent"
+      @keyup="countCharacters(); validate()"
       :autofocus="autofocus"
       :autocorrect="autocorrect"
       :disabled="disabled"
@@ -28,128 +31,45 @@
       :minlength="minlength"
       :placeholder="placeholder"
       :readonly="readonly"
+      :required="required"
       :title="title"
-      :type="type"
     >
     <div
-      class="text-input__validations"
+      class="text-input__alerts"
       :style="`
-        --validation-color: ${validationColor};
+        --alerts-color: ${alertsColor ? alertsColor : '--'};
       `"
     >
       <span
         v-for="(message, index) in validationMessages"
         :key="index"
         :class="[
-          'text-input__validations__message',
-          `text-input__validations__message--${valid}`
+          'text-input__alerts-item'
         ]"
-        v-html="message"
+        :style="`
+          --color: ${message.color}
+        `"
+        v-html="message.content"
       />
+    </div>
+    <div
+      class="text-input__counter"
+      v-if="maxlength && counterEnabled"
+    >
+      <span>{{ totalCharacters }}</span>
+      <slot name="counter-separator">/</slot>
+      <span>{{ maxlength }}</span>
     </div>
   </div>
 </template>
 
 <script>
 import namespaceMixin from '../../utils/namespace'
+import formField from '../../utils/formField'
 
 export default {
-  mixins: [namespaceMixin],
-  name: 'nTextInput',
-  props: {
-    // Settings props
-    autocorrect: {
-      type: String,
-      default: 'on'
-    },
-    autofocus: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    form: {
-      type: String,
-      default: ''
-    },
-    id: {
-      type: String,
-      default: '',
-      required: true
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    maxlength: {
-      type: Number,
-      default: null
-    },
-    minlength: {
-      type: Number,
-      default: null
-    },
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    readonly: {
-      type: Boolean,
-      default: false
-    },
-    required: {
-      type: Boolean,
-      default: false
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-    type: {
-      type: String,
-      default: 'text'
-    },
-    // Styling props
-    gap: {
-      type: [String, Number],
-      default: ''
-    },
-    height: {
-      type: [String, Number],
-      default: ''
-    },
-    width: {
-      type: [String, Number],
-      default: ''
-    },
-    padding: {
-      type: String,
-      default: '0 16px'
-    },
-    outlineWidth: {
-      type: [String, Number],
-      default: ''
-    },
-    // Validation
-    validationMessages: {
-      type: Array,
-      default: () => []
-    },
-    validationColor: {
-      type: String,
-      default: 'red'
-    },
-    colorInvalid: {
-      type: String,
-      default: 'red'
-    },
-    colorValid: {
-      type: String,
-      default: 'green'
-    },
-  },
+  mixins: [ namespaceMixin, formField ],
+  name: 'nTextInput'
 }
 
 </script>
