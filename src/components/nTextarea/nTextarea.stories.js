@@ -21,7 +21,7 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  id: 'your-id-here',
+  id: 'textarea',
   label: 'Textarea label',
   placeholder: 'Textarea placeholder',
   gap: 10,
@@ -32,9 +32,7 @@ Default.args = {
   maxlength: 24,
   minlength: 3,
   outlineWidth: '2px',
-  validationMessages: [
-    '&cross; Text must have more than 3 characters'
-  ],
+  padding: '15px 12px',
   resize: 'both',
   counterEnabled: true
 }

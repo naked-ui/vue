@@ -5,9 +5,8 @@
   &.textarea {
     @include form-item(
       $form-element: 'textarea',
-      $validations-classname: '.textarea__validations',
-      $gap: var(--gap),
-      $validation-color: var(--validation-color)
+      $alerts-classname: '.textarea__alerts',
+      $gap: var(--gap)
     );
 
     textarea {
@@ -29,8 +28,8 @@
         outline-color: var(--color-valid);
       }
 
-      &:not(:invalid) ~ .text-input__validations,
-      &[disabled="disabled"] ~ .text-input__validations {
+      &:not(:invalid) ~ .text-input__alerts,
+      &[disabled="disabled"] ~ .text-input__alerts {
         @include hide;
       }
 
