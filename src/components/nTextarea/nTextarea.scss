@@ -6,6 +6,8 @@
     @include form-item(
       $form-element: 'textarea',
       $alerts-classname: '.textarea__alerts',
+      $color-valid: var(--color-valid),
+      $color-invalid: var(--color-invalid),
       $gap: var(--gap)
     );
 

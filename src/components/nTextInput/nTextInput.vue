@@ -37,9 +37,6 @@
     >
     <div
       class="text-input__alerts"
-      :style="`
-        --alerts-color: ${alertsColor ? alertsColor : '--'};
-      `"
     >
       <span
         v-for="(message, index) in validationMessages"

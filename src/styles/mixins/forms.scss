@@ -5,6 +5,8 @@
   $alerts-classname,
   $gap: null,
   $alerts-color: null,
+  $color-valid: null,
+  $color-invalid: null,
 ) {
   display: grid;
   gap: $gap;
@@ -14,16 +16,17 @@
     box-sizing: border-box;
 
     &:not(:required):invalid,
+    &:not(:placeholder-shown):required:invalid,
     &:focus:required:invalid {
-      outline-color: var(--color-invalid);
+      outline-color: $color-invalid;
     }
 
     &:not(:placeholder-shown):valid,
     &:required:valid {
-      outline-color: var(--color-valid);
+      outline-color: $color-valid;
     }
 
-    &:not(:invalid) ~ .text-input__alerts,
+    // &:not(:invalid) ~ .text-input__alerts,
     &[disabled="disabled"] ~ .text-input__alerts {
       @include hide;
     }
