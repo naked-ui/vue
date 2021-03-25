@@ -17,13 +17,14 @@
 </template>
 
 <script>
+import uuidMixin from '../../utils/uuid'
 import clickout from '../../utils/clickout'
 import namespaceMixin from '../../utils/namespace'
 import SlotsEventListener from '../../utils/slotsEventListener'
 
 export default {
-  name: 'nDropdown',
-  mixins: [namespaceMixin],
+  name: 'nn-dropdown',
+  mixins: [namespaceMixin, uuidMixin],
   components: { SlotsEventListener },
   directives: { clickout },
   props: {
@@ -51,7 +52,8 @@ export default {
         this.placeholder ?
         this.placeholder :
         'Select option...'
-    }
+    },
+
   },
   data: () => ({
     open: false,

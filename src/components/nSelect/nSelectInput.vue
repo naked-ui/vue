@@ -3,7 +3,13 @@
       <label class="select-label" for="">{{ label }}</label>
       <div class="select-input__wrapper">
         <div class="select-input__inner">
-          <select class="select-input__input" v-bind="$attrs" v-on="listeners" :value="initialValue">
+          <select
+            :id="uiElementID"
+            class="select-input__input"
+            v-bind="$attrs"
+            v-on="listeners"
+            :value="initialValue"
+          >
             <slot />
           </select>
         </div>
@@ -12,11 +18,13 @@
 </template>
 
 <script>
+
+import uuidMixin from '../../utils/uuid'
 import namespaceMixin from '../../utils/namespace'
 
 export default {
   name: 'nSelect',
-  mixins: [namespaceMixin],
+  mixins: [namespaceMixin, uuidMixin],
   props: {
     value: {
       type: String,
