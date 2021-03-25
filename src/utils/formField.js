@@ -8,7 +8,7 @@ export default {
     }
   },
   props: {
-    // Settings props
+    // Settings
     autocorrect: {
       type: String,
       default: ''
@@ -66,15 +66,7 @@ export default {
       type: String,
       default: ''
     },
-    // type: {
-    //   type: String,
-    //   default: ''
-    // },
-    // Styling props
-    // alertsColor: {
-    //   type: String,
-    //   default: 'red'
-    // },
+    // Styling
     gap: {
       type: [String, Number],
       default: ''
@@ -99,11 +91,6 @@ export default {
       type: String,
       default: ''
     },
-    // Validation
-    // validationMessages: {
-    //   type: Array,
-    //   default: () => []
-    // },
     colorInvalid: {
       type: String,
       default: 'red'
@@ -118,11 +105,11 @@ export default {
       this.totalCharacters = this.formFieldContent.length
     },
     validate () {
-      let input = document.getElementById(this.id);
-      var validityState = input.validity;
+      let formItem = document.getElementById(this.id);
+      var validityState = formItem.validity;
 
       if(validityState.valueMissing) {
-        input.setCustomValidity('This field can\'t be empty');
+        formItem.setCustomValidity('This field can\'t be empty');
         this.validationMessages.push(
           {
             content: '&cross; This field is required',
@@ -133,8 +120,8 @@ export default {
         this.validationMessages = []
       }
 
-      if (validityState.patternMismatch && input.type == 'email') {
-        input.setCustomValidity('Provide valid e-mail address');
+      if (validityState.patternMismatch && formItem.type == 'email') {
+        formItem.setCustomValidity('Provide valid e-mail address');
         this.validationMessages.push(
           {
             content: '&cross; Provide valid e-mail address',
@@ -143,8 +130,8 @@ export default {
         )
       }
 
-      if (validityState.patternMismatch && input.type == 'tel') {
-        input.setCustomValidity('Provide valid phone number');
+      if (validityState.patternMismatch && formItem.type == 'tel') {
+        formItem.setCustomValidity('Provide valid phone number');
         this.validationMessages.push(
           {
             content: '&cross; Provide valid phone number',
@@ -154,7 +141,7 @@ export default {
       }
 
       if (validityState.tooLong) {
-        input.setCustomValidity('Value is too long');
+        formItem.setCustomValidity('Value is too long');
         this.validationMessages.push(
           {
             content: '&cross; Value is too long',
@@ -164,7 +151,7 @@ export default {
       }
 
       if (validityState.tooShort) {
-        input.setCustomValidity('Value is too short');
+        formItem.setCustomValidity('Value is too short');
         this.validationMessages.push(
           {
             content: '&cross; Value is too short',
@@ -173,13 +160,13 @@ export default {
         )
       }
 
-      if (input.rangeUnderflow) {
-        input.setCustomValidity('Your value is too low');
+      if (formItem.rangeUnderflow) {
+        formItem.setCustomValidity('Your value is too low');
       }
-      if (input.rangeOverflow) {
-        input.setCustomValidity('Your value is too high');
+      if (formItem.rangeOverflow) {
+        formItem.setCustomValidity('Your value is too high');
       } else {
-        input.setCustomValidity('');
+        formItem.setCustomValidity('');
       }
 
       console.dir(validityState)
