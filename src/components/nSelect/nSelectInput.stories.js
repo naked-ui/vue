@@ -4,7 +4,13 @@ import nSelectOptgroup from './nSelectOptgroup'
 
 export default {
     title: 'Form/Input/Select',
-    component: nSelectInput
+    component: nSelectInput,
+    argTypes: {
+        bgSelectColor: { control: { type: 'color' } },
+        bgOptionColor: { control: { type: 'color' } },
+        bgOptgroupColor: { control: { type: 'color' } },
+        outlineColor: { control: { type: 'color' } },
+    }
 }
 
 const Template = (args, {argTypes}) => ({
