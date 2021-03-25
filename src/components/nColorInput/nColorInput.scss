@@ -1,13 +1,64 @@
+// [nui-namespace="nui"] {
+
+//   &.color-input {
+
+//     input[type="text"]:invalid {
+//       border: 1px red solid;
+//     }
+
+//     input[type="text"]:valid {
+//       border: 1px green solid;
+//     }
+//   }
+// }
+
+@import '../../styles/mixins/forms.scss';
+
 [nui-namespace="nui"] {
 
   &.color-input {
+    @include form-item(
+      $form-element: 'input[type="text"]',
+      $alerts-classname: '.color-input__alerts',
+      $gap: var(--gap),
+      $color-valid: var(--color-valid),
+      $color-invalid: var(--color-invalid)
+    );
+    grid-template-columns: repeat(2, auto);
+    column-gap: 0;
 
-    input[type="text"]:invalid {
-      border: 1px red solid;
+    input[type="text"] {
+      @include input-box(
+        $height: var(--height),
+        $width: var(--width),
+        $padding: var(--padding)
+      );
+      grid-row: 2/3;
+      grid-column: 1/2;
     }
 
-    input[type="text"]:valid {
-      border: 1px green solid;
+    input[type="color"] {
+      grid-row: 2/3;
+      grid-column: 2/3;
+      height: var(--height);
+      width: var(--height);
+      padding: 0;
+      margin: 0;
+      appearance: none;
+      border: none;
+      outline: var(--outline-width) solid;
+      outline-offset: -var(--outline-width);
     }
+
+    label {
+      &[disabled="disabled"],
+      &:disabled {
+        opacity: .3;
+      }
+    }
+  }
+
+  .color-input__alerts {
+    grid-row: 3/4;
   }
 }

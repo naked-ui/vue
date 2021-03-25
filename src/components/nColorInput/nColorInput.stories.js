@@ -22,6 +22,15 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
+  id: 'color-input',
   name: 'color-input',
-  id: 'color-input'
+  label: 'Color input label',
+  placeholder: 'Color input placeholder',
+  gap: 12,
+  height: 48,
+  width: 'auto',
+  padding: '0 12px',
+  autofocus: false,
+  disabled: false,
+  outlineWidth: '2px'
 }

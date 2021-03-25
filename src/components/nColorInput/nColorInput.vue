@@ -22,21 +22,27 @@
     <input
       type="color"
       v-model="formFieldValue"
-      @change="printColorValue($event); validate();"
+      pattern="#[a-fA-F\d]+"
+      @change="printColorValue($event);"
       :autofocus="autofocus"
       :disabled="disabled"
-      :id="id"
       :name="name"
-      :placeholder="placeholder"
       :readonly="readonly"
       :required="required"
       :title="title"
     >
     <input
+      v-if="textValueEnabled"
       pattern="#[a-fA-F\d]+"
       type="text"
       v-model="formFieldValue"
-      @keyup="updateColorValue($event)"
+      :id="id"
+      @change="updateColorValue($event)"
+      @input="validate()"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      required
+      size="1"
     >
     <div
       class="color-input__alerts"
@@ -71,6 +77,10 @@ export default {
     color: {
       type: String,
       default: '#ffffff'
+    },
+    textValueEnabled: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {
