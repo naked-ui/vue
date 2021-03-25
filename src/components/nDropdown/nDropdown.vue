@@ -1,14 +1,14 @@
 <template>
-    <div class="dropdown dropdown__wrapper"
+    <div class="n-dropdown n-dropdown__wrapper"
       :nui-namespace="uiNamespace"
       :tabindex="tabindex"
       v-clickout="onClickOut"
     >
-      <span class="dropdown--label" v-if="label">{{ label }}</span>
-      <div class="dropdown--list"  @click.stop="open = !open">
-        <button class="dropdown--list__field">{{ initialValue }}</button>
+      <span class="n-dropdown--label" v-if="label">{{ label }}</span>
+      <div :id="uiElementID" class="n-dropdown--list"  @click.stop="open = !open">
+        <button class="n-dropdown--list__field">{{ initialValue }}</button>
         <SlotsEventListener @handleClickOption="handleClickOption">
-          <ul class="dropdown--list__options" v-show="open">
+          <ul class="n-dropdown--list__options" v-show="open">
             <slot />
           </ul>
         </SlotsEventListener>
@@ -65,7 +65,7 @@ export default {
       this.setDefaultClasses()
     },
     setDefaultClasses() {
-      const elements = document.querySelectorAll('.dropdown--list__option')
+      const elements = document.querySelectorAll('.n-dropdown--list__option')
 
       elements.forEach(el => {
         if (el.getAttribute('data-option') === this.selected) el.classList.add('selected')

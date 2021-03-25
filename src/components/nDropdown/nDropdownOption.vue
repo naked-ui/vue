@@ -1,5 +1,5 @@
 <template>
-  <li class="dropdown--list__option" :role="role" :data-option="option" @click="selectOption">
+  <li class="n-dropdown--list__option" :role="role" :data-option="option" @click="selectOption">
     <slot />
   </li>
 </template>
