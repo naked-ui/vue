@@ -1,0 +1,28 @@
+@import '../../styles/mixins/forms.scss';
+
+[nui-namespace="nui"] {
+
+  &.email-input {
+    @include form-item(
+      $form-element: 'input',
+      $alerts-classname: '.email-input__alerts',
+      $gap: var(--gap),
+      $alerts-color: var(--alerts-color)
+    );
+
+    input {
+      @include input-box(
+        $height: var(--height),
+        $width: var(--width),
+        $padding: var(--padding)
+      );
+    }
+
+    label {
+      &[disabled="disabled"],
+      &:disabled {
+        opacity: .3;
+      }
+    }
+  }
+}

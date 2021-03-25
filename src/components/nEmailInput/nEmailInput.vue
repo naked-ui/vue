@@ -2,20 +2,64 @@
   <div
     class="email-input"
     :nui-namespace="uiNamespace"
+    :style="`
+      --gap: ${isNaN(gap) ? gap : gap + 'px'};
+      --height: ${isNaN(height) ? height : height + 'px'};
+      --width: ${isNaN(width) ? width : width + 'px'};
+      --padding: ${padding};
+      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
+      --color-invalid: ${colorInvalid};
+      --color-valid: ${colorValid};
+    `"
   >
+    <label
+      class="email-input__label"
+      :disabled="disabled"
+      :for="id"
+    >
+      {{ label }}
+    </label>
     <input
       type="email"
-      inputmode="email"
+      autocorrect="off"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+      v-model="formFieldContent"
+      @keyup="countCharacters(); validate()"
+      :autofocus="autofocus"
+      :disabled="disabled"
+      :id="id"
+      :placeholder="placeholder"
+      :readonly="readonly"
+      :required="required"
+      :title="title"
     >
+    <div
+      class="email-input__alerts"
+    >
+      <span
+        v-for="(message, index) in validationMessages"
+        :key="index"
+        :class="[
+          'email-input__alerts-item'
+        ]"
+        :style="`
+          --color: ${message.color}
+        `"
+        v-html="message.content"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import namespaceMixin from '../../utils/namespace'
+import formField from '../../utils/formField'
 
 export default {
-  mixins: [namespaceMixin],
+  mixins: [ namespaceMixin, formField ],
   name: 'nEmailInput'
 }
 
 </script>
+
+<style lang="scss" src="./nEmailInput.scss" />
