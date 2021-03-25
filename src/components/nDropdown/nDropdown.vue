@@ -1,5 +1,7 @@
 <template>
-    <div class="n-dropdown n-dropdown__wrapper"
+    <div
+      class="n-dropdown n-dropdown__wrapper"
+      :style="styleVariables"
       :nui-namespace="uiNamespace"
       :tabindex="tabindex"
       v-clickout="onClickOut"
@@ -43,7 +45,35 @@ export default {
     tabindex: {
       type: Number,
       default: 0
-    }
+    },
+    width: {
+      type: String,
+      default: undefined
+    },
+    height: {
+      type: String,
+      default: undefined
+    },
+    textColor: {
+      type: String,
+      default: undefined
+    },
+    outlineColor: {
+      type: String,
+      default: undefined
+    },
+    bgDropdownColor: {
+      type: String,
+      default: undefined
+    },
+    bgDropdownOptionHoverColor: {
+      type: String,
+      default: undefined
+    },
+    bgDropdownOptionSelectedColor: {
+      type: String,
+      default: undefined
+    },
   },
   computed: {
     initialValue () {
@@ -53,7 +83,20 @@ export default {
         this.placeholder :
         'Select option...'
     },
-
+    styleVariables () {
+      const height = this.height ? `--h: ${this.height};` : ''
+      const width = this.width ? `--w: ${this.width};` : ''
+      const textColor = this.textColor ? `--textColor: ${this.textColor};` : ''
+      const outlineColor = this.outlineColor ? `--outlineColor: ${this.outlineColor};` : ''
+      const bgDropdownColor = this.bgDropdownColor ? `--bgDropdownColor: ${this.bgDropdownColor};` : ''
+      const bgDropdownOptionHoverColor = this.bgDropdownOptionHoverColor ?
+                                          `--bgDropdownOptionHoverColor: ${this.bgDropdownOptionHoverColor};` :
+                                          ''
+      const bgDropdownOptionSelectedColor = this.bgDropdownOptionSelectedColor ?
+                                            `--bgDropdownOptionSelectedColor: ${this.bgDropdownOptionSelectedColor};` :
+                                            ''
+      return height + width + textColor + outlineColor + bgDropdownColor + bgDropdownOptionHoverColor + bgDropdownOptionSelectedColor
+    }
   },
   data: () => ({
     open: false,
