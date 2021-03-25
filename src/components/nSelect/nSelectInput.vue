@@ -1,11 +1,11 @@
 <template>
-    <div class="select" :nui-namespace="uiNamespace">
-      <label class="select-label" for="">{{ label }}</label>
-      <div class="select-input__wrapper">
-        <div class="select-input__inner">
+    <div class="n-select" :nui-namespace="uiNamespace">
+      <label class="n-select--label" for="">{{ label }}</label>
+      <div class="n-select__wrapper">
+        <div class="n-select__inner">
           <select
             :id="uiElementID"
-            class="select-input__input"
+            class="n-select--input"
             v-bind="$attrs"
             v-on="listeners"
             :value="initialValue"

@@ -1,7 +1,7 @@
 @import "sxcss";
 
 [nui-namespace="nui"] {
-    &.select {
+    &.n-select {
         --w: 20em;
         --h: 3em;
 
@@ -15,23 +15,23 @@
         position: relative;
         width: var(--w);
 
-        .select-label {
+        .n-select--label {
             margin-bottom: 0.25em
         }
 
-        .select-input__wrapper {
+        .n-select__wrapper {
             position: relative;
             line-height: var(--h);
             width: var(--w);
             height: var(--h);
         }
 
-        .select-input__inner {
+        .n-select__inner {
             display: flex;
             width: 100%;
             height: 100%;
 
-            .select-input__input {
+            .n-select--input {
                 -webkit-appearance: none;
                 -moz-appearance: none;
                 -ms-appearance: none;
