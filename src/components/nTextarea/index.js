@@ -1,3 +1,3 @@
-import Textarea from './Textarea.vue'
+import nTextarea from './nTextarea.vue'
 
-export { Textarea }
+export { nTextarea }

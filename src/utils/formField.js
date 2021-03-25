@@ -1,7 +1,7 @@
 export default {
   data () {
     return {
-      formFieldContent: '',
+      formFieldValue: '',
       // validity: 'lelelel',
       totalCharacters: 0,
       validationMessages: []
@@ -26,17 +26,14 @@ export default {
       default: false
     },
     form: {
-      type: String,
-      default: ''
+      type: String
     },
     id: {
       type: String,
-      default: '',
       required: true
     },
     label: {
-      type: String,
-      default: ''
+      type: String
     },
     maxlength: {
       type: [Number, Boolean],
@@ -46,13 +43,16 @@ export default {
       type: [Number, Boolean],
       default: false
     },
+    name: {
+      type: String,
+      required: true
+    },
     pattern: {
       type: String,
       default: '.*\S.*'
     },
     placeholder: {
-      type: String,
-      default: ''
+      type: String
     },
     readonly: {
       type: Boolean,
@@ -63,33 +63,26 @@ export default {
       default: false
     },
     title: {
-      type: String,
-      default: ''
+      type: String
     },
     // Styling
     gap: {
-      type: [String, Number],
-      default: ''
+      type: [String, Number]
     },
     height: {
-      type: [String, Number],
-      default: ''
+      type: [String, Number]
     },
     width: {
-      type: [String, Number],
-      default: ''
+      type: [String, Number]
     },
     padding: {
-      type: String,
-      default: ''
+      type: String
     },
     outlineWidth: {
-      type: [String, Number],
-      default: ''
+      type: [String, Number]
     },
     resize: {
-      type: String,
-      default: ''
+      type: String
     },
     colorInvalid: {
       type: String,
@@ -102,7 +95,7 @@ export default {
   },
   methods: {
     countCharacters () {
-      this.totalCharacters = this.formFieldContent.length
+      this.totalCharacters = this.formFieldValue.length
     },
     validate () {
       let formItem = document.getElementById(this.id);
