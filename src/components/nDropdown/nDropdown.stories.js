@@ -3,7 +3,14 @@ import nDropdownOption from './nDropdownOption'
 
 export default {
     title: 'Form/Input/Dropdown',
-    component: nDropdown
+    component: nDropdown,
+    argTypes: {
+        textColor: { control: { type: 'color' } },
+        outlineColor: { control: { type: 'color' } },
+        bgDropdownColor: { control: { type: 'color' } },
+        bgDropdownOptionHoverColor: { control: { type: 'color' } },
+        bgDropdownOptionSelectedColor: { control: { type: 'color' } },
+    }
 }
 
 const Template = (args, {argTypes}) => ({
