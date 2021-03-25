@@ -1,5 +1,5 @@
 <template>
-    <optgroup class="select-input__optgroup" :nui-namespace="uiNamespace">
+    <optgroup class="n-select--input__optgroup" :nui-namespace="uiNamespace">
       <slot />
     </optgroup>
 </template>

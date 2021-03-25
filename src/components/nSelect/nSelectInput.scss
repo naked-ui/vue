@@ -4,12 +4,10 @@
     &.n-select {
         --w: 20em;
         --h: 3em;
-
-        *, *:before, *:after {
-            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-            box-sizing: border-box;
-        }
+        --bgSelectColor: #f5f5f5;
+        --bgOptionColor: #f5f5f5;
+        --bgOptgroupColor: #f5f5f5;
+        --outlineColor: #7e7e7e;
 
         @include flex($direction: column);
         position: relative;
@@ -39,17 +37,20 @@
 
                 flex: 1;
                 cursor: pointer;
-                @include border(
-                    $style: solid,
-                    $width: 0.1em,
-                    $color: black,
-                    $radius: 0.25em
-                );
+                border: 1px solid var(--outlineColor);
                 padding: 0 .5em;
-                background: rgb(245, 245, 245);
+                background: var(--bgSelectColor);
 
                 &:focus {
                     outline: none;
+                }
+
+                .n-select--input__option {
+                    background: var(--bgOptionColor);
+                }
+
+                .n-select--input__optgroup{
+                    background: var(--bgOptgroupColor);
                 }
             }
 

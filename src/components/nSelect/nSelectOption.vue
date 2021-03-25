@@ -1,5 +1,5 @@
 <template>
-    <option class="select-input__option" :nui-namespace="uiNamespace">
+    <option class="n-select--input__option" :nui-namespace="uiNamespace">
       <slot />
     </option>
 </template>
