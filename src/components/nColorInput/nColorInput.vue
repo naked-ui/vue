@@ -30,7 +30,6 @@
       :placeholder="placeholder"
       :disabled="disabled"
       required
-      size="7"
       maxlength="7"
     >
     <input
@@ -77,7 +76,7 @@ export default {
   props: {
     color: {
       type: String,
-      default: '#ffffff'
+      default: '#000000'
     },
     textValueEnabled: {
       type: Boolean,
