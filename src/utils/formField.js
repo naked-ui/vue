@@ -2,7 +2,6 @@ export default {
   data() {
     return {
       formFieldValue: '',
-      // validity: 'lelelel',
       totalCharacters: 0,
       validationMessages: []
     }
@@ -64,6 +63,10 @@ export default {
     },
     title: {
       type: String
+    },
+    validInputAlertEnabled: {
+      type: Boolean,
+      default: false
     },
     // Styling
     gap: {
@@ -127,6 +130,14 @@ export default {
         })
       }
 
+      if (validityState.patternMismatch && formItem.type == 'text') {
+        formItem.setCustomValidity('Provide valid color value')
+        this.validationMessages.push({
+          content: '&cross; Provide valid color value',
+          color: this.colorInvalid
+        })
+      }
+
       if (validityState.tooLong) {
         formItem.setCustomValidity('Value is too long')
         this.validationMessages.push({
@@ -150,6 +161,12 @@ export default {
         formItem.setCustomValidity('Your value is too high')
       } else {
         formItem.setCustomValidity('')
+        // this.validationMessages.push(
+        //   {
+        //     content: '&check; OK',
+        //     color: this.colorValid
+        //   }
+        // )
       }
     },
     validate(e) {
@@ -158,10 +175,4 @@ export default {
       this.setValidity(e)
     }
   }
-  // computed: {
-  //   validity () {
-  //     const element = document.getElementsByTagName('input')
-  //     return element.checkValidity()
-  //   }
-  // }
 }

@@ -7,7 +7,8 @@
       $form-element: 'input',
       $alerts-classname: '.text-input__alerts',
       $gap: var(--gap),
-      $alerts-color: var(--alerts-color)
+      $color-valid: var(--color-valid),
+      $color-invalid: var(--color-invalid)
     );
 
     input {
