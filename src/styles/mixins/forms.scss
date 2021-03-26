@@ -9,7 +9,7 @@
   $color-invalid: null,
 ) {
   display: grid;
-  gap: $gap;
+  row-gap: $gap;
   
   #{$form-element} {
     font-size: inherit;
