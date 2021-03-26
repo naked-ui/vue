@@ -38,7 +38,7 @@
 <script>
 import namespaceMixin from '../../utils/namespace'
 import formField from '../../utils/formField'
-import nRadioInput from '../nRadioInput/nRadioInput'
+import nRadioInput from './nRadioInput'
 export default {
   mixins: [ namespaceMixin, formField ],
   name: 'nRadioGroup',
