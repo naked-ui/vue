@@ -52,9 +52,6 @@ export default {
         max: 80
       }
     },
-    alertsColor: {
-      control: 'color'
-    },
     autocorrect: {
       control: {
         type: 'select',
@@ -89,5 +86,6 @@ Default.args = {
   validationMessages: [
     '&cross; Validation message'
   ],
-  counterEnabled: true
+  counterEnabled: true,
+  validInputAlertEnabled: true
 }

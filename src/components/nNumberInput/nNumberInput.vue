@@ -8,6 +8,7 @@
       inputmode="numeric" pattern="[0-9]*"
     >
   </div>
+  <!-- https://codepen.io/james_sheen/pen/ZyEzaZ -->
 </template>
 
 <script>
@@ -21,4 +22,3 @@ export default {
 </script>
 
 <style lang="scss" src="./nNumberInput.scss" />
-  
