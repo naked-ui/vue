@@ -2,7 +2,6 @@ export default {
   data () {
     return {
       formFieldValue: '',
-      // validity: 'lelelel',
       totalCharacters: 0,
       validationMessages: []
     }
