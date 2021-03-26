@@ -161,12 +161,6 @@ export default {
         formItem.setCustomValidity('Your value is too high')
       } else {
         formItem.setCustomValidity('')
-        // this.validationMessages.push(
-        //   {
-        //     content: '&check; OK',
-        //     color: this.colorValid
-        //   }
-        // )
       }
     },
     validate(e) {
