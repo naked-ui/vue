@@ -2,7 +2,6 @@ export default {
   data () {
     return {
       formFieldValue: '',
-      // validity: 'lelelel',
       totalCharacters: 0,
       validationMessages: []
     }
@@ -65,6 +64,10 @@ export default {
     title: {
       type: String
     },
+    validInputAlertEnabled: {
+      type: Boolean,
+      default: false
+    },
     // Styling
     gap: {
       type: [String, Number]
@@ -121,13 +124,23 @@ export default {
             color: this.colorInvalid
           }
         )
-      }
+      } 
 
       if (validityState.patternMismatch && formItem.type == 'tel') {
         formItem.setCustomValidity('Provide valid phone number');
         this.validationMessages.push(
           {
             content: '&cross; Provide valid phone number',
+            color: this.colorInvalid
+          }
+        )
+      }
+
+      if (validityState.patternMismatch && formItem.type == 'text') {
+        formItem.setCustomValidity('Provide valid color value');
+        this.validationMessages.push(
+          {
+            content: '&cross; Provide valid color value',
             color: this.colorInvalid
           }
         )
@@ -158,17 +171,19 @@ export default {
       }
       if (formItem.rangeOverflow) {
         formItem.setCustomValidity('Your value is too high');
-      } else {
+      }
+      
+      else {
         formItem.setCustomValidity('');
+        // this.validationMessages.push(
+        //   {
+        //     content: '&check; OK',
+        //     color: this.colorValid
+        //   }
+        // )
       }
 
       console.dir(validityState)
     }
-  },
-  // computed: {
-  //   validity () {
-  //     const element = document.getElementsByTagName('input')
-  //     return element.checkValidity()
-  //   }
-  // }
+  }
 }
