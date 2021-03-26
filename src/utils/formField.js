@@ -1,12 +1,16 @@
 export default {
   data () {
     return {
-      formFieldValue: '',
+      // formFieldValue: '',
       totalCharacters: 0,
       validationMessages: []
     }
   },
   props: {
+    formFieldValue: {
+      type: [String, Number, Boolean],
+      default: ''
+    },
     // Settings
     autocorrect: {
       type: String,
