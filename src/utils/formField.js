@@ -1,5 +1,5 @@
 export default {
-  data () {
+  data() {
     return {
       formFieldValue: '',
       // validity: 'lelelel',
@@ -49,7 +49,7 @@ export default {
     },
     pattern: {
       type: String,
-      default: '.*\S.*'
+      default: '.*S.*'
     },
     placeholder: {
       type: String
@@ -91,80 +91,76 @@ export default {
     colorValid: {
       type: String,
       default: 'green'
-    },
+    }
   },
   methods: {
-    countCharacters () {
+    countCharacters() {
       this.totalCharacters = this.formFieldValue.length
     },
-    validate () {
-      let formItem = document.getElementById(this.id);
-      var validityState = formItem.validity;
-
-      if(validityState.valueMissing) {
-        formItem.setCustomValidity('This field can\'t be empty');
-        this.validationMessages.push(
-          {
-            content: '&cross; This field is required',
-            color: this.colorInvalid
-          }
-        )
+    setValidity(e) {
+      const formItem = e.target
+      this.validationMessages = []
+      var validityState = formItem.validity
+      if (validityState.valueMissing) {
+        formItem.setCustomValidity("This field can't be empty")
+        this.validationMessages.push({
+          content: '&cross; This field is required',
+          color: this.colorInvalid
+        })
       } else {
         this.validationMessages = []
       }
 
       if (validityState.patternMismatch && formItem.type == 'email') {
-        formItem.setCustomValidity('Provide valid e-mail address');
-        this.validationMessages.push(
-          {
-            content: '&cross; Provide valid e-mail address',
-            color: this.colorInvalid
-          }
-        )
+        formItem.setCustomValidity('Provide valid e-mail address')
+        this.validationMessages.push({
+          content: '&cross; Provide valid e-mail address',
+          color: this.colorInvalid
+        })
       }
 
       if (validityState.patternMismatch && formItem.type == 'tel') {
-        formItem.setCustomValidity('Provide valid phone number');
-        this.validationMessages.push(
-          {
-            content: '&cross; Provide valid phone number',
-            color: this.colorInvalid
-          }
-        )
+        formItem.setCustomValidity('Provide valid phone number')
+        this.validationMessages.push({
+          content: '&cross; Provide valid phone number',
+          color: this.colorInvalid
+        })
       }
 
       if (validityState.tooLong) {
-        formItem.setCustomValidity('Value is too long');
-        this.validationMessages.push(
-          {
-            content: '&cross; Value is too long',
-            color: this.colorInvalid
-          }
-        )
+        formItem.setCustomValidity('Value is too long')
+        this.validationMessages.push({
+          content: '&cross; Value is too long',
+          color: this.colorInvalid
+        })
       }
 
       if (validityState.tooShort) {
-        formItem.setCustomValidity('Value is too short');
-        this.validationMessages.push(
-          {
-            content: '&cross; Value is too short',
-            color: this.colorInvalid
-          }
-        )
+        formItem.setCustomValidity('Value is too short')
+        this.validationMessages.push({
+          content: '&cross; Value is too short',
+          color: this.colorInvalid
+        })
       }
 
       if (formItem.rangeUnderflow) {
-        formItem.setCustomValidity('Your value is too low');
+        formItem.setCustomValidity('Your value is too low')
       }
       if (formItem.rangeOverflow) {
-        formItem.setCustomValidity('Your value is too high');
+        formItem.setCustomValidity('Your value is too high')
       } else {
-        formItem.setCustomValidity('');
+        formItem.setCustomValidity('')
       }
-
-      console.dir(validityState)
+    },
+    validate(e) {
+      const formItem = e.target
+      if (formItem.validity.valid) {
+        this.validationMessages = []
+        return
+      }
+      this.setValidity(e)
     }
-  },
+  }
   // computed: {
   //   validity () {
   //     const element = document.getElementsByTagName('input')
