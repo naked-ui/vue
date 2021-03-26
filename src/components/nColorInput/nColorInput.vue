@@ -20,18 +20,6 @@
       {{ label }}
     </label>
     <input
-      type="color"
-      v-model="formFieldValue"
-      pattern="#[a-fA-F\d]+"
-      @change="printColorValue($event);"
-      :autofocus="autofocus"
-      :disabled="disabled"
-      :name="name"
-      :readonly="readonly"
-      :required="required"
-      :title="title"
-    >
-    <input
       v-if="textValueEnabled"
       pattern="#[a-fA-F\d]+"
       type="text"
@@ -42,7 +30,20 @@
       :placeholder="placeholder"
       :disabled="disabled"
       required
-      size="1"
+      size="7"
+      maxlength="7"
+    >
+    <input
+      type="color"
+      v-model="formFieldValue"
+      pattern="#[a-fA-F\d]+"
+      @change="printColorValue($event);"
+      :autofocus="autofocus"
+      :disabled="disabled"
+      :name="name"
+      :readonly="readonly"
+      :required="required"
+      :title="title"
     >
     <div
       class="color-input__alerts"

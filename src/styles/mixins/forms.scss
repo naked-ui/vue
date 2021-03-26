@@ -69,7 +69,7 @@
   appearance: none;
   border: none;
   outline: var(--outline-width) solid;
-  outline-offset: -var(--outline-width);
+  outline-offset: calc(var(--outline-width) * -1);
   padding: $padding;
   font-family: inherit;
 }
