@@ -1,30 +1,48 @@
 @import '../mixins/forms.scss';
 
-[nui-namespace="nui"] {
+[nui-component="text-input"],
+[nui-component="email-input"],
+[nui-component="color-input"],
+[nui-component="textarea"] {
+  display: grid;
+  row-gap: var(--gap);
 
-  &.form-field {
-    @include form-item(
-      $form-element: '.form-field__input-box',
-      $alerts-classname: '.form-field__alerts',
-      $color-valid: var(--color-valid),
-      $color-invalid: var(--color-invalid),
-      $gap: var(--gap)
+  [nui-component="validation-alerts"] {
+    display: grid;
+    gap: calc(var(--gap) / 4)
+  }
+
+  [nui-component="validation-alert"] {
+    color: var(--color);
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="pasword"],
+  input[type="date"],
+  input[type="time"],
+  textarea {
+    @include input-box(
+      $height: var(--height),
+      $width: var(--width),
+      $padding: var(--padding)
     );
 
-    .form-field__input-box {
-      @include input-box(
-        $height: var(--height),
-        $width: var(--width),
-        $padding: var(--padding)
-      );
-      resize: var(--resize);
-    }
+    @include validations(
+      $color-valid: var(--color-valid),
+      $color-invalid: var(--color-invalid)
+    );
+  }
 
-    .form-field__label {
-      &[disabled="disabled"],
-      &:disabled {
-        opacity: var(--disabled-opacity);
-      }
+  textarea {
+    resize: var(--resize);
+  }
+
+  label {
+    &[disabled="disabled"],
+    &:disabled {
+      opacity: var(--disabled-opacity);
     }
   }
 }

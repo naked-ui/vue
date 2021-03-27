@@ -1,6 +1,7 @@
 <template>
   <div
     class="color-input"
+    nui-component="color-input"
     :nui-namespace="uiNamespace"
     :style="`
       --gap: ${isNaN(gap) ? gap : gap + 'px'};
@@ -13,7 +14,6 @@
     `"
   >
     <label
-      class="color-input__label"
       :disabled="disabled"
       :for="id"
     >
@@ -45,20 +45,19 @@
       :title="title"
     >
     <div
-      class="color-input__alerts"
+      nui-component="validation-alerts"
+      v-if="validationMessages.length > 0"
     >
       <span
+        nui-component="validation-alert"
         v-for="(message, index) in validationMessages"
         :key="index"
-        :class="[
-          'color-input__alerts-item'
-        ]"
         :style="`
           --color: ${message.color}
         `"
         v-html="message.content"
       />
-    </div>
+    </div> 
   </div>
 </template>
 

@@ -1,7 +1,6 @@
 <template>
   <div
-    class="form-field"
-    :nui-namespace="uiNamespace"
+    nui-component="textarea"
     :style="`
       --gap: ${isNaN(gap) ? gap : gap + 'px'};
       --height: ${isNaN(height) ? height : height + 'px'};
@@ -15,7 +14,6 @@
     `"
   >
     <label
-      class="form-field__label"
       :for="id"
       :disabled="disabled"
     >
@@ -35,17 +33,15 @@
       :placeholder="placeholder"
       :readonly="readonly"
       :title="title"
-      class="form-field__input-box"
     />
     <div
-      class="form-field__alerts"
+      nui-component="validation-alerts"
+      v-if="validationMessages.length > 0"
     >
       <span
+        nui-component="validation-alert"
         v-for="(message, index) in validationMessages"
         :key="index"
-        :class="[
-          'form-field__alerts-item'
-        ]"
         :style="`
           --color: ${message.color}
         `"
@@ -53,7 +49,7 @@
       />
     </div>
     <div
-      class="form-field__counter"
+      class="counter"
       v-if="maxlength && counterEnabled"
     >
       <span>{{ totalCharacters }}</span>
@@ -64,11 +60,10 @@
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
 import formField from '../../utils/formField'
 
 export default {
-  mixins: [ namespaceMixin, formField ],
+  mixins: [formField],
   name: 'nTextarea'
 }
 
