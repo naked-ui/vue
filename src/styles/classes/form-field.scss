@@ -1,0 +1,30 @@
+@import '../mixins/forms.scss';
+
+[nui-namespace="nui"] {
+
+  &.form-field {
+    @include form-item(
+      $form-element: '.form-field__input-box',
+      $alerts-classname: '.form-field__alerts',
+      $color-valid: var(--color-valid),
+      $color-invalid: var(--color-invalid),
+      $gap: var(--gap)
+    );
+
+    .form-field__input-box {
+      @include input-box(
+        $height: var(--height),
+        $width: var(--width),
+        $padding: var(--padding)
+      );
+      resize: var(--resize);
+    }
+
+    .form-field__label {
+      &[disabled="disabled"],
+      &:disabled {
+        opacity: var(--disabled-opacity);
+      }
+    }
+  }
+}

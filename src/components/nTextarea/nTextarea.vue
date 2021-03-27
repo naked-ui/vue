@@ -1,6 +1,6 @@
 <template>
   <div
-    class="textarea"
+    class="form-field"
     :nui-namespace="uiNamespace"
     :style="`
       --gap: ${isNaN(gap) ? gap : gap + 'px'};
@@ -11,10 +11,11 @@
       --color-invalid: ${colorInvalid};
       --color-valid: ${colorValid};
       --resize: ${resize};
+      --disabled-opacity: ${disableOpacity};
     `"
   >
     <label
-      class="textarea__label"
+      class="form-field__label"
       :for="id"
       :disabled="disabled"
     >
@@ -34,15 +35,16 @@
       :placeholder="placeholder"
       :readonly="readonly"
       :title="title"
+      class="form-field__input-box"
     />
     <div
-      class="textarea__alerts"
+      class="form-field__alerts"
     >
       <span
         v-for="(message, index) in validationMessages"
         :key="index"
         :class="[
-          'textarea__alerts-item'
+          'form-field__alerts-item'
         ]"
         :style="`
           --color: ${message.color}
@@ -51,7 +53,7 @@
       />
     </div>
     <div
-      class="textarea__counter"
+      class="form-field__counter"
       v-if="maxlength && counterEnabled"
     >
       <span>{{ totalCharacters }}</span>

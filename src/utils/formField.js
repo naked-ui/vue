@@ -99,6 +99,9 @@ export default {
       type: String,
       default: 'green'
     },
+    disableOpacity: {
+      type: String
+    }
   },
   methods: {
     countCharacters () {

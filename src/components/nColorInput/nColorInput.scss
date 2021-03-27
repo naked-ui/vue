@@ -20,7 +20,7 @@
       );
       grid-row: 2/3;
       grid-column: 2/3;
-      outline-offset: calc(var(--negative-factor) * var(--outline-width));
+      transform: translateX(calc(var(--negative-factor) * var(--outline-width)));
 
       &:valid + input[type="color"] {
         outline-color: var(--color-valid);

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="text-input"
+    class="form-field"
     :nui-namespace="uiNamespace"
     :style="`
       --gap: ${isNaN(gap) ? gap : gap + 'px'};
@@ -13,7 +13,7 @@
     `"
   >
     <label
-      class="text-input__label"
+      class="form-field__label"
       :disabled="disabled"
       :for="id"
     >
@@ -34,15 +34,16 @@
       :readonly="readonly"
       :required="required"
       :title="title"
+      class="form-field__input-box"
     >
     <div
-      class="text-input__alerts"
+      class="form-field__alerts"
     >
       <span
         v-for="(message, index) in validationMessages"
         :key="index"
         :class="[
-          'text-input__alerts-item'
+          'form-field__alerts-item'
         ]"
         :style="`
           --color: ${message.color}
@@ -51,7 +52,7 @@
       />
     </div>
     <div
-      class="text-input__counter"
+      class="form-field__counter"
       v-if="maxlength && counterEnabled"
     >
       <span>{{ totalCharacters }}</span>
