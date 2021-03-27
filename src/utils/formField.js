@@ -1,7 +1,6 @@
 export default {
   data () {
     return {
-      // formFieldValue: '',
       totalCharacters: 0,
       validationMessages: []
     }
@@ -107,87 +106,60 @@ export default {
     countCharacters () {
       this.totalCharacters = this.formFieldValue.length
     },
+    pushValidationMessage(target, message) {
+      target.setCustomValidity(message)
+      if (this.validationMessages.includes(message) === false) this.validationMessages.push({
+        content: message,
+        color: this.colorInvalid
+      })
+    },
     validate () {
-      let formItem = document.getElementById(this.id);
-      var validityState = formItem.validity;
-
+      let formItem = document.getElementById(this.id)
+      var validityState = formItem.validity
+      
       if(validityState.valueMissing) {
-        formItem.setCustomValidity('This field can\'t be empty');
-        this.validationMessages.push(
-          {
-            content: '&cross; This field is required',
-            color: this.colorInvalid
-          }
-        )
+        let alert = '&cross; This field is required'
+        this.pushValidationMessage(formItem, alert)
       } else {
         this.validationMessages = []
       }
 
       if (validityState.patternMismatch && formItem.type == 'email') {
-        formItem.setCustomValidity('Provide valid e-mail address');
-        this.validationMessages.push(
-          {
-            content: '&cross; Provide valid e-mail address',
-            color: this.colorInvalid
-          }
-        )
+        let alert = 'Provide valid e-mail address'
+        this.pushValidationMessage(formItem, alert)
       } 
 
       if (validityState.patternMismatch && formItem.type == 'tel') {
-        formItem.setCustomValidity('Provide valid phone number');
-        this.validationMessages.push(
-          {
-            content: '&cross; Provide valid phone number',
-            color: this.colorInvalid
-          }
-        )
+        let alert = 'Provide valid phone number'
+        this.pushValidationMessage(formItem, alert)
       }
 
       if (validityState.patternMismatch && formItem.type == 'text') {
-        formItem.setCustomValidity('Provide valid color value');
-        this.validationMessages.push(
-          {
-            content: '&cross; Provide valid color value',
-            color: this.colorInvalid
-          }
-        )
+        let alert = 'Provide valid color value'
+        this.pushValidationMessage(formItem, alert)
       }
 
       if (validityState.tooLong) {
-        formItem.setCustomValidity('Value is too long');
-        this.validationMessages.push(
-          {
-            content: '&cross; Value is too long',
-            color: this.colorInvalid
-          }
-        )
+        let alert = 'Value is too long'
+        pushValidationMessage(formItem, alert)
       }
 
       if (validityState.tooShort) {
-        formItem.setCustomValidity('Value is too short');
-        this.validationMessages.push(
-          {
-            content: '&cross; Value is too short',
-            color: this.colorInvalid
-          }
-        )
+        let alert = 'Value is too short'
+        this.pushValidationMessage(formItem, alert)
       }
 
       if (formItem.rangeUnderflow) {
-        formItem.setCustomValidity('Your value is too low');
+        let alert = 'Your value is too low'
+        this.pushValidationMessage(formItem, alert)
       }
       if (formItem.rangeOverflow) {
-        formItem.setCustomValidity('Your value is too high');
+        let alert = 'Your value is too high'
+        this.pushValidationMessage(formItem, alert)
       }
       
       else {
         formItem.setCustomValidity('');
-        // this.validationMessages.push(
-        //   {
-        //     content: '&check; OK',
-        //     color: this.colorValid
-        //   }
-        // )
       }
 
       console.dir(validityState)
