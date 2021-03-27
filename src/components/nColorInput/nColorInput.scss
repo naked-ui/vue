@@ -20,7 +20,7 @@
       );
       grid-row: 2/3;
       grid-column: 2/3;
-      transform: translate(calc(var(--outline-width) * -1));
+      transform: translate(calc(-1 * #{var(--outline-width)}));
 
       &:valid + input[type="color"] {
         outline-color: var(--color-valid);
@@ -49,7 +49,8 @@
       appearance: none;
       border: none;
       outline: var(--outline-width) solid;
-      outline-offset: calc(var(--outline-width) * -1);
+      outline-offset: calc(-1 * #{var(--outline-width)});
+      
 
       & + input[type="text"] {
         outline-color: var(--color-valid);
