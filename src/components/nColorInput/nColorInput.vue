@@ -23,7 +23,7 @@
       v-if="textValueEnabled"
       pattern="#[a-fA-F\d]+"
       type="text"
-      v-model="formFieldValue"
+      v-model="value"
       :id="id"
       @change="updateColorValue($event)"
       @input="validate()"
@@ -34,7 +34,7 @@
     >
     <input
       type="color"
-      v-model="formFieldValue"
+      v-model="value"
       pattern="#[a-fA-F\d]+"
       @change="printColorValue($event);"
       :autofocus="autofocus"
@@ -70,7 +70,7 @@ export default {
   mixins: [ namespaceMixin, formField ],
   data () {
     return {
-      formFieldValue: this.color
+      value: this.color
     }
   },
   props: {
@@ -85,10 +85,10 @@ export default {
   },
   methods: {
     updateColorValue (e) {
-    	e.target.value = this.formFieldValue
+    	e.target.value = this.value
     },
     printColorValue (e) {
-    	this.formFieldValue = e.target.value
+    	this.value = e.target.value
     }
   }
 }

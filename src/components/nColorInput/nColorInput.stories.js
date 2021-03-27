@@ -33,5 +33,5 @@ Default.args = {
   autofocus: false,
   disabled: false,
   outlineWidth: '2px',
-  formFieldValue: '#aaabbb'
+  value: '#aaabbb'
 }

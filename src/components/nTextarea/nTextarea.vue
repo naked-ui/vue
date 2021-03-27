@@ -22,7 +22,7 @@
       {{ label }}
     </label>
     <textarea
-      v-model="formFieldValue"
+      v-model="value"
       @keyup="countCharacters(); validate();"
       :autofocus="autofocus"
       :autocorrect="autocorrect"

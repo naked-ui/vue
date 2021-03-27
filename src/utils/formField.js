@@ -6,7 +6,7 @@ export default {
     }
   },
   props: {
-    formFieldValue: {
+    value: {
       type: [String, Number, Boolean],
       default: ''
     },
@@ -104,7 +104,7 @@ export default {
   },
   methods: {
     countCharacters () {
-      this.totalCharacters = this.formFieldValue.length
+      this.totalCharacters = this.value.length
     },
     pushValidationMessage(target, message) {
       target.setCustomValidity(message)

@@ -21,7 +21,7 @@
     </label>
     <input
       type="text"
-      v-model="formFieldValue"
+      v-model="value"
       @keyup="countCharacters(); validate()"
       :autofocus="autofocus"
       :autocorrect="autocorrect"
