@@ -1,6 +1,6 @@
 <template>
   <div
-    nui-component="email-input"
+    :class="componentClasses"
     :style="`
       --gap: ${isNaN(gap) ? gap : gap + 'px'};
       --height: ${isNaN(height) ? height : height + 'px'};
@@ -33,11 +33,11 @@
       :title="title"
     >
     <div
-      nui-component="validation-alerts"
+      class="nui__validation-alerts"
       v-if="validationMessages.length > 0"
     >
       <span
-        nui-component="validation-alert"
+        class="nui__validation-alert"
         v-for="(message, index) in validationMessages"
         :key="index"
         :style="`
@@ -54,7 +54,20 @@ import formField from '../../utils/formField'
 
 export default {
   mixins: [formField],
-  name: 'nEmailInput'
+  name: 'nEmailInput',
+  props: {
+    baseClassname: {
+      type: String,
+      default: 'n-email-input'
+    },
+  },
+  computed: {
+    componentClasses () {
+      return [
+        this.baseClassname
+      ]
+    }
+  },
 }
 
 </script>

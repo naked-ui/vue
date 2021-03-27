@@ -1,73 +1,71 @@
 @import 'sxcss';
 
-[nui-namespace="nui"] {
+.nui__button {
+  display: flex;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  border: unset;
+  cursor: pointer;
+  background-color: var(--button-background-color);
 
-  &.button {
-    display: flex;
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    border: unset;
-    cursor: pointer;
-    background-color: var(--button-background-color);
+  /** SIZES **/
 
-    /** SIZES **/
+  &.nui__button--small {
+    height: 36px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
 
-    &.button--small {
-      height: 36px;
-      padding: 0 12px;
-      font-size: 14px;
+  &.nui__button--medium {
+    height: 48px;
+    padding: 0 16px;
+    font-size: 16px;
+  }
+
+  &.nui__button--big {
+    height: 64px;
+    padding: 0 20px;
+    font-size: 18px;
+  }
+
+  /** STATES **/
+
+  &:not(.nui__button[disabled="disabled"]) {
+    @include hover-effect($opacity: .6);
+  }
+
+  &.nui__button[disabled="disabled"] {
+    cursor: not-allowed;
+    opacity: .75;
+  }
+
+  &:not(.nui__button[disabled="disabled"]):active,
+  &:not(.nui__button[disabled="disabled"]):focus {
+    opacity: .9 !important;
+  }
+
+  /** CONTENT **/
+
+  /// Text & icons color
+
+  .nui__button__text,
+  .nui__button__icon {
+    @include flex($place: center);
+    color: var(--button-text-color);
+    svg {
+      fill: var(--button-text-color) !important;
     }
+  }
 
-    &.button--medium {
-      height: 48px;
-      padding: 0 16px;
-      font-size: 16px;
+  /// Icons
+
+  .nui__button__icon {
+    &--left {
+      margin-right: 12px;
     }
-
-    &.button--big {
-      height: 64px;
-      padding: 0 20px;
-      font-size: 18px;
-    }
-
-    /** STATES **/
-
-    &:not(.button[disabled="disabled"]) {
-      @include hover-effect($opacity: .6);
-    }
-
-    &.button[disabled="disabled"] {
-      cursor: not-allowed;
-      opacity: .75;
-    }
-
-    &:not(.button[disabled="disabled"]):active,
-    &:not(.button[disabled="disabled"]):focus {
-      opacity: .9 !important;
-    }
-
-    /** CONTENT **/
-
-    /// Text & icons color
-
-    .button__text,
-    .button__icon {
-      @include flex($place: center);
-      color: var(--button-text-color);
-      svg {
-        fill: var(--button-text-color) !important;
-      }
-    }
-
-    /// Icons
-
-    .button__icon {
-      &--left {
-        margin-right: 12px;
-      }
-      &--right {
-        margin-left: 12px;
-      }
+    &--right {
+      margin-left: 12px;
     }
   }
 }
+

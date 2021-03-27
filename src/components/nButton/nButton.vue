@@ -6,18 +6,17 @@
     :disabled="disabled || busy"
     :busy="busy"
     :style="style"
-    :nui-namespace="uiNamespace"
   >
     <div
       v-if="$slots['button-icon--left']"
-      class="button__icon button__icon--left"
+      class="nui__button__icon nui__button__icon--left"
     >
       <slot name="button-icon--left">
       </slot>
     </div>
     <span
       v-if="$slots.default"
-      class="button__text"
+      class="nui__button__text"
     >
       <slot v-if="!busy">
         Button text
@@ -28,13 +27,13 @@
     </span>
      <div
       v-if="$slots['button-icon--solo']"
-      class="button__slot-icon--solo"
+      class="nui__button__slot-icon--solo"
     >
       <slot name="button-icon--solo" />
     </div>
     <div
       v-if="$slots['button-icon--right']"
-      class="button__icon button__icon--right"
+      class="nui__button__icon nui__button__icon--right"
     >
       <slot name="button-icon--right" />
     </div>
@@ -50,7 +49,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'button'
+      default: 'nui__button'
     },
     kind: {
       type: String,

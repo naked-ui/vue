@@ -1,4 +1,4 @@
-[nui-component="color-input"] {
+.nui__color-input {
 
   input[type="text"] {
     grid-row: 2/3;
@@ -43,7 +43,7 @@
     grid-column: 1/3;
   }
 
-  [nui-component="validation-alerts"] {
+  .nui__validation-alerts {
     grid-row: 3/4;
     grid-column: 1/4;
   }

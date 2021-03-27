@@ -1,9 +1,9 @@
 <template functional>
   <div
-    nui-component="validation-alerts"
+    class="nui__validation-alerts"
   >
     <span
-      nui-component="validation-alert"
+      class="nui__validation-alert"
       v-for="(message, index) in validationMessages"
       :key="index"
       :style="`
