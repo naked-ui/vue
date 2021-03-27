@@ -1,5 +1,9 @@
 @import 'sxcss';
 
+:root {
+  --negative-factor: -1;
+}
+
 @mixin form-item(
   $form-element,
   $alerts-classname,
@@ -69,7 +73,7 @@
   appearance: none;
   border: none;
   outline: var(--outline-width) solid;
-  outline-offset: calc(-1 * #{var(--outline-width)});
+  outline-offset: calc(var(--negative-factor) * var(--outline-width)); // We need this as CSSO compression causes always appending "-1" value after CSS Variable in calc() function and it throws parsing error for final minified CSS file
   padding: $padding;
   font-family: inherit;
 }
