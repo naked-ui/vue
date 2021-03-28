@@ -17,7 +17,6 @@
     "optimize:css": "csso dist/index.css --output dist/index.css --stat --debug",
     "remove:js": "rm dist/demo.html dist/index.common.js dist/index.common.js.map dist/index.umd.js dist/index.umd.js.map dist/index.umd.min.js dist/index.umd.min.js.map",
     "remove:css": "rm dist/demo.html dist/index.css dist/index.min.css",
-    "prepublishOnly": "$npm_execpath build",
     "lint": "vue-cli-service lint",
     "storybook": "yarn install && start-storybook -p 6006 --no-manager-cache -s .storybook/assets",
     "build-storybook": "build-storybook"
