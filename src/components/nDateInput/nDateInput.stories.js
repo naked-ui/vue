@@ -1,8 +1,8 @@
-import nTextInput from './nTextInput.vue'
+import nDateInput from './nDateInput.vue'
 
 export default {
-  title: 'Form/Input/TextInput',
-  component: nTextInput,
+  title: 'Form/Input/DateInput',
+  component: nDateInput,
   argTypes: {
     disabled: {
       control: 'boolean'
@@ -17,13 +17,6 @@ export default {
       control: 'boolean',
       defaultValue: true
     },
-    // type: {
-    //   control: {
-    //     type: 'select',
-    //     options: ['text', 'email', 'tel', 'date', 'time']
-    //   },
-    //   defaultValue: 'text'
-    // },
     gap: {
       control: {
         type: 'range',
@@ -62,27 +55,23 @@ export default {
 }
 
 const Template = (args, { argTypes }) => ({
-  components: { nTextInput },
+  components: { nDateInput },
   props: Object.keys(argTypes),
   template: `
-    <nTextInput v-bind="$props" />
+    <nDateInput v-bind="$props" />
   `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  id: 'text-input',
-  name: 'text-input',
-  label: 'Text input label',
-  placeholder: 'Text input placeholder',
+  id: 'date-input',
+  label: 'Date input label',
+  placeholder: 'Date input placeholder',
   gap: 12,
   height: 48,
-  width: '320px',
+  width: 'auto',
   padding: '0 12px',
   autofocus: false,
   disabled: false,
-  maxlength: 24,
-  minlength: 1,
-  outlineWidth: '2px',
-  counterEnabled: true
+  outlineWidth: '2px'
 }

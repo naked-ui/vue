@@ -35,5 +35,8 @@ Default.args = {
   dotColor: '#111',
   rangeColor: '#999',
   backgroundColor: '#ddd',
-  outputBackgroundColor: '#111'
+  outputBackgroundColor: '#111',
+  label: 'Range input label',
+  gap: '12px',
+  outputFontColor: '#fff'
 }

@@ -5,20 +5,23 @@
     grid-column: 2/3;
     transform: translateX(calc(var(--negative-factor) * var(--outline-width)));
 
-    &:valid + input[type="color"] {
-      outline-color: var(--color-valid);
-    }
-
-    &:invalid + input[type="color"] {
-      outline-color: var(--color-invalid);
-    }
-
-    &:not(:focus):required:invalid {
-      outline-color: var(--color-invalid) !important;
-    }
-
-    &:not(:focus):required:invalid ~ .color-input__alerts {
-      display: inherit;
+    [nui-validation="true"] {
+      
+      &:valid + input[type="color"][nui-validation="true"] {
+        outline-color: var(--color-valid);
+      }
+  
+      &:invalid + input[type="color"][nui-validation="true"] {
+        outline-color: var(--color-invalid);
+      }
+  
+      &:not(:focus):required:invalid {
+        outline-color: var(--color-invalid) !important;
+      }
+  
+      &:not(:focus):required:invalid ~ .n-validation-alerts {
+        display: inherit;
+      }
     }
   }
 
@@ -34,8 +37,10 @@
     outline: var(--outline-width) solid;
     outline-offset: calc(var(--negative-factor) * var(--outline-width));
 
-    & + input[type="text"] {
-      outline-color: var(--color-valid);
+    [nui-validation="true"] {
+      & + input[type="text"] {
+        outline-color: var(--color-valid);
+      }
     }
   }
 

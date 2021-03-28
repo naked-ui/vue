@@ -1,21 +1,34 @@
 <template>
   <div
-    class="range-input"
+    class="n-range-input n-form-input"
     role="group"
     aria-labelledby="range-input--label"
-    :style="colorVariables"
-    :nui-namespace="uiNamespace"
+    :style="`
+      --gap: ${isNaN(gap) ? gap : gap + 'px'};
+      --height: ${isNaN(height) ? height : height + 'px'};
+      --width: ${isNaN(width) ? width : width + 'px'};
+      --padding: ${padding};
+      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
+      --color-invalid: ${colorInvalid};
+      --color-valid: ${colorValid};
+
+      --fillDot: ${this.dotColor};
+      --fillRange: ${this.rangeColor};
+      --fillBg: ${this.backgroundColor};
+      --fillOutput: ${this.outputBackgroundColor};
+      --outputFontColor: ${this.outputFontColor};
+    `"
   >
+    <label id="range-input--label" v-if="label">{{ label }}</label>
     <div
-      class="range-input__wrap"
+      class="n-range-input__wrap"
       role="group"
       aria-labelledby="range-input--label"
       :style="rangeVariables"
     >
-      <div id="range-input--label" v-if="label">{{ label }}</div>
       <template v-for="index in dots">
         <label
-          class="range-input__sr-only"
+          class="n-range-input__sr-only"
           :for="`v${index-1}`"
           :key="`label_${index-1}`"
         >
@@ -42,11 +55,11 @@
 </template>
 
 <script>
-import namespaceMixin from "../../utils/namespace"
+import formField from '../../utils/formField'
 
 export default {
-  mixins: [namespaceMixin],
   name: 'nRangeInput',
+  mixins: [formField],
   props: {
     min: {
       type: Number,
@@ -129,15 +142,15 @@ export default {
 
       return valuesVariables + limitationsVariables + fill
     },
-    colorVariables() {
-      const dotColor = this.dotColor ? `--fillDot: ${this.dotColor};` : ''
-      const rangeColor = this.rangeColor ? `--fillRange: ${this.rangeColor};` : ''
-      const backgroundColor = this.backgroundColor ? `--fillBg: ${this.backgroundColor};` : ''
-      const outputBackgroundColor = this.outputBackgroundColor ? `--fillOutput: ${this.outputBackgroundColor};` : ''
-      const outputFontColor = this.outputFontColor ? `--outputFontColor: ${this.outputFontColor};` : ''
+    // colorVariables() {
+    //   const dotColor = this.dotColor ? `--fillDot: ${this.dotColor};` : ''
+    //   const rangeColor = this.rangeColor ? `--fillRange: ${this.rangeColor};` : ''
+    //   const backgroundColor = this.backgroundColor ? `--fillBg: ${this.backgroundColor};` : ''
+    //   const outputBackgroundColor = this.outputBackgroundColor ? `--fillOutput: ${this.outputBackgroundColor};` : ''
+    //   const outputFontColor = this.outputFontColor ? `--outputFontColor: ${this.outputFontColor};` : ''
 
-      return dotColor + rangeColor + backgroundColor + outputFontColor + outputBackgroundColor
-    }
+    //   return dotColor + rangeColor + backgroundColor + outputFontColor + outputBackgroundColor
+    // }
   },
   methods: {
     defineRanges() {

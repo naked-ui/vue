@@ -2,14 +2,15 @@ export default {
   data () {
     return {
       totalCharacters: 0,
-      validationMessages: []
+      validationMessages: [],
+      value: null
     }
   },
   props: {
-    value: {
-      type: [String, Number, Boolean],
-      default: ''
-    },
+    // value: {
+    //   type: [String, Number, Boolean],
+    //   default: ''
+    // },
     // Settings
     autocorrect: {
       type: String,
@@ -67,7 +68,7 @@ export default {
     title: {
       type: String
     },
-    validInputAlertEnabled: {
+    validationEnabled: {
       type: Boolean,
       default: false
     },
@@ -114,6 +115,7 @@ export default {
       })
     },
     validate () {
+      if (!this.validationEnabled) return
       let formItem = document.getElementById(this.id)
       var validityState = formItem.validity
       
@@ -137,6 +139,10 @@ export default {
       if (validityState.patternMismatch && formItem.type == 'text') {
         let alert = 'Provide valid color value'
         this.pushValidationMessage(formItem, alert)
+      }
+
+      if (!validityState.patternMismatch && formItem.type == 'text') {
+        this.validationMessages = []
       }
 
       if (validityState.typeMismatch && formItem.type == 'url') {
