@@ -1,7 +1,25 @@
 export default {
   methods: {
-    calculateCssSize(value) {
-      return isNaN(value) ? value : value + 'px'
+    calculateCssSize(size) {
+      if (isNaN(size) == false) return size + 'px'
+      if (
+        size.includes('em') ||
+        size.includes('ex') ||
+        size.includes('px') ||
+        size.includes('cm') ||
+        size.includes('mm') ||
+        size.includes('in') ||
+        size.includes('pc') ||
+        size.includes('pt') ||
+        size.includes('em') ||
+        size.includes('rem') ||
+        size.includes('vh') ||
+        size.includes('vmin') ||
+        size.includes('vmax') ||
+        size.includes('%')
+      ) {
+        return size
+      }
     }
   }
 }

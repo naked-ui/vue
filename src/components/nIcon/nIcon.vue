@@ -1,129 +1,82 @@
 <template>
   <component
-    :is="iconType"
+    :is="tag"
     v-bind="attrs"
+    :target="target"
     :class="componentClasses"
-    type="button"
-    :target="url && url.includes('http') ? '_blank' : false"
-    :alt="title"
-    :aria-label="title"
-    :title="title"
+    :style="style"
   >
-    <!-- <img
-      v-if="src"
-      :src="src"
-      :alt="alt"
-      :aria-label="alt"
-      class="icon__image"
-      :height="height || size"
-      :width="width || size"
-      :style="{ fill : iconColor }"
-    > -->
-
     <slot />
-
-    <!-- <span
-      v-if="isTextProvided"
-      class="icon__slot-text"
-      :class="textPositionClass"
+    <div
+      v-if="$slots['badge']"
+      :class="`${baseClassname}__badge`"
     >
-      <slot>
-      </slot>
-    </span> -->
+      <slot name="badge" />
+    </div>
   </component>
 </template>
 
 <script>
+import calculateCssSizeMixin from '../../utils/calculateCssSize'
+import hrefIsExternalMixin from '../../utils/hrefIsExternal'
+
 export default {
   name: 'nIcon',
+  mixins: [
+    hrefIsExternalMixin,
+    calculateCssSizeMixin
+  ],
   props: {
-    title: {
+    baseClassname: {
       type: String,
-      required: false,
-      default: ''
+      default: 'n-icon'
     },
-    src: {
-      type: String,
-      required: false,
-      default: ''
+    href: {
+      type: String
     },
-    alt: {
-      type: String,
-      required: false,
-      default: ''
+    target: {
+      type: String
     },
-    focus: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    url: {
-      type: String,
-      required: false,
-      default: ''
-    },
-    height: {
-      type: String,
-      default: undefined,
-      required: false
-    },
-    width: {
-      type: String,
-      default: undefined,
-      required: false
-    },
+    // width: {
+    //   type: String
+    // },
+    // height: {
+    //   type: String
+    // },
     size: {
-      type: String,
-      default: undefined,
-      required: false
-    },
-    iconColor: {
-      type: String,
-      default: '#000000'
-    },
-    textPosition: {
-      type: String,
-      default: 'after'
+      type: [String, Number]
     }
   },
   computed: {
-    iconType () {
-      if (this.url) {
-        return this.url.includes('http') || this.$route.path === '/error' ? 'a' : 'router-link';
-      } else {
-        return 'span';
-      }
-    },
-    urlIsExternal () {
-      if (this.url.includes('http') || this.url.includes('mailto:') || this.url.includes('tel:')) return true
-      else return false
+    tag () {
+      if (!this.href) return 'div'
+      if (this.hrefIsExternal) return 'a'
+      else return 'router-link'
     },
     attrs () {
-      if (!this.url) return
-      if (this.urlIsExternal) return {
-        href: this.url,
+      if (!this.href) return
+      if (this.hrefIsExternal) return {
+        href: this.href,
         rel: 'noreferrer'
       }
-      else return { to: this.url }
+      else return { to: this.href }
     },
     componentClasses () {
       return [
-        'icon',
-        this.textPositionClass,
-        this.focus ? '' : 'icon--no-focus'
+        this.baseClassname
       ]
     },
-    isTextProvided () {
-      return this.$slots && Object.values(this.$slots).length >= 2
-    },
-    heightValue () {
-      return `${this.height}`.includes('px') ? `${this.height}`.slice(0, -2) : this.heightValue = this.height
-    },
-    textPositionClass () {
-      return `icon--text-${this.textPosition}`
+    style () {
+      return [
+        {
+          '--size': this.calculateCssSize(this.size),
+          // '--height': this.calculateCssSize(this.height),
+          // '--width': this.calculateCssSize(this.width),
+        }
+      ]
     }
   }
-};
+}
 </script>
 
 <style lang="scss" src="./nIcon.scss" />

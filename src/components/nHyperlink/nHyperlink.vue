@@ -31,7 +31,7 @@ export default {
     tag () {
       if (!this.href) return
       if (this.hrefIsExternal) return 'a'
-      else return 'nuxt-link'
+      else return 'router-link'
     },
     attrs () {
       if (!this.href) return

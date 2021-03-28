@@ -1,6 +1,6 @@
 <template>
   <div
-    class="n-range-input n-form-input"
+    class="n-range-input n-form-field"
     role="group"
     aria-labelledby="range-input--label"
     :style="`

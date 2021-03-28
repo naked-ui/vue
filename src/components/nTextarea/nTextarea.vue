@@ -11,7 +11,7 @@
     </label>
     <textarea
       v-model="value"
-      @keyup="countCharacters(value); validate();"
+      @keyup="countCharacters(value); validateFormField();"
       :autofocus="autofocus"
       :autocorrect="autocorrect"
       :disabled="disabled"
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import formField from '../../utils/formField'
+import formField from '../../utils/formField/index.js'
 import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
 import nInputCounter from '../../utils/components/nInputCounter.vue'
 
@@ -53,7 +53,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-form-input'
+      default: 'n-form-field'
     },
     resize: {
       type: String

@@ -54,7 +54,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-form-input'
+      default: 'n-form-field'
     },
   },
   computed: {

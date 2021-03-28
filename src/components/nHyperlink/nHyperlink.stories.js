@@ -13,5 +13,5 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-    url: 'https://naked-ui.org/'
+    href: 'https://naked-ui.org/'
 }

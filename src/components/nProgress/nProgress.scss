@@ -1,6 +1,7 @@
 .n-progress {
   position: relative;
   height: var(--height);
+  width: var(--width);
   
   progress {
     position: absolute;
@@ -8,6 +9,7 @@
     appearance: none;
     color: var(--color);
     height: 100%;
+    width: 100%;
     border: none;
 
     &::-webkit-progress-value,
