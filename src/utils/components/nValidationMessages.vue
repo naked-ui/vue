@@ -20,7 +20,9 @@ export default {
   props: {
     validationAlerts: {
       type: Array,
-      default: () => []
+      default () {
+        return []
+      }
     }
   }
 }

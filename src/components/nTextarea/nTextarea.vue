@@ -32,6 +32,7 @@
       :pattern="pattern"
       :placeholder="placeholder"
       :readonly="readonly"
+      :required="required"
       :title="title"
     />
     <div

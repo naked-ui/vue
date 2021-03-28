@@ -16,7 +16,6 @@
     <nCoverBackground
       v-else
       :backgroundImage="backgroundImage"
-      :srcsetBackgroundImages="srcsetBackgroundImages"
       :backgroundVideo="backgroundVideo"
       :baseClassname="baseClassname"
     />
@@ -82,11 +81,15 @@ export default {
     },
     backgroundImage: {
       type: Object,
-      default: () => {}
+      default () {
+        return {}
+      }
     },
     backgroundVideo: {
       type: Object,
-      default: () => {}
+      default () {
+        return {}
+      }
     },
     baseClassname: {
       type: String,
