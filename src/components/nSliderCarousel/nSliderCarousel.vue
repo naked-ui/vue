@@ -1,6 +1,5 @@
 <template>
   <div
-    :nui-namespace="uiNamespace"
     :class="componentClasses"
     :ref="refName"
     :style="`
@@ -103,9 +102,19 @@ export default {
     sliderCarouselPagination,
     sliderCarouselSettings
   ],
-  // components: {
-  //   nSliderCarouselPagination
-  // }
+  props: {
+    baseClassname: {
+      type: String,
+      default: 'n-slider-carousel'
+    },
+  },
+  computed: {
+    componentClasses () {
+      return [
+        this.baseClassname
+      ]
+    }
+  }
 }
 </script>
 

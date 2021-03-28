@@ -4,68 +4,13 @@
   --negative-factor: -1;
 }
 
-@mixin form-item(
-  $form-element,
-  $alerts-classname,
-  $gap: null,
-  $alerts-color: null,
-  $color-valid: null,
-  $color-invalid: null,
-) {
-  display: grid;
-  row-gap: $gap;
-  
-  #{$form-element} {
-    font-size: inherit;
-    box-sizing: border-box;
-
-    &:not(:required):invalid,
-    &:not(:placeholder-shown):required:invalid,
-    &:focus:required:invalid {
-      outline-color: $color-invalid;
-    }
-
-    &:not(:placeholder-shown):valid,
-    &:required:valid {
-      outline-color: $color-valid;
-    }
-
-    // &:not(:invalid) ~ .text-input__alerts,
-    &[disabled="disabled"] ~ .text-input__alerts {
-      @include hide;
-    }
-
-    &[disabled="disabled"],
-    &:disabled {
-      cursor: not-allowed;
-    }
-
-    &:not(:focus):required:invalid {
-      outline-color: inherit;
-    }
-  }
-
-  #{$form-element}:not(:invalid) ~ #{$alerts-classname},
-  #{$form-element}:not(:focus):required:invalid ~ #{$alerts-classname} {
-    display: none;
-  }
-  
-  #{$alerts-classname} {
-    display: grid;
-    gap: calc(#{$gap} / 4);
-    color: $alerts-color;
-
-    &-item {
-      color: var(--color);
-    }
-  }
-}
-
 @mixin input-box(
   $height,
   $width,
   $padding: 0
 ) {
+  font-size: inherit;
+  box-sizing: border-box;
   height: $height;
   width: $width;
   -webkit-appearance: none;
@@ -76,4 +21,39 @@
   outline-offset: calc(var(--negative-factor) * var(--outline-width)); // We need this as CSSO compression causes always appending "-1" value after CSS Variable in calc() function and it throws parsing error for final minified CSS file
   padding: $padding;
   font-family: inherit;
+}
+
+@mixin validations(
+  $color-valid,
+  $color-invalid
+) {
+
+  &:not(:invalid) ~ &,
+  &:not(:focus):required:invalid ~ & {
+    display: none;
+  }
+
+  &:not(:required):invalid,
+  &:not(:placeholder-shown):required:invalid,
+  &:focus:required:invalid {
+    outline-color: $color-invalid;
+  }
+
+  &:not(:placeholder-shown):valid,
+  &:required:valid {
+    outline-color: $color-valid;
+  }
+
+  &[disabled="disabled"] ~ .alerts {
+    @include hide;
+  }
+
+  &[disabled="disabled"],
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:not(:focus):required:invalid {
+    outline-color: inherit;
+  }
 }

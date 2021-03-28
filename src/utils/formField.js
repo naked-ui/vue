@@ -6,7 +6,7 @@ export default {
     }
   },
   props: {
-    formFieldValue: {
+    value: {
       type: [String, Number, Boolean],
       default: ''
     },
@@ -104,7 +104,7 @@ export default {
   },
   methods: {
     countCharacters () {
-      this.totalCharacters = this.formFieldValue.length
+      this.totalCharacters = this.value.length
     },
     pushValidationMessage(target, message) {
       target.setCustomValidity(message)
@@ -138,6 +138,11 @@ export default {
         let alert = 'Provide valid color value'
         this.pushValidationMessage(formItem, alert)
       }
+
+      if (validityState.typeMismatch && formItem.type == 'url') {
+        let alert = 'Provide valid URL'
+        this.pushValidationMessage(formItem, alert)
+      } 
 
       if (validityState.tooLong) {
         let alert = 'Value is too long'

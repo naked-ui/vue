@@ -5,7 +5,6 @@
       --items-gap: ${itemsGap}px;
       --viewport-padding: ${viewportPadding}px;
     `"
-    :nui-namespace="uiNamespace"
   >
     <div :class="`${baseClassname}__viewport-wrapper`">
       <ul
@@ -21,15 +20,13 @@
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
 
 export default {
   name: 'nOverflowCarousel',
-  mixins: [namespaceMixin],
   props: {
     baseClassname: {
       type: String,
-      default: 'overflow-carousel'
+      default: 'n-overflow-carousel'
     },
     itemsGap: {
       type: Number,
@@ -47,7 +44,7 @@ export default {
   computed: {
     componentClasses () {
       return [
-        `overflow-carousel`
+        this.baseClassname
       ]
     }
   }

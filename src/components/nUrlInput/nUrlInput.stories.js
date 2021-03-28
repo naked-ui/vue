@@ -1,8 +1,8 @@
-import nEmailInput from './nEmailInput.vue'
+import nUrlInput from './nUrlInput.vue'
 
 export default {
-  title: 'Form/Input/EmailInput',
-  component: nEmailInput,
+  title: 'Form/Input/UrlInput',
+  component: nUrlInput,
   argTypes: {
     disabled: {
       control: 'boolean'
@@ -37,10 +37,10 @@ export default {
 }
 
 const Template = (args, { argTypes }) => ({
-  components: { nEmailInput },
+  components: { nUrlInput },
   props: Object.keys(argTypes),
   template: `
-    <nEmailInput
+    <nUrlInput
       v-bind="$props"
     />
   `,
@@ -48,9 +48,9 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  id: 'email-input',
-  label: 'Email input label',
-  placeholder: 'Email input placeholder',
+  id: 'url-input',
+  label: 'URL input label',
+  placeholder: 'URL input placeholder',
   gap: 12,
   height: 48,
   width: '320px',

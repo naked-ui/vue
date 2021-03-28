@@ -28,7 +28,7 @@ export default {
     },
     baseClassname: {
       type: String,
-      default: 'slider-carousel'
+      default: 'n-slider-carousel'
     },
     slideIndex: {
       type: Number,

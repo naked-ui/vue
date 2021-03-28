@@ -18,26 +18,15 @@
       {{ label }}
     </label>
     <input
-      v-if="textValueEnabled"
-      pattern="#[a-fA-F\d]+"
-      type="text"
+      type="url"
+      autocorrect="off"
       v-model="value"
-      :id="id"
-      @change="updateColorValue($event)"
-      @input="validate()"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      required
-      maxlength="7"
-    >
-    <input
-      type="color"
-      v-model="value"
-      pattern="#[a-fA-F\d]+"
-      @change="printColorValue($event);"
+      @keyup="validate()"
       :autofocus="autofocus"
       :disabled="disabled"
+      :id="id"
       :name="name"
+      :placeholder="placeholder"
       :readonly="readonly"
       :required="required"
       :title="title"
@@ -55,34 +44,29 @@
         `"
         v-html="message.content"
       />
-    </div> 
+    </div>
   </div>
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
 import formField from '../../utils/formField'
 
 export default {
-  mixins: [ namespaceMixin, formField ],
-  data () {
-    return {
-      value: this.color
-    }
-  },
+  mixins: [formField],
+  name: 'nUrlInput',
   props: {
-    color: {
-      type: String,
-      default: '#000000'
-    },
-    textValueEnabled: {
-      type: Boolean,
-      default: true
-    },
     baseClassname: {
       type: String,
-      default: 'n-color-input'
-    }
+      default: 'n-url-input'
+    },
+    httpRequired: {
+      type: Boolean,
+      default: false
+    },
+    httpsRequired: {
+      type: Boolean,
+      default: false
+    },
   },
   computed: {
     componentClasses () {
@@ -91,16 +75,6 @@ export default {
       ]
     }
   },
-  methods: {
-    updateColorValue (e) {
-    	e.target.value = this.value
-    },
-    printColorValue (e) {
-    	this.value = e.target.value
-    }
-  }
 }
 
 </script>
-
-<style lang="scss" src="./nColorInput.scss" />

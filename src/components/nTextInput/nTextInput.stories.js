@@ -76,7 +76,7 @@ Default.args = {
   placeholder: 'Text input placeholder',
   gap: 12,
   height: 48,
-  width: 'auto',
+  width: '320px',
   padding: '0 12px',
   autofocus: false,
   disabled: false,

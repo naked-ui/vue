@@ -1,7 +1,6 @@
 <template>
   <div
-    class="form-field"
-    :nui-namespace="uiNamespace"
+    :class="baseClassname"
     :style="`
       --gap: ${isNaN(gap) ? gap : gap + 'px'};
       --height: ${isNaN(height) ? height : height + 'px'};
@@ -13,7 +12,6 @@
     `"
   >
     <label
-      class="form-field__label"
       :disabled="disabled"
       :for="id"
     >
@@ -21,7 +19,7 @@
     </label>
     <input
       type="text"
-      v-model="formFieldValue"
+      v-model="value"
       @keyup="countCharacters(); validate()"
       :autofocus="autofocus"
       :autocorrect="autocorrect"
@@ -34,17 +32,15 @@
       :readonly="readonly"
       :required="required"
       :title="title"
-      class="form-field__input-box"
     >
     <div
-      class="form-field__alerts"
+      class="n-validation-alerts"
+      v-if="validationMessages.length > 0"
     >
       <span
+        class="n-validation-alert"
         v-for="(message, index) in validationMessages"
         :key="index"
-        :class="[
-          'form-field__alerts-item'
-        ]"
         :style="`
           --color: ${message.color}
         `"
@@ -52,7 +48,7 @@
       />
     </div>
     <div
-      class="form-field__counter"
+      class="counter"
       v-if="maxlength && counterEnabled"
     >
       <span>{{ totalCharacters }}</span>
@@ -63,12 +59,24 @@
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
 import formField from '../../utils/formField'
 
 export default {
-  mixins: [ namespaceMixin, formField ],
-  name: 'nTextInput'
+  mixins: [formField],
+  name: 'nTextInput',
+  props: {
+    baseClassname: {
+      type: String,
+      default: 'n-text-input'
+    }
+  },
+  computed: {
+    componentClasses () {
+      return [
+        this.baseClassname
+      ]
+    }
+  },
 }
 
 </script>

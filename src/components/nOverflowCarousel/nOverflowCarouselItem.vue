@@ -22,7 +22,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'overflow-carousel__item'
+      default: 'n-overflow-carousel__item'
     },
     width: {
       type: String,
