@@ -1,6 +1,6 @@
 @import 'sxcss';
 
-.nui__button {
+.nui-button {
   display: flex;
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
@@ -10,19 +10,19 @@
 
   /** SIZES **/
 
-  &.nui__button--small {
+  &.nui-button--small {
     height: 36px;
     padding: 0 12px;
     font-size: 14px;
   }
 
-  &.nui__button--medium {
+  &.nui-button--medium {
     height: 48px;
     padding: 0 16px;
     font-size: 16px;
   }
 
-  &.nui__button--big {
+  &.nui-button--big {
     height: 64px;
     padding: 0 20px;
     font-size: 18px;
@@ -30,17 +30,17 @@
 
   /** STATES **/
 
-  &:not(.nui__button[disabled="disabled"]) {
+  &:not(.nui-button[disabled="disabled"]) {
     @include hover-effect($opacity: .6);
   }
 
-  &.nui__button[disabled="disabled"] {
+  &.nui-button[disabled="disabled"] {
     cursor: not-allowed;
     opacity: .75;
   }
 
-  &:not(.nui__button[disabled="disabled"]):active,
-  &:not(.nui__button[disabled="disabled"]):focus {
+  &:not(.nui-button[disabled="disabled"]):active,
+  &:not(.nui-button[disabled="disabled"]):focus {
     opacity: .9 !important;
   }
 
@@ -48,8 +48,8 @@
 
   /// Text & icons color
 
-  .nui__button__text,
-  .nui__button__icon {
+  .nui-button__text,
+  .nui-button__icon {
     @include flex($place: center);
     color: var(--button-text-color);
     svg {
@@ -59,7 +59,7 @@
 
   /// Icons
 
-  .nui__button__icon {
+  .nui-button__icon {
     &--left {
       margin-right: 12px;
     }

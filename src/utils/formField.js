@@ -139,6 +139,11 @@ export default {
         this.pushValidationMessage(formItem, alert)
       }
 
+      if (validityState.typeMismatch && formItem.type == 'url') {
+        let alert = 'Provide valid URL'
+        this.pushValidationMessage(formItem, alert)
+      } 
+
       if (validityState.tooLong) {
         let alert = 'Value is too long'
         pushValidationMessage(formItem, alert)

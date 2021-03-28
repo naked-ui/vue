@@ -4,17 +4,19 @@
   .n-text-input,
   .n-email-input,
   .n-color-input,
+  .n-url-input,
   .n-textarea
 ) {
   display: grid;
   row-gap: var(--gap);
+  justify-content: start;
 
-  .nui__validation-alerts {
+  .n-validation-alerts {
     display: grid;
     gap: calc(var(--gap) / 4)
   }
 
-  .nui__validation-alert {
+  .n-validation-alert {
     color: var(--color);
   }
 
@@ -25,6 +27,7 @@
     input[type="pasword"],
     input[type="date"],
     input[type="time"],
+    input[type="url"],
     textarea
   ) {
     @include input-box(
@@ -46,7 +49,7 @@
   label {
     &[disabled="disabled"],
     &:disabled {
-      opacity: var(--disabled-opacity);
+      opacity: var(--disabled-opacity, .3);
     }
   }
 }

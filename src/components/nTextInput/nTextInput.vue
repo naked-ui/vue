@@ -34,11 +34,11 @@
       :title="title"
     >
     <div
-      class="nui__validation-alerts"
+      class="n-validation-alerts"
       v-if="validationMessages.length > 0"
     >
       <span
-        class="nui__validation-alert"
+        class="n-validation-alert"
         v-for="(message, index) in validationMessages"
         :key="index"
         :style="`
