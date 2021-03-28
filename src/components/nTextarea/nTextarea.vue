@@ -81,7 +81,4 @@ export default {
     }
   },
 }
-
 </script>
-
-<style lang="scss" src="./nTextarea.scss" />
