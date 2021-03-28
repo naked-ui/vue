@@ -10,10 +10,13 @@
 </template>
 
 <script>
+import hrefIsExternalMixin from '../../utils/hrefIsExternal'
+
 export default {
   name: 'nHyperlink',
+  mixins: [hrefIsExternalMixin],
   props: {
-    url: {
+    href: {
       type: String,
       required: true,
       default: null
@@ -25,22 +28,18 @@ export default {
     }
   },
   computed: {
-    urlIsExternal () {
-      if (this.url.includes('http') || this.url.includes('mailto:') || this.url.includes('tel:')) return true
-      else return false
-    },
     tag () {
-      if (!this.url) return
-      if (this.urlIsExternal) return 'a'
+      if (!this.href) return
+      if (this.hrefIsExternal) return 'a'
       else return 'nuxt-link'
     },
     attrs () {
-      if (!this.url) return
-      if (this.urlIsExternal) return {
-        href: this.url,
+      if (!this.href) return
+      if (this.hrefIsExternal) return {
+        href: this.href,
         rel: 'noreferrer'
       }
-      else return { to: this.url }
+      else return { to: this.href }
     }
   }
 }
