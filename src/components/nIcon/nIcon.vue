@@ -1,6 +1,5 @@
 <template>
-  <component
-    :is="tag"
+  <div
     v-bind="attrs"
     :target="target"
     :class="componentClasses"
@@ -13,7 +12,7 @@
     >
       <slot name="badge" />
     </div>
-  </component>
+  </div>
 </template>
 
 <script>
@@ -31,36 +30,11 @@ export default {
       type: String,
       default: 'n-icon'
     },
-    href: {
-      type: String
-    },
-    target: {
-      type: String
-    },
-    // width: {
-    //   type: String
-    // },
-    // height: {
-    //   type: String
-    // },
     size: {
       type: [String, Number]
     }
   },
   computed: {
-    tag () {
-      if (!this.href) return 'div'
-      if (this.hrefIsExternal) return 'a'
-      else return 'router-link'
-    },
-    attrs () {
-      if (!this.href) return
-      if (this.hrefIsExternal) return {
-        href: this.href,
-        rel: 'noreferrer'
-      }
-      else return { to: this.href }
-    },
     componentClasses () {
       return [
         this.baseClassname
@@ -69,9 +43,7 @@ export default {
     style () {
       return [
         {
-          '--size': this.calculateCssSize(this.size),
-          // '--height': this.calculateCssSize(this.height),
-          // '--width': this.calculateCssSize(this.width),
+          '--size': this.calculateCssSize(this.size)
         }
       ]
     }

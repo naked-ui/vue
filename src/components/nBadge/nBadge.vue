@@ -32,6 +32,9 @@ export default {
     },
     fontSize: {
       type: String
+    },
+    padding: {
+      type: String
     }
   },
   computed: {
@@ -47,7 +50,8 @@ export default {
           '--size': this.calculateCssSize(this.size),
           '--background': this.background,
           '--color': this.color,
-          '--font-size': this.fontSize
+          '--font-size': this.calculateCssSize(this.fontSize),
+          '--padding': this.calculateCssSize(this.padding)
         }
       ]
     }

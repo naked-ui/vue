@@ -3,14 +3,12 @@
 .n-icon {
   cursor: pointer;
   position: relative;
-  // height: var(--height);
-  // width: var(--width);
   @include size(var(--size));
   
   &__badge {
     position: absolute;
-    top: -6px;
-    right: -6px;
+    left: 60%;
+    bottom: 60%;
     user-select: none;
   }
 }

@@ -13,6 +13,9 @@ export default {
 		},
 		badgeFontSize: {
 			control: 'text'
+		},
+		badgePadding: {
+			control: 'text'
 		}
 	}
 }
@@ -40,12 +43,13 @@ const Template = (args, { argTypes }) => ({
 			/>
 			<template v-slot:badge>
 				<nBadge
-					size="18px"
 					background="red"
 					color="white"
 					fontSize="10px"
 					:size="badgeSize"
 					:fontSize="badgeFontSize"
+					:borderRadius="badgeSize"
+					:padding="badgePadding"
 				>
 					{{ badgeValue }}
 				</nBadge>
@@ -59,5 +63,6 @@ Default.args = {
 	size: 32,
 	badgeSize: 18,
 	badgeValue: '12',
-	badgeFontSize: '10px'
+	badgeFontSize: '10px',
+	badgePadding: '0 4px'
 }
