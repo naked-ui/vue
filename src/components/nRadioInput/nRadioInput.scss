@@ -1,6 +1,13 @@
 @import '../../styles/mixins/forms.scss';
 
 [nui-namespace="nui"].radio-input {
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
   @include form-item($form-element: 'input',
     $alerts-classname: '.radio-input__alerts',
     $gap: var(--gap),
@@ -12,5 +19,38 @@
     &:disabled {
       opacity: .3;
     }
+  }
+
+  // custom styling
+  .radio-input__radio {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: solid 1px var(--color, #111);
+    margin-right: 8px;
+    position: relative;
+    outline: none;
+    border-radius: 50%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      top: 50%;
+      left: 50%;
+      border-radius: inherit;
+      background: var(--color, #111);
+      transform: scale(0) translate(-50%, -50%);
+      transition: transform .2s ease-in-out;
+      transform-origin: left top;
+    }
+    &:checked::before{
+      transform: scale(1) translate(-50%, -50%);
+    }
+  }
+
+  label {
+    display: inline-flex;
   }
 }

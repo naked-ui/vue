@@ -1,16 +1,18 @@
 @import '../../styles/mixins/forms.scss';
 
-[nui-namespace="nui"].radio-input {
+[nui-namespace="nui"].radio-group {
   @include form-item($form-element: 'input',
-    $alerts-classname: '.radio-input__alerts',
+    $alerts-classname: '.radio-group__alerts',
     $gap: var(--gap),
     $alerts-color: var(--alerts-color));
 
   label {
-
     &[disabled="disabled"],
     &:disabled {
       opacity: .3;
     }
+  }
+  .radio-input + .radio-input {
+    margin-top: var(--spacing, 0);
   }
 }

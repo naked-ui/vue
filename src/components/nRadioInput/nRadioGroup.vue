@@ -4,13 +4,13 @@
     class="radio-group"
     :nui-namespace="uiNamespace"
      :style="`
-      --gap: ${isNaN(gap) ? gap : gap + 'px'};
+      --spacing: ${isNaN(spacing) ? spacing : spacing + 'px'};
       --height: ${isNaN(height) ? height : height + 'px'};
       --width: ${isNaN(width) ? width : width + 'px'};
       --padding: ${padding};
-      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
       --color-invalid: ${colorInvalid};
       --color-valid: ${colorValid};
+      --color: ${color};
     `"
   >
     <slot></slot>
@@ -51,7 +51,15 @@ export default {
     // input attrs
     value: null,
     alertsColor:String,
-    required: Boolean
+    required: Boolean,
+    color: {
+      type: String,
+      default: ''
+    },
+    spacing: {
+      type:Number,
+      default: null
+    }
   },
   components:{ nRadioInput },
   methods:{

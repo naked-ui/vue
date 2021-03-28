@@ -7,16 +7,11 @@
       --height: ${isNaN(height) ? height : height + 'px'};
       --width: ${isNaN(width) ? width : width + 'px'};
       --padding: ${padding};
-      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
       --color-invalid: ${colorInvalid};
       --color-valid: ${colorValid};
+      --color: ${color};
     `"
-  >
-    <label
-      class="radio-input__label"
-      :disabled="disabled"
-      :for="id"
-    >
+  > <label class="radio-input__label" :disabled="disabled" :for="id">
     <input
       class="radio-input__radio"
       type="radio"
@@ -31,9 +26,8 @@
       :name="name"
       formnovalidate
     >
-      {{ label }}
-    </label>
-        <div
+    {{ label }}</label>
+    <div
       class="radio-input__alerts"
       :style="`
         --alerts-color: ${alertsColor ? alertsColor : '--'};
@@ -109,6 +103,10 @@ export default {
     },
     alertsColor: String,
     // Styling
+    color: {
+      type: String,
+      default: ''
+    },
     gap: {
       type: [String, Number],
       default: ''

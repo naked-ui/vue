@@ -3,7 +3,17 @@ import nRadioGroup from './nRadioGroup.vue'
 
 export default {
   title: 'Form/Input/RadioInput',
-  component: nRadioInput
+  component: nRadioInput,
+  argTypes: {
+    color: { control: 'color' },
+    spacing: {
+      control: {
+        type: 'range',
+        min: 0,
+        max: 20
+      }
+    }
+  }
 }
 
 const Template = (args, { argTypes }) => ({
@@ -17,7 +27,8 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  url: 'https://naked-ui.org/'
+  url: 'https://naked-ui.org/',
+  spacing: 12
 }
 
 const GroupTemplate = (args, { argTypes }) => ({
@@ -44,7 +55,7 @@ const GroupTemplate = (args, { argTypes }) => ({
 
 export const Group = GroupTemplate.bind({})
 Group.args = {
-  url: 'https://naked-ui.org/'
+  ...Default.args
 }
 
 const GroupRequiredTemplate = (args, { argTypes }) => ({
@@ -71,5 +82,5 @@ const GroupRequiredTemplate = (args, { argTypes }) => ({
 
 export const GroupRequired = GroupRequiredTemplate.bind({})
 GroupRequired.args = {
-  url: 'https://naked-ui.org/'
+  ...Default.args
 }
