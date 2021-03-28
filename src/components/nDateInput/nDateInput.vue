@@ -1,7 +1,6 @@
 <template>
   <div
-    class="form-field"
-    :nui-namespace="uiNamespace"
+    :class="componentClasses"
     :style="`
       --gap: ${isNaN(gap) ? gap : gap + 'px'};
       --height: ${isNaN(height) ? height : height + 'px'};
@@ -13,7 +12,6 @@
     `"
   >
     <label
-      class="form-field__label"
       :disabled="disabled"
       :for="id"
     >
@@ -21,55 +19,53 @@
     </label>
     <input
       type="date"
-      v-model="formFieldValue"
+      v-model="formvalue"
       @keyup="countCharacters(); validate()"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
-      :max="max"
-      :min="min"
       :name="name"
       :placeholder="placeholder"
       :readonly="readonly"
       :required="required"
       :title="title"
-      class="form-field__input-box"
     >
     <div
-      class="form-field__alerts"
+      class="n-validation-alerts"
+      v-if="validationMessages.length > 0"
     >
       <span
+        class="n-validation-alert"
         v-for="(message, index) in validationMessages"
         :key="index"
-        :class="[
-          'form-field__alerts-item'
-        ]"
         :style="`
           --color: ${message.color}
         `"
         v-html="message.content"
       />
     </div>
-    <div
-      class="form-field__counter"
-      v-if="maxlength && counterEnabled"
-    >
-      <span>{{ totalCharacters }}</span>
-      <slot name="counter-separator">/</slot>
-      <span>{{ maxlength }}</span>
-    </div>
   </div>
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
 import formField from '../../utils/formField'
 
 export default {
-  mixins: [ namespaceMixin, formField ],
-  name: 'nTextInput'
+  mixins: [formField],
+  name: 'nDateInput',
+  props: {
+    baseClassname: {
+      type: String,
+      default: 'n-form-input'
+    },
+  },
+  computed: {
+    componentClasses () {
+      return [
+        this.baseClassname
+      ]
+    }
+  },
 }
 
 </script>
-
-<style lang="scss" src="./nDateInput.scss" />
