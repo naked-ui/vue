@@ -49,6 +49,7 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   id: 'url-input',
+  name: 'url-input',
   label: 'URL input label',
   placeholder: 'URL input placeholder',
   gap: 12,
@@ -57,5 +58,6 @@ Default.args = {
   padding: '0 12px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px'
+  outlineWidth: '2px',
+  validationEnabled: true
 }

@@ -1,15 +1,10 @@
 @import '../mixins/forms.scss';
 
-:is(
-  .n-text-input,
-  .n-email-input,
-  .n-color-input,
-  .n-url-input,
-  .n-textarea
-) {
+:is(.n-form-input) {
   display: grid;
   row-gap: var(--gap);
   justify-content: start;
+  width: var(--width);
 
   .n-validation-alerts {
     display: grid;
@@ -20,15 +15,15 @@
     color: var(--color);
   }
 
-  :is(
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="pasword"],
-    input[type="date"],
-    input[type="time"],
-    input[type="url"],
-    textarea
+  textarea,
+  input:is(
+    [type="text"],
+    [type="email"],
+    [type="tel"],
+    [type="pasword"],
+    [type="date"],
+    [type="time"],
+    [type="url"],
   ) {
     @include input-box(
       $height: var(--height),
@@ -36,10 +31,13 @@
       $padding: var(--padding)
     );
 
-    @include validations(
-      $color-valid: var(--color-valid),
-      $color-invalid: var(--color-invalid)
-    );
+    &[nui-validation="true"] {
+      @include validations(
+        $color-valid: var(--color-valid),
+        $color-invalid: var(--color-invalid)
+      );
+    }
+
   }
 
   textarea {

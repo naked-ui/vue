@@ -30,6 +30,7 @@
       :readonly="readonly"
       :required="required"
       :title="title"
+      :nui-validation="validationEnabled"
     >
     <div
       class="n-validation-alerts"
@@ -57,7 +58,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-url-input'
+      default: 'n-form-input'
     },
     httpRequired: {
       type: Boolean,
@@ -73,6 +74,9 @@ export default {
       return [
         this.baseClassname
       ]
+    },
+    computedValue () {
+      return this.value
     }
   },
 }

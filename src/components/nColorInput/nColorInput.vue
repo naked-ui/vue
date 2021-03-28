@@ -29,6 +29,7 @@
       :disabled="disabled"
       required
       maxlength="7"
+      :nui-validation="validationEnabled"
     >
     <input
       type="color"
@@ -41,6 +42,7 @@
       :readonly="readonly"
       :required="required"
       :title="title"
+      :nui-validation="validationEnabled"
     >
     <div
       class="n-validation-alerts"
@@ -60,11 +62,10 @@
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
 import formField from '../../utils/formField'
 
 export default {
-  mixins: [ namespaceMixin, formField ],
+  mixins: [formField],
   data () {
     return {
       value: this.color
@@ -81,13 +82,14 @@ export default {
     },
     baseClassname: {
       type: String,
-      default: 'n-color-input'
+      default: 'n-form-input'
     }
   },
   computed: {
     componentClasses () {
       return [
-        this.baseClassname
+        this.baseClassname,
+        'n-color-input'
       ]
     }
   },

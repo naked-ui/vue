@@ -31,6 +31,7 @@
       :readonly="readonly"
       :required="required"
       :title="title"
+      :nui-validation="validationEnabled"
     >
     <div
       class="n-validation-alerts"
@@ -58,7 +59,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-email-input'
+      default: 'n-form-input'
     },
   },
   computed: {

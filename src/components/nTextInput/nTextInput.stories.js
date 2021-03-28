@@ -72,6 +72,7 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   id: 'text-input',
+  name: 'text-input',
   label: 'Text input label',
   placeholder: 'Text input placeholder',
   gap: 12,
@@ -83,9 +84,5 @@ Default.args = {
   maxlength: 24,
   minlength: 1,
   outlineWidth: '2px',
-  validationMessages: [
-    '&cross; Validation message'
-  ],
-  counterEnabled: true,
-  validInputAlertEnabled: true
+  counterEnabled: true
 }

@@ -1,6 +1,7 @@
 export { nButton } from './nButton'
 export { nCover } from './nCover'
 export { nColorInput } from './nColorInput'
+export { nDateInput } from './nDateInput'
 export { nEmailInput } from './nEmailInput'
 export { nHyperlink } from './nHyperlink'
 export { nIcon } from './nIcon'
