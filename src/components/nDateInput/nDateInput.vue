@@ -1,15 +1,7 @@
 <template>
   <div
     :class="componentClasses"
-    :style="`
-      --gap: ${isNaN(gap) ? gap : gap + 'px'};
-      --height: ${isNaN(height) ? height : height + 'px'};
-      --width: ${isNaN(width) ? width : width + 'px'};
-      --padding: ${padding};
-      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
-      --color-invalid: ${colorInvalid};
-      --color-valid: ${colorValid};
-    `"
+    :style="style"
   >
     <label
       :disabled="disabled"
@@ -20,38 +12,34 @@
     <input
       type="date"
       v-model="formvalue"
-      @keyup="countCharacters(); validate()"
+      @keyup="validateFormField()"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
+      :max="max"
+      :min="min"
       :name="name"
       :placeholder="placeholder"
       :readonly="readonly"
       :required="required"
       :title="title"
     >
-    <div
-      class="n-validation-alerts"
+    <nValidationAlerts
       v-if="validationMessages.length > 0"
-    >
-      <span
-        class="n-validation-alert"
-        v-for="(message, index) in validationMessages"
-        :key="index"
-        :style="`
-          --color: ${message.color}
-        `"
-        v-html="message.content"
-      />
-    </div>
+      :validationMessages="validationMessages"
+    />
   </div>
 </template>
 
 <script>
-import formField from '../../utils/formField'
+import formField from '../../utils/formField/index.js'
+import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
 
 export default {
   mixins: [formField],
+  components: {
+    nValidationAlerts
+  },
   name: 'nDateInput',
   props: {
     baseClassname: {

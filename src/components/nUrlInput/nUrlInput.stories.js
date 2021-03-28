@@ -4,21 +4,50 @@ export default {
   title: 'Form/Input/UrlInput',
   component: nUrlInput,
   argTypes: {
+    name: {
+      defaultValue: 'url-input-name',
+      description: '`name` prop is required'
+    },
+    id: {
+      defaultValue: 'url-input-id',
+      description: '`id` prop is required'
+    },
+    title: {
+      defaultValue: 'url-input-title'
+    },
+    label: {
+      defaultValue: 'Label text'
+    },
+    placeholder: {
+      defaultValue: 'Placeholder text'
+    },
+    pattern: {
+      control: 'text'
+    },
+    required: {
+      control: 'boolean'
+    },
     disabled: {
       control: 'boolean'
     },
-    required: {
+    autofocus: {
       control: 'boolean'
     },
     readonly: {
       control: 'boolean'
     },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
+    counterEnabled: {
+      defaultValue: false
+    },
+    validationEnabled: {
+      control: 'boolean',
+      defaultValue: true
+    },
+    colorValid: {
+      control: 'color'
+    },
+    colorInvalid: {
+      control: 'color'
     },
     height: {
       control: {
@@ -27,12 +56,13 @@ export default {
         max: 80
       }
     },
-    colorValid: {
-      control: 'color'
+    gap: {
+      control: {
+        type: 'range',
+        min: 0,
+        max: 80
+      }
     },
-    colorInvalid: {
-      control: 'color'
-    }
   }
 }
 
@@ -48,16 +78,11 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  id: 'url-input',
-  name: 'url-input',
-  label: 'URL input label',
-  placeholder: 'URL input placeholder',
   gap: 12,
   height: 48,
-  width: '320px',
+  width: '280px',
   padding: '0 12px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px',
-  validationEnabled: true
+  outlineWidth: '2px'
 }

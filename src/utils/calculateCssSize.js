@@ -1,6 +1,6 @@
 export default {
   methods: {
-    calculateSize(value) {
+    calculateCssSize(value) {
       return isNaN(value) ? value : value + 'px'
     }
   }

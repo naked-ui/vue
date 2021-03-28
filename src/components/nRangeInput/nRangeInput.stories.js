@@ -30,7 +30,7 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   height: '24px',
-  width: '320px',
+  width: '280px',
   ranges: 1,
   dotColor: '#111',
   rangeColor: '#999',

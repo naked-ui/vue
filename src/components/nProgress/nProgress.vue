@@ -1,7 +1,6 @@
 <template>
   <div
-    class="progress"
-    :nui-namespace="uiNamespace"
+    class="n-progress"
     :style="`
       --height: ${calculatedHeight}
     `"
@@ -27,10 +26,7 @@
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
-
 export default {
-  mixins: [namespaceMixin],
   name: 'nProgress',
   props: {
     label: {

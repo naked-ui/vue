@@ -77,11 +77,4 @@
   textarea {
     resize: var(--resize);
   }
-
-  label {
-    &[disabled="disabled"],
-    &:disabled {
-      opacity: var(--disabled-opacity, .3);
-    }
-  }
 }

@@ -1,15 +1,7 @@
 <template>
   <div
     :class="componentClasses"
-    :style="`
-      --gap: ${isNaN(gap) ? gap : gap + 'px'};
-      --height: ${isNaN(height) ? height : height + 'px'};
-      --width: ${isNaN(width) ? width : width + 'px'};
-      --padding: ${padding};
-      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
-      --color-invalid: ${colorInvalid};
-      --color-valid: ${colorValid};
-    `"
+    :style="style"
   >
     <label
       :disabled="disabled"
@@ -19,10 +11,8 @@
     </label>
     <input
       type="email"
-      autocorrect="off"
-      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
       v-model="value"
-      @keyup="countCharacters(); validate()"
+      @keyup="countCharacters(value); validateFormField()"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
@@ -32,30 +22,35 @@
       :required="required"
       :title="title"
       :nui-validation="validationEnabled"
+      :maxlength="maxlength"
+      :minlength="minlength"
+      autocorrect="off"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
     >
-    <div
-      class="n-validation-alerts"
+    <nValidationAlerts
       v-if="validationMessages.length > 0"
-    >
-      <span
-        class="n-validation-alert"
-        v-for="(message, index) in validationMessages"
-        :key="index"
-        :style="`
-          --color: ${message.color}
-        `"
-        v-html="message.content"
-      />
-    </div>
+      :validationMessages="validationMessages"
+    />
+    <nInputCounter
+      v-if="counterEnabled"
+      :totalCharacters="totalCharacters"
+      :maxlength="maxlength"
+    />
   </div>
 </template>
 
 <script>
-import formField from '../../utils/formField'
+import formField from '../../utils/formField/index.js'
+import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+import nInputCounter from '../../utils/components/nInputCounter.vue'
 
 export default {
   mixins: [formField],
   name: 'nEmailInput',
+  components: {
+    nValidationAlerts,
+    nInputCounter
+  },
   props: {
     baseClassname: {
       type: String,
@@ -67,7 +62,7 @@ export default {
       return [
         this.baseClassname
       ]
-    }
+    },
   },
 }
 

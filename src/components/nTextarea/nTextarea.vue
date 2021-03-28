@@ -1,17 +1,7 @@
 <template>
   <div
     :class="componentClasses"
-    :style="`
-      --gap: ${isNaN(gap) ? gap : gap + 'px'};
-      --height: ${isNaN(height) ? height : height + 'px'};
-      --width: ${isNaN(width) ? width : width + 'px'};
-      --padding: ${padding};
-      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
-      --color-invalid: ${colorInvalid};
-      --color-valid: ${colorValid};
-      --resize: ${resize};
-      --disabled-opacity: ${disableOpacity};
-    `"
+    :style="style"
   >
     <label
       :for="id"
@@ -21,7 +11,7 @@
     </label>
     <textarea
       v-model="value"
-      @keyup="countCharacters(); validate();"
+      @keyup="countCharacters(value); validate();"
       :autofocus="autofocus"
       :autocorrect="autocorrect"
       :disabled="disabled"
@@ -36,49 +26,45 @@
       :title="title"
       :nui-validation="validationEnabled"
     />
-    <div
-      class="n-validation-alerts"
+    <nValidationAlerts
       v-if="validationMessages.length > 0"
-    >
-      <span
-        class="n-validation-alert"
-        v-for="(message, index) in validationMessages"
-        :key="index"
-        :style="`
-          --color: ${message.color}
-        `"
-        v-html="message.content"
-      />
-    </div>
-    <div
-      class="counter"
-      v-if="maxlength && counterEnabled"
-    >
-      <span>{{ totalCharacters }}</span>
-      <slot name="counter-separator">/</slot>
-      <span>{{ maxlength }}</span>
-    </div>
+      :validationMessages="validationMessages"
+    />
+    <nInputCounter
+      v-if="counterEnabled"
+      :totalCharacters="totalCharacters"
+      :maxlength="maxlength"
+    />
   </div>
 </template>
 
 <script>
 import formField from '../../utils/formField'
+import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+import nInputCounter from '../../utils/components/nInputCounter.vue'
 
 export default {
   mixins: [formField],
   name: 'nTextarea',
+  components: {
+    nValidationAlerts,
+    nInputCounter
+  },
   props: {
     baseClassname: {
       type: String,
       default: 'n-form-input'
-    }
+    },
+    resize: {
+      type: String
+    },
   },
   computed: {
     componentClasses () {
       return [
         this.baseClassname
       ]
-    }
+    },
   },
 }
 </script>

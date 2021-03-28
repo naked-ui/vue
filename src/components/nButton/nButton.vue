@@ -31,12 +31,12 @@
 </template>
 
 <script>
-import calculateSizeMixin from '../../utils/calculateSize'
+import calculateCssSizeMixin from '../../utils/calculateCssSize'
 import hrefIsExternalMixin from '../../utils/hrefIsExternal'
 
 export default {
   name: 'nButton',
-  mixins: [calculateSizeMixin, hrefIsExternalMixin],
+  mixins: [calculateCssSizeMixin, hrefIsExternalMixin],
   props: {
     // Settings
     baseClassname: {
@@ -133,11 +133,8 @@ export default {
           '--button-background-color' : this.backgroundColor,
           '--padding': this.padding,
           '--height': this.height,
-          '--gap': this.calculateSize(this.gap)
-        },
-        // {
-        //   'padding' : this.noPadding ? '0' : false
-        // }
+          '--gap': this.calculateCssSize(this.gap)
+        }
       ]
     },
     iconPosition () {

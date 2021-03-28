@@ -86,7 +86,6 @@
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
 import sliderCarouselIndex from './logic/sliderCarouselIndex'
 import sliderCarouselNavigation from './logic/sliderCarouselNavigation'
 import sliderCarouselPagination from './logic/sliderCarouselPagination'
@@ -96,7 +95,6 @@ import sliderCarouselSettings from './logic/sliderCarouselSettings'
 export default {
   name: 'nSliderCarousel',
   mixins: [
-    namespaceMixin,
     sliderCarouselIndex,
     sliderCarouselNavigation,
     sliderCarouselPagination,

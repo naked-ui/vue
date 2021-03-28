@@ -4,25 +4,52 @@ export default {
   title: 'Form/Input/DateInput',
   component: nDateInput,
   argTypes: {
+    name: {
+      defaultValue: 'date-input-name',
+      description: '`name` prop is required'
+    },
+    id: {
+      defaultValue: 'date-input-id',
+      description: '`id` prop is required'
+    },
+    title: {
+      defaultValue: 'date-input-title'
+    },
+    label: {
+      defaultValue: 'Label text'
+    },
+    placeholder: {
+      defaultValue: 'YYYY-MM-DD'
+    },
+    min: {
+      control: 'text',
+      defaultValue: '2020-06-15'
+    },
+    max: {
+      control: 'text',
+      defaultValue: '2022-06-15'
+    },
+    required: {
+      control: 'boolean'
+    },
     disabled: {
       control: 'boolean'
     },
-    required: {
+    autofocus: {
       control: 'boolean'
     },
     readonly: {
       control: 'boolean'
     },
-    counterEnabled: {
+    validationEnabled: {
       control: 'boolean',
       defaultValue: true
     },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
+    colorValid: {
+      control: 'color'
+    },
+    colorInvalid: {
+      control: 'color'
     },
     height: {
       control: {
@@ -31,24 +58,11 @@ export default {
         max: 80
       }
     },
-    minlength: {
-      control: {
-        type: 'range',
-        min: 3,
-        max: 80
-      }
-    },
-    maxlength: {
+    gap: {
       control: {
         type: 'range',
         min: 0,
         max: 80
-      }
-    },
-    autocorrect: {
-      control: {
-        type: 'select',
-        options: [ 'on', 'off' ]
       }
     },
   }
@@ -58,15 +72,14 @@ const Template = (args, { argTypes }) => ({
   components: { nDateInput },
   props: Object.keys(argTypes),
   template: `
-    <nDateInput v-bind="$props" />
+    <nDateInput
+      v-bind="$props"
+    />
   `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  id: 'date-input',
-  label: 'Date input label',
-  placeholder: 'Date input placeholder',
   gap: 12,
   height: 48,
   width: 'auto',

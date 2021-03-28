@@ -4,7 +4,7 @@
   >
     <span
       class="n-validation-alert"
-      v-for="(message, index) in validationMessages"
+      v-for="(message, index) in props.validationMessages"
       :key="index"
       :style="`
         --color: ${message.color}
@@ -18,7 +18,7 @@
 export default {
   name: 'nValidationAlerts',
   props: {
-    validationAlerts: {
+    validationMessages: {
       type: Array,
       default () {
         return []

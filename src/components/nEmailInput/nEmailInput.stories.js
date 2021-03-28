@@ -4,21 +4,50 @@ export default {
   title: 'Form/Input/EmailInput',
   component: nEmailInput,
   argTypes: {
+    name: {
+      defaultValue: 'email-input-name',
+      description: '`name` prop is required'
+    },
+    id: {
+      defaultValue: 'email-input-id',
+      description: '`id` prop is required'
+    },
+    title: {
+      defaultValue: 'email-input-title'
+    },
+    label: {
+      defaultValue: 'Label text'
+    },
+    placeholder: {
+      defaultValue: 'Placeholder text'
+    },
+    pattern: {
+      control: 'text'
+    },
+    required: {
+      control: 'boolean'
+    },
     disabled: {
       control: 'boolean'
     },
-    required: {
+    autofocus: {
       control: 'boolean'
     },
     readonly: {
       control: 'boolean'
     },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
+    counterEnabled: {
+      defaultValue: false
+    },
+    validationEnabled: {
+      control: 'boolean',
+      defaultValue: true
+    },
+    colorValid: {
+      control: 'color'
+    },
+    colorInvalid: {
+      control: 'color'
     },
     height: {
       control: {
@@ -27,12 +56,13 @@ export default {
         max: 80
       }
     },
-    colorValid: {
-      control: 'color'
+    gap: {
+      control: {
+        type: 'range',
+        min: 0,
+        max: 80
+      }
     },
-    colorInvalid: {
-      control: 'color'
-    }
   }
 }
 
@@ -48,12 +78,9 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  id: 'email-input',
-  label: 'Email input label',
-  placeholder: 'Email input placeholder',
   gap: 12,
   height: 48,
-  width: '320px',
+  width: '280px',
   padding: '0 12px',
   autofocus: false,
   disabled: false,

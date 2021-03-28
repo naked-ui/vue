@@ -1,15 +1,7 @@
 <template>
   <div
     :class="componentClasses"
-    :style="`
-      --gap: ${isNaN(gap) ? gap : gap + 'px'};
-      --height: ${isNaN(height) ? height : height + 'px'};
-      --width: ${isNaN(width) ? width : width + 'px'};
-      --padding: ${padding};
-      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
-      --color-invalid: ${colorInvalid};
-      --color-valid: ${colorValid};
-    `"
+    :style="style"
   >
     <label
       :disabled="disabled"
@@ -24,7 +16,7 @@
       v-model="value"
       :id="id"
       @change="updateColorValue($event)"
-      @input="validate()"
+      @input="validateFormField()"
       :placeholder="placeholder"
       :disabled="disabled"
       required
@@ -44,28 +36,22 @@
       :title="title"
       :nui-validation="validationEnabled"
     >
-    <div
-      class="n-validation-alerts"
+    <nValidationAlerts
       v-if="validationMessages.length > 0"
-    >
-      <span
-        class="n-validation-alert"
-        v-for="(message, index) in validationMessages"
-        :key="index"
-        :style="`
-          --color: ${message.color}
-        `"
-        v-html="message.content"
-      />
-    </div> 
+      :validationMessages="validationMessages"
+    />
   </div>
 </template>
 
 <script>
-import formField from '../../utils/formField'
+import formField from '../../utils/formField/index.js'
+import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
 
 export default {
   mixins: [formField],
+  components: {
+    nValidationAlerts
+  },
   data () {
     return {
       value: this.color
@@ -91,7 +77,7 @@ export default {
         this.baseClassname,
         'n-color-input'
       ]
-    }
+    },
   },
   methods: {
     updateColorValue (e) {
