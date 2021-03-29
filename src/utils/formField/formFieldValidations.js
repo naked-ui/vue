@@ -126,11 +126,11 @@ export default {
       const htmlValid = target.checkValidity() // triggers `invalid` input event
 
       // TODO custom rules not work on `submit`
-      // // base validation passed
-      // if (htmlValid) {
-      //   // check custom validation rules
-      //   this.validateCustomRules(target)
-      // }
+      // base validation passed
+      if (htmlValid) {
+        // check custom validation rules
+        this.validateCustomRules(target)
+      }
 
       console.dir(target.validity)
     },
