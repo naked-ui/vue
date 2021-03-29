@@ -1,77 +1,67 @@
 <template>
-
-  <div
-    class="checkbox-group"
-    :nui-namespace="uiNamespace"
-     :style="`
-      --gap: ${isNaN(gap) ? gap : gap + 'px'};
-      --height: ${isNaN(height) ? height : height + 'px'};
-      --width: ${isNaN(width) ? width : width + 'px'};
-      --padding: ${padding};
-      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
-      --color-invalid: ${colorInvalid};
-      --color-valid: ${colorValid};
-    `"
-  >
+  <div class="checkbox-group" :style="groupStyle">
     <slot></slot>
-    <div
-      class="checkbox-input__alerts"
-      :style="`
-        --alerts-color: ${alertsColor ? alertsColor : '--'};
-      `"
-    >
-      <span
-        v-for="(message, index) in validationMessages"
-        :key="index"
-        :class="[
-          'checkbox-input__alerts-item'
-        ]"
-        :style="`
-          --color: ${message.color}
-        `"
-        v-html="message.content"
-      />
-    </div>
+    <nValidationAlerts
+      v-if="validationMessages.length > 0"
+      :validationMessages="validationMessages"
+    />
   </div>
 </template>
-
 <script>
-import namespaceMixin from '../../utils/namespace'
-import formField from '../../utils/formField'
+import formFieldProps from '../../utils/formField/formFieldProps'
+import formFieldValidations from '../../utils/formField/formFieldValidations'
+import calculateCssSizeMixin from '../../utils/calculateCssSize'
+import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+
 export default {
-  mixins: [ namespaceMixin, formField ],
+    mixins: [ formFieldProps, formFieldValidations, calculateCssSizeMixin ],
   name: 'nCheckboxGroup',
+  components: { nValidationAlerts },
+
   provide() {
     return {
       checkboxGroup: this
     }
   },
-  data(){
-    return {
-      selectedValue: this.multiple ? [] : null
-    }
-  },
   props: {
+    value: {
+      type: Array,
+      required: true
+    },
     // input attrs
-    value: null,
-    alertsColor: String,
-    required: Boolean,
-    multiple: {
-      type: Boolean,
-      default: false
+    color: {
+      type: String,
+      default: null
+    },
+    spacing: {
+      type: Number
     }
   },
-  watch:{
-    multiple (val) {
-      if (val) this.selectedValue = []
-      else this.selectedValue = null
-      this.select(this.selectedValue)
+  data () {
+    return {
+      selectedValue: []
+    }
+  },
+  computed: {
+    style () {
+      return [
+        {
+          '--gap': this.calculateCssSize(this.gap),
+          '--height': this.calculateCssSize(this.height),
+          '--width': this.calculateCssSize(this.width),
+          '--outline-width': this.calculateCssSize(this.outlineWidth),
+          '--padding': this.padding,
+          '--color-valid': this.colorValid,
+          '--color-invalid': this.colorInvalid,
+        },
+        { '--resize' : this.resize ? this.resize : '' }
+      ]
+    },
+    groupStyle(){
+      return [...this.style, {'--spacing': this.calculateCssSize(this.spacing), '--color': this.color}]
     }
   },
   methods: {
-    select (val) {
-      this.$emit('change', val)
-    },
     setValidity() {
       // checkbox(-group) has only one validation state: `required`
       // custom `setValidity` is triggered by all inputs simultaneously, 
@@ -82,25 +72,16 @@ export default {
       }]
     },
     checkValidity () {
-      if (this.required && (this.multiple && !this.selectedValue.length || !this.selectedValue)) return this.setValidity()
+      if (this.required && !this.selectedValue.length) return this.setValidity()
       this.validationMessages = []
     },
     validate(e, value) {
       // triggered by any checkbox-input child on value change
-      if (this.multiple) {
-        if (this.value.includes(value)) this.selectedValue = this.value.filter(v => v !== value)
-        else this.selectedValue = this.value.concat([value])
-      } else {
-        // do not rely on input's `checked` attribute, its controlled by `value`
-        this.selectedValue = this.selectedValue === value ? null : value
-      }
+      if (this.value.includes(value)) this.selectedValue = this.value.filter(v => v !== value)
+      else this.selectedValue = this.value.concat([value])
       this.checkValidity()
-      this.select(this.selectedValue)
+      this.$emit('input', this.selectedValue)
     }
-  },
-  model: {
-    prop: 'value',
-    event: 'change'
   }
 }
 

@@ -10,19 +10,19 @@
       {{ label }}
     </label>
     <input
-      type="date"
-      v-model="formvalue"
+      type="url"
+      v-model="value"
       @keyup="validateFormField()"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
-      :max="max"
-      :min="min"
       :name="name"
       :placeholder="placeholder"
       :readonly="readonly"
       :required="required"
       :title="title"
+      :nui-validation="validationEnabled"
+      autocorrect="off"
     >
     <nValidationAlerts
       v-if="validationMessages.length > 0"
@@ -37,15 +37,15 @@ import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
 
 export default {
   mixins: [formField],
+  name: 'nUrlInput',
   components: {
     nValidationAlerts
   },
-  name: 'nDateInput',
   props: {
     baseClassname: {
       type: String,
       default: 'n-form-field'
-    },
+    }
   },
   computed: {
     componentClasses () {
@@ -55,4 +55,5 @@ export default {
     }
   },
 }
+
 </script>

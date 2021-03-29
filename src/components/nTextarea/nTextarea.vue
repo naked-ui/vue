@@ -1,28 +1,17 @@
 <template>
   <div
-    class="textarea"
-    :nui-namespace="uiNamespace"
-    :style="`
-      --gap: ${isNaN(gap) ? gap : gap + 'px'};
-      --height: ${isNaN(height) ? height : height + 'px'};
-      --width: ${isNaN(width) ? width : width + 'px'};
-      --padding: ${padding};
-      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
-      --color-invalid: ${colorInvalid};
-      --color-valid: ${colorValid};
-      --resize: ${resize};
-    `"
+    :class="componentClasses"
+    :style="style"
   >
     <label
-      class="textarea__label"
       :for="id"
       :disabled="disabled"
     >
       {{ label }}
     </label>
     <textarea
-      v-model="formFieldValue"
-      @keyup="countCharacters(); validate();"
+      v-model="value"
+      @keyup="countCharacters(value); validateFormField();"
       :autofocus="autofocus"
       :autocorrect="autocorrect"
       :disabled="disabled"
@@ -33,43 +22,49 @@
       :pattern="pattern"
       :placeholder="placeholder"
       :readonly="readonly"
+      :required="required"
       :title="title"
+      :nui-validation="validationEnabled"
     />
-    <div
-      class="textarea__alerts"
-    >
-      <span
-        v-for="(message, index) in validationMessages"
-        :key="index"
-        :class="[
-          'textarea__alerts-item'
-        ]"
-        :style="`
-          --color: ${message.color}
-        `"
-        v-html="message.content"
-      />
-    </div>
-    <div
-      class="textarea__counter"
-      v-if="maxlength && counterEnabled"
-    >
-      <span>{{ totalCharacters }}</span>
-      <slot name="counter-separator">/</slot>
-      <span>{{ maxlength }}</span>
-    </div>
+    <nValidationAlerts
+      v-if="validationMessages.length > 0"
+      :validationMessages="validationMessages"
+    />
+    <nInputCounter
+      v-if="counterEnabled"
+      :totalCharacters="totalCharacters"
+      :maxlength="maxlength"
+    />
   </div>
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
-import formField from '../../utils/formField'
+import formField from '../../utils/formField/index.js'
+import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+import nInputCounter from '../../utils/components/nInputCounter.vue'
 
 export default {
-  mixins: [ namespaceMixin, formField ],
-  name: 'nTextarea'
+  mixins: [formField],
+  name: 'nTextarea',
+  components: {
+    nValidationAlerts,
+    nInputCounter
+  },
+  props: {
+    baseClassname: {
+      type: String,
+      default: 'n-form-field'
+    },
+    resize: {
+      type: String
+    },
+  },
+  computed: {
+    componentClasses () {
+      return [
+        this.baseClassname
+      ]
+    },
+  },
 }
-
 </script>
-
-<style lang="scss" src="./nTextarea.scss" />

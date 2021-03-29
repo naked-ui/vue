@@ -22,8 +22,8 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   id: 'textarea',
-  label: 'Textarea label',
-  placeholder: 'Textarea placeholder',
+  label: 'Label text',
+  placeholder: 'Placeholder text',
   gap: 10,
   height: 80,
   width: 320,

@@ -2,71 +2,59 @@
   <component
     v-bind="attrs"
     :is="tag"
-    :class="componentClasses"
+    :class="componentClasses.length > 0 ? componentClasses : false"
     :disabled="disabled || busy"
     :busy="busy"
     :style="style"
-    :nui-namespace="uiNamespace"
+    :buttonBusyText="buttonBusyText"
   >
     <div
-      v-if="$slots['button-icon--left']"
-      class="button__icon button__icon--left"
+      v-if="$slots['icon--left']"
+      :class="baseClassname ? `${baseClassname}__icon ${baseClassname}__icon--left` : false"
     >
-      <slot name="button-icon--left">
-      </slot>
+      <slot name="icon--left" />
     </div>
     <span
       v-if="$slots.default"
-      class="button__text"
+      :class="baseClassname ? `${baseClassname}__text` : false"
     >
-      <slot v-if="!busy">
-        Button text
-      </slot>
-      <slot v-else name="button-busy-text">
-        Button busy text
-      </slot>
+      <slot v-if="!busy" />
+      <slot v-else name="busy-text" />
     </span>
-     <div
-      v-if="$slots['button-icon--solo']"
-      class="button__slot-icon--solo"
-    >
-      <slot name="button-icon--solo" />
-    </div>
     <div
-      v-if="$slots['button-icon--right']"
-      class="button__icon button__icon--right"
+      v-if="$slots['icon--right']"
+      :class="baseClassname ? `${baseClassname}__icon ${baseClassname}__icon--right` : false"
     >
-      <slot name="button-icon--right" />
+      <slot name="icon--right" />
     </div>
   </component>
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
+import calculateCssSizeMixin from '../../utils/calculateCssSize'
+import hrefIsExternalMixin from '../../utils/hrefIsExternal'
 
 export default {
-  mixins: [namespaceMixin],
   name: 'nButton',
+  mixins: [calculateCssSizeMixin, hrefIsExternalMixin],
   props: {
+    // Settings
     baseClassname: {
+      type: String,
+      default: 'n-button'
+    },
+    href: {
+      type: String,
+      default: '',
+      required: false
+    },
+    type: {
       type: String,
       default: 'button'
     },
-    kind: {
+    role: {
       type: String,
-      default: 'primary'
-    },
-    backgroundColor: {
-      type: String,
-      default: '#333'
-    },
-    textColor: {
-      type: String,
-      default: '#fff'
-    },
-    size: {
-      type: String,
-      default: 'medium'
+      default: 'button'
     },
     disabled: {
       type: Boolean,
@@ -76,77 +64,98 @@ export default {
       type: Boolean,
       default: false
     },
-    noPadding: {
-      type: Boolean,
-      default: false
-    },
-    link: {
+    target: {
       type: String,
-      default: '',
-      required: false
+      default: ''
+    },
+    // Styles
+    backgroundColor: {
+      type: String,
+      default: '#333'
+    },
+    textColor: {
+      type: String,
+      default: '#fff'
+    },
+    padding: {
+      type: [String, Number],
+      default: '0 16px'
+    },
+    height: {
+      type: [String, Number],
+      default: '48px'
+    },
+    gap: {
+      type: [String, Number],
+      default: '8px'
     }
   },
   computed: {
     tag () {
-      if (!this.link) {
+      if (!this.href) {
         return 'button'
       } else if (
-        this.link.includes('http') ||
-        this.link.includes('mailto:') ||
-        this.link.includes('tel:')
+        this.href.includes('http') ||
+        this.href.includes('mailto:') ||
+        this.href.includes('tel:')
       ) return 'a'
       else return 'router-link'
     },
     attrs () {
-      if (!this.link) {
-        return { type: this.type }
+      if (!this.href) {
+        return {
+          type: this.type
+        }
       } else if (
-        this.link.includes('http') ||
-        this.link.includes('mailto:') ||
-        this.link.includes('tel:')
-      ) return { href: this.link }
-      else return { to: this.link }
+        this.href.includes('http') ||
+        this.href.includes('mailto:') ||
+        this.href.includes('tel:')
+      ) {
+        if (!this.disabled) {
+          return {
+            href: this.href,
+            target: this.target,
+            role: this.role
+          }
+        } else return {
+          role: this.role
+        }
+      }
+      else return {
+        to: this.href,
+        role: this.role
+      }
     },
     style () {
       return [
         {
           '--button-text-color' : this.textColor,
-          '--button-background-color' : this.backgroundColor
-        },
-        {
-          'padding' : this.noPadding ? '0' : false
+          '--button-background-color' : this.backgroundColor,
+          '--padding': this.padding,
+          '--height': this.height,
+          '--gap': this.calculateCssSize(this.gap)
         }
       ]
     },
     iconPosition () {
-      if(this.$slots['button-icon--left']) {
+      if(this.$slots['icon--left']) {
         return 'left'
       }
-      if(this.$slots['button-icon--solo']) {
+      if(this.$slots['icon--solo']) {
         return 'solo'
       }
-      if(this.$slots['button-icon--right']) {
+      if(this.$slots['icon--right']) {
         return 'right'
       }
     },
     componentClasses () {
-      return [
-        this.baseClassname,
-        this.kind === 'primary' && `${this.baseClassname}--primary`,
-        this.kind === 'secondary' && `${this.baseClassname}--secondary`,
-        this.kind === 'tertiary' && `${this.baseClassname}--tertiary`,
-        this.kind === 'ghost' && `${this.baseClassname}--ghost`,
-        this.kind === 'danger' && `${this.baseClassname}--danger`,
-        this.kind === 'success' && `${this.baseClassname}--success`,
-        this.kind === 'warning' && `${this.baseClassname}--warning`,
-        this.size === 'small' && `${this.baseClassname}--small`,
-        this.size === 'medium' && `${this.baseClassname}--medium`,
-        this.size === 'big' && `${this.baseClassname}--big`,
-        this.busy && `${this.baseClassname}--busy`,
+      if (this.baseClassname.length > 0) return [
+        this.baseClassname
       ]
+      else return false
     }
   }
-};
+}
 </script>
 
-<style lang="scss" src="./nButton.scss" scoped />
+<style lang="scss" src="./nButton.scss" />

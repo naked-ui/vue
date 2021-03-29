@@ -7,7 +7,6 @@
     :style="`
       --visible-items: ${visibleItems};
     `"
-    :nui-namespace="uiNamespace"
   >
     <div :class="[`${baseClassname}__item-content`]">
       <slot />
@@ -16,11 +15,8 @@
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
-
 export default {
   name: 'nSliderCarouselItem',
-  mixins: [namespaceMixin],
   props: {
     refName: {
       type: String,
@@ -28,7 +24,7 @@ export default {
     },
     baseClassname: {
       type: String,
-      default: 'slider-carousel'
+      default: 'n-slider-carousel'
     },
     slideIndex: {
       type: Number,

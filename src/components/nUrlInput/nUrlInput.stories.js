@@ -1,19 +1,19 @@
-import nColorInput from './nColorInput.vue'
+import nUrlInput from './nUrlInput.vue'
 
 export default {
-  title: 'Form/Input/ColorInput',
-  component: nColorInput,
+  title: 'Form/Input/UrlInput',
+  component: nUrlInput,
   argTypes: {
     name: {
-      defaultValue: 'color-input-name',
+      defaultValue: 'url-input-name',
       description: '`name` prop is required'
     },
     id: {
-      defaultValue: 'color-input-id',
+      defaultValue: 'url-input-id',
       description: '`id` prop is required'
     },
     title: {
-      defaultValue: 'color-input-title'
+      defaultValue: 'url-input-title'
     },
     label: {
       defaultValue: 'Label text'
@@ -67,23 +67,20 @@ export default {
 }
 
 const Template = (args, { argTypes }) => ({
-  components: { nColorInput },
+  components: { nUrlInput },
   props: Object.keys(argTypes),
   template: `
-    <nColorInput
+    <nUrlInput
       v-bind="$props"
     />
   `,
-  data: () => ({
-    color: ''
-  })
 });
 
 export const Default = Template.bind({});
 Default.args = {
   gap: 12,
   height: 48,
-  width: '96px',
+  width: '280px',
   padding: '0 12px',
   autofocus: false,
   disabled: false,

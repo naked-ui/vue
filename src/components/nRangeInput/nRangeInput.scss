@@ -1,6 +1,6 @@
 @import 'sxcss';
 
-[nui-namespace='nui'].range-input {
+.n-range-input {
   --fillDot: rgb(58, 58, 58);
   --fillRange: rgb(128, 128, 128);
   --fillBg: rgb(231, 231, 231);
@@ -31,7 +31,7 @@
     font-size: inherit;
   }
 
-  .range-input__wrap {
+  .n-range-input__wrap {
     --d: var(--h);
     --r: calc(0.5 * var(--d));
     --uw: calc(var(--w) - var(--d));
@@ -39,7 +39,7 @@
 
     display: grid;
     grid-template-rows: max-content var(--h) max-content;
-    grid-gap: 0.625em;
+    // grid-gap: 0.625em;
     width: var(--w);
     overflow: visible;
 
@@ -73,7 +73,7 @@
     }
   }
 
-  .range-input__sr-only {
+  .n-range-input__sr-only {
     position: absolute;
     clip-path: inset(50%);
   }

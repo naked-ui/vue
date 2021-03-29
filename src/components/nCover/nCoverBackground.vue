@@ -1,5 +1,5 @@
 <template functional>
-  <div class="cover__background">
+  <div :class="`${props.baseClassname}__background`">
     <picture
       v-if="props.backgroundImage && props.backgroundImage.src"
       loading="lazy"
@@ -27,7 +27,7 @@
       loading="lazy"
       decoding="async"
       style="content-visibility: auto"
-      class="cover__background-video"
+      :class="`${props.baseClassname}__background-video`"
       autoplay
       loop
     >
@@ -46,17 +46,20 @@ export default {
   props: {
     backgroundImage: {
       type: Object,
-      default: () => {}
+      default () {
+        return {}
+      }
     },
     backgroundVideo: {
       type: Object,
-      default: () => {}
+      default () {
+        return {}
+      }
+    },
+    baseClassname: {
+      type: String,
+      default: 'n-cover'
     }
   },
-  // computed: {
-  //   extractImage () {
-  //     return this.image.find(obj => obj.src)
-  //   }
-  // }
 }
 </script>

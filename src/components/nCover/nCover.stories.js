@@ -51,14 +51,14 @@ BackgroundImageTemplate.args = {
   backgroundImage: {
     src: 'https://images.pexels.com/photos/5232570/pexels-photo-5232570.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
     alt: 'Alt text',
-    srcset: [
+    sources: [
       {
         srcset: 'https://images.pexels.com/photos/6762258/pexels-photo-6762258.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-        media: '(max-width: 980px)'
+        media: '(max-width: 767px)'
       },
       {
         srcset: 'https://images.pexels.com/photos/7082674/pexels-photo-7082674.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-        media: '(min-width: 981px) and (max-width: 1580px)'
+        media: '(min-width: 768px) and (max-width: 980px)'
       }
     ]    
 },
@@ -75,7 +75,6 @@ export const VideoTemplate = (args, { argTypes }) => ({
   template: `
     <nCover
       v-bind="$props"
-      :backgroundVideo="backgroundVideo"
       :overlayOpacity="overlayOpacity / 100"
     >
       <template v-slot:content>

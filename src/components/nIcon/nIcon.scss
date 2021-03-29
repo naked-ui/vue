@@ -1,6 +1,14 @@
 @import 'sxcss';
 
-.icon {
+.n-icon {
   cursor: pointer;
-  @include hover-effect($opacity: .36);
+  position: relative;
+  @include size(var(--size));
+  
+  &__badge {
+    position: absolute;
+    left: 60%;
+    bottom: 60%;
+    user-select: none;
+  }
 }

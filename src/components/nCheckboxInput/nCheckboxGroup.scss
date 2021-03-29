@@ -1,17 +1,12 @@
-@import '../../styles/mixins/forms.scss';
-
-[nui-namespace="nui"].checkbox-input {
-  @include form-item(
-    $form-element: 'input',
-    $alerts-classname: '.checkbox-input__alerts',
-    $gap: var(--gap),
-    $alerts-color: var(--alerts-color));
+.checkbox-group {
 
   label {
-
     &[disabled="disabled"],
     &:disabled {
       opacity: .3;
     }
   }
-} 
+  .checkbox-input + .checkbox-input {
+    margin-top: var(--spacing, 0);
+  }
+}

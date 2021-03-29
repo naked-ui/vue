@@ -1,7 +1,6 @@
 <template>
   <div
-    class="cover"
-    :nui-namespace="uiNamespace"
+    :class="componentClasses"
     :style="`
       --width: ${width ? width : '100%'};
       --height: ${height ? height : '100%'};
@@ -10,22 +9,22 @@
   >
     <div
       v-if="$slots['background']"
-      class="cover__background"
+      :class="`${componentClasses}__background`"
     >
       <slot name="background" />
     </div>
     <nCoverBackground
       v-else
       :backgroundImage="backgroundImage"
-      :srcsetBackgroundImages="srcsetBackgroundImages"
       :backgroundVideo="backgroundVideo"
+      :baseClassname="baseClassname"
     />
     <div
-      class="cover__content"
+      :class="`${componentClasses}__content`"
       v-if="$slots['content'].length > 0"
     >
       <div
-        class="cover__content-inner"
+        :class="`${componentClasses}__content-inner`"
         :style="`
           --content-place-content: ${placeContent};
         `"
@@ -35,7 +34,7 @@
     </div>
     <div
       v-if="hasOverlay"
-      class="cover__overlay"
+      :class="`${componentClasses}__overlay`"
       :style="`
         --overlay-background-color: ${overlayColor};
         --overlay-opacity: ${overlayOpacity};
@@ -45,11 +44,9 @@
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
 import nCoverBackground from './nCoverBackground'
 
 export default {
-  mixins: [namespaceMixin],
   components: {
     nCoverBackground
   },
@@ -84,11 +81,26 @@ export default {
     },
     backgroundImage: {
       type: Object,
-      default: () => {}
+      default () {
+        return {}
+      }
     },
     backgroundVideo: {
       type: Object,
-      default: () => {}
+      default () {
+        return {}
+      }
+    },
+    baseClassname: {
+      type: String,
+      default: 'n-cover'
+    }
+  },
+  computed: {
+    componentClasses () {
+      return [
+        this.baseClassname
+      ]
     }
   }
 }

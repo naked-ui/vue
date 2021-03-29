@@ -1,17 +1,5 @@
 <template>
-<div
-    class="checkbox-input"
-    :nui-namespace="uiNamespace"
-     :style="`
-      --gap: ${isNaN(gap) ? gap : gap + 'px'};
-      --height: ${isNaN(height) ? height : height + 'px'};
-      --width: ${isNaN(width) ? width : width + 'px'};
-      --padding: ${padding};
-      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
-      --color-invalid: ${colorInvalid};
-      --color-valid: ${colorValid};
-    `"
-  >
+  <div class="checkbox-input" :style="inputStyle" :class="componentClasses">
     <label
       class="checkbox-input__label"
       :disabled="disabled"
@@ -29,117 +17,45 @@
       :checked="isChecked"
       :value="value"
       :name="name"
-      formnovalidate
     >
       {{ label }}
     </label>
-        <div
-      class="checkbox-input__alerts"
-      :style="`
-        --alerts-color: ${alertsColor ? alertsColor : '--'};
-      `"
-    >
-      <span
-        v-for="(message, index) in validationMessages"
-        :key="index"
-        :class="[
-          'checkbox-input__alerts-item'
-        ]"
-        :style="`
-          --color: ${message.color}
-        `"
-        v-html="message.content"
-      />
-    </div>
+    <nValidationAlerts
+      v-if="validationMessages.length > 0"
+      :validationMessages="validationMessages"
+    />
   </div>
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
-import formField from '../../utils/formField'
+import formFieldProps from '../../utils/formField/formFieldProps'
+import formFieldValidations from '../../utils/formField/formFieldValidations'
+import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+import calculateCssSizeMixin from '../../utils/calculateCssSize'
+
 export default {
-  mixins: [namespaceMixin, formField],
+  mixins: [ formFieldProps, formFieldValidations, calculateCssSizeMixin ],
+  name: 'nCheckboxInput',
+  components: { nValidationAlerts },
   inject: {
     checkboxGroup: {
       default: false
     }
   },
-  name: 'nCheckboxInput',
-    props: {
-    // input attrs
+  props: {
     value: null,
+    baseClassname: {
+      type: String,
+      default: 'n-form-field'
+    },
+    // input attrs
     checked: {
       type: Boolean,
       default: false
     },
-    disabled: { // ???
-      type: Boolean,
-      default: false
-    },
-    id: {
+    color: {
       type: String,
-      default: 'checkbox',
-      required: true
-    },
-    name: {
-      type: String,
-      required: true,
-      default: 'checkbox',
-    },
-    readonly: {
-      type: Boolean,
-      default: false
-    },
-    required: {
-      type: Boolean,
-      default: false
-    },
-    // Settings
-    counterEnabled: {
-      type: Boolean,
-      default: false
-    },
-    form: {
-      type: String,
-      default: ''
-    },
-    label: {
-      type: String,
-      default: 'checkbox label'
-    },
-    alertsColor: String,
-    // Styling
-    gap: {
-      type: [String, Number],
-      default: ''
-    },
-    height: {
-      type: [String, Number],
-      default: ''
-    },
-    width: {
-      type: [String, Number],
-      default: ''
-    },
-    padding: {
-      type: String,
-      default: ''
-    },
-    outlineWidth: {
-      type: [String, Number],
-      default: ''
-    },
-    resize: {
-      type: String,
-      default: ''
-    },
-    colorInvalid: {
-      type: String,
-      default: 'red'
-    },
-    colorValid: {
-      type: String,
-      default: 'green'
+      default: null
     },
   },
   computed:{
@@ -153,15 +69,34 @@ export default {
       return this.required || !!this.checkboxGroup && this.checkboxGroup.required
     },
     isChecked(){
-      // if (this.checked) return this.checked
-      if (this.checkboxGroup) {
-        const { value, multiple } = this.checkboxGroup
-        if (multiple) {
-          return value.includes(this.value)
-        }
-        return value == this.value
+      if (this.checked) return this.checked
+      else if (this.checkboxGroup) {
+        const { value } = this.checkboxGroup
+        return value.includes(this.value)
       }
       return false
+    },
+    inputStyle(){
+      return [...this.style, { '--color': this.color }]
+    },
+    style () {
+      return [
+        {
+          '--gap': this.calculateCssSize(this.gap),
+          '--height': this.calculateCssSize(this.height),
+          '--width': this.calculateCssSize(this.width),
+          '--outline-width': this.calculateCssSize(this.outlineWidth),
+          '--padding': this.padding,
+          '--color-valid': this.colorValid,
+          '--color-invalid': this.colorInvalid,
+        },
+        { '--resize' : this.resize ? this.resize : '' }
+      ]
+    },
+    componentClasses () {
+      return [
+        this.baseClassname
+      ]
     }
   },
   methods: {
@@ -169,7 +104,7 @@ export default {
       if (this.checkboxGroup) {
         this.checkboxGroup.checkValidity()
       } else {
-        this.setValidity(e)
+        this.validateFormField(e)
       }
     },
     $validate(e) {
@@ -177,9 +112,11 @@ export default {
         // send value to compare equal values (e.g. checkbox `value` attribute converts numers to string)
         this.checkboxGroup.validate(e, this.value)
       } else {
-        this.validate(e)
+        this.validateFormField(e)
       }
     }
   }
 }
 </script>
+
+<style lang="scss" src="./nCheckboxInput.scss" />

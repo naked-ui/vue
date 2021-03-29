@@ -3,7 +3,17 @@ import nCheckboxGroup from './nCheckboxGroup.vue'
 
 export default {
   title: 'Form/Input/CheckboxInput',
-  component: nCheckboxInput
+  component: nCheckboxInput,
+  argTypes: {
+    color: { control: 'color' },
+    spacing: {
+      control: {
+        type: 'range',
+        min: 0,
+        max: 20
+      }
+    }
+  }
 }
 
 const Template = (args, { argTypes }) => ({
@@ -18,31 +28,29 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  url: 'https://naked-ui.org/'
+  url: 'https://naked-ui.org/',
+  id: 'radio',
+  name: 'radio',
+  label: 'test label'
 }
 const GroupTemplate = (args, { argTypes }) => ({
   components: { nCheckboxInput, nCheckboxGroup },
   props: Object.keys(argTypes),
   data() {
     return {
-      val: null,
-      multiple: false
+      val: []
     }
   },
   template: `
     <form novalidate @submit.prevent="e => {if (!e.target.checkValidity()) return}">
       <div>current val: {{val}}</div> 
-      <label> multiple 
-        <input type="checkbox" v-model="multiple" />
-      </label>
-      <nCheckboxGroup v-bind="$props" v-model="val" :multiple="multiple">
+      <nCheckboxGroup v-bind="$props" v-model="val">
         <nCheckboxInput v-for="n in 3"
           name="chbxs"
           :key="n"
           :id="\`\${n}\`"
           :label="\`Checkbox \${n}\`"
-          :value="n" 
-          checked
+          :value="n"
           />
       </nCheckboxGroup>
       <input type="submit" value="submit">
@@ -51,6 +59,7 @@ const GroupTemplate = (args, { argTypes }) => ({
 })
 
 export const CheckboxGroup = GroupTemplate.bind({})
-Default.args = {
-  url: 'https://naked-ui.org/'
+CheckboxGroup.args = {
+  ...Default.args,
+  spacing: 12
 }

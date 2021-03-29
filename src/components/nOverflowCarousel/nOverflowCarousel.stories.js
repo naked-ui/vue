@@ -27,6 +27,7 @@ const Template = (args, { argTypes }) => ({
     :viewportPadding="viewportPadding"
     :itemsGap="itemsGap"
     :snapItems="snapItems"
+    style="width: 100%"
   >
     <nOverflowCarouselItem
       v-for="(item, index) in carouselItems"

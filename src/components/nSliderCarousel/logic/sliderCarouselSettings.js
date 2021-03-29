@@ -6,10 +6,6 @@ export default {
       required: true,
       default: 'slider-carousel'
     },
-    baseClassname: {
-      type: String,
-      default: 'slider-carousel'
-    },
     paginationItems: {
       type: [Array, Number],
       required: true
@@ -58,13 +54,6 @@ export default {
     slideIdEnabled: {
       type: Boolean,
       default: false
-    }
-  },
-  computed: {
-    componentClasses () {
-      return [
-        this.baseClassname
-      ]
     }
   }
 }
