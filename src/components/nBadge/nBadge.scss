@@ -1,0 +1,13 @@
+@import 'sxcss';
+
+.n-badge {
+  border-radius: var(--border-radius);
+  height: var(--size);
+  min-width: var(--size);
+  @include flex($place: center);
+  background: var(--background);
+  color: var(--color);
+  font-size: var(--font-size, 10px);
+  padding: var(--padding);
+  box-sizing: border-box;
+}

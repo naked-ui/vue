@@ -28,7 +28,9 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({})
 Default.args = {
   url: 'https://naked-ui.org/',
-  spacing: 12
+  id: 'radio',
+  name: 'radio',
+  label: 'test label'
 }
 
 const GroupTemplate = (args, { argTypes }) => ({
@@ -55,7 +57,8 @@ const GroupTemplate = (args, { argTypes }) => ({
 
 export const Group = GroupTemplate.bind({})
 Group.args = {
-  ...Default.args
+  ...Default.args,
+  spacing: 12
 }
 
 const GroupRequiredTemplate = (args, { argTypes }) => ({
@@ -82,5 +85,5 @@ const GroupRequiredTemplate = (args, { argTypes }) => ({
 
 export const GroupRequired = GroupRequiredTemplate.bind({})
 GroupRequired.args = {
-  ...Default.args
+  ...Group.args
 }

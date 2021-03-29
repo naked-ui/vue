@@ -6,8 +6,6 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
     textColor: { control: 'color' },
-    size: { control: { type: 'select', options: ['small', 'medium', 'big'] } },
-    kind: { control: { type: 'select', options: ['primary', 'secondary', 'tertiary', 'ghost', 'success', 'danger', 'warning'] } },
     buttonText: { control: { type: 'text'}, defaultValue: 'Button text' },
     buttonBusyText: { control: { type: 'text'}, defaultValue: 'Button busy text' }
   },
@@ -21,7 +19,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
       v-bind="$props"
     >
       {{ buttonText }}
-      <template v-slot:button-busy-text>
+      <template v-slot:busy-text>
         {{ buttonBusyText }}
       </template>
     </nButton>
@@ -29,6 +27,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
 });
 
 export const Default = DefaultTemplate.bind({});
+Default.args = {
+  href: 'https://newfantastic.com',
+  target: '_blank'
+}
 
 const IconLeftTemplate = (args, { argTypes }) => ({
   components: { nButton },
@@ -37,13 +39,13 @@ const IconLeftTemplate = (args, { argTypes }) => ({
     <nButton
       v-bind="$props"
     >
-      <template v-slot:button-icon--left>
+      <template v-slot:icon--left>
       <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width: 16px;">
         <circle cx="16" cy="16" r="16" :fill="textColor" />
       </svg>
       </template>
       {{ buttonText }}
-      <template v-slot:button-busy-text>
+      <template v-slot:busy-text>
         {{ buttonBusyText }}
       </template>
     </nButton>
@@ -51,6 +53,10 @@ const IconLeftTemplate = (args, { argTypes }) => ({
 });
 
 export const IconLeft = IconLeftTemplate.bind({});
+IconLeft.args = {
+  href: 'https://newfantastic.com',
+  target: '_blank'
+}
 
 const IconRightTemplate = (args, { argTypes }) => ({
   components: { nButton },
@@ -59,7 +65,7 @@ const IconRightTemplate = (args, { argTypes }) => ({
     <nButton
       v-bind="$props"
     >
-      <template v-slot:button-icon--right>
+      <template v-slot:icon--right>
       <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width: 16px;">
         <circle cx="16" cy="16" r="16" :fill="textColor" />
       </svg>
@@ -70,3 +76,7 @@ const IconRightTemplate = (args, { argTypes }) => ({
 });
 
 export const IconRight = IconRightTemplate.bind({});
+IconRight.args = {
+  href: 'https://newfantastic.com',
+  target: '_blank'
+}

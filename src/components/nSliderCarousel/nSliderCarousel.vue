@@ -1,6 +1,5 @@
 <template>
   <div
-    :nui-namespace="uiNamespace"
     :class="componentClasses"
     :ref="refName"
     :style="`
@@ -87,7 +86,6 @@
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
 import sliderCarouselIndex from './logic/sliderCarouselIndex'
 import sliderCarouselNavigation from './logic/sliderCarouselNavigation'
 import sliderCarouselPagination from './logic/sliderCarouselPagination'
@@ -97,15 +95,24 @@ import sliderCarouselSettings from './logic/sliderCarouselSettings'
 export default {
   name: 'nSliderCarousel',
   mixins: [
-    namespaceMixin,
     sliderCarouselIndex,
     sliderCarouselNavigation,
     sliderCarouselPagination,
     sliderCarouselSettings
   ],
-  // components: {
-  //   nSliderCarouselPagination
-  // }
+  props: {
+    baseClassname: {
+      type: String,
+      default: 'n-slider-carousel'
+    },
+  },
+  computed: {
+    componentClasses () {
+      return [
+        this.baseClassname
+      ]
+    }
+  }
 }
 </script>
 

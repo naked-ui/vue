@@ -1,10 +1,4 @@
-@import '../../styles/mixins/forms.scss';
-
-[nui-namespace="nui"].radio-group {
-  @include form-item($form-element: 'input',
-    $alerts-classname: '.radio-group__alerts',
-    $gap: var(--gap),
-    $alerts-color: var(--alerts-color));
+.radio-group {
 
   label {
     &[disabled="disabled"],

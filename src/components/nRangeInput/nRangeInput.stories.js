@@ -15,9 +15,6 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { nRangeInput },
   props: Object.keys(argTypes),
-  data: () => ({
-    test: []
-  }),
   template: `
     <div>
       <nRangeInput v-bind="$props" v-model="test" />
@@ -30,10 +27,13 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   height: '24px',
-  width: '320px',
+  width: '280px',
   ranges: 1,
   dotColor: '#111',
-  rangeColor: '#999',
-  backgroundColor: '#ddd',
-  outputBackgroundColor: '#111'
+  rangeColor: '#ccc',
+  backgroundColor: '#f0f0f0',
+  outputBackgroundColor: '#111',
+  label: 'Label text',
+  gap: '12px',
+  outputFontColor: '#fff'
 }

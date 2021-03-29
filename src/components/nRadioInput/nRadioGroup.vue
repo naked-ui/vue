@@ -1,68 +1,42 @@
 <template>
-
-  <div
-    class="radio-group"
-    :nui-namespace="uiNamespace"
-     :style="`
-      --spacing: ${isNaN(spacing) ? spacing : spacing + 'px'};
-      --height: ${isNaN(height) ? height : height + 'px'};
-      --width: ${isNaN(width) ? width : width + 'px'};
-      --padding: ${padding};
-      --color-invalid: ${colorInvalid};
-      --color-valid: ${colorValid};
-      --color: ${color};
-    `"
-  >
+  <div class="radio-group" :style="groupStyle">
     <slot></slot>
-    <div
-      class="radio-input__alerts"
-      :style="`
-        --alerts-color: ${alertsColor ? alertsColor : '--'};
-      `"
-    >
-      <span
-        v-for="(message, index) in validationMessages"
-        :key="index"
-        :class="[
-          'radio-input__alerts-item'
-        ]"
-        :style="`
-          --color: ${message.color}
-        `"
-        v-html="message.content"
-      />
-    </div>
+    <nValidationAlerts
+      v-if="validationMessages.length > 0"
+      :validationMessages="validationMessages"
+    />
   </div>
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
-import formField from '../../utils/formField'
-import nRadioInput from './nRadioInput'
+import formField from '../../utils/formField/index.js'
+import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+
 export default {
-  mixins: [ namespaceMixin, formField ],
+  mixins: [ formField ],
   name: 'nRadioGroup',
+  components: { nValidationAlerts },
   provide() {
     return {
       radioGroup: this
     }
   },
   props: {
-    // input attrs
-    value: null,
-    alertsColor:String,
-    required: Boolean,
+    // group attrs
     color: {
       type: String,
-      default: ''
+      default: null
     },
     spacing: {
-      type:Number,
-      default: null
+      type: Number
     }
   },
-  components:{ nRadioInput },
-  methods:{
+  computed: {
+    groupStyle(){
+      return [...this.style, {'--spacing': this.calculateCssSize(this.spacing), '--color': this.color}]
+    }
+  },
+  methods: {
     setValidity() {
       // radio(-group) has only one validation state: `required`
       // custom `setValidity` is triggered by all inputs simultaneously, 
@@ -74,13 +48,9 @@ export default {
     },
     validate(e) {
       // triggered by any radio-input child on value change
-      this.$emit('change', e.target.value)
+      this.$emit('input', e.target.value)
       this.validationMessages = []
     }
-  },
-  model: {
-    prop: 'value',
-    event: 'change'
   }
 }
 

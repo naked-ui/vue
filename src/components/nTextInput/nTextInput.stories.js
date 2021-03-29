@@ -4,32 +4,50 @@ export default {
   title: 'Form/Input/TextInput',
   component: nTextInput,
   argTypes: {
+    name: {
+      defaultValue: 'text-input-name',
+      description: '`name` prop is required'
+    },
+    id: {
+      defaultValue: 'text-input-id',
+      description: '`id` prop is required'
+    },
+    title: {
+      defaultValue: 'text-input-title'
+    },
+    label: {
+      defaultValue: 'Label text'
+    },
+    placeholder: {
+      defaultValue: 'Placeholder text'
+    },
+    pattern: {
+      control: 'text'
+    },
+    required: {
+      control: 'boolean'
+    },
     disabled: {
       control: 'boolean'
     },
-    required: {
+    autofocus: {
       control: 'boolean'
     },
     readonly: {
       control: 'boolean'
     },
     counterEnabled: {
+      defaultValue: false
+    },
+    validationEnabled: {
       control: 'boolean',
       defaultValue: true
     },
-    // type: {
-    //   control: {
-    //     type: 'select',
-    //     options: ['text', 'email', 'tel', 'date', 'time']
-    //   },
-    //   defaultValue: 'text'
-    // },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
+    colorValid: {
+      control: 'color'
+    },
+    colorInvalid: {
+      control: 'color'
     },
     height: {
       control: {
@@ -38,24 +56,11 @@ export default {
         max: 80
       }
     },
-    minlength: {
-      control: {
-        type: 'range',
-        min: 3,
-        max: 80
-      }
-    },
-    maxlength: {
+    gap: {
       control: {
         type: 'range',
         min: 0,
         max: 80
-      }
-    },
-    autocorrect: {
-      control: {
-        type: 'select',
-        options: [ 'on', 'off' ]
       }
     },
   }
@@ -65,27 +70,19 @@ const Template = (args, { argTypes }) => ({
   components: { nTextInput },
   props: Object.keys(argTypes),
   template: `
-    <nTextInput v-bind="$props" />
+    <nTextInput
+      v-bind="$props"
+    />
   `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  id: 'text-input',
-  label: 'Text input label',
-  placeholder: 'Text input placeholder',
   gap: 12,
   height: 48,
-  width: 'auto',
+  width: '280px',
   padding: '0 12px',
   autofocus: false,
   disabled: false,
-  maxlength: 24,
-  minlength: 1,
-  outlineWidth: '2px',
-  validationMessages: [
-    '&cross; Validation message'
-  ],
-  counterEnabled: true,
-  validInputAlertEnabled: true
+  outlineWidth: '2px'
 }

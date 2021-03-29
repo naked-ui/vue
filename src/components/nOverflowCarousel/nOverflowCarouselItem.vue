@@ -1,7 +1,6 @@
 <template>
   <li
     :class="componentClasses"
-    :nui-namespace="uiNamespace"
     :style="`
       --width: ${width};
       --height: ${height};
@@ -14,15 +13,12 @@
 </template>
 
 <script> 
-import namespaceMixin from '../../utils/namespace'
-
 export default {
   name: 'nOverflowCarouselItem',
-  mixins: [namespaceMixin],
   props: {
     baseClassname: {
       type: String,
-      default: 'overflow-carousel__item'
+      default: 'n-overflow-carousel__item'
     },
     width: {
       type: String,
