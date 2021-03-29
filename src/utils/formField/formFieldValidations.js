@@ -70,17 +70,16 @@ export default {
       })
     },
     validateCustomRules(target) {
-      // let hasErrors = false
+      let hasErrors = false
       // validate custom rules
       this.rules.forEach((rule) => {
         const message = rule(this.value) // pass `value` to custom rule argument
         if (message !== true) {
           this.pushValidationMessage(message)
-          target.setCustomValidity(message)
-          // hasErrors = true
+          hasErrors = message
         }
       })
-      // if (hasErrors) target.reportValidity()
+      if (hasErrors) target.setCustomValidity(hasErrors) // report `customError` only once
     },
     getValidationMessage(error, field) {
       // custom message provided
@@ -100,7 +99,7 @@ export default {
       } = e
 
       for (let error in validity) {
-        if (error === 'customError') continue
+        // if (error === 'customError') continue
         const val = validity[error]
         if (val) {
           const msg = this.getValidationMessage(error, target)
