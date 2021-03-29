@@ -98,11 +98,11 @@ export default {
         target
       } = e
 
-      for (let error in validity) {
-        // if (error === 'customError') continue
-        const val = validity[error]
-        if (val) {
-          const msg = this.getValidationMessage(error, target)
+      for (let errorType in validity) {
+        // if (errorType === 'customError') continue
+        const hasError = validity[errorType]
+        if (hasError) {
+          const msg = this.getValidationMessage(errorType, target)
           this.pushValidationMessage(msg)
         }
       }
