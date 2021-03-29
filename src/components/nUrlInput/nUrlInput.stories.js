@@ -62,21 +62,23 @@ export default {
         min: 0,
         max: 80
       }
-    },
+    }
   }
 }
 
 const Template = (args, { argTypes }) => ({
   components: { nUrlInput },
   props: Object.keys(argTypes),
+  data: () => ({ val: '' }),
   template: `
     <nUrlInput
       v-bind="$props"
+      v-model="val"
     />
-  `,
-});
+  `
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   gap: 12,
   height: 48,

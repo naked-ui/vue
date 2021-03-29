@@ -7,7 +7,7 @@ export default {
     resize: {
       control: {
         type: 'select',
-        options: [ 'both', 'horizontal', 'vertical', 'none' ]
+        options: ['both', 'horizontal', 'vertical', 'none']
       }
     }
   }
@@ -16,12 +16,14 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { nTextarea },
   props: Object.keys(argTypes),
-  template: '<nTextarea v-bind="$props" />',
-});
+  data: () => ({ val: '' }),
+  template: '<nTextarea v-bind="$props" v-model="val" />'
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   id: 'textarea',
+  name: 'textarea',
   label: 'Label text',
   placeholder: 'Placeholder text',
   gap: 10,

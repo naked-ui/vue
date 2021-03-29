@@ -62,24 +62,23 @@ export default {
         min: 0,
         max: 80
       }
-    },
+    }
   }
 }
 
 const Template = (args, { argTypes }) => ({
   components: { nColorInput },
   props: Object.keys(argTypes),
+  data: () => ({ val: '' }),
   template: `
     <nColorInput
       v-bind="$props"
+      v-model="val"
     />
-  `,
-  data: () => ({
-    color: ''
-  })
-});
+  `
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   gap: 12,
   height: 48,

@@ -124,7 +124,6 @@ export default {
       this.resetValidation(e)
 
       const htmlValid = target.checkValidity() // triggers `invalid` input event
-
       // TODO custom rules not work on `submit`
       // base validation passed
       if (htmlValid) {

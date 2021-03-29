@@ -21,27 +21,27 @@ export default {
       type: String
     },
     id: {
-      type: String,
+      type: [Number, String],
       required: true
     },
     label: {
       type: String
     },
     max: {
-      type: [Number, Boolean],
-      default: false
+      type: [Number, String],
+      default: null
     },
     min: {
-      type: [Number, Boolean],
-      default: false
+      type: [Number, String],
+      default: null
     },
     maxlength: {
-      type: [Number, Boolean],
-      default: false
+      type: [Number, String],
+      default: null
     },
     minlength: {
-      type: [Number, Boolean],
-      default: false
+      type: [Number, String],
+      default: null
     },
     name: {
       type: String,

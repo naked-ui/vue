@@ -11,8 +11,10 @@
     </label>
     <input
       type="url"
-      v-model="value"
-      @keyup="validateFormField()"
+      :value="value"
+      @invalid="onInvalid"
+      @input="$emit('input', $event.target.value);validateFormField($event)"
+      @blur.capture="validateFormField"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
