@@ -48,7 +48,8 @@ export default {
     },
     pattern: {
       type: String,
-      default: '.*\S.*'
+      // default: '.*\\S.*'
+      default: null
     },
     placeholder: {
       type: String

@@ -12,7 +12,8 @@
     <input
       type="text"
       v-model="value"
-      @keyup="countCharacters(value); validateFormField()"
+      @keyup="countCharacters(value); validateFormField($event)"
+      @invalid="setValidity"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"

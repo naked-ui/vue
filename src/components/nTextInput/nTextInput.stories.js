@@ -62,7 +62,7 @@ export default {
         min: 0,
         max: 80
       }
-    },
+    }
   }
 }
 
@@ -73,10 +73,10 @@ const Template = (args, { argTypes }) => ({
     <nTextInput
       v-bind="$props"
     />
-  `,
-});
+  `
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   gap: 12,
   height: 48,
@@ -84,5 +84,12 @@ Default.args = {
   padding: '0 12px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px'
+  outlineWidth: '2px',
+  pattern: '.*\\S.*',
+  rules: [
+    (value) =>
+      !value ||
+      value.length > 2 ||
+      'This is custom rule message: field not required, but min 3 chars!'
+  ]
 }
