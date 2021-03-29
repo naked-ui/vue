@@ -54,7 +54,7 @@ export default {
     customMessages: {
       // custom error messages for default rules
       type: Object,
-      default: () => {}
+      default: () => ({})
     }
   },
   data() {
@@ -89,7 +89,7 @@ export default {
       // use default
       const msg = defaults.messages[error]
       if (isObject(msg)) return msg[field.type] || msg.default
-      return msg || msg.default
+      return msg || defaults.messages.default
     },
     setValidity(e) {
       // handle `invalid` input event
@@ -99,7 +99,7 @@ export default {
       } = e
 
       for (let errorType in validity) {
-        // if (errorType === 'customError') continue
+        if (errorType === 'customError') continue
         const hasError = validity[errorType]
         if (hasError) {
           const msg = this.getValidationMessage(errorType, target)

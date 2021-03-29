@@ -70,9 +70,12 @@ const Template = (args, { argTypes }) => ({
   components: { nTextInput },
   props: Object.keys(argTypes),
   template: `
+  <form novalidate @submit.prevent="e => {if (!e.target.checkValidity()) return}">
     <nTextInput
       v-bind="$props"
     />
+    <input type="submit" value="submit">
+  </form>
   `
 })
 
@@ -88,7 +91,6 @@ Default.args = {
   pattern: '.*\\S.*',
   rules: [
     (value) =>
-      !value ||
       value.length > 2 ||
       'This is custom rule message: field not required, but min 3 chars!'
   ]
