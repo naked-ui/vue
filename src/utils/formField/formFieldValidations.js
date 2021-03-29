@@ -72,8 +72,9 @@ export default {
     validateCustomRules(target) {
       let hasErrors = false
       // validate custom rules
+      // TODO use `this.value` to allow validate non-primitive values
       this.rules.forEach((rule) => {
-        const message = rule(this.value) // pass `value` to custom rule argument
+        const message = rule(target.value) // pass `value` to custom rule argument
         if (message !== true) {
           this.pushValidationMessage(message)
           hasErrors = message
@@ -88,6 +89,7 @@ export default {
       }
       // use default
       const msg = defaults.messages[error]
+
       if (isObject(msg)) return msg[field.type] || msg.default
       return msg || defaults.messages.default
     },
@@ -98,8 +100,10 @@ export default {
         target
       } = e
 
+      if (validity.customError || validity.valid) return
+      this.resetValidation(e)
+
       for (let errorType in validity) {
-        if (errorType === 'customError') continue
         const hasError = validity[errorType]
         if (hasError) {
           const msg = this.getValidationMessage(errorType, target)
@@ -107,20 +111,31 @@ export default {
         }
       }
     },
+    resetValidation(e) {
+      e.target.setCustomValidity('')
+      this.validationMessages = []
+    },
     validateFormField(e) {
       if (!this.validationEnabled) return
-      let formItem = e.target
+
+      const { target } = e
+      // const target = this.$refs.input
       // clear validations every time
-      formItem.setCustomValidity('')
-      this.validationMessages = []
+      this.resetValidation(e)
 
-      formItem.checkValidity() // triggers `invalid` input event
+      const htmlValid = target.checkValidity() // triggers `invalid` input event
 
-      if (formItem.validity.valid) {
-        // base validation passed
-        this.validateCustomRules(formItem) // check custom validation rules
-      }
-      console.dir(formItem.validity)
+      // TODO custom rules not work on `submit`
+      // // base validation passed
+      // if (htmlValid) {
+      //   // check custom validation rules
+      //   this.validateCustomRules(target)
+      // }
+
+      console.dir(target.validity)
+    },
+    onInvalid(e) {
+      this.setValidity(e)
     }
   }
 }

@@ -69,12 +69,24 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { nTextInput },
   props: Object.keys(argTypes),
+  methods: {
+    reset() {
+      this.val = ''
+    },
+    submit(e) {
+      if (!e.target.checkValidity()) return
+    }
+  },
+  data: () => ({ val: '' }),
   template: `
-  <form novalidate @submit.prevent="e => {if (!e.target.checkValidity()) return}">
+  <form novalidate @submit.prevent="submit">
+  {{ val }}
     <nTextInput
       v-bind="$props"
+      v-model="val"
     />
-    <input type="submit" value="submit">
+    <input type="reset" value="Reset" @click="reset">
+    <input type="submit" value="submit" >
   </form>
   `
 })
@@ -89,8 +101,10 @@ Default.args = {
   disabled: false,
   outlineWidth: '2px',
   pattern: '.*\\S.*',
+  // pattern: '^[A-Z]*$',
   rules: [
     (value) =>
+      !value ||
       value.length > 2 ||
       'This is custom rule message: field not required, but min 3 chars!'
   ]

@@ -10,10 +10,12 @@
       {{ label }}
     </label>
     <input
+      ref="input"
       type="text"
-      v-model="value"
-      @keyup="countCharacters(value); validateFormField($event)"
-      @invalid="setValidity"
+      :value="value"
+      @invalid="onInvalid"
+      @input="$emit('input', $event.target.value);validateFormField($event)"
+      @blur.capture="validateFormField"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
@@ -64,7 +66,7 @@ export default {
         this.baseClassname
       ]
     },
-  },
+  }
 }
 
 </script>

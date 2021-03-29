@@ -1,5 +1,6 @@
 export default {
   props: {
+    value: null,
     autocorrect: {
       type: String,
       default: ''
