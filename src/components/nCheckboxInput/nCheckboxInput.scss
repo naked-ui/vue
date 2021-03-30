@@ -34,9 +34,5 @@
       border-bottom: 2px solid var(--color, #111);
       transform: rotate(-45deg) scale(0) translate(-50%, -50%);
     }
-
-    &:checked::before {
-      transform: rotate(-45deg) scale(1) translate(-50%, -50%);
-    }
-  }
+  } 
 }
