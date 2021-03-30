@@ -1,10 +1,4 @@
 .checkbox-group {
-  label {
-    &[disabled="disabled"],
-    &:disabled {
-      opacity: .3;
-    }
-  }
   .checkbox-input+.checkbox-input {
     margin-top: var(--spacing, 0);
   }
