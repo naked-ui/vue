@@ -1,0 +1,14 @@
+.radio-group {
+
+  label {
+
+    &[disabled="disabled"],
+    &:disabled {
+      opacity: .3;
+    }
+  }
+
+  .radio-input+.radio-input {
+    margin-top: var(--spacing, 0);
+  }
+}
