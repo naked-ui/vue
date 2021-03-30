@@ -12,6 +12,9 @@ export default {
         min: 0,
         max: 20
       }
+    },
+    customMessages: {
+      control: 'object'
     }
   }
 }
@@ -30,7 +33,8 @@ Default.args = {
   url: 'https://naked-ui.org/',
   id: 'radio',
   name: 'radio',
-  label: 'test label'
+  label: 'test label',
+  customMessages: { valueMissing: 'Not empty!' }
 }
 
 const GroupTemplate = (args, { argTypes }) => ({
@@ -42,7 +46,7 @@ const GroupTemplate = (args, { argTypes }) => ({
     }
   },
   template: `<form novalidate @submit.prevent="e=>{if (!e.target.checkValidity()) return}">
-      <div>current val: {{val}}</div> 
+      <div>current val: {{val}}</div>
       <nRadioGroup v-bind="$props" v-model="val">
         <nRadioInput v-for="n in 3"
         name="radios"
@@ -70,7 +74,7 @@ const GroupRequiredTemplate = (args, { argTypes }) => ({
     }
   },
   template: `<form novalidate @submit.prevent="e=>{if (!e.target.checkValidity()) return}">
-      <div>current val: {{ val }}</div> 
+      <div>current val: {{ val }}</div>
       <nRadioGroup v-bind="$props" required v-model="val">
         <nRadioInput v-for="n in 3"
         name="radios"

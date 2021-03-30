@@ -4,6 +4,16 @@ export default {
   title: 'Form/Input/TextInput',
   component: nTextInput,
   argTypes: {
+    autocorrect: {
+      defaultValue: null,
+      description: '`autocorrect` prop is Safari only'
+    },
+    customMessages: {
+      control: 'object'
+    },
+    rules: {
+      control: 'array'
+    },
     name: {
       defaultValue: 'text-input-name',
       description: '`name` prop is required'
@@ -70,9 +80,6 @@ const Template = (args, { argTypes }) => ({
   components: { nTextInput },
   props: Object.keys(argTypes),
   methods: {
-    reset() {
-      this.val = ''
-    },
     submit(e) {
       if (!e.target.checkValidity()) return
     }
@@ -85,7 +92,6 @@ const Template = (args, { argTypes }) => ({
       v-bind="$props"
       v-model="val"
     />
-    <input type="reset" value="Reset" @click="reset">
     <input type="submit" value="submit" >
   </form>
   `
@@ -101,7 +107,7 @@ Default.args = {
   disabled: false,
   outlineWidth: '2px',
   pattern: '.*\\S.*',
-  // pattern: '^[A-Z]*$',
+  customMessages: { valueMissing: 'Not empty!' },
   rules: [
     (value) =>
       !value ||
