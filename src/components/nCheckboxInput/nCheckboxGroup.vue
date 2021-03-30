@@ -1,5 +1,5 @@
 <template>
-  <div class="checkbox-group" :style="groupStyle">
+  <div class="checkbox-group" :style="style">
     <slot></slot>
     <nValidationAlerts
       v-if="validationMessages.length > 0"
@@ -47,9 +47,9 @@ export default {
       }
       return messages.valueMissing.default
     },
-    groupStyle() {
+    style() {
       return [
-        ...this.style,
+        ...this.$super(formField).style(),
         {
           '--spacing': this.calculateCssSize(this.spacing),
           '--color': this.color

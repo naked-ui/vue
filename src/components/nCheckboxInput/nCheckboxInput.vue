@@ -1,5 +1,5 @@
 <template>
-  <div class="checkbox-input" :style="inputStyle" :class="componentClasses">
+  <div class="checkbox-input" :style="style" :class="componentClasses">
     <label class="checkbox-input__label" :disabled="disabled" :for="id">
       <input
         class="checkbox-input__checkbox"
@@ -75,8 +75,8 @@ export default {
       }
       return false
     },
-    inputStyle() {
-      return [...this.style, { '--color': this.color }]
+    style() {
+      return [...this.$super(formField).style(), , { '--color': this.color }]
     },
     componentClasses() {
       return [this.baseClassname]

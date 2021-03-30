@@ -1,5 +1,5 @@
 <template>
-  <div class="radio-group" :style="groupStyle">
+  <div class="radio-group" :style="style">
     <slot></slot>
     <nValidationAlerts
       v-if="validationMessages.length > 0"
@@ -32,9 +32,9 @@ export default {
     }
   },
   computed: {
-    groupStyle() {
+    style() {
       return [
-        ...this.style,
+        ...this.$super(formField).style(),
         {
           '--spacing': this.calculateCssSize(this.spacing),
           '--color': this.color

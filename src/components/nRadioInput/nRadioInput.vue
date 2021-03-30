@@ -1,5 +1,5 @@
 <template>
-  <div class="radio-input" :style="inputStyle" :class="componentClasses">
+  <div class="radio-input" :style="style" :class="componentClasses">
     <label class="radio-input__label" :disabled="disabled" :for="id">
       <input
         class="radio-input__radio"
@@ -67,8 +67,8 @@ export default {
         (!!this.radioGroup && this.radioGroup.value === this.value)
       )
     },
-    inputStyle() {
-      return [...this.style, { '--color': this.color }]
+    style() {
+      return [...this.$super(formField).style(), { '--color': this.color }]
     },
     componentClasses() {
       return [this.baseClassname]
