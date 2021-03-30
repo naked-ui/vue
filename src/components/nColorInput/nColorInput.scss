@@ -5,9 +5,9 @@
     grid-column: 2/3;
     transform: translateX(calc(var(--negative-factor) * var(--outline-width)));
 
-    [nui-validation="true"] {
+    &[nui-validation="true"] {
       
-      &:valid + input[type="color"][nui-validation="true"] {
+      &:valid ~ input[type="color"][nui-validation="true"] {
         outline-color: var(--color-valid);
       }
   
@@ -36,7 +36,13 @@
     border: none;
     outline: var(--outline-width) solid;
     outline-offset: calc(var(--negative-factor) * var(--outline-width));
-
+    // Webkit styles
+    &::-webkit-color-swatch-wrapper{
+      padding: 0;
+    }
+    &::-webkit-color-swatch{
+      border: none;
+    }
     [nui-validation="true"] {
       & + input[type="text"] {
         outline-color: var(--color-valid);
