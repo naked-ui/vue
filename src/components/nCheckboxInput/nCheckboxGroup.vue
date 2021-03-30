@@ -8,8 +8,10 @@
   </div>
 </template>
 <script>
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
-import formField from '../../utils/formField/index.js'
+import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
+import formField from '@/utils/formField/index.js'
+import { messages } from '@/utils/validation'
+
 export default {
   mixins: [formField],
   name: 'nCheckboxGroup',
@@ -39,6 +41,12 @@ export default {
     }
   },
   computed: {
+    errorMessage() {
+      if (this.customMessages.hasOwnProperty('valueMissing')) {
+        return this.customMessages['valueMissing']
+      }
+      return messages.valueMissing.default
+    },
     groupStyle() {
       return [
         ...this.style,
@@ -56,7 +64,7 @@ export default {
       // but the result can be only one
       this.validationMessages = [
         {
-          content: '&cross; This field is required', // or custom message
+          content: this.errorMessage, // or custom message
           color: this.colorInvalid
         }
       ]

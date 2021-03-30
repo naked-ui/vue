@@ -24,8 +24,9 @@
 </template>
 
 <script>
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
-import formField from '../../utils/formField/index.js'
+import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
+import formField from '@/utils/formField/index'
+
 export default {
   mixins: [formField],
   name: 'nCheckboxInput',
