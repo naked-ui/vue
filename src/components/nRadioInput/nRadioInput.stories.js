@@ -13,6 +13,13 @@ export default {
         max: 20
       }
     },
+    spacing: {
+      control: {
+        type: 'range',
+        min: 0,
+        max: 20
+      }
+    },
     customMessages: {
       control: 'object'
     }
@@ -29,6 +36,9 @@ const Template = (args, { argTypes }) => ({
 })
 
 export const Default = Template.bind({})
+Default.argTypes = {
+  spacing: { table: { disable: true } }
+}
 Default.args = {
   url: 'https://naked-ui.org/',
   id: 'radio',
@@ -62,7 +72,8 @@ const GroupTemplate = (args, { argTypes }) => ({
 
 export const Group = GroupTemplate.bind({})
 Group.args = {
-  ...Default.args
+  ...Default.args,
+  spacing: 12
 }
 
 const GroupRequiredTemplate = (args, { argTypes }) => ({

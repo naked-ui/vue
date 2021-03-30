@@ -1,6 +1,7 @@
 .radio-input {
     label {
       display: inline-flex;
+      align-items: center;
       &[disabled="disabled"],
       &:disabled {
         opacity: .3;
@@ -13,7 +14,7 @@
       height: var(--height, 16px);
       width: var(--width, 16px);
       border: solid 1px var(--color, #111);
-      margin-right: calc(var(--width, 16px) / 2);
+      margin-right: calc(var(--gap, calc(var(--width, 16px) / 2))); // half width as fallback
       position: relative;
       outline: none;
       border-radius: 50%;

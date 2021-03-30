@@ -30,6 +30,10 @@ export default {
     color: {
       type: String,
       default: null
+    },
+    spacing: {
+      type: [String, String],
+      default: null
     }
   },
   data() {
@@ -45,7 +49,13 @@ export default {
       return messages.valueMissing.default
     },
     style() {
-      return [...this.$super(formField).style(), { '--color': this.color }]
+      return [
+        ...this.$super(formField).style(),
+        {
+          '--color': this.color,
+          '--spacing': this.calculateCssSize(this.spacing)
+        }
+      ]
     }
   },
   methods: {

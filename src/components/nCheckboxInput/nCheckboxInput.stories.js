@@ -13,6 +13,13 @@ export default {
         max: 20
       }
     },
+    spacing: {
+      control: {
+        type: 'range',
+        min: 0,
+        max: 20
+      }
+    },
     customMessages: {
       control: 'object'
     }
@@ -30,13 +37,18 @@ const Template = (args, { argTypes }) => ({
 })
 
 export const Default = Template.bind({})
+Default.argTypes = {
+  spacing: { table: { disable: true } }
+}
 Default.args = {
   url: 'https://naked-ui.org/',
   id: 'radio',
   name: 'radio',
   label: 'test label',
-  customMessages: { valueMissing: 'Not empty!' }
+  customMessages: { valueMissing: 'Not empty!' },
+  gap: 12
 }
+
 const GroupTemplate = (args, { argTypes }) => ({
   components: { nCheckboxInput, nCheckboxGroup },
   props: Object.keys(argTypes),
@@ -63,7 +75,8 @@ const GroupTemplate = (args, { argTypes }) => ({
 })
 
 export const CheckboxGroup = GroupTemplate.bind({})
+
 CheckboxGroup.args = {
   ...Default.args,
-  gap: 12
+  spacing: 12
 }
