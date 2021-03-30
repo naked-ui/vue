@@ -6,15 +6,18 @@ function isObject(ob) {
 
 function deepSearch(object, key) {
   if (object.hasOwnProperty(key)) return object[key]
-  let ob, i
-  for (i = Object.keys(object).length; i--; ) {
-    const nextObject = object[Object.keys(object)[i]]
-    if (isObject(nextObject)) {
-      ob = deepSearch(nextObject, key)
-      if (ob != null) return ob
+  let ob,
+    i,
+    nextOb,
+    keys = Object.keys(object)
+  for (i = keys.length; i--; ) {
+    nextOb = object[keys[i]]
+    if (isObject(nextOb)) {
+      ob = deepSearch(nextOb, key)
+      if (ob) return ob
     }
   }
-  return null
+  return undefined // more verbose result for `not found`
 }
 
 Vue.prototype.$super = function (options) {
