@@ -1,6 +1,7 @@
 export default {
   methods: {
     calculateCssSize(size) {
+      if (!size) return null
       if (isNaN(size) == false) return size + 'px'
       if (
         size.includes('em') ||
