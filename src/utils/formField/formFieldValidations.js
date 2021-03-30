@@ -1,4 +1,4 @@
-import { defaults } from '../validation'
+import { messages as defaultMessages } from '../validation/index'
 
 function isObject(obj) {
   return obj === Object(obj)
@@ -47,12 +47,13 @@ export default {
         return this.customMessages[error]
       }
       // use default
-      const msg = defaults.messages[error]
+      const msg = defaultMessages[error]
 
       if (isObject(msg)) return msg[field.type] || msg.default
-      return msg || defaults.messages.default
+      return msg || defaultMessages.default
     },
     setValidity(e) {
+      if (!this.validationEnabled) return
       // handle `invalid` input event
       const {
         target: { validity },
