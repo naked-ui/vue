@@ -26,20 +26,11 @@ export default {
     color: {
       type: String,
       default: null
-    },
-    spacing: {
-      type: Number
     }
   },
   computed: {
     style() {
-      return [
-        ...this.$super(formField).style(),
-        {
-          '--spacing': this.calculateCssSize(this.spacing),
-          '--color': this.color
-        }
-      ]
+      return [...this.$super(formField).style(), { '--color': this.color }]
     }
   },
   methods: {

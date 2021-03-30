@@ -6,7 +6,7 @@ export default {
   component: nCheckboxInput,
   argTypes: {
     color: { control: 'color' },
-    spacing: {
+    gap: {
       control: {
         type: 'range',
         min: 0,
@@ -65,5 +65,5 @@ const GroupTemplate = (args, { argTypes }) => ({
 export const CheckboxGroup = GroupTemplate.bind({})
 CheckboxGroup.args = {
   ...Default.args,
-  spacing: 12
+  gap: 12
 }

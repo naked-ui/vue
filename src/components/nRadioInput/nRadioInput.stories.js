@@ -6,7 +6,7 @@ export default {
   component: nRadioInput,
   argTypes: {
     color: { control: 'color' },
-    spacing: {
+    gap: {
       control: {
         type: 'range',
         min: 0,
@@ -34,7 +34,8 @@ Default.args = {
   id: 'radio',
   name: 'radio',
   label: 'test label',
-  customMessages: { valueMissing: 'Not empty!' }
+  customMessages: { valueMissing: 'Not empty!' },
+  gap: 12
 }
 
 const GroupTemplate = (args, { argTypes }) => ({
@@ -61,8 +62,7 @@ const GroupTemplate = (args, { argTypes }) => ({
 
 export const Group = GroupTemplate.bind({})
 Group.args = {
-  ...Default.args,
-  spacing: 12
+  ...Default.args
 }
 
 const GroupRequiredTemplate = (args, { argTypes }) => ({
