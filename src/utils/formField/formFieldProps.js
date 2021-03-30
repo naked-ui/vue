@@ -3,7 +3,8 @@ export default {
     value: null,
     autocorrect: {
       type: String,
-      default: ''
+      default: null,
+      validator: (v) => ['on', 'off'].includes(v)
     },
     autofocus: {
       type: Boolean,
