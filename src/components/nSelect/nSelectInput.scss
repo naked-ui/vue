@@ -20,13 +20,13 @@ body * {
     --text-color: black;
     --text-hover-color: white;
 
-    --background-color: #fff;
+    --background-color: rgb(243, 243, 243);
 
     --border-color: #6f6f6f;
-    --border-hover-color: #8c00ff;
+    --border-hover-color: #00a1a1;
 
-    --option-hover-color: #865bd7;
-    --option-border-color: #d3d3d3;
+    --option-hover-color: #5bc4d7;
+    --option-border-color: #bbbbbb;
 
     position: relative;
 
@@ -75,7 +75,6 @@ body * {
             background-color: var(--background-color);
             box-shadow: 0 0 4px #e9e1f8;
             z-index: 1;
-            padding: var(--padding) 0;
             display: none;
         }
 
