@@ -2,7 +2,6 @@
     <div
       class="n-dropdown n-dropdown__wrapper"
       :style="styleVariables"
-      :nui-namespace="uiNamespace"
       :tabindex="tabindex"
       v-clickout="onClickOut"
     >
@@ -21,12 +20,11 @@
 <script>
 import uuidMixin from '../../utils/uuid'
 import clickout from '../../utils/clickout'
-import namespaceMixin from '../../utils/namespace'
 import SlotsEventListener from '../../utils/slotsEventListener'
 
 export default {
   name: 'nDropdown',
-  mixins: [namespaceMixin, uuidMixin],
+  mixins: [uuidMixin],
   components: { SlotsEventListener },
   directives: { clickout },
   props: {
