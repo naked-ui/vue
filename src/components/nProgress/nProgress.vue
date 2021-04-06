@@ -1,9 +1,9 @@
 <template>
   <div
-    class="progress"
-    :nui-namespace="uiNamespace"
+    class="n-progress"
     :style="`
-      --height: ${calculatedHeight}
+      --height: ${calculateCssSize(height)};
+      --width: ${calculateCssSize(width)};
     `"
   >
     <label
@@ -27,11 +27,11 @@
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
+import calculateCssSizeMixin from '../../utils/calculateCssSize'
 
 export default {
-  mixins: [namespaceMixin],
   name: 'nProgress',
+  mixins: [calculateCssSizeMixin],
   props: {
     label: {
       type: String,
@@ -58,32 +58,13 @@ export default {
     height: {
       type: String,
       default: ''
-    }
-  },
-  computed: {
-    calculatedHeight () {
-      if (isNaN(this.height) == false) return this.height + 'px'
-      if (
-        this.height.includes('em') ||
-        this.height.includes('ex') ||
-        this.height.includes('px') ||
-        this.height.includes('cm') ||
-        this.height.includes('mm') ||
-        this.height.includes('in') ||
-        this.height.includes('pc') ||
-        this.height.includes('pt') ||
-        this.height.includes('em') ||
-        this.height.includes('rem') ||
-        this.height.includes('vh') ||
-        this.height.includes('vmin') ||
-        this.height.includes('vmax')
-      ) {
-        return this.height
-      }
+    },
+    width: {
+      type: String,
+      default: ''
     }
   }
 }
-
 </script>
 
 <style lang="scss" src="./nProgress.scss" />

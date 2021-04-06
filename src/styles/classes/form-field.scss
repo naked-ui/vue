@@ -1,0 +1,80 @@
+@import 'sxcss';
+
+:root {
+  --negative-factor: -1;
+}
+
+.n-form-field {
+  display: grid;
+  row-gap: var(--gap);
+  justify-content: start;
+  width: var(--width);
+
+  .n-validation-alerts {
+    display: grid;
+    gap: calc(var(--gap) / 4)
+  }
+
+  .n-validation-alert {
+    color: var(--color);
+  }
+
+  textarea,
+  input:is(
+    [type="text"],
+    [type="email"],
+    [type="tel"],
+    [type="pasword"],
+    [type="date"],
+    [type="time"],
+    [type="url"],
+  ) {
+    font-size: inherit;
+    box-sizing: border-box;
+    height: var(--height);
+    width: var(--width);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    outline: var(--outline-width) solid;
+    outline-offset: calc(var(--negative-factor) * var(--outline-width)); // We need this as CSSO compression causes always appending "-1" value after CSS Variable in calc() function and it throws parsing error for final minified CSS file
+    padding: var(--padding);
+    font-family: inherit;
+
+    &[nui-validation="true"] {
+      &:not(:invalid) ~ &,
+      &:not(:focus):required:invalid ~ & {
+        display: none;
+      }
+
+      &:not(:required):invalid,
+      &:not(:placeholder-shown):required:invalid,
+      &:focus:required:invalid {
+        outline-color: var(--color-invalid);
+      }
+
+      &:not(:placeholder-shown):valid,
+      &:required:valid {
+        outline-color: var(--color-valid);
+      }
+
+      &[disabled="disabled"] ~ .alerts {
+        @include hide;
+      }
+
+      &[disabled="disabled"],
+      &:disabled {
+        cursor: not-allowed;
+      }
+
+      &:not(:focus):required:invalid {
+        outline-color: inherit;
+      }
+    }
+  }
+
+  textarea {
+    resize: var(--resize);
+  }
+}

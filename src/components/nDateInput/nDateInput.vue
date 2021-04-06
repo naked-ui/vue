@@ -1,18 +1,58 @@
 <template>
   <div
-    class="date-input"
-    :nui-namespace="uiNamespace"
+    :class="componentClasses"
+    :style="style"
   >
-    <input type="date">
+    <label
+      :disabled="disabled"
+      :for="id"
+    >
+      {{ label }}
+    </label>
+    <input
+      type="date"
+      v-model="formvalue"
+      @keyup="validateFormField()"
+      :autofocus="autofocus"
+      :disabled="disabled"
+      :id="id"
+      :max="max"
+      :min="min"
+      :name="name"
+      :placeholder="placeholder"
+      :readonly="readonly"
+      :required="required"
+      :title="title"
+    >
+    <nValidationAlerts
+      v-if="validationMessages.length > 0"
+      :validationMessages="validationMessages"
+    />
   </div>
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
+import formField from '../../utils/formField/index.js'
+import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
 
 export default {
-  mixins: [namespaceMixin],
-  name: 'nDateInput'
+  mixins: [formField],
+  components: {
+    nValidationAlerts
+  },
+  name: 'nDateInput',
+  props: {
+    baseClassname: {
+      type: String,
+      default: 'n-form-field'
+    },
+  },
+  computed: {
+    componentClasses () {
+      return [
+        this.baseClassname
+      ]
+    }
+  },
 }
-
 </script>

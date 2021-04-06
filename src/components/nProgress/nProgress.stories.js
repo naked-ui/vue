@@ -13,10 +13,6 @@ export default {
         control: 'color',
         defaultValue: '#333'
       },
-      // height: {
-      //   control: 'range',
-      //   defaultValue: 10
-      // }
     }
 }
 
@@ -30,5 +26,6 @@ export const Default = Template.bind({});
 Default.args = {
     value: 40,
     id: 'progress-id',
-    height: '2px'
+    height: '6px',
+    width: '280px'
 }

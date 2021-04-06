@@ -1,18 +1,70 @@
 <template>
   <div
-    class="textarea"
-    :nui-namespace="uiNamespace"
+    :class="componentClasses"
+    :style="style"
   >
-    <textarea/>
+    <label
+      :for="id"
+      :disabled="disabled"
+    >
+      {{ label }}
+    </label>
+    <textarea
+      v-model="value"
+      @keyup="countCharacters(value); validateFormField();"
+      :autofocus="autofocus"
+      :autocorrect="autocorrect"
+      :disabled="disabled"
+      :id="id"
+      :maxlength="maxlength"
+      :minlength="minlength"
+      :name="name"
+      :pattern="pattern"
+      :placeholder="placeholder"
+      :readonly="readonly"
+      :required="required"
+      :title="title"
+      :nui-validation="validationEnabled"
+    />
+    <nValidationAlerts
+      v-if="validationMessages.length > 0"
+      :validationMessages="validationMessages"
+    />
+    <nInputCounter
+      v-if="counterEnabled"
+      :totalCharacters="totalCharacters"
+      :maxlength="maxlength"
+    />
   </div>
 </template>
 
 <script>
-import namespaceMixin from '../../utils/namespace'
+import formField from '../../utils/formField/index.js'
+import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+import nInputCounter from '../../utils/components/nInputCounter.vue'
 
 export default {
-  mixins: [namespaceMixin],
-  name: 'nTextarea'
+  mixins: [formField],
+  name: 'nTextarea',
+  components: {
+    nValidationAlerts,
+    nInputCounter
+  },
+  props: {
+    baseClassname: {
+      type: String,
+      default: 'n-form-field'
+    },
+    resize: {
+      type: String
+    },
+  },
+  computed: {
+    componentClasses () {
+      return [
+        this.baseClassname
+      ]
+    },
+  },
 }
-
 </script>
