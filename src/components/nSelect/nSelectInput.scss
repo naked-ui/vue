@@ -30,6 +30,23 @@ body * {
 
     position: relative;
 
+    &--native-handler {
+        .n-select__custom {
+            display: none;
+            position: absolute;
+        }
+
+        @media (hover: hover) {
+            .n-select__custom {
+                display: block;
+            }
+
+            .n-select__native:focus + .n-select__custom {
+                display: none;
+            }
+        }
+    }
+
     &__native,
     &__custom {
         position: relative;
@@ -39,10 +56,8 @@ body * {
     }
 
     &__custom {
-        position: absolute;
         top: 0;
         left: 0;
-        display: none;
 
         &--placeholder {
             position: relative;
@@ -107,16 +122,6 @@ body * {
                 position: absolute;
                 left: var(--padding);
             }
-        }
-    }
-
-    @media (hover: hover) {
-        &__custom {
-            display: block;
-        }
-
-        &__native:focus + &__custom {
-            display: none;
         }
     }
 

@@ -1,8 +1,8 @@
 <template>
-    <div class="n-select">
+    <div class="n-select" :class="{'n-select--native-handler': useNative}">
     <span class="n-select--label" :id="uiElementID">{{ label }}</span>
     <div class="n-select--wrapper">
-      <select v-on="listeners" class="n-select__native" :aria-labelledby="uiElementID">
+      <select v-if="useNative" v-on="listeners" class="n-select__native" :aria-labelledby="uiElementID">
         <option value="" selected disabled>{{ defaultPlaceholder }}</option>
         <option v-for="option in options" :value="option.value" :key="option.value">{{ option.text }}</option>
       </select>
@@ -48,6 +48,10 @@ export default {
     placeholder: {
       type: String,
       default: ''
+    },
+    useNative: {
+      type: Boolean,
+      default: true
     }
   },
   data: () => ({
