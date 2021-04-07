@@ -21,8 +21,8 @@ const Template = (args, {argTypes}) => ({
         selectValue: null
     }),
     template: `
-    <div class="width: 100%;">
-        <div class="width: 100%;"><nSelect v-bind="$props" v-model="selectValue" /></div>
+    <div style="width: 100%;">
+        <nSelect v-bind="$props" v-model="selectValue" />
     </div>
     `
 })
