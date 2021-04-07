@@ -4,20 +4,45 @@
     <div class="n-select--wrapper">
       <select v-if="useNative" v-on="listeners" class="n-select__native" :aria-labelledby="uiElementID">
         <option value="" selected disabled>{{ defaultPlaceholder }}</option>
-        <option v-for="option in options" :value="option.value" :key="option.value">{{ option.text }}</option>
+        <option
+          v-for="option in options"
+          :value="option.value"
+          :key="option.value"
+        >
+          {{ option.text }}
+        </option>
       </select>
-      <div class="n-select__custom" @click="isHidden = !isHidden" :class="{'active': !isHidden}" :aria-hidden="isHidden">
-        <div class="n-select__custom--placeholder">{{ defaultPlaceholder }}</div>
+      <div
+        class="n-select__custom"
+        @click="isHidden = !isHidden"
+        :class="{'active': !isHidden}"
+        :aria-hidden="isHidden"
+      >
+        <div
+          class="n-select__custom--placeholder"
+          @click="enableSearch && !useNative ? searchInput = true : null"
+        >
+            <span v-if="!searchInput">{{ defaultPlaceholder }}</span>
+            <input
+              class="n-select__custom--search-input"
+              v-else
+              ref="searchInput"
+              v-model="searchValue"
+              type="text"
+              @blur="searchInput = false"
+            />
+        </div>
         <div class="n-select__custom--options">
           <div
-            v-for="option in options"
+            v-for="option in filteredOptions"
             @click="handleCustomSelect(option.value)"
             class="n-select__custom--option"
             :class="{'selected': selected && selected.value === option.value}"
             :data-value="option.value"
-            :key="option.value">
+            :key="option.value"
+          >
               {{ option.text }}
-            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -52,6 +77,10 @@ export default {
     useNative: {
       type: Boolean,
       default: true
+    },
+    enableSearch: {
+      type: Boolean,
+      default: false,
     },
     width: {
       type: String,
@@ -102,9 +131,18 @@ export default {
       default: undefined
     },
   },
+  watch: {
+    searchInput (value) {
+      if (value) {
+        this.$nextTick(() => this.$refs.searchInput.focus())
+      }
+    }
+  },
   data: () => ({
     isHidden: true,
-    selected: null
+    searchInput: false,
+    searchValue: '',
+    selected: null,
   }),
   computed: {
     listeners () {
@@ -137,6 +175,15 @@ export default {
       return this.selected ?
               this.selected.text :
               this.placeholder
+    },
+    filteredOptions () {
+      if (!this.searchValue) return this.options
+      return this.options.filter(option => {
+        const parsedOption = option.text.toUpperCase()
+        const parsedSearch = this.searchValue.toUpperCase()
+
+        return parsedOption.includes(parsedSearch)
+      })
     }
   },
   methods: {
@@ -148,8 +195,14 @@ export default {
     },
     handleCustomSelect(value) {
       this.$emit('input', this.findSelected(value))
-      console.log(this.selected)
+      if (this.searchInput && !this.useNative) {
+        this.searchInput = false
+        this.searchValue = ''
+      }
     }
+  },
+  mounted () {
+    if (this.useNative && this.enableSearch) console.error(`You can't use search feature with native select enabled.`)
   }
 }
 </script>

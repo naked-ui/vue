@@ -80,6 +80,18 @@ body * {
             }
         }
 
+        &--search-input {
+            font: inherit;
+            background: none;
+            border: none;
+            max-width: calc(var(--w) - calc(3 * var(--padding)));
+            padding-right: var(--padding);
+
+            &:focus {
+                outline: none;
+            }
+        }
+
         &--options {
             position: absolute;
             top: calc(var(--line-height) + var(--padding));
