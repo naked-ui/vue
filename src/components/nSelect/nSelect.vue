@@ -1,5 +1,5 @@
 <template>
-    <div class="n-select" :class="{'n-select--native-handler': useNative}">
+    <div class="n-select" :class="{'n-select--native-handler': useNative}" :style="styleVariables">
     <span class="n-select--label" :id="uiElementID">{{ label }}</span>
     <div class="n-select--wrapper">
       <select v-if="useNative" v-on="listeners" class="n-select__native" :aria-labelledby="uiElementID">
@@ -52,7 +52,55 @@ export default {
     useNative: {
       type: Boolean,
       default: true
-    }
+    },
+    width: {
+      type: String,
+      default: undefined
+    },
+    height: {
+      type: String,
+      default: undefined
+    },
+    padding: {
+      type: String,
+      default: undefined
+    },
+    lineHeight: {
+      type: String,
+      default: undefined
+    },
+    textSize: {
+      type: String,
+      default: undefined
+    },
+    textColor: {
+      type: String,
+      default: undefined
+    },
+    textHoverColor: {
+      type: String,
+      default: undefined
+    },
+    backgroundColor: {
+      type: String,
+      default: undefined
+    },
+    borderColor: {
+      type: String,
+      default: undefined
+    },
+    borderHoverColor: {
+      type: String,
+      default: undefined
+    },
+    optionHoverColor: {
+      type: String,
+      default: undefined
+    },
+    optionBorderColor: {
+      type: String,
+      default: undefined
+    },
   },
   data: () => ({
     isHidden: true,
@@ -65,6 +113,25 @@ export default {
         input: e => this.$emit('input', this.findSelected(e.target.value)),
         change: e => this.$emit('change', this.findSelected(e.target.value))
       }
+    },
+    styleVariables () {
+      const width = this.width ? `--w: ${this.width};` : ''
+      const height = this.height ? `--h: ${this.height};` : ''
+      const padding = this.padding ? `--padding: ${this.padding};` : ''
+      const lineHeight = this.lineHeight ? `--line-height: ${this.lineHeight};` : ''
+      const textSize = this.textSize ? `--text-size: ${this.textSize};` : ''
+      const textColor = this.textColor ? `--text-color: ${this.textColor};` : ''
+      const textHoverColor = this.textHoverColor ? `--text-hover-color: ${this.textHoverColor};` : ''
+      const backgroundColor = this.backgroundColor ? `--background-color: ${this.backgroundColor};` : ''
+      const borderColor = this.borderColor ? `--border-color: ${this.borderColor};` : ''
+      const borderHoverColor = this.borderHoverColor ? `--border-hover-color: ${this.borderHoverColor};` : ''
+      const optionHoverColor = this.optionHoverColor ? `--option-hover-color: ${this.optionHoverColor};` : ''
+      const optionBorderColor = this.optionBorderColor ? `--text-border-color: ${this.optionBorderColor};` : ''
+
+      return width + height + padding + lineHeight +
+              textSize + textColor + textHoverColor +
+              backgroundColor + borderColor + borderHoverColor +
+              optionHoverColor + optionBorderColor
     },
     defaultPlaceholder () {
       return this.selected ?
