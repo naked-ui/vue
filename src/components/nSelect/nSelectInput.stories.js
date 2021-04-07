@@ -3,6 +3,15 @@ import nSelect from './nSelect'
 export default {
     title: 'Form/Input/Select',
     component: nSelect,
+    argTypes: {
+        textColor: { control: { type: 'color' } },
+        textHoverColor: { control: { type: 'color' } },
+        backgroundColor: { control: { type: 'color' } },
+        borderColor: { control: { type: 'color' } },
+        borderHoverColor: { control: { type: 'color' } },
+        optionHoverColor: { control: { type: 'color' } },
+        optionBorderColor: { control: { type: 'color' } }
+    }
 }
 
 const Template = (args, {argTypes}) => ({
