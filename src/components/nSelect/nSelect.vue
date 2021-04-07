@@ -15,6 +15,7 @@
       <div
         class="n-select__custom"
         @click="isHidden = !isHidden"
+        v-clickout="onClickOut"
         :class="{'active': !isHidden}"
         :aria-hidden="isHidden"
       >
@@ -22,7 +23,7 @@
           class="n-select__custom--placeholder"
           @click="enableSearch && !useNative ? searchInput = true : null"
         >
-            <span v-if="!searchInput">{{ defaultPlaceholder }}</span>
+            <template v-if="!searchInput">{{ defaultPlaceholder }}</template>
             <input
               class="n-select__custom--search-input"
               v-else
@@ -50,13 +51,14 @@
 </template>
 
 <script>
-
 import uuidMixin from '../../utils/uuid'
+import clickout from '../../utils/clickout'
 
 export default {
   name: 'nSelect',
   inheritAttrs: false,
   mixins: [uuidMixin],
+  directives: { clickout },
   props: {
     value: {
       required: true
@@ -184,7 +186,7 @@ export default {
 
         return parsedOption.includes(parsedSearch)
       })
-    }
+    },
   },
   methods: {
     findSelected(value) {
@@ -199,6 +201,10 @@ export default {
         this.searchInput = false
         this.searchValue = ''
       }
+    },
+    onClickOut() {
+      this.isHidden = true
+      this.searchInput = false
     }
   },
   mounted () {
