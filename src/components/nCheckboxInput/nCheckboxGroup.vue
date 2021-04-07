@@ -32,7 +32,7 @@ export default {
       default: null
     },
     spacing: {
-      type: [String, String],
+      type: [Number, String],
       default: null
     }
   },
