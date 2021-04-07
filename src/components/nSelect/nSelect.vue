@@ -34,6 +34,7 @@
             />
         </div>
         <div class="n-select__custom--options">
+          <div v-if="filteredOptions.length === 0" class="n-select__custom--option">No options available...</div>
           <div
             v-for="option in filteredOptions"
             @click="handleCustomSelect(option.value)"
