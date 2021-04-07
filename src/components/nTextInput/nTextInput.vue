@@ -1,18 +1,18 @@
 <template>
-  <div
-    :class="componentClasses"
-    :style="style"
-  >
-    <label
-      :disabled="disabled"
-      :for="id"
-    >
+  <div :class="componentClasses" :style="style">
+    <label :disabled="disabled" :for="id">
       {{ label }}
     </label>
     <input
+      ref="input"
       type="text"
-      v-model="value"
-      @keyup="countCharacters(value); validateFormField()"
+      :value="value"
+      @invalid="onInvalid"
+      @input="
+        $emit('input', $event.target.value)
+        validateFormField($event)
+      "
+      @blur.capture="validateFormField"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
@@ -26,7 +26,7 @@
       :minlength="minlength"
       :autocorrect="autocorrect"
       :pattern="pattern"
-    >
+    />
     <nValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
@@ -55,17 +55,14 @@ export default {
     baseClassname: {
       type: String,
       default: 'n-form-field'
-    },
+    }
   },
   computed: {
-    componentClasses () {
-      return [
-        this.baseClassname
-      ]
-    },
-  },
+    componentClasses() {
+      return [this.baseClassname]
+    }
+  }
 }
-
 </script>
 
 <style lang="scss" src="./nTextInput.scss" />

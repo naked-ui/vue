@@ -11,8 +11,10 @@
     </label>
     <input
       type="email"
-      v-model="value"
-      @keyup="countCharacters(value); validateFormField()"
+      :value="value"
+      @invalid="onInvalid"
+      @input="$emit('input', $event.target.value);validateFormField($event)"
+      @blur.capture="validateFormField"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"

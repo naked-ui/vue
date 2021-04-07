@@ -11,8 +11,10 @@
     </label>
     <input
       type="date"
-      v-model="formvalue"
-      @keyup="validateFormField()"
+      :value="value"
+      @invalid="onInvalid"
+      @input="$emit('input', $event.target.value);validateFormField($event)"
+      @blur.capture="validateFormField"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
