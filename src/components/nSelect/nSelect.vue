@@ -47,7 +47,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: ''
+      default: 'Select...'
     },
     useNative: {
       type: Boolean,
