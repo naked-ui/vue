@@ -41,27 +41,33 @@
           class="n-select__custom--placeholder"
           @click="handleClickOnPlaceholder"
         >
-            <template
-            v-if="!searchInput">{{ defaultPlaceholder }}</template>
+            <template v-if="!searchInput">
+              {{ defaultPlaceholder }}
+            </template>
             <input
               class="n-select__custom--search-input"
-              v-else
-              ref="searchInput"
-              v-model="searchValue"
               type="text"
+              ref="searchInput"
+              v-else
+              v-model="searchValue"
               @blur="handleBlurInput"
               @keyup.esc="handleKeyupEsc"
             />
         </div>
         <div class="n-select__custom--options">
-          <div v-if="filteredOptions.length === 0" class="n-select__custom--option">No options available...</div>
           <div
-            v-for="option in filteredOptions"
-            @click="handleClickOnOption(option.value)"
+            class="n-select__custom--option"
+            v-if="filteredOptions.length === 0"
+          >
+            No options available...
+          </div>
+          <div
             class="n-select__custom--option"
             :class="{'selected': selected && selected.value === option.value}"
-            :data-value="option.value"
+            v-for="option in filteredOptions"
             :key="option.value"
+            :data-value="option.value"
+            @click="handleClickOnOption(option.value)"
           >
               {{ option.text }}
           </div>
