@@ -2,7 +2,12 @@
     <div class="n-select" :class="{'n-select--native-handler': useNative}" :style="styleVariables">
     <span class="n-select--label" :id="uiElementID">{{ label }}</span>
     <div class="n-select--wrapper">
-      <select v-if="useNative" v-on="listeners" class="n-select__native" :aria-labelledby="uiElementID">
+      <select
+        v-if="useNative"
+        v-on="listeners"
+        class="n-select__native"
+        :aria-labelledby="uiElementID"
+      >
         <option value="" selected disabled>{{ defaultPlaceholder }}</option>
         <option
           v-for="option in options"
@@ -14,10 +19,11 @@
       </select>
       <div
         class="n-select__custom"
-        @click="isHidden = !isHidden"
-        v-clickout="onClickOut"
+        @click="handleClickOnSelect"
+        v-clickout="handleClickout"
         :class="{'active': !isHidden}"
         :aria-hidden="isHidden"
+        :aria-labelledby="uiElementID"
       >
         <div
           class="n-select__custom--placeholder"
@@ -30,14 +36,15 @@
               ref="searchInput"
               v-model="searchValue"
               type="text"
-              @blur="searchInput = false"
+              @blur="handleBlurInput"
+              @keyup.esc="handleKeyupEsc"
             />
         </div>
         <div class="n-select__custom--options">
           <div v-if="filteredOptions.length === 0" class="n-select__custom--option">No options available...</div>
           <div
             v-for="option in filteredOptions"
-            @click="handleCustomSelect(option.value)"
+            @click="handleClickOnOption(option.value)"
             class="n-select__custom--option"
             :class="{'selected': selected && selected.value === option.value}"
             :data-value="option.value"
@@ -195,22 +202,31 @@ export default {
     },
   },
   methods: {
-    findSelected(value) {
+    findSelected (value) {
       const options = [...this.options]
 
       this.selected = options.find(option => option.value === value)
       return this.selected
     },
-    handleCustomSelect(value) {
-      this.$emit('input', this.findSelected(value))
-      if (this.searchInput && !this.useNative) {
-        this.searchInput = false
-        this.searchValue = ''
-      }
-    },
-    onClickOut() {
+    closeOptions () {
       this.isHidden = true
       this.searchInput = false
+      this.searchValue = ''
+    },
+    handleClickOnSelect () {
+      this.isHidden = !this.isHidden
+    },
+    handleClickOnOption (value) {
+      this.$emit('input', this.findSelected(value))
+    },
+    handleClickout () {
+      this.closeOptions()
+    },
+    handleBlurInput () {
+      this.closeOptions()
+    },
+    handleKeyupEsc () {
+      this.closeOptions()
     }
   },
   mounted () {
