@@ -1,35 +1,48 @@
 <template>
-    <div class="n-select" :class="{'n-select--native-handler': useNative}" :style="styleVariables">
-    <span class="n-select--label" :id="uiElementID">{{ label }}</span>
+    <div
+      class="n-select"
+      :class="{'n-select--native-handler': useNative}"
+      :style="styleVariables"
+    >
+    <span
+      class="n-select--label"
+      :id="uiElementID"
+    >
+      {{ label }}
+    </span>
     <div class="n-select--wrapper">
       <select
-        v-if="useNative"
-        v-on="listeners"
         class="n-select__native"
         :aria-labelledby="uiElementID"
+        v-if="useNative"
+        v-on="listeners"
       >
-        <option value="" selected disabled>{{ defaultPlaceholder }}</option>
+        <!-- Fake placeholder for native select -->
+        <option value="" selected disabled>
+          {{ defaultPlaceholder }}
+        </option>
         <option
           v-for="option in options"
-          :value="option.value"
           :key="option.value"
+          :value="option.value"
         >
           {{ option.text }}
         </option>
       </select>
       <div
         class="n-select__custom"
-        @click="handleClickOnSelect"
-        v-clickout="handleClickout"
         :class="{'active': !isHidden}"
         :aria-hidden="isHidden"
         :aria-labelledby="uiElementID"
+        @click="handleClickOnSelect"
+        v-clickout="handleClickout"
       >
         <div
           class="n-select__custom--placeholder"
-          @click="enableSearch && !useNative ? searchInput = true : null"
+          @click="handleClickOnPlaceholder"
         >
-            <template v-if="!searchInput">{{ defaultPlaceholder }}</template>
+            <template
+            v-if="!searchInput">{{ defaultPlaceholder }}</template>
             <input
               class="n-select__custom--search-input"
               v-else
@@ -215,6 +228,10 @@ export default {
     },
     handleClickOnSelect () {
       this.isHidden = !this.isHidden
+    },
+    handleClickOnPlaceholder () {
+      if (!this.enableSearch && this.useNative) return
+      this.searchInput = true
     },
     handleClickOnOption (value) {
       this.$emit('input', this.findSelected(value))
