@@ -3,9 +3,9 @@
     display: inline-flex;
     align-items: center;
 
-    &[disabled="disabled"],
+    &[disabled='disabled'],
     &:disabled {
-      opacity: .3;
+      opacity: 0.3;
     }
   }
 
@@ -15,27 +15,30 @@
     height: var(--height, 16px);
     width: var(--width, 16px);
     border: solid 1px var(--color, #111);
-    margin-right: calc(var(--gap, calc(var(--width, 16px) / 2))); // half width as fallback
+    margin: 0;
+    margin-right: calc(
+      var(--gap, calc(var(--width, 16px) / 2))
+    ); // half width as fallback
     position: relative;
     outline: none;
     border-radius: calc(var(--height, 16px) / 4);
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       width: 50%;
       height: 30%;
       top: 50%;
       left: 50%;
       border-radius: 1px;
-      transition: transform .1s ease-in-out;
+      transition: transform 0.1s ease-in-out;
       transform-origin: left top;
 
       border-left: 2px solid var(--color, #111);
       border-bottom: 2px solid var(--color, #111);
       transform: rotate(-45deg) scale(0) translate(-50%, -50%);
     }
-    &:checked::before{
+    &:checked::before {
       transform: rotate(-45deg) scale(1) translate(-50%, -50%);
     }
   }

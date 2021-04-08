@@ -42,11 +42,13 @@ Default.argTypes = {
 }
 Default.args = {
   url: 'https://naked-ui.org/',
-  id: 'radio',
-  name: 'radio',
-  label: 'test label',
-  customMessages: { valueMissing: 'Not empty!' },
-  gap: 12
+  id: 'checkbox-input',
+  name: 'checkbox-input',
+  label: 'Label text',
+  customMessages: { valueMissing: 'Value is required!' },
+  gap: 4,
+  validationEnabled: true,
+  required: true
 }
 
 const GroupTemplate = (args, { argTypes }) => ({
@@ -71,7 +73,7 @@ const GroupTemplate = (args, { argTypes }) => ({
       </nCheckboxGroup>
       <input type="submit" value="submit">
     </form>
-    `
+  `
 })
 
 export const CheckboxGroup = GroupTemplate.bind({})

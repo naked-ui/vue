@@ -29,10 +29,12 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { nRadioInput },
   props: Object.keys(argTypes),
-  template: `<form novalidate @submit.prevent="e=>{if (!e.target.checkValidity()) return}">
+  template: `
+    <form novalidate @submit.prevent="e=>{if (!e.target.checkValidity()) return}">
       <nRadioInput v-bind="$props" />
       <input type="submit" value="submit">
-    </form>`
+    </form>
+  `
 })
 
 export const Default = Template.bind({})
@@ -41,11 +43,13 @@ Default.argTypes = {
 }
 Default.args = {
   url: 'https://naked-ui.org/',
-  id: 'radio',
-  name: 'radio',
-  label: 'test label',
-  customMessages: { valueMissing: 'Not empty!' },
-  gap: 12
+  id: 'radio-input',
+  name: 'radio-input',
+  label: 'Label text',
+  customMessages: { valueMissing: 'Value is required!' },
+  gap: 4,
+  validationEnabled: true,
+  required: true
 }
 
 const GroupTemplate = (args, { argTypes }) => ({
