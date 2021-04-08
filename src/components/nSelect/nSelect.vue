@@ -186,8 +186,8 @@ export default {
     },
   },
   watch: {
-    async searchInput (value) {
-      if (value) await this.$nextTick(() => this.$refs.searchInput.focus())
+    searchInput (value) {
+      if (value) this.focusInput()
     }
   },
   data: () => ({
@@ -239,18 +239,21 @@ export default {
       })
     },
     currentIndex () {
-      if (!this.selected && !this.candidate) return null
+      if (!this.selected && !this.candidate) return -1
       if (this.candidate) return this.filteredOptions.indexOf(this.candidate)
       return this.filteredOptions.indexOf(this.selected)
     },
     prevOptionIndex () {
-      if (!this.currentIndex || this.currentIndex === 0) return this.filteredOptions.length - 1
+      if (!this.currentIndex || this.currentIndex <= 0) return this.filteredOptions.length - 1
       return this.currentIndex - 1
     },
     nextOptionIndex () {
       if (!this.currentIndex && this.currentIndex !== 0) return 0
       if (this.currentIndex === this.filteredOptions.length - 1) return 0
       return this.currentIndex + 1
+    },
+    isAbleToFocusInput () {
+      return this.enableSearch && this.searchInput && this.currentIndex >= 0
     }
   },
   methods: {
@@ -280,22 +283,24 @@ export default {
       this.$emit('input', this.selected)
       this.$emit('change', this.selected)
     },
+    async focusInput () {
+      this.candidate = -1
+      await this.$nextTick(() => this.$refs.searchInput.focus())
+    },
     handleClickOnPlaceholder () {
       if (!this.enableSearch && this.useNative) return
       this.searchInput = true
     },
     handleClickOnOption (value) {
       this.findSelected(value)
+      this.searchInput = false
       this.emitInput()
     },
     handleClickout () {
       this.closeOptions()
     },
     handleBlurInput (e) {
-      if (e.relatedTarget && e.relatedTarget.className === 'n-select__custom--options') {
-        this.searchInput = false
-        return
-      }
+      if (e.relatedTarget && e.relatedTarget.className === 'n-select__custom--options') return
       this.closeOptions()
     },
     handleKeyupEsc () {
@@ -306,9 +311,15 @@ export default {
       this.closeOptions()
     },
     handleKeyupUp () {
+      if (this.isAbleToFocusInput && this.prevOptionIndex === this.filteredOptions.length - 1)
+        return this.focusInput()
+
       this.candidate = this.filteredOptions[this.prevOptionIndex]
     },
     handleKeyupDown () {
+      if (this.isAbleToFocusInput && this.nextOptionIndex === 0)
+        return this.focusInput()
+
       this.candidate = this.filteredOptions[this.nextOptionIndex]
     },
     async handleInputKeyupUp () {
