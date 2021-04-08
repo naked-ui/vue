@@ -51,10 +51,18 @@
               v-else
               v-model="searchValue"
               @blur="handleBlurInput"
-              @keyup.esc="handleKeyupEsc"
+              @keyup.esc.prevent="handleKeyupEsc"
             />
         </div>
-        <div class="n-select__custom--options">
+        <div
+          class="n-select__custom--options"
+          tabindex="-1"
+          ref="options"
+          @keyup.up.prevent="handleKeyupUp"
+          @keyup.down.prevent="handleKeyupDown"
+          @keyup.esc.prevent="handleKeyupEsc"
+          @keyup.enter.prevent="handleKeyupEnter"
+        >
           <div
             class="n-select__custom--option"
             v-if="filteredOptions.length === 0"
@@ -63,7 +71,10 @@
           </div>
           <div
             class="n-select__custom--option"
-            :class="{'selected': selected && selected.value === option.value}"
+            :class="{
+              'selected': selected && selected.value === option.value,
+              'candidate': candidate && candidate.value === option.value
+            }"
             v-for="option in filteredOptions"
             :key="option.value"
             :data-value="option.value"
@@ -161,6 +172,10 @@ export default {
     },
     optionHoverColor: {
       type: String,
+      default: '#555'
+    },
+    optionSelectedColor: {
+      type: String,
       default: '#444'
     },
     optionBorderColor: {
@@ -169,8 +184,8 @@ export default {
     },
   },
   watch: {
-    searchInput (value) {
-      if (value) this.$nextTick(() => this.$refs.searchInput.focus())
+    async searchInput (value) {
+      if (value) await this.$nextTick(() => this.$refs.searchInput.focus())
     }
   },
   data: () => ({
@@ -178,6 +193,7 @@ export default {
     searchInput: false,
     searchValue: '',
     selected: null,
+    candidate: null
   }),
   computed: {
     listeners () {
@@ -201,11 +217,12 @@ export default {
       const borderColor = this.borderColor ? `--border-color: ${this.borderColor};` : ''
       const borderHoverColor = this.borderHoverColor ? `--border-hover-color: ${this.borderHoverColor};` : ''
       const optionHoverColor = this.optionHoverColor ? `--option-hover-color: ${this.optionHoverColor};` : ''
+      const optionSelectedColor = this.optionSelectedColor ? `--option-selected-color: ${this.optionSelectedColor};` : ''
       const optionBorderColor = this.optionBorderColor ? `--option-border-color: ${this.optionBorderColor};` : ''
 
       return width + height + paddingSelect + paddingOption + lineHeight + textSize +
               textColor + textHoverColor + backgroundColor + borderRadius + borderColor +
-              borderHoverColor + optionHoverColor + optionBorderColor
+              borderHoverColor + optionHoverColor + optionSelectedColor + optionBorderColor
     },
     defaultPlaceholder () {
       return this.selected ? this.selected.text : this.placeholder
@@ -219,28 +236,54 @@ export default {
         return parsedOption.includes(parsedSearch)
       })
     },
+    currentIndex () {
+      if (!this.selected) return null
+      return this.filteredOptions.indexOf(this.candidate || this.selected)
+    },
+    prevOptionIndex () {
+      if (!this.currentIndex || this.currentIndex === 0) return this.filteredOptions.length - 1
+      return this.currentIndex - 1
+    },
+    nextOptionIndex () {
+      if (!this.currentIndex && this.currentIndex !== 0) return 0
+      if (this.currentIndex === this.filteredOptions.length - 1) return 0
+      return this.currentIndex + 1
+    }
   },
   methods: {
     findSelected (value) {
       const options = [...this.options]
 
       this.selected = options.find(option => option.value === value)
-      return this.selected
+    },
+    findCandidate () {
+      const options = [...this.options]
+
+      this.candidate = options.find(option => option.value === value)
     },
     closeOptions () {
       this.isHidden = true
       this.searchInput = false
       this.searchValue = ''
+      this.candidate = null
+      this.emitInput()
     },
-    handleClickOnSelect () {
+    async handleClickOnSelect () {
       this.isHidden = !this.isHidden
+
+      if(!this.isHidden) await this.$nextTick(() => this.$refs.options.focus())
+    },
+    emitInput () {
+      this.$emit('input', this.selected)
+      this.$emit('change', this.selected)
     },
     handleClickOnPlaceholder () {
       if (!this.enableSearch && this.useNative) return
       this.searchInput = true
     },
     handleClickOnOption (value) {
-      this.$emit('input', this.findSelected(value))
+      this.findSelected(value)
+      this.emitInput()
     },
     handleClickout () {
       this.closeOptions()
@@ -250,6 +293,16 @@ export default {
     },
     handleKeyupEsc () {
       this.closeOptions()
+    },
+    handleKeyupEnter () {
+      this.selected = this.candidate
+      this.closeOptions()
+    },
+    handleKeyupUp() {
+      this.candidate = this.filteredOptions[this.prevOptionIndex]
+    },
+    handleKeyupDown() {
+      this.candidate = this.filteredOptions[this.nextOptionIndex]
     }
   },
   mounted () {

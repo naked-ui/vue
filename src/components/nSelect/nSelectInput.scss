@@ -88,6 +88,10 @@
             box-shadow: 0 0 4px #e9e1f8;
             z-index: 1;
             display: none;
+
+            &:focus {
+                outline: none;
+            }
         }
 
         &.active &--options {
@@ -115,10 +119,22 @@
                 border-bottom: 1px solid var(--option-border-color);
             }
 
-            &.selected::before {
-                content: "✓";
-                position: absolute;
-                left: var(--padding-option);
+            &.selected {
+                background-color: var(--option-selected-color);
+
+                &:hover {
+                    background-color: var(--option-hover-color);
+                }
+
+                &::before {
+                    content: "✓";
+                    position: absolute;
+                    left: var(--padding-option);
+                }
+            }
+
+            &.candidate {
+                background-color: var(--option-hover-color);
             }
         }
     }
