@@ -52,6 +52,8 @@
               v-model="searchValue"
               @blur="handleBlurInput"
               @keyup.esc.prevent="handleKeyupEsc"
+              @keyup.up.prevent="handleInputKeyupUp"
+              @keyup.down.prevent="handleInputKeyupDown"
             />
         </div>
         <div
@@ -237,8 +239,9 @@ export default {
       })
     },
     currentIndex () {
-      if (!this.selected) return null
-      return this.filteredOptions.indexOf(this.candidate || this.selected)
+      if (!this.selected && !this.candidate) return null
+      if (this.candidate) return this.filteredOptions.indexOf(this.candidate)
+      return this.filteredOptions.indexOf(this.selected)
     },
     prevOptionIndex () {
       if (!this.currentIndex || this.currentIndex === 0) return this.filteredOptions.length - 1
@@ -271,7 +274,7 @@ export default {
     async handleClickOnSelect () {
       this.isHidden = !this.isHidden
 
-      if(!this.isHidden) await this.$nextTick(() => this.$refs.options.focus())
+      if(!this.isHidden && !this.enableSearch) await this.$nextTick(() => this.$refs.options.focus())
     },
     emitInput () {
       this.$emit('input', this.selected)
@@ -288,7 +291,11 @@ export default {
     handleClickout () {
       this.closeOptions()
     },
-    handleBlurInput () {
+    handleBlurInput (e) {
+      if (e.relatedTarget && e.relatedTarget.className === 'n-select__custom--options') {
+        this.searchInput = false
+        return
+      }
       this.closeOptions()
     },
     handleKeyupEsc () {
@@ -298,11 +305,19 @@ export default {
       this.selected = this.candidate
       this.closeOptions()
     },
-    handleKeyupUp() {
+    handleKeyupUp () {
       this.candidate = this.filteredOptions[this.prevOptionIndex]
     },
-    handleKeyupDown() {
+    handleKeyupDown () {
       this.candidate = this.filteredOptions[this.nextOptionIndex]
+    },
+    async handleInputKeyupUp () {
+      await this.$nextTick(() => this.$refs.options.focus())
+      this.handleKeyupUp()
+    },
+    async handleInputKeyupDown () {
+      await this.$nextTick(() => this.$refs.options.focus())
+      this.handleKeyupDown()
     }
   },
   mounted () {
