@@ -32,8 +32,9 @@ const Template = (args, { argTypes }) => ({
   template: `
     <form novalidate @submit.prevent="e => {if (!e.target.checkValidity()) return}">
       <nCheckboxInput v-bind="$props" />
-    <input type="submit" value="submit"></form>
-    `
+      <input style="margin-top: 16px;" type="submit" value="submit">
+    </form>
+  `
 })
 
 export const Default = Template.bind({})
@@ -46,7 +47,7 @@ Default.args = {
   name: 'checkbox-input',
   label: 'Label text',
   customMessages: { valueMissing: 'Value is required!' },
-  gap: 4,
+  gap: 8,
   validationEnabled: true,
   required: true
 }
@@ -61,17 +62,17 @@ const GroupTemplate = (args, { argTypes }) => ({
   },
   template: `
     <form novalidate @submit.prevent="e => {if (!e.target.checkValidity()) return}">
-      <div>current val: {{val}}</div>
       <nCheckboxGroup v-bind="$props" v-model="val">
         <nCheckboxInput v-for="n in 3"
           name="chbxs"
           :key="n"
-          :id="\`\${n}\`"
+          :id="\`checkbox\-input\-\${n}\`"
           :label="\`Checkbox \${n}\`"
           :value="n"
           />
       </nCheckboxGroup>
-      <input type="submit" value="submit">
+      <input style="margin-top: 16px;" type="submit" value="submit">
+      <code style="display: block; width: 100%; margin-top: 16px;">current val: {{val}}</code>
     </form>
   `
 })

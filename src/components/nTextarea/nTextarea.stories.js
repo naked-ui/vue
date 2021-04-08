@@ -94,7 +94,7 @@ const Template = (args, { argTypes }) => ({
   template: `
   <form novalidate @submit.prevent="submit">
     <nTextarea v-bind="$props" v-model="val" />
-    <input type="submit" value="submit" >
+    <input style="margin-top: 16px;" type="submit" value="submit">
   </form>
   `
 })

@@ -84,14 +84,14 @@ const Template = (args, { argTypes }) => ({
       v-bind="$props"
       v-model="val"
     />
-    <input type="submit" value="submit" >
+    <input style="margin-top: 16px;" type="submit" value="submit">
   </form>
   `
 })
 
 export const Default = Template.bind({})
 Default.args = {
-  gap: 12,
+  gap: 8,
   height: 48,
   width: '96px',
   padding: '0 12px',

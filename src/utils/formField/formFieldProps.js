@@ -22,7 +22,7 @@ export default {
       type: String
     },
     id: {
-      type: [Number, String],
+      type: String,
       required: true
     },
     label: {

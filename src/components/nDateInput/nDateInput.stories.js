@@ -82,7 +82,7 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  gap: 12,
+  gap: 8,
   height: 48,
   width: 'auto',
   padding: '0 12px',
