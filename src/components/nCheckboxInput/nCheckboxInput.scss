@@ -1,15 +1,22 @@
+// CORE STYLES
+
 .checkbox-input {
   label {
     display: inline-flex;
     align-items: center;
+  }
+}
 
+// CUSTOM STYLES
+
+.checkbox-input {
+  label {
     &[disabled='disabled'],
     &:disabled {
       opacity: 0.3;
     }
   }
 
-  // custom styling
   .checkbox-input__checkbox {
     appearance: none;
     height: var(--height, 16px);

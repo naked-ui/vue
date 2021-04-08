@@ -1,10 +1,21 @@
+// CORE STYLES
+
 .radio-input {
   label {
     display: inline-flex;
     align-items: center;
   }
+}
 
-  // Custom styling
+// CUSTOM STYLES
+
+.radio-input {
+  label {
+    &[disabled='disabled'],
+    &:disabled {
+      opacity: 0.3;
+    }
+  }
 
   .radio-input__radio {
     appearance: none;

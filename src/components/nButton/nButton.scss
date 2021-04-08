@@ -1,3 +1,5 @@
+// CORE STYLES
+
 @import 'sxcss';
 
 .n-button {
@@ -38,10 +40,9 @@
 
   /** STATES **/
 
-  &.n-button[disabled="disabled"],
-  &.n-button[disabled="disabled"] * {
+  &.n-button[disabled='disabled'],
+  &.n-button[disabled='disabled'] * {
     cursor: not-allowed;
-    opacity: .75;
+    opacity: 0.75;
   }
 }
-
