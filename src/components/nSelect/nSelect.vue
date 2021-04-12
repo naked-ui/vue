@@ -48,6 +48,7 @@
               class="n-select__custom--search-input"
               type="text"
               ref="searchInput"
+              :placeholder="defaultPlaceholder"
               v-else
               v-model="searchValue"
               @blur="handleBlurInput"
