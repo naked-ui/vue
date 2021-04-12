@@ -26,7 +26,7 @@
           :key="option.value"
           :value="option.value"
         >
-          {{ option.text }}
+          {{ option.name }}
         </option>
       </select>
       <div
@@ -82,7 +82,7 @@
             :data-value="option.value"
             @click="handleClickOnOption(option.value)"
           >
-              {{ option.text }}
+              {{ option.name }}
           </div>
         </div>
       </div>
@@ -227,12 +227,12 @@ export default {
               borderHoverColor + optionHoverColor + optionSelectedColor + optionBorderColor
     },
     defaultPlaceholder () {
-      return this.selected ? this.selected.text : this.placeholder
+      return this.selected ? this.selected.name : this.placeholder
     },
     filteredOptions () {
       if (!this.searchValue) return this.options
       return this.options.filter(option => {
-        const parsedOption = option.text.toUpperCase()
+        const parsedOption = option.name.toUpperCase()
         const parsedSearch = this.searchValue.toUpperCase()
 
         return parsedOption.includes(parsedSearch)
