@@ -48,7 +48,7 @@ Default.args = {
   label: 'Label text',
   customMessages: { valueMissing: {
     text: 'Value is required!',
-    color: 'green'
+    color: 'pink'
   } },
   gap: 8,
   validationEnabled: true,
