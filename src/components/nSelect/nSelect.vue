@@ -81,7 +81,7 @@
             v-for="option in filteredOptions"
             :key="option.value"
             :data-value="option.value"
-            @click="handleClickOnOption(option)"
+            @click.stop="handleClickOnOption(option)"
           >
               {{ option.name }}
           </div>
@@ -164,6 +164,7 @@ export default {
     },
     currentIndex () {
       if (!this.selected && !this.candidate) return -1
+      if (!this.candidate && this.showSearchInput) return -1
       if (this.candidate) return this.filteredOptions.indexOf(this.candidate)
       return this.filteredOptions.indexOf(this.selected)
     },
@@ -211,8 +212,7 @@ export default {
     },
     handleClickOnOption (option) {
       this.setSelected(option.value)
-      this.showSearchInput = false
-      this.emitInput()
+      this.closeOptions()
     },
     handleClickout () {
       this.closeOptions()
