@@ -48,7 +48,7 @@ export default {
       }
       // use default
       const msg = defaultMessages[error]
-
+      if(msg === null) return false
       if (isObject(msg)) return msg[field.type] || msg.default
       return msg || defaultMessages.default
     },

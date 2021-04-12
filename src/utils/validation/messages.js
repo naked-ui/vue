@@ -7,9 +7,10 @@ export default {
     default: '&cross; This field is required.'
   },
   typeMismatch: {
-    email: 'Please provide a valid E-mail',
+    email: null,
+    // email: 'Please provide a valid E-mail',
     url: 'Please provide a valid URL',
-    default: 'Please provide a valid value'
+    default: null
   },
   patternMismatch: {
     email: 'Please enter a valid email address.',
