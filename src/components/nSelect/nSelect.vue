@@ -1,7 +1,7 @@
 <template>
     <div
       class="n-select"
-      :class="{'n-select--native-handler': useNative}"
+      :class="{'n-select--native-handler': enableNativeSelect}"
       :style="styleVariables"
     >
     <span
@@ -14,7 +14,7 @@
       <select
         class="n-select__native"
         :aria-labelledby="uiElementID"
-        v-if="useNative"
+        v-if="enableNativeSelect"
         v-on="listeners"
       >
         <!-- Fake placeholder for native select -->
@@ -31,8 +31,8 @@
       </select>
       <div
         class="n-select__custom"
-        :class="{'active': !isHidden}"
-        :aria-hidden="isHidden"
+        :class="{'active': showOptions}"
+        :aria-hidden="!showOptions"
         :aria-labelledby="uiElementID"
         @click="handleClickOnSelect"
         v-clickout="handleClickout"
@@ -41,7 +41,7 @@
           class="n-select__custom--placeholder"
           @click="handleClickOnPlaceholder"
         >
-            <template v-if="!searchInput">
+            <template v-if="!showSearchInput">
               {{ defaultPlaceholder }}
             </template>
             <input
@@ -50,7 +50,7 @@
               ref="searchInput"
               :placeholder="defaultPlaceholder"
               v-else
-              v-model="searchValue"
+              v-model="searchInputValue"
               @blur="handleBlurInput"
               @keyup.esc.prevent="handleKeyupEsc"
               @keyup.up.prevent="handleInputKeyupUp"
@@ -118,24 +118,24 @@ export default {
       type: String,
       default: 'Select...'
     },
-    useNative: {
+    enableNativeSelect: {
       type: Boolean,
       default: true
     },
-    enableSearch: {
+    enableSearchInput: {
       type: Boolean,
       default: false,
     },
   },
   watch: {
-    searchInput (value) {
-      if (value) this.focusInput()
+    showSearchInput (value) {
+      if (value) this.focusSearchInput()
     }
   },
   data: () => ({
-    isHidden: true,
-    searchInput: false,
-    searchValue: '',
+    showOptions: false,
+    showSearchInput: false,
+    searchInputValue: '',
     selected: null,
     candidate: null
   }),
@@ -151,10 +151,10 @@ export default {
       return this.selected ? this.selected.name : this.placeholder
     },
     filteredOptions () {
-      if (!this.searchValue) return this.options
+      if (!this.searchInputValue) return this.options
       return this.options.filter(option => {
         const parsedOption = option.name.toUpperCase()
-        const parsedSearch = this.searchValue.toUpperCase()
+        const parsedSearch = this.searchInputValue.toUpperCase()
 
         return parsedOption.includes(parsedSearch)
       })
@@ -173,8 +173,8 @@ export default {
       if (this.currentIndex === this.filteredOptions.length - 1) return 0
       return this.currentIndex + 1
     },
-    isAbleToFocusInput () {
-      return this.enableSearch && this.searchInput && this.currentIndex >= 0
+    isAbleTofocusSearchInput () {
+      return this.enableSearchInput && this.showSearchInput && this.currentIndex >= 0
     }
   },
   methods: {
@@ -189,32 +189,32 @@ export default {
       this.candidate = options.find(option => option.value === value)
     },
     closeOptions () {
-      this.isHidden = true
-      this.searchInput = false
-      this.searchValue = ''
+      this.showOptions = false
+      this.showSearchInput = false
+      this.searchInputValue = ''
       this.candidate = null
       this.emitInput()
     },
     async handleClickOnSelect () {
-      this.isHidden = !this.isHidden
+      this.showOptions = !this.showOptions
 
-      if(!this.isHidden && !this.enableSearch) await this.$nextTick(() => this.$refs.options.focus())
+      if(this.showOptions && !this.enableSearchInput) await this.$nextTick(() => this.$refs.options.focus())
     },
     emitInput () {
       this.$emit('input', this.selected)
       this.$emit('change', this.selected)
     },
-    async focusInput () {
+    async focusSearchInput () {
       this.candidate = -1
       await this.$nextTick(() => this.$refs.searchInput.focus())
     },
     handleClickOnPlaceholder () {
-      if (!this.enableSearch && this.useNative) return
-      this.searchInput = true
+      if (!this.enableSearchInput && this.enableNativeSelect) return
+      this.showSearchInput = true
     },
     handleClickOnOption (value) {
       this.findSelected(value)
-      this.searchInput = false
+      this.showSearchInput = false
       this.emitInput()
     },
     handleClickout () {
@@ -232,14 +232,14 @@ export default {
       this.closeOptions()
     },
     handleKeyupUp () {
-      if (this.isAbleToFocusInput && this.prevOptionIndex === this.filteredOptions.length - 1)
-        return this.focusInput()
+      if (this.isAbleTofocusSearchInput && this.prevOptionIndex === this.filteredOptions.length - 1)
+        return this.focusSearchInput()
 
       this.candidate = this.filteredOptions[this.prevOptionIndex]
     },
     handleKeyupDown () {
-      if (this.isAbleToFocusInput && this.nextOptionIndex === 0)
-        return this.focusInput()
+      if (this.isAbleTofocusSearchInput && this.nextOptionIndex === 0)
+        return this.focusSearchInput()
 
       this.candidate = this.filteredOptions[this.nextOptionIndex]
     },
@@ -253,7 +253,7 @@ export default {
     }
   },
   mounted () {
-    if (this.useNative && this.enableSearch) console.error(`You can't use search feature with native select enabled.`)
+    if (this.enableNativeSelect && this.enableSearchInput) console.error(`You can't use search feature with native select enabled.`)
   }
 }
 </script>
