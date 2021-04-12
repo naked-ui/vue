@@ -81,7 +81,7 @@
             v-for="option in filteredOptions"
             :key="option.value"
             :data-value="option.value"
-            @click="handleClickOnOption(option.value)"
+            @click="handleClickOnOption(option)"
           >
               {{ option.name }}
           </div>
@@ -128,6 +128,9 @@ export default {
     },
   },
   watch: {
+    showOptions (value) {
+      if (value) this.candidate = this.selected ? this.selected : null
+    },
     showSearchInput (value) {
       if (value) this.focusSearchInput()
     }
@@ -143,8 +146,8 @@ export default {
     listeners () {
       return {
         ...this.$listeners,
-        input: e => this.$emit('input', this.findSelected(e.target.value)),
-        change: e => this.$emit('change', this.findSelected(e.target.value))
+        input: e => this.$emit('input', this.setSelected(e.target.value)),
+        change: e => this.$emit('change', this.setSelected(e.target.value))
       }
     },
     defaultPlaceholder () {
@@ -153,8 +156,8 @@ export default {
     filteredOptions () {
       if (!this.searchInputValue) return this.options
       return this.options.filter(option => {
-        const parsedOption = option.name.toUpperCase()
-        const parsedSearch = this.searchInputValue.toUpperCase()
+        const parsedOption = option.name.toUpperCase().trim()
+        const parsedSearch = this.searchInputValue.toUpperCase().trim()
 
         return parsedOption.includes(parsedSearch)
       })
@@ -173,20 +176,14 @@ export default {
       if (this.currentIndex === this.filteredOptions.length - 1) return 0
       return this.currentIndex + 1
     },
-    isAbleTofocusSearchInput () {
+    isAbleToFocusSearchInput () {
       return this.enableSearchInput && this.showSearchInput && this.currentIndex >= 0
     }
   },
   methods: {
-    findSelected (value) {
-      const options = [...this.options]
-
-      this.selected = options.find(option => option.value === value)
-    },
-    findCandidate () {
-      const options = [...this.options]
-
-      this.candidate = options.find(option => option.value === value)
+    setSelected (value) {
+      if (!value) return
+      this.selected = [...this.options].find(option => option.value === value)
     },
     closeOptions () {
       this.showOptions = false
@@ -205,15 +202,15 @@ export default {
       this.$emit('change', this.selected)
     },
     async focusSearchInput () {
-      this.candidate = -1
+      this.candidate = null
       await this.$nextTick(() => this.$refs.searchInput.focus())
     },
     handleClickOnPlaceholder () {
       if (!this.enableSearchInput && this.enableNativeSelect) return
       this.showSearchInput = true
     },
-    handleClickOnOption (value) {
-      this.findSelected(value)
+    handleClickOnOption (option) {
+      this.setSelected(option.value)
       this.showSearchInput = false
       this.emitInput()
     },
@@ -232,13 +229,13 @@ export default {
       this.closeOptions()
     },
     handleKeyupUp () {
-      if (this.isAbleTofocusSearchInput && this.prevOptionIndex === this.filteredOptions.length - 1)
+      if (this.isAbleToFocusSearchInput && this.prevOptionIndex === this.filteredOptions.length - 1)
         return this.focusSearchInput()
 
       this.candidate = this.filteredOptions[this.prevOptionIndex]
     },
     handleKeyupDown () {
-      if (this.isAbleTofocusSearchInput && this.nextOptionIndex === 0)
+      if (this.isAbleToFocusSearchInput && this.nextOptionIndex === 0)
         return this.focusSearchInput()
 
       this.candidate = this.filteredOptions[this.nextOptionIndex]
