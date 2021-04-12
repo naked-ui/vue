@@ -70,7 +70,7 @@
             class="n-select__custom--option"
             v-if="filteredOptions.length === 0"
           >
-            No options available...
+            {{ noOptionsPlaceholder }}
           </div>
           <div
             class="n-select__custom--option"
@@ -117,6 +117,10 @@ export default {
     placeholder: {
       type: String,
       default: 'Select...'
+    },
+    noOptionsPlaceholder: {
+      type: String,
+      default: 'No options to display...'
     },
     enableNativeSelect: {
       type: Boolean,
