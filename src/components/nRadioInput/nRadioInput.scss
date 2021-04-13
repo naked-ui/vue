@@ -11,9 +11,8 @@
 
 .radio-input {
   label {
-    &[disabled='disabled'],
-    &:disabled {
-      opacity: 0.3;
+    &:focus-within .checkbox-input__checkbox:invalid {
+      border-color: var(--color-invalid);
     }
   }
 
