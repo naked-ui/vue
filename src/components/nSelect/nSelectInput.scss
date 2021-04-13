@@ -64,6 +64,28 @@
             }
         }
 
+        &--chips {
+            position: relative;
+            display: flex;
+            align-items: center;
+            line-height: normal;
+
+            &__wrapper {
+                display: flex;
+                flex-wrap: nowrap;
+            }
+
+            &__placeholder {
+                display: flex;
+                flex-wrap: nowrap;
+                line-height: normal;
+                position: absolute;
+                top: 25%;
+                z-index: 1;
+                opacity: 0.7;
+            }
+        }
+
         &--search-input {
             font: inherit;
             background: none;
@@ -144,7 +166,7 @@
         margin-bottom: 0.4rem;
     }
 
-    &--widthrapper {
+    &--wrapper {
         position: relative;
     }
 
@@ -164,5 +186,13 @@
         background-position-x: 100%;
         background-position-y: var(--padding-select);
         padding: 0rem var(--padding-select);
+    }
+
+    .n-chip {
+        background: #444;
+        font-size: 0.8rem;
+        padding: 0.2rem 0.3rem;
+        margin: 0 0.1rem;
+        border: 1px solid #555;
     }
 }
