@@ -54,7 +54,8 @@ export default {
         ...this.$super(formField).style(),
         {
           '--color': this.color,
-          '--spacing': this.calculateCssSize(this.spacing)
+          '--spacing':
+            this.spacing > 0 ? this.calculateCssSize(this.spacing) : ''
         }
       ]
     }

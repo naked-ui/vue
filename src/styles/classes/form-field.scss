@@ -12,23 +12,15 @@
 
   .n-validation-alerts {
     display: grid;
-    gap: calc(var(--gap) / 4)
+    gap: calc(var(--gap) / 4);
   }
 
   .n-validation-alert {
-    color: var(--color);
+    color: var(--color, var(--color-invalid));
   }
 
   textarea,
-  input:is(
-    [type="text"],
-    [type="email"],
-    [type="tel"],
-    [type="pasword"],
-    [type="date"],
-    [type="time"],
-    [type="url"],
-  ) {
+  input:is([type='text'], [type='email'], [type='tel'], [type='pasword'], [type='date'], [type='time'], [type='url'], ) {
     font-size: inherit;
     box-sizing: border-box;
     height: var(--height);
@@ -38,11 +30,13 @@
     appearance: none;
     border: none;
     outline: var(--outline-width) solid;
-    outline-offset: calc(var(--negative-factor) * var(--outline-width)); // We need this as CSSO compression causes always appending "-1" value after CSS Variable in calc() function and it throws parsing error for final minified CSS file
+    outline-offset: calc(
+      var(--negative-factor) * var(--outline-width)
+    ); // We need this as CSSO compression causes always appending "-1" value after CSS Variable in calc() function and it throws parsing error for final minified CSS file
     padding: var(--padding);
     font-family: inherit;
 
-    &[nui-validation="true"] {
+    &[nui-validation='true'] {
       &:not(:invalid) ~ &,
       &:not(:focus):required:invalid ~ & {
         display: none;
@@ -59,11 +53,11 @@
         outline-color: var(--color-valid);
       }
 
-      &[disabled="disabled"] ~ .alerts {
+      &[disabled='disabled'] ~ .alerts {
         @include hide;
       }
 
-      &[disabled="disabled"],
+      &[disabled='disabled'],
       &:disabled {
         cursor: not-allowed;
       }

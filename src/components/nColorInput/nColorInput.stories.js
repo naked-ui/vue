@@ -22,10 +22,11 @@ export default {
       defaultValue: 'Label text'
     },
     placeholder: {
-      defaultValue: 'Placeholder text'
+      defaultValue: '#1b2b3c'
     },
     pattern: {
-      control: 'text'
+      control: 'text',
+      defaultValue: '/0x[\da-f]/i'
     },
     required: {
       control: 'boolean'
@@ -77,7 +78,7 @@ const Template = (args, { argTypes }) => ({
       if (!e.target.checkValidity()) return
     }
   },
-  data: () => ({ val: '' }),
+  data: () => ({ val: '#123456' }),
   template: `
   <form novalidate @submit.prevent="submit">
     <nColorInput
@@ -98,5 +99,8 @@ Default.args = {
   autofocus: false,
   disabled: false,
   outlineWidth: '2px',
-  customMessages: { valueMissing: 'Not empty!' }
+  customMessages: {
+    patternMismatch: { text: 'Enter valid HEX value', color: 'magenta' },
+    tooShort: { text: 'Enter 6 characters HEX value', color: 'indigo' }
+  }
 }

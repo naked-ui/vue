@@ -46,7 +46,7 @@ Default.args = {
   id: 'radio-input',
   name: 'radio-input',
   label: 'Label text',
-  customMessages: { valueMissing: 'Value is required!' },
+  // customMessages: { valueMissing: 'Value is required!' },
   gap: 8,
   validationEnabled: true,
   required: true

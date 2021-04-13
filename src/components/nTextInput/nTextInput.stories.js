@@ -87,7 +87,6 @@ const Template = (args, { argTypes }) => ({
   data: () => ({ val: '' }),
   template: `
   <form novalidate @submit.prevent="submit">
-  {{ val }}
     <nTextInput
       v-bind="$props"
       v-model="val"
@@ -107,7 +106,7 @@ Default.args = {
   disabled: false,
   outlineWidth: '2px',
   pattern: '.*\\S.*',
-  customMessages: { valueMissing: 'Not empty!' },
+  // customMessages: { valueMissing: 'Not empty!' },
   rules: [
     (value) =>
       !value ||
