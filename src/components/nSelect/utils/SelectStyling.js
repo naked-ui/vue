@@ -2,7 +2,7 @@ export default {
   props: {
     width: {
       type: String,
-      default: '11rem'
+      default: '20rem'
     },
     height: {
       type: String,
