@@ -2,22 +2,25 @@
   <nav
     v-if="!paginationDisabled"
     :class="`${baseClassname}__pagination`"
-    :style="[this.paginationAutohide ? {'--pagination-initial-opacity': 0} : {'--pagination-initial-opacity': 1}]"
+    :style="[
+      this.paginationAutohide
+        ? { '--pagination-initial-opacity': 0 }
+        : { '--pagination-initial-opacity': 1 }
+    ]"
   >
     <ol :class="`${baseClassname}__pagination-list`">
       <li
         v-for="(item, index) in paginationItems"
         :key="index"
-        :class="`${baseClassname}__pagination-item`">
+        :class="`${baseClassname}__pagination-item`"
+      >
         <input
           type="radio"
           :name="`${refName}__pagination-input`"
           @click="navigateToSlide(index + 1)"
           :value="index + 1"
           :id="`${refName}__pagination-input--${index + 1}`"
-          :class="[
-            `${baseClassname}__pagination-input`
-          ]"
+          :class="[`${baseClassname}__pagination-input`]"
           :aria-label="`Go to slide ${index + 1}`"
         />
       </li>
@@ -52,17 +55,21 @@ export default {
     paginationAutohide: {
       type: Boolean,
       default: false
-    },
-  },
-  methods: {
-    setActivePaginationItem () {
-      if(this.paginationDisabled) return
-      const slidePaginationItem = document.getElementById(`${this.refName}__pagination-input--${this.slideIndex}`)
-      slidePaginationItem.checked = true;
     }
   },
-  mounted () {
-    this.setActivePaginationItem()
+  methods: {
+    setActivePaginationItem() {
+      if (this.paginationDisabled) return
+      const slidePaginationItem = document.getElementById(
+        `${this.refName}__pagination-input--${this.slideIndex}`
+      )
+      slidePaginationItem.checked = true
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.setActivePaginationItem()
+    })
   }
 }
 </script>
