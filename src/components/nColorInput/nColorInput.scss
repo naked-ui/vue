@@ -1,31 +1,31 @@
-.n-color-input {
+// CORE STYLES
 
-  input[type="text"] {
+.n-color-input {
+  input[type='text'] {
     grid-row: 2/3;
     grid-column: 2/3;
     transform: translateX(calc(var(--negative-factor) * var(--outline-width)));
 
-    [nui-validation="true"] {
-      
-      &:valid + input[type="color"][nui-validation="true"] {
+    &[nui-validation='true'] {
+      &:valid ~ input[type='color'][nui-validation='true'] {
         outline-color: var(--color-valid);
       }
-  
-      &:invalid + input[type="color"][nui-validation="true"] {
+
+      &:invalid + input[type='color'][nui-validation='true'] {
         outline-color: var(--color-invalid);
       }
-  
+
       &:not(:focus):required:invalid {
         outline-color: var(--color-invalid) !important;
       }
-  
+
       &:not(:focus):required:invalid ~ .n-validation-alerts {
         display: inherit;
       }
     }
   }
 
-  input[type="color"] {
+  input[type='color'] {
     grid-row: 2/3;
     grid-column: 1/2;
     height: var(--height);
@@ -36,9 +36,15 @@
     border: none;
     outline: var(--outline-width) solid;
     outline-offset: calc(var(--negative-factor) * var(--outline-width));
-
-    [nui-validation="true"] {
-      & + input[type="text"] {
+    // Webkit styles
+    &::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    &::-webkit-color-swatch {
+      border: none;
+    }
+    [nui-validation='true'] {
+      & + input[type='text'] {
         outline-color: var(--color-valid);
       }
     }

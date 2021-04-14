@@ -13,21 +13,25 @@
       v-if="textValueEnabled"
       pattern="#[a-fA-F\d]+"
       type="text"
-      v-model="value"
+      @invalid="onInvalid"
+      :value="value"
+      @input="onChange"
+      @blur.capture="validateFormField"
       :id="id"
-      @change="updateColorValue($event)"
-      @input="validateFormField()"
       :placeholder="placeholder"
       :disabled="disabled"
       required
       maxlength="7"
+      minlength="7"
       :nui-validation="validationEnabled"
     >
     <input
       type="color"
-      v-model="value"
+      :value="value"
       pattern="#[a-fA-F\d]+"
-      @change="printColorValue($event);"
+      @invalid="onInvalid"
+      @change="onChange"
+      @blur.capture="validateFormField"
       :autofocus="autofocus"
       :disabled="disabled"
       :name="name"
@@ -52,13 +56,8 @@ export default {
   components: {
     nValidationAlerts
   },
-  data () {
-    return {
-      value: this.color
-    }
-  },
   props: {
-    color: {
+    value: {
       type: String,
       default: '#000000'
     },
@@ -77,14 +76,12 @@ export default {
         this.baseClassname,
         'n-color-input'
       ]
-    },
+    }
   },
   methods: {
-    updateColorValue (e) {
-    	e.target.value = this.value
-    },
-    printColorValue (e) {
-    	this.value = e.target.value
+    onChange (e) {
+      this.$emit('input', e.target.value)
+      this.validateFormField(e)
     }
   }
 }

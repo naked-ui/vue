@@ -1,8 +1,10 @@
 export default {
   props: {
+    value: null,
     autocorrect: {
       type: String,
-      default: ''
+      default: null,
+      validator: (v) => ['on', 'off'].includes(v)
     },
     autofocus: {
       type: Boolean,
@@ -27,20 +29,20 @@ export default {
       type: String
     },
     max: {
-      type: [Number, Boolean],
-      default: false
+      type: [Number, String],
+      default: null
     },
     min: {
-      type: [Number, Boolean],
-      default: false
+      type: [Number, String],
+      default: null
     },
     maxlength: {
-      type: [Number, Boolean],
-      default: false
+      type: [Number, String],
+      default: null
     },
     minlength: {
-      type: [Number, Boolean],
-      default: false
+      type: [Number, String],
+      default: null
     },
     name: {
       type: String,
@@ -48,7 +50,8 @@ export default {
     },
     pattern: {
       type: String,
-      default: '.*\S.*'
+      // default: '.*\\S.*'
+      default: null
     },
     placeholder: {
       type: String

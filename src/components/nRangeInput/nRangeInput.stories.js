@@ -15,11 +15,12 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { nRangeInput },
   props: Object.keys(argTypes),
+  data: () => ({ val: '' }),
   template: `
     <div>
-      <nRangeInput v-bind="$props" v-model="test" />
+      <nRangeInput v-bind="$props" v-model="val" />
       <br>
-      <code>{{ test }}</code>
+      <code>{{ val }}</code>
     </div>
   `,
 });

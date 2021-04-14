@@ -4,6 +4,9 @@ export default {
   title: 'Form/Input/ColorInput',
   component: nColorInput,
   argTypes: {
+    customMessages: {
+      control: 'object'
+    },
     name: {
       defaultValue: 'color-input-name',
       description: '`name` prop is required'
@@ -62,30 +65,38 @@ export default {
         min: 0,
         max: 80
       }
-    },
+    }
   }
 }
 
 const Template = (args, { argTypes }) => ({
   components: { nColorInput },
   props: Object.keys(argTypes),
+  methods: {
+    submit(e) {
+      if (!e.target.checkValidity()) return
+    }
+  },
+  data: () => ({ val: '' }),
   template: `
+  <form novalidate @submit.prevent="submit">
     <nColorInput
       v-bind="$props"
+      v-model="val"
     />
-  `,
-  data: () => ({
-    color: ''
-  })
-});
+    <input style="margin-top: 16px;" type="submit" value="submit">
+  </form>
+  `
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
-  gap: 12,
+  gap: 8,
   height: 48,
   width: '96px',
   padding: '0 12px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px'
+  outlineWidth: '2px',
+  customMessages: { valueMissing: 'Not empty!' }
 }
