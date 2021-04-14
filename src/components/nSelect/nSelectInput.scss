@@ -100,13 +100,13 @@
 
         &--options {
             position: absolute;
-            top: calc(var(--line-height) + var(--padding-select));
+            // top: calc(var(--line-height) + var(--padding-select));
             left: 0;
             width: 100%;
             border: 1px solid var(--border-color);
             border-radius: var(--border-radius);
             background-color: var(--background-color);
-            box-shadow: 0 0 4px #e9e1f8;
+            // box-shadow: 0 0 4px #e9e1f8;
             z-index: 1;
             display: none;
 
