@@ -248,7 +248,7 @@ export default {
       if (!this.enableMultiSelect) return
 
       if (this.selected && this.selected.length && this.selected.includes(option)) {
-        this.selected = this.selected.filter(el => el.name !== option.name)
+        this.selected = this.selected.filter(el => el.value !== option.value)
       } else {
         this.selected.push(option)
       }
