@@ -58,7 +58,7 @@
             <div
               class="n-select__custom--chips__wrapper"
               :class="{ 'n-select__custom--chips__placeholder': showSearchInput }"
-              v-show="searchInputValue.length === 0"
+              v-show="!searchInputValue.length"
               v-if="enableMultiSelect"
             >
               <nChip
