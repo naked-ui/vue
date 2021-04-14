@@ -56,20 +56,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  methods: {
-    setActivePaginationItem() {
-      if (this.paginationDisabled) return
-      const slidePaginationItem = document.getElementById(
-        `${this.refName}__pagination-input--${this.slideIndex}`
-      )
-      slidePaginationItem.checked = true
-    }
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.setActivePaginationItem()
-    })
   }
 }
 </script>
