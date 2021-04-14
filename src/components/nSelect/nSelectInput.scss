@@ -189,10 +189,15 @@
     }
 
     .n-chip {
+        position: relative;
         background: #444;
         font-size: 0.8rem;
         padding: 0.2rem 0.3rem;
         margin: 0 0.1rem;
         border: 1px solid #555;
+
+        &:hover {
+            background: #555;
+        }
     }
 }

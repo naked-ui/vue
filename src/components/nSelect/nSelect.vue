@@ -64,6 +64,7 @@
               <nChip
                 v-for="option in selected"
                 :key="option.value"
+                @click.stop="handleClickOnChip(option)"
               >
                 {{ option.name }}
               </nChip>
