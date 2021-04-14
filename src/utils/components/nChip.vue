@@ -1,5 +1,5 @@
 <template functional>
-  <div class="n-chip">
+  <div class="n-chip" v-on="listeners">
     <div class="n-chip__inner">
       <span v-if="props.content" class="n-chip__inner--content">{{ props.content }}</span>
       <slot v-if="$slots && $slots.default"></slot>
