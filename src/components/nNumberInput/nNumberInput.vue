@@ -63,6 +63,10 @@ export default {
     max: {
       type: Number,
       default: 100
+    },
+    enableEmitWithUnit: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
@@ -91,6 +95,7 @@ export default {
       ]
     },
     parsedWithUnit () {
+      if (!this.enableEmitWithUnit) return `${this.inputValue}`
       return `${this.inputValue}${this.unit}`
     }
   },
