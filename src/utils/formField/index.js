@@ -22,7 +22,8 @@ export default {
           '--color-valid': this.colorValid,
           '--color-invalid': this.colorInvalid,
         },
-        { '--resize' : this.resize ? this.resize : '' }
+        { '--resize' : this.resize ? this.resize : '' },
+        { '--unit': this.unit ? `'${this.unit}'` : ''}
       ]
     }
   }
