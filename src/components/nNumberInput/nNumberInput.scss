@@ -1,5 +1,5 @@
 .n-number-input {
-    &__wrapper {
+    &--wrapper {
         /* Chrome, Safari, Edge, Opera */
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
@@ -37,6 +37,13 @@
             outline: var(--outline-width) solid;
             outline-offset: calc(var(--negative-factor) * var(--outline-width));
             border: none;
+        }
+
+        &__plus {
+            transform: translate(calc(var(--negative-factor) * var(--outline-width)))
+        }
+        &__minus {
+            transform: translate(calc(2 * var(--negative-factor) * var(--outline-width)))
         }
     }
 }
