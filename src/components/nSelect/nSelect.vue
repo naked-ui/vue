@@ -1,14 +1,10 @@
 <template>
-    <div
-      class="n-select"
-      :class="{ 'n-select--native-handler': enableNativeSelect }"
-      :style="styleVariables"
-    >
-    <span
-      class="n-select--label"
-      v-if="label"
-      :id="uiElementID"
-    >
+  <div
+    class="n-select"
+    :class="{ 'n-select--native-handler': enableNativeSelect }"
+    :style="styleVariables"
+  >
+    <span class="n-select--label" v-if="label" :id="uiElementID">
       {{ label }}
     </span>
     <div class="n-select--wrapper">
@@ -32,7 +28,7 @@
       </select>
       <div
         class="n-select__custom"
-        :class="{ 'active': showOptions }"
+        :class="{ active: showOptions }"
         :aria-hidden="!showOptions"
         :aria-labelledby="uiElementID"
         @click="handleClickOnSelect"
@@ -43,35 +39,35 @@
           :class="{ 'n-select__custom--chips': displayChips }"
           @click="handleClickOnPlaceholder"
         >
-            <input
-              class="n-select__custom--search-input"
-              type="text"
-              :ref="searchInputRefName"
-              :placeholder="defaultPlaceholder"
-              v-if="showSearchInput"
-              v-model="searchInputValue"
-              @blur="handleBlurInput"
-              @keyup.esc.prevent="handleKeyupEsc"
-              @keyup.up.prevent="handleInputKeyupUp"
-              @keyup.down.prevent="handleInputKeyupDown"
-            />
-            <div
-              class="n-select__custom--chips__wrapper"
-              :class="{ 'n-select__custom--chips__placeholder': showSearchInput }"
-              v-show="!searchInputValue.length"
-              v-if="enableMultiSelect"
+          <input
+            class="n-select__custom--search-input"
+            type="text"
+            :ref="searchInputRefName"
+            :placeholder="defaultPlaceholder"
+            v-if="showSearchInput"
+            v-model="searchInputValue"
+            @blur="handleBlurInput"
+            @keyup.esc.prevent="handleKeyupEsc"
+            @keyup.up.prevent="handleInputKeyupUp"
+            @keyup.down.prevent="handleInputKeyupDown"
+          />
+          <div
+            class="n-select__custom--chips__wrapper"
+            :class="{ 'n-select__custom--chips__placeholder': showSearchInput }"
+            v-show="!searchInputValue.length"
+            v-if="enableMultiSelect"
+          >
+            <nChip
+              v-for="option in selected"
+              :key="option.value"
+              @click.stop="handleClickOnChip(option)"
             >
-              <nChip
-                v-for="option in selected"
-                :key="option.value"
-                @click.stop="handleClickOnChip(option)"
-              >
-                {{ option.name }}
-              </nChip>
-            </div>
-            <template v-if="displayDefaultPlaceholder">
-              {{ defaultPlaceholder }}
-            </template>
+              {{ option.name }}
+            </nChip>
+          </div>
+          <template v-if="displayDefaultPlaceholder">
+            {{ defaultPlaceholder }}
+          </template>
         </div>
         <div
           class="n-select__custom--options"
@@ -82,24 +78,21 @@
           @keyup.esc.prevent="handleKeyupEsc"
           @keyup.enter.prevent="handleKeyupEnter"
         >
-          <div
-            class="n-select__custom--option"
-            v-if="!filteredOptions.length"
-          >
+          <div class="n-select__custom--option" v-if="!filteredOptions.length">
             {{ noOptionsPlaceholder }}
           </div>
           <div
             class="n-select__custom--option"
             :class="{
-              'selected': isSelected(option),
-              'candidate': isCandidate(option)
+              selected: isSelected(option),
+              candidate: isCandidate(option)
             }"
             v-for="option in filteredOptions"
             :key="option.value"
             :data-value="option.value"
             @click.stop="handleClickOnOption(option)"
           >
-              {{ option.name }}
+            {{ option.name }}
           </div>
         </div>
       </div>
@@ -116,7 +109,7 @@ import SelectStyling from './utils/SelectStyling'
 export default {
   name: 'nSelect',
   inheritAttrs: false,
-  mixins: [ uuidMixin, SelectStyling ],
+  mixins: [uuidMixin, SelectStyling],
   directives: { clickout },
   components: { nChip },
   props: {
@@ -158,7 +151,7 @@ export default {
     },
     enableSearchInput: {
       type: Boolean,
-      default: false,
+      default: false
     },
     enableMultiSelect: {
       type: Boolean,
@@ -166,10 +159,10 @@ export default {
     }
   },
   watch: {
-    showSearchInput (value) {
+    showSearchInput(value) {
       if (value) this.focusSearchInput()
     },
-    enableMultiSelect (value) {
+    enableMultiSelect(value) {
       if (value) this.selected = []
       else this.selected = null
     }
@@ -182,153 +175,181 @@ export default {
     candidate: null
   }),
   computed: {
-    listeners () {
+    listeners() {
       return {
         ...this.$listeners,
-        input: e => this.$emit('input', this.setSelected(e.target.value)),
-        change: e => this.$emit('change', this.setSelected(e.target.value))
+        input: (e) => this.$emit('input', this.setSelected(e.target.value)),
+        change: (e) => this.$emit('change', this.setSelected(e.target.value))
       }
     },
-    defaultPlaceholder () {
+    defaultPlaceholder() {
       if (this.enableMultiSelect) {
         if (this.selected && this.selected.length) return ''
         else return 'No options selected...'
       }
       return this.selected ? this.selected.name : this.placeholder
     },
-    filteredOptions () {
+    filteredOptions() {
       if (!this.searchInputValue) return this.options
-      return this.options.filter(option => {
+      return this.options.filter((option) => {
         const parsedOption = option.name.toUpperCase().trim()
         const parsedSearch = this.searchInputValue.toUpperCase().trim()
 
         return parsedOption.includes(parsedSearch)
       })
     },
-    currentIndex () {
+    currentIndex() {
       if (!this.candidate && this.showSearchInput) return -1
       if (this.candidate) return this.filteredOptions.indexOf(this.candidate)
       return -1
     },
-    prevOptionIndex () {
-      if (!this.currentIndex || this.currentIndex <= 0) return this.filteredOptions.length - 1
+    prevOptionIndex() {
+      if (!this.currentIndex || this.currentIndex <= 0)
+        return this.filteredOptions.length - 1
       return this.currentIndex - 1
     },
-    nextOptionIndex () {
+    nextOptionIndex() {
       if (!this.currentIndex && this.currentIndex !== 0) return 0
       if (this.currentIndex === this.filteredOptions.length - 1) return 0
       return this.currentIndex + 1
     },
-    isAbleToFocusSearchInput () {
-      return this.enableSearchInput && this.showSearchInput && this.currentIndex >= 0
+    isAbleToFocusSearchInput() {
+      return (
+        this.enableSearchInput && this.showSearchInput && this.currentIndex >= 0
+      )
     },
-    canBeNative () {
-      return this.enableNativeSelect && !this.enableSearchInput && !this.enableMultiSelect
+    canBeNative() {
+      return (
+        this.enableNativeSelect &&
+        !this.enableSearchInput &&
+        !this.enableMultiSelect
+      )
     },
-    displayChips () {
+    displayChips() {
       return !this.showSearchInput && this.enableMultiSelect
     },
-    displayDefaultPlaceholder () {
-      return !this.showSearchInput && !(this.selected && this.selected.length > 0)
+    displayDefaultPlaceholder() {
+      return (
+        !this.showSearchInput && !(this.selected && this.selected.length > 0)
+      )
     }
   },
   methods: {
-    setSelected (value) {
+    setSelected(value) {
       if (!value) return
-      this.selected = [...this.options].find(option => option.value === value)
+      this.selected = [...this.options].find((option) => option.value === value)
     },
-    isSelected (option) {
-      return (this.selected && this.selected.value === option.value) ||
-              (this.selected && this.selected.length > 0 && this.selected.includes(option))
+    isSelected(option) {
+      return (
+        (this.selected && this.selected.value === option.value) ||
+        (this.selected &&
+          this.selected.length > 0 &&
+          this.selected.includes(option))
+      )
     },
-    isCandidate (option) {
+    isCandidate(option) {
       return this.candidate && this.candidate.value === option.value
     },
-    handleMultiSelect (option) {
+    handleMultiSelect(option) {
       if (!this.enableMultiSelect) return
 
-      if (this.selected && this.selected.length && this.selected.includes(option)) {
-        this.selected = this.selected.filter(el => el.value !== option.value)
+      if (
+        this.selected &&
+        this.selected.length &&
+        this.selected.includes(option)
+      ) {
+        this.selected = this.selected.filter((el) => el.value !== option.value)
       } else {
         this.selected.push(option)
       }
       this.searchInputValue = ''
     },
-    closeOptions () {
+    closeOptions() {
       this.showOptions = false
       this.showSearchInput = false
       this.searchInputValue = ''
       this.candidate = null
       this.emitInput()
     },
-    async handleClickOnSelect () {
+    async handleClickOnSelect() {
       this.showOptions = !this.showOptions
 
       if (this.showOptions && !this.enableSearchInput) await this.focusOptions()
     },
-    emitInput () {
+    emitInput() {
       this.$emit('input', this.selected)
       this.$emit('change', this.selected)
     },
-    async focusSearchInput () {
+    async focusSearchInput() {
       this.candidate = null
       await this.$nextTick(() => this.$refs[this.searchInputRefName].focus())
     },
-    async focusOptions () {
+    async focusOptions() {
       await this.$nextTick(() => this.$refs[this.optionsRefName].focus())
     },
-    handleClickOnPlaceholder () {
+    handleClickOnPlaceholder() {
       if (!this.enableSearchInput) return
       if (!this.enableSearchInput && this.enableNativeSelect) return
       this.showSearchInput = true
     },
-    handleClickOnOption (option) {
+    handleClickOnOption(option) {
       if (this.enableMultiSelect) return this.handleMultiSelect(option)
       this.setSelected(option.value)
       this.closeOptions()
     },
-    handleClickOnChip (option) {
+    handleClickOnChip(option) {
       this.handleMultiSelect(option)
     },
-    handleClickout () {
+    handleClickout() {
       this.closeOptions()
     },
-    handleBlurInput (e) {
-      if (e.relatedTarget && e.relatedTarget.className === 'n-select__custom--options') return
+    handleBlurInput(e) {
+      if (
+        e.relatedTarget &&
+        e.relatedTarget.className === 'n-select__custom--options'
+      )
+        return
       this.closeOptions()
     },
-    handleKeyupEsc () {
+    handleKeyupEsc() {
       this.closeOptions()
     },
-    handleKeyupEnter () {
+    handleKeyupEnter() {
       if (this.enableMultiSelect) return this.handleMultiSelect(this.candidate)
       this.selected = this.candidate
       this.closeOptions()
     },
-    handleKeyupUp () {
-      if (this.isAbleToFocusSearchInput && this.prevOptionIndex === this.filteredOptions.length - 1)
+    handleKeyupUp() {
+      if (
+        this.isAbleToFocusSearchInput &&
+        this.prevOptionIndex === this.filteredOptions.length - 1
+      )
         return this.focusSearchInput()
 
       this.candidate = this.filteredOptions[this.prevOptionIndex]
     },
-    handleKeyupDown () {
+    handleKeyupDown() {
       if (this.isAbleToFocusSearchInput && this.nextOptionIndex === 0)
         return this.focusSearchInput()
 
       this.candidate = this.filteredOptions[this.nextOptionIndex]
     },
-    async handleInputKeyupUp () {
+    async handleInputKeyupUp() {
       await this.focusOptions()
       this.handleKeyupUp()
     },
-    async handleInputKeyupDown () {
+    async handleInputKeyupDown() {
       await this.focusOptions()
       this.handleKeyupDown()
     }
   },
-  mounted () {
-    if (this.enableNativeSelect && this.enableSearchInput) console.error(`You can't use search feature with native select enabled.`)
-    if (this.enableNativeSelect && this.enableMultiSelect) console.error(`You can't use multi select feature with native select enabled.`)
+  mounted() {
+    if (this.enableNativeSelect && this.enableSearchInput)
+      console.error(`You can't use search feature with native select enabled.`)
+    if (this.enableNativeSelect && this.enableMultiSelect)
+      console.error(
+        `You can't use multi select feature with native select enabled.`
+      )
     if (this.enableMultiSelect) this.selected = []
   }
 }

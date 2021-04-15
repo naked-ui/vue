@@ -1,7 +1,7 @@
 import nSelect from './nSelect'
 
 export default {
-    title: 'Form/Input/Select',
+    title: 'Form/Select',
     component: nSelect,
     argTypes: {
         textColor: { control: { type: 'color' } },
@@ -18,7 +18,7 @@ export default {
     }
 }
 
-const Template = (args, {argTypes}) => ({
+const Template = (args, { argTypes }) => ({
     components: { nSelect },
     props: Object.keys(argTypes),
     data: () => ({
