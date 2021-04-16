@@ -116,6 +116,13 @@ export default {
       this.inputValue = newValue
       this.emitValues()
     },
+  },
+  mounted () {
+    this.inputValue = this.value
+                      ? typeof this.value === 'string'
+                        ? this.value.replace(',', '.')
+                        : this.value
+                      : 0
   }
 }
 </script>
