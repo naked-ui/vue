@@ -12,10 +12,21 @@
       <input
         class="n-number-input--input"
         type="number"
-        v-on="listeners"
-        v-model="inputValue"
+        :id="id"
+        :name="name"
+        :title="title"
+        v-model.number="inputValue"
         :min="min"
         :max="max"
+        :autofocus="autofocus"
+        :disabled="disabled"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :required="required"
+        :nui-validation="validationEnabled"
+        @invalid="onInvalid"
+        @input="emitValues;validateFormField($event)"
+        @blur.capture="validateFormField"
       >
       <div class="n-number-input--buttons">
         <button
@@ -34,15 +45,24 @@
         </button>
       </div>
     </div>
+    <nValidationAlerts
+      v-if="validationMessages.length > 0"
+      :validationMessages="validationMessages"
+    />
   </div>
 </template>
 
 <script>
 import formField from '../../utils/formField/index.js'
+import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+
 
 export default {
   name: 'nNumberInput',
   mixins: [formField],
+  components: {
+    nValidationAlerts
+  },
   props: {
     baseClassname: {
       type: String,
@@ -82,13 +102,6 @@ export default {
     inputValue: 0
   }),
   computed: {
-    listeners () {
-      return {
-        ...this.$listeners,
-        input: () => this.$emit('input', this.parsedWithUnit),
-        change: () => this.$emit('change', this.parsedWithUnit),
-      }
-    },
     componentClasses () {
       return [
         this.baseClassname
