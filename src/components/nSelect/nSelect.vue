@@ -4,12 +4,12 @@
     :class="{ 'n-select--native-handler': enableNativeSelect }"
     :style="styleVariables"
   >
-    <span class="n-select--label" v-if="label" :id="uiElementID">
+    <span class="n-select__label" v-if="label" :id="uiElementID">
       {{ label }}
     </span>
-    <div class="n-select--wrapper">
+    <div class="n-select__wrapper">
       <select
-        class="n-select__native"
+        class="n-select--native"
         :aria-labelledby="uiElementID"
         v-if="canBeNative"
         v-on="listeners"
@@ -27,7 +27,7 @@
         </option>
       </select>
       <div
-        class="n-select__custom"
+        class="n-select--custom"
         :class="{ active: showOptions }"
         :aria-hidden="!showOptions"
         :aria-labelledby="uiElementID"
@@ -35,12 +35,12 @@
         v-clickout="handleClickout"
       >
         <div
-          class="n-select__custom--placeholder"
-          :class="{ 'n-select__custom--chips': displayChips }"
+          class="n-select--custom__placeholder"
+          :class="{ 'n-select--custom__chips': displayChips }"
           @click="handleClickOnPlaceholder"
         >
           <input
-            class="n-select__custom--search-input"
+            class="n-select--custom__search-input"
             type="text"
             :ref="searchInputRefName"
             :placeholder="defaultPlaceholder"
@@ -52,8 +52,8 @@
             @keyup.down.prevent="handleInputKeyupDown"
           />
           <div
-            class="n-select__custom--chips__wrapper"
-            :class="{ 'n-select__custom--chips__placeholder': showSearchInput }"
+            class="n-select--custom__chips__wrapper"
+            :class="{ 'n-select--custom__chips__placeholder': showSearchInput }"
             v-show="!searchInputValue.length"
             v-if="enableMultiSelect"
           >
@@ -70,7 +70,7 @@
           </template>
         </div>
         <div
-          class="n-select__custom--options"
+          class="n-select--custom__options"
           :tabindex="tabindex"
           :ref="optionsRefName"
           @keyup.up.prevent="handleKeyupUp"
@@ -78,11 +78,11 @@
           @keyup.esc.prevent="handleKeyupEsc"
           @keyup.enter.prevent="handleKeyupEnter"
         >
-          <div class="n-select__custom--option" v-if="!filteredOptions.length">
+          <div class="n-select--custom__option" v-if="!filteredOptions.length">
             {{ noOptionsPlaceholder }}
           </div>
           <div
-            class="n-select__custom--option"
+            class="n-select--custom__option"
             :class="{
               selected: isSelected(option),
               candidate: isCandidate(option)
@@ -101,10 +101,10 @@
 </template>
 
 <script>
-import uuidMixin from '../../utils/uuid'
-import clickout from '../../utils/clickout'
-import nChip from '../../utils/components/nChip'
-import SelectStyling from './utils/SelectStyling'
+import uuidMixin from '@/utils/uuid'
+import clickout from '@/utils/clickout'
+import nChip from '@/utils/components/nChip'
+import SelectStyling from './SelectStyling'
 
 export default {
   name: 'nSelect',
@@ -306,7 +306,7 @@ export default {
     handleBlurInput(e) {
       if (
         e.relatedTarget &&
-        e.relatedTarget.className === 'n-select__custom--options'
+        e.relatedTarget.className === 'n-select--custom__options'
       )
         return
       this.closeOptions()
