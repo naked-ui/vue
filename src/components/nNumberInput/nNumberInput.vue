@@ -8,7 +8,7 @@
         {{ label }}
       </label>
     </div>
-    <div class="n-number-input__wrapper">
+    <div class="n-number-input--wrapper">
       <input
         class="n-number-input--input"
         type="number"
