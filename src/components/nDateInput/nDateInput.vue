@@ -23,6 +23,7 @@
       :readonly="readonly"
       :required="required"
       :title="title"
+      :nui-validation="validationEnabled"
     />
     <nValidationAlerts
       v-if="validationMessages.length > 0"
