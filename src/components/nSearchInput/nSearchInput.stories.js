@@ -86,10 +86,13 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   data: () => ({ val: '' }),
   template: `
-    <nSearchInput
-      v-model="val"
-      v-bind="$props"
-    />
+    <div>
+      <nSearchInput
+        v-model="val"
+        v-bind="$props"
+      />
+      <pre>{{ val }}</pre>
+    </div>
   `
 })
 

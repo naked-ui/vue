@@ -11,7 +11,7 @@
     </label>
     <input
       type="search"
-      :value="value"
+      :value="inputValue"
       @invalid="onInvalid"
       @input="$emit('input', $event.target.value);validateFormField($event)"
       @change="$emit('change', $event.target.value);validateFormField($event)"
@@ -75,6 +75,12 @@ export default {
       return this.enableList ? `${this.id}-list` : ''
     }
   },
+  data: () => ({
+    inputValue: ''
+  }),
+  mounted () {
+    this.inputValue = this.value ? this.value : ''
+  }
 }
 
 </script>
