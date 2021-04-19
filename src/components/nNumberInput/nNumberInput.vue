@@ -32,14 +32,14 @@
         <button
           class="n-number-input--buttons__plus"
           :disabled="max === inputValue"
-          @click="increase"
+          @click="action('increase')"
         >
           +
         </button>
         <button
           class="n-number-input--buttons__minus"
           :disabled="min === inputValue"
-          @click="decrease"
+          @click="action('decrease')"
         >
           -
         </button>
@@ -99,7 +99,7 @@ export default {
     }
   },
   data: () => ({
-    inputValue: 0
+    inputValue: ''
   }),
   computed: {
     componentClasses () {
@@ -116,6 +116,12 @@ export default {
     emitValues () {
       this.$emit('input', this.parsedWithUnit)
       this.$emit('change', this.parsedWithUnit)
+    },
+    action (direction) {
+      if (+this.inputValue > this.max) this.inputValue = this.max
+      else if (+this.inputValue < this.min) this.inputValue = this.min
+
+      return direction === 'increase' ? this.increase() : this.decrease()
     },
     increase () {
       const newValue = +this.inputValue + this.step
@@ -135,7 +141,7 @@ export default {
                       ? typeof this.value === 'string'
                         ? this.value.replace(',', '.')
                         : this.value
-                      : 0
+                      : ''
   }
 }
 </script>
