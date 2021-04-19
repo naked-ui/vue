@@ -23,6 +23,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@storybook/addon-postcss": "^2.0.0",
     "babel-loader": "^8.2.2",
     "core-js": "^3.8.1",
     "smoothscroll-polyfill": "^0.4.4",
