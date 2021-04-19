@@ -101,5 +101,6 @@ Default.args = {
   padding: '0 12px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px'
+  outlineWidth: '2px',
+  list: ['mango', 'cherry', 'apple', 'watermelon']
 }

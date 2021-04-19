@@ -10,7 +10,7 @@
       {{ label }}
     </label>
     <input
-      type="text"
+      type="search"
       :value="value"
       @input="$emit('input', $event.target.value)"
       :autofocus="autofocus"
@@ -23,9 +23,13 @@
       :title="title"
       :maxlength="maxlength"
       :minlength="minlength"
+      :list="listID"
       autocorrect="off"
       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
     >
+    <datalist :id="listID" v-if="enableList">
+      <option v-for="option in list" :key="option" :value="option" />
+    </datalist>
   </div>
 </template>
 
@@ -40,6 +44,10 @@ export default {
       type: String,
       default: 'n-form-field'
     },
+    list: {
+      type: Array,
+      default: () => ([])
+    }
   },
   computed: {
     componentClasses () {
@@ -47,6 +55,12 @@ export default {
         this.baseClassname
       ]
     },
+    enableList () {
+      return this.list && this.list.length > 0
+    },
+    listID () {
+      return this.enableList ? `${this.id}-list` : ''
+    }
   },
 }
 
