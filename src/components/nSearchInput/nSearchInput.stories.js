@@ -9,11 +9,10 @@ export default {
       description: '`autocorrect` prop is Safari only'
     },
     customMessages: {
-      control: 'object',
-      table: { disable: true }
+      control: 'object'
     },
     rules: {
-      table: { disable: true }
+      control: 'array'
     },
     name: {
       defaultValue: 'search-input-name',
@@ -48,21 +47,17 @@ export default {
       control: 'boolean'
     },
     counterEnabled: {
-      defaultValue: false,
-      table: { disable: true }
+      defaultValue: false
     },
     validationEnabled: {
       control: 'boolean',
-      defaultValue: false,
-      table: { disable: true }
+      defaultValue: true
     },
     colorValid: {
-      control: 'color',
-      table: { disable: true }
+      control: 'color'
     },
     colorInvalid: {
-      control: 'color',
-      table: { disable: true }
+      control: 'color'
     },
     height: {
       control: {
@@ -86,13 +81,10 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   data: () => ({ val: '' }),
   template: `
-    <div>
-      <nSearchInput
-        v-model="val"
-        v-bind="$props"
-      />
-      <pre>{{ val }}</pre>
-    </div>
+    <nSearchInput
+      v-model="val"
+      v-bind="$props"
+    />
   `
 })
 
@@ -105,5 +97,11 @@ Default.args = {
   autofocus: false,
   disabled: false,
   outlineWidth: '2px',
-  list: ['mango', 'cherry', 'apple', 'watermelon']
+  customMessages: { valueMissing: 'Not empty!' },
+  rules: [
+    (value) =>
+      !value ||
+      value.length > 2 ||
+      'This is custom rule message: field not required, but min 3 chars!'
+  ]
 }
