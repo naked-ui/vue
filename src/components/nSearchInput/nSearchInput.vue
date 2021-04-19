@@ -11,7 +11,7 @@
     </label>
     <input
       type="search"
-      :value="inputValue"
+      v-model="inputValue"
       @invalid="onInvalid"
       @input="$emit('input', $event.target.value);validateFormField($event)"
       @change="$emit('change', $event.target.value);validateFormField($event)"
@@ -29,7 +29,6 @@
       :minlength="minlength"
       :list="listID"
       autocorrect="off"
-      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
     >
     <datalist :id="listID" v-if="enableList">
       <option v-for="option in list" :key="option" :value="option" />
