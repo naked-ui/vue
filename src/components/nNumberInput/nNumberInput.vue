@@ -24,6 +24,8 @@
         :readonly="readonly"
         :required="required"
         :nui-validation="validationEnabled"
+        :maxlength="maxlength"
+        :minlength="minlength"
         @invalid="onInvalid"
         @input="emitValues;validateFormField($event)"
         @blur.capture="validateFormField"
