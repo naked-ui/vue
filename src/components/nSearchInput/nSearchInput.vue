@@ -12,7 +12,10 @@
     <input
       type="search"
       :value="value"
-      @input="$emit('input', $event.target.value)"
+      @invalid="onInvalid"
+      @input="$emit('input', $event.target.value);validateFormField($event)"
+      @change="$emit('change', $event.target.value);validateFormField($event)"
+      @blur.capture="validateFormField"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
@@ -21,6 +24,7 @@
       :readonly="readonly"
       :required="required"
       :title="title"
+      :nui-validation="validationEnabled"
       :maxlength="maxlength"
       :minlength="minlength"
       :list="listID"
@@ -30,15 +34,24 @@
     <datalist :id="listID" v-if="enableList">
       <option v-for="option in list" :key="option" :value="option" />
     </datalist>
+    <nValidationAlerts
+      v-if="validationMessages.length > 0"
+      :validationMessages="validationMessages"
+    />
   </div>
 </template>
 
 <script>
 import formField from '../../utils/formField/index.js'
+import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+
 
 export default {
   mixins: [formField],
   name: 'nSearchInput',
+  components: {
+    nValidationAlerts
+  },
   props: {
     baseClassname: {
       type: String,
