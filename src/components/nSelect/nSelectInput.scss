@@ -3,6 +3,7 @@
 .n-select {
   position: relative;
   box-sizing: border-box;
+  cursor: pointer;
 
   * {
     box-sizing: inherit;
@@ -43,6 +44,7 @@
     left: 0;
 
     &__placeholder {
+      @include flex($align-items: center);
       position: relative;
       width: 100%;
       height: 100%;
@@ -54,7 +56,6 @@
       &::after {
         content: '▾';
         position: absolute;
-        top: 0;
         line-height: var(--line-height);
         right: var(--padding-select);
       }
@@ -70,14 +71,8 @@
       align-items: center;
       line-height: normal;
 
-      &__wrapper {
-        display: flex;
-        flex-wrap: nowrap;
-      }
-
       &__placeholder {
-        display: flex;
-        flex-wrap: nowrap;
+        @include flex($align-items: center, $wrap: nowrap);
         line-height: normal;
         position: absolute;
         top: 25%;
@@ -85,7 +80,15 @@
       }
     }
 
+    &__selected-options {
+      @include flex($align-items: center, $wrap: nowrap);
+      height: 100%;
+      top: 0;
+      gap: 4px;
+    }
+
     &__search-input {
+      @include flex($align-items: center);
       font: inherit;
       background: none;
       border: none;
@@ -100,11 +103,12 @@
 
     &__options {
       position: absolute;
+      cursor: pointer;
       // top: calc(var(--line-height) + var(--padding-select));
       left: 0;
       width: 100%;
-      border: 1px solid var(--border-color);
-      border-radius: var(--border-radius);
+      // border: 1px solid var(--border-color);
+      // border-radius: var(--border-radius);
       background-color: var(--background-color);
       // box-shadow: 0 0 4px #e9e1f8;
       z-index: 1;
@@ -137,11 +141,11 @@
         bottom: 0;
         left: 0.3rem;
         right: 0.3rem;
-        border-bottom: 1px solid var(--option-border-color);
+        // border-bottom: 1px solid var(--option-border-color);
       }
 
       &.selected {
-        background-color: var(--option-selected-color);
+        // background-color: var(--option-selected-color);
 
         &:hover {
           background-color: var(--option-hover-color);
@@ -154,9 +158,9 @@
         }
       }
 
-      &.candidate {
-        background-color: var(--option-hover-color);
-      }
+      // &.candidate {
+      //   background-color: var(--option-hover-color);
+      // }
     }
   }
 
@@ -178,25 +182,11 @@
   }
 
   &--native {
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    appearance: none;
     background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
     background-repeat: no-repeat;
     background-position-x: 100%;
     background-position-y: var(--padding-select);
     padding: 0rem var(--padding-select);
-  }
-
-  .n-chip {
-    position: relative;
-    background: var(--chip-background-color);
-    font-size: var(--chip-font-size);
-    padding: var(--chip-padding);
-    margin: var(--chip-margin);
-    border: 1px solid var(--chip-border-color);
-
-    &:hover {
-      background: var(--chip-hover-color);
-    }
   }
 }

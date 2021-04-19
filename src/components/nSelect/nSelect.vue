@@ -52,18 +52,21 @@
             @keyup.down.prevent="handleInputKeyupDown"
           />
           <div
-            class="n-select--custom__chips__wrapper"
+            class="n-select--custom__selected-options"
             :class="{ 'n-select--custom__chips__placeholder': showSearchInput }"
             v-show="!searchInputValue.length"
             v-if="enableMultiSelect"
           >
-            <nChip
+            <div
               v-for="option in selected"
               :key="option.value"
               @click.stop="handleClickOnChip(option)"
             >
+              <!-- <template v-if="$slot['multiselect-option'] && $slot['multiselect-option'].length > 0"> -->
               {{ option.name }}
-            </nChip>
+              <!-- </template> -->
+              <!-- <slot name="multiselect-option" v-else /> -->
+            </div>
           </div>
           <template v-if="displayDefaultPlaceholder">
             {{ defaultPlaceholder }}
@@ -151,7 +154,7 @@ export default {
     },
     enableSearchInput: {
       type: Boolean,
-      default: false
+      default: true
     },
     enableMultiSelect: {
       type: Boolean,

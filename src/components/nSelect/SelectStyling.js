@@ -16,14 +16,14 @@ export default {
       type: String,
       default: '0.3rem'
     },
-    // lineHeight: {
-    //   type: String,
-    //   default: '3rem'
-    // },
-    // textSize: {
-    //   type: String,
-    //   default: '1rem'
-    // },
+    lineHeight: {
+      type: String,
+      default: '3rem'
+    },
+    textSize: {
+      type: String,
+      default: '1rem'
+    },
     textColor: {
       type: String,
       default: '#FFF'
@@ -48,10 +48,10 @@ export default {
     //   type: String,
     //   default: '#444'
     // },
-    // optionHoverColor: {
-    //   type: String,
-    //   default: '#555'
-    // },
+    optionHoverColor: {
+      type: String,
+      default: '#555'
+    },
     // optionSelectedColor: {
     //   type: String,
     //   default: '#444'
@@ -91,15 +91,15 @@ export default {
       const height = this.height ? `--height: ${this.height};` : ''
       const paddingSelect = this.paddingSelect ? `--padding-select: ${this.paddingSelect};` : ''
       const paddingOption = this.paddingOption ? `--padding-option: ${this.paddingOption};` : ''
-      // const lineHeight = this.lineHeight ? `--line-height: ${this.lineHeight};` : ''
-      // const textSize = this.textSize ? `--text-size: ${this.textSize};` : ''
+      const lineHeight = this.lineHeight ? `--line-height: ${this.lineHeight};` : ''
+      const textSize = this.textSize ? `--text-size: ${this.textSize};` : ''
       const textColor = this.textColor ? `--text-color: ${this.textColor};` : ''
-      // const textHoverColor = this.textHoverColor ? `--text-hover-color: ${this.textHoverColor};` : ''
       const backgroundColor = this.backgroundColor ? `--background-color: ${this.backgroundColor};` : ''
-      // const borderRadius = this.borderRadius ? `--border-radius: ${this.borderRadius};` : ''
-      // const borderColor = this.borderColor ? `--border-color: ${this.borderColor};` : ''
+      const borderRadius = this.borderRadius ? `--border-radius: ${this.borderRadius};` : ''
+      const borderColor = this.borderColor ? `--border-color: ${this.borderColor};` : ''
+      const optionHoverColor = this.optionHoverColor ? `--option-hover-color: ${this.optionHoverColor};` : ''
+      // const textHoverColor = this.textHoverColor ? `--text-hover-color: ${this.textHoverColor};` : ''
       // const borderHoverColor = this.borderHoverColor ? `--border-hover-color: ${this.borderHoverColor};` : ''
-      // const optionHoverColor = this.optionHoverColor ? `--option-hover-color: ${this.optionHoverColor};` : ''
       // const optionSelectedColor = this.optionSelectedColor ? `--option-selected-color: ${this.optionSelectedColor};` : ''
       // const optionBorderColor = this.optionBorderColor ? `--option-border-color: ${this.optionBorderColor};` : ''
       // const chipBackgroundColor = this.chipBackgroundColor ? `--chip-background-color: ${this.chipBackgroundColor};` : ''
@@ -109,7 +109,7 @@ export default {
       // const chipMargin = this.chipMargin ? `--chip-margin: ${this.chipMargin};` : ''
       // const chipBorderColor = this.chipBorderColor ? `--chip-border-color: ${this.chipBorderColor};` : ''
 
-      return width + height + paddingSelect + paddingOption + textColor + backgroundColor
+      return width + height + paddingSelect + paddingOption + textColor + backgroundColor + lineHeight + optionHoverColor + textSize + borderColor + borderRadius
     },
   }
 }
