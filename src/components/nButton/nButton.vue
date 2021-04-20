@@ -96,6 +96,9 @@ export default {
     gap: {
       type: [String, Number],
       default: '8px'
+    },
+    buttonBusyText: {
+      type: String
     }
   },
   computed: {

@@ -27,6 +27,8 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
+  id: 'range-input-id',
+  name: 'range-input-name',
   height: '24px',
   width: '280px',
   ranges: 1,
