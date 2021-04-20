@@ -34,7 +34,7 @@ export default {
       type: String
     },
     padding: {
-      type: String
+      type: [String, Number]
     }
   },
   computed: {
