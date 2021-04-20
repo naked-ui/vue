@@ -1,8 +1,10 @@
 <template>
   <div
+    :id="id"
+    :name="name"
     class="n-range-input n-form-field"
     role="group"
-    aria-labelledby="range-input--label"
+    :aria-labelledby="`${id}--label`"
     :style="`
       --gap: ${isNaN(gap) ? gap : gap + 'px'};
       --height: ${isNaN(height) ? height : height + 'px'};
@@ -19,11 +21,11 @@
       --outputFontColor: ${this.outputFontColor};
     `"
   >
-    <label id="range-input--label" v-if="label">{{ label }}</label>
+    <label :id="`${id}--label`" v-if="label">{{ label }}</label>
     <div
       class="n-range-input__wrap"
       role="group"
-      aria-labelledby="range-input--label"
+      :aria-labelledby="`${id}--label`"
       :style="rangeVariables"
     >
       <template v-for="index in dots">
