@@ -4,7 +4,7 @@
     :name="name"
     class="n-range-input n-form-field"
     role="group"
-    :aria-labelledby="`${id}--label`"
+    :aria-labelledby="`${refName}--label`"
     :style="`
       --gap: ${isNaN(gap) ? gap : gap + 'px'};
       --height: ${isNaN(height) ? height : height + 'px'};
@@ -21,11 +21,11 @@
       --outputFontColor: ${this.outputFontColor};
     `"
   >
-    <label :id="`${id}--label`" v-if="label">{{ label }}</label>
+    <label :id="`${refName}--label`" v-if="label">{{ label }}</label>
     <div
       class="n-range-input__wrap"
       role="group"
-      :aria-labelledby="`${id}--label`"
+      :aria-labelledby="`${refName}--label`"
       :style="rangeVariables"
     >
       <template v-for="index in dots">
@@ -63,6 +63,10 @@ export default {
   name: 'nRangeInput',
   mixins: [formField],
   props: {
+    refName: {
+      type: String,
+      default: 'n-range-input'
+    },
     min: {
       type: Number,
       default: 0
