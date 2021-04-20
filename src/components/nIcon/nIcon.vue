@@ -1,6 +1,5 @@
 <template>
   <div
-    v-bind="attrs"
     :target="target"
     :class="componentClasses"
     :style="style"
@@ -32,6 +31,9 @@ export default {
     },
     size: {
       type: [String, Number]
+    },
+    target: {
+      type: String
     }
   },
   computed: {
