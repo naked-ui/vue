@@ -1,10 +1,7 @@
 <template>
   <div
     :class="componentClasses"
-    :style="`
-      --items-gap: ${itemsGap}px;
-      --viewport-padding: ${viewportPadding}px;
-    `"
+    :style="style"
   >
     <div :class="`${baseClassname}__viewport-wrapper`">
       <ul
@@ -20,9 +17,16 @@
 </template>
 
 <script>
+import styleVariables from '../../utils/styleVariables/index.js'
+
+const defaultStyleVariables = [
+  { name: 'itemsGap', type: 'size' },
+  { name: 'viewportPadding', type: 'size' }
+]
 
 export default {
   name: 'nOverflowCarousel',
+  mixins: [styleVariables(defaultStyleVariables)],
   props: {
     baseClassname: {
       type: String,

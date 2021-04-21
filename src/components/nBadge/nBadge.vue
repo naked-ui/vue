@@ -8,10 +8,18 @@
 </template>
 
 <script>
-import calculateCssSizeMixin from '../../utils/calculateCssSize'
+import styleVariables from '../../utils/styleVariables/index.js'
+
+const defaultStyleVariables = [
+  { name: 'borderRadius', type: 'size'},
+  { name: 'size', type: 'size'},
+  { name: 'fontSize', type: 'size'},
+  { name: 'padding', type: 'size'},
+  { name: 'background', type: 'color'},
+  { name: 'color', type: 'color'},
+]
 
 export default {
-  mixins: [calculateCssSizeMixin],
   props: {
     baseClassname: {
       type: String,
@@ -37,24 +45,13 @@ export default {
       type: [String, Number]
     }
   },
+  mixins: [styleVariables(defaultStyleVariables)],
   computed: {
     copmonentClasses () {
       return [
         this.baseClassname
       ]
     },
-    style () {
-      return [
-        {
-          '--border-radius': this.calculateCssSize(this.borderRadius),
-          '--size': this.calculateCssSize(this.size),
-          '--background': this.background,
-          '--color': this.color,
-          '--font-size': this.calculateCssSize(this.fontSize),
-          '--padding': this.calculateCssSize(this.padding)
-        }
-      ]
-    }
   }
 }
 </script>

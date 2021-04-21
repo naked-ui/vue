@@ -1,10 +1,7 @@
 <template>
   <div
     class="n-progress"
-    :style="`
-      --height: ${calculateCssSize(height)};
-      --width: ${calculateCssSize(width)};
-    `"
+    :style="style"
   >
     <label
       :for="id"
@@ -27,11 +24,16 @@
 </template>
 
 <script>
-import calculateCssSizeMixin from '../../utils/calculateCssSize'
+import styleVariables from '../../utils/styleVariables/index.js'
+
+const defaultStyleVariables = [
+  { name: 'height', type: 'size' },
+  { name: 'width', type: 'size' }
+]
 
 export default {
   name: 'nProgress',
-  mixins: [calculateCssSizeMixin],
+  mixins: [styleVariables(defaultStyleVariables)],
   props: {
     label: {
       type: String,
@@ -63,6 +65,9 @@ export default {
       type: String,
       default: ''
     }
+  },
+  methods: {
+    ...calculateCssSize
   }
 }
 </script>

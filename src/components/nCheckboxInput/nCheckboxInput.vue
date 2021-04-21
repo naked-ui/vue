@@ -27,8 +27,12 @@
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import formField from '@/utils/formField/index'
 
+const customStyleVariables = [
+  { name: 'color', type: 'color' }
+]
+
 export default {
-  mixins: [formField],
+  mixins: [formField(customStyleVariables)],
   name: 'nCheckboxInput',
   components: { nValidationAlerts },
   inject: {
@@ -41,7 +45,6 @@ export default {
       type: String,
       default: 'n-form-field'
     },
-    // input attrs
     checked: {
       type: Boolean,
       default: false
@@ -74,9 +77,6 @@ export default {
         return value.includes(this.value)
       }
       return false
-    },
-    style() {
-      return [...this.$super(formField).style(), , { '--color': this.color }]
     },
     componentClasses() {
       return [this.baseClassname]

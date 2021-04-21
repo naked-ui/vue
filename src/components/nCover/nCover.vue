@@ -1,11 +1,7 @@
 <template>
   <div
     :class="componentClasses"
-    :style="`
-      --width: ${width ? width : '100%'};
-      --height: ${height ? height : '100%'};
-      --padding: ${padding ? padding : '0'};
-    `"
+    :style="style"
   >
     <div
       v-if="$slots['background']"
@@ -45,11 +41,19 @@
 
 <script>
 import nCoverBackground from './nCoverBackground'
+import styleVariables from '../../utils/styleVariables/index.js'
+
+const defaultStyleVariables = [
+  { name: 'height', type: 'size' },
+  { name: 'width', type: 'size' },
+  { name: 'padding', type: 'size' },
+]
 
 export default {
   components: {
     nCoverBackground
   },
+  mixins: [styleVariables(defaultStyleVariables)],
   props: {
     hasOverlay: {
       type: Boolean,
@@ -65,11 +69,11 @@ export default {
     },
     width: {
       type: String,
-      default: ''
+      default: '100%'
     },
     height: {
       type: String,
-      default: ''
+      default: '100%'
     },
     placeContent: {
       type: String,

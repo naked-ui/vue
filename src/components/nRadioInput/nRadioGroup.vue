@@ -12,8 +12,13 @@
 import formField from '../../utils/formField/index.js'
 import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
 
+const customStyleVariables = [
+  { name: 'color', type: 'color' },
+  { name: 'spacing', type: 'size' }
+]
+
 export default {
-  mixins: [formField],
+  mixins: [formField(customStyleVariables)],
   name: 'nRadioGroup',
   components: { nValidationAlerts },
   provide() {
@@ -30,17 +35,6 @@ export default {
     spacing: {
       type: [Number, String],
       default: null
-    }
-  },
-  computed: {
-    style() {
-      return [
-        ...this.$super(formField).style(),
-        {
-          '--color': this.color,
-          '--spacing': this.calculateCssSize(this.spacing)
-        }
-      ]
     }
   },
   methods: {
