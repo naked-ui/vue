@@ -1,17 +1,10 @@
 import formFieldProps from './formFieldProps'
 import formFieldValidations from './formFieldValidations'
 import formFieldCounter from './formFieldCounter'
-import styleVariables from '../styleVariables/index.js'
+import styleVariables from '../styleVariables'
+import { height, width, gap, outlineWidth, padding, colorValid, colorInvalid } from '../styleVariables/variables'
 
-const defaultStyleVariables = [
-  { name: 'gap', type: 'size'},
-  { name: 'height', type: 'size'},
-  { name: 'width', type: 'size'},
-  { name: 'outlineWidth', type: 'size'},
-  { name: 'padding', type: 'size'},
-  { name: 'colorValid', type: 'color'},
-  { name: 'colorInvalid', type: 'color'},
-]
+const defaultStyleVariables = [gap, height, width, outlineWidth, padding, colorValid, colorInvalid]
 
 export const formField = (customStyleVariables = []) => {
   return {

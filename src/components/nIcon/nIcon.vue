@@ -17,10 +17,9 @@
 <script>
 import styleVariables from '../../utils/styleVariables/index.js'
 import hrefIsExternalMixin from '../../utils/hrefIsExternal'
+import { size } from '../../utils/styleVariables'
 
-const defaultStyleVariables = [
-  { name: 'size', type: 'size' }
-]
+const defaultStyleVariables = [size]
 
 export default {
   name: 'nIcon',

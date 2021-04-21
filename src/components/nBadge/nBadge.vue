@@ -8,16 +8,10 @@
 </template>
 
 <script>
-import styleVariables from '../../utils/styleVariables/index.js'
+import styleVariables from '../../utils/styleVariables'
+import { borderRadius, size, fontSize, padding, background, color } from '../../utils/styleVariables/variables'
 
-const defaultStyleVariables = [
-  { name: 'borderRadius', type: 'size'},
-  { name: 'size', type: 'size'},
-  { name: 'fontSize', type: 'size'},
-  { name: 'padding', type: 'size'},
-  { name: 'background', type: 'color'},
-  { name: 'color', type: 'color'},
-]
+const defaultStyleVariables = [borderRadius, size, fontSize, padding, background, color]
 
 export default {
   props: {

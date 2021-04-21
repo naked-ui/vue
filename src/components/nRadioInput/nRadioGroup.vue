@@ -11,11 +11,9 @@
 <script>
 import formField from '../../utils/formField/index.js'
 import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+import { color, spacing } from '../../utils/styleVariables/variables'
 
-const customStyleVariables = [
-  { name: 'color', type: 'color' },
-  { name: 'spacing', type: 'size' }
-]
+const customStyleVariables = [color, spacing]
 
 export default {
   mixins: [formField(customStyleVariables)],

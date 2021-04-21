@@ -41,13 +41,11 @@
 
 <script>
 import nCoverBackground from './nCoverBackground'
-import styleVariables from '../../utils/styleVariables/index.js'
+import styleVariables from '../../utils/styleVariables'
+import { height, width, padding } from '../../utils/styleVariables'
 
-const defaultStyleVariables = [
-  { name: 'height', type: 'size' },
-  { name: 'width', type: 'size' },
-  { name: 'padding', type: 'size' },
-]
+
+const defaultStyleVariables = [height, width, padding]
 
 export default {
   components: {

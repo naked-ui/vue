@@ -26,10 +26,9 @@
 <script>
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import formField from '@/utils/formField/index'
+import { color } from '@/utils/styleVariables'
 
-const customStyleVariables = [
-  { name: 'color', type: 'color' }
-]
+const customStyleVariables = [color]
 
 export default {
   mixins: [formField(customStyleVariables)],

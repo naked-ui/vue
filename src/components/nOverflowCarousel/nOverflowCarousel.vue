@@ -17,12 +17,10 @@
 </template>
 
 <script>
-import styleVariables from '../../utils/styleVariables/index.js'
+import styleVariables from '../../utils/styleVariables'
+import { itemsGap, viewportPadding } from '../../utils/styleVariables/variables'
 
-const defaultStyleVariables = [
-  { name: 'itemsGap', type: 'size' },
-  { name: 'viewportPadding', type: 'size' }
-]
+const defaultStyleVariables = [itemsGap, viewportPadding]
 
 export default {
   name: 'nOverflowCarousel',

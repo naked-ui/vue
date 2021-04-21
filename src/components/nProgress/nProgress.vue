@@ -24,12 +24,10 @@
 </template>
 
 <script>
-import styleVariables from '../../utils/styleVariables/index.js'
+import styleVariables from '../../utils/styleVariables'
+import { width, height } from '../../utils/styleVariables/variables'
 
-const defaultStyleVariables = [
-  { name: 'height', type: 'size' },
-  { name: 'width', type: 'size' }
-]
+const defaultStyleVariables = [width, height]
 
 export default {
   name: 'nProgress',

@@ -44,10 +44,9 @@
 import formField from '../../utils/formField/index.js'
 import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
 import nInputCounter from '../../utils/components/nInputCounter.vue'
+import { resize } from '../../utils/styleVariables/variables'
 
-const customStyleVariables = [
-  { name: 'resize', type: 'other' },
-]
+const customStyleVariables = [resize]
 
 export default {
   mixins: [formField(customStyleVariables)],
