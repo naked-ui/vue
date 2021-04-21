@@ -1,29 +1,27 @@
 import formFieldProps from './formFieldProps'
 import formFieldValidations from './formFieldValidations'
 import formFieldCounter from './formFieldCounter'
-import calculateCssSizeMixin from '../calculateCssSize'
+import styleVariables from '../styleVariables/index.js'
 
-export default {
-  mixins: [
-    formFieldProps,
-    formFieldValidations,
-    formFieldCounter,
-    calculateCssSizeMixin
-  ],
-  computed: {
-    style () {
-      return [
-        {
-          '--gap': this.calculateCssSize(this.gap),
-          '--height': this.calculateCssSize(this.height),
-          '--width': this.calculateCssSize(this.width),
-          '--outline-width': this.calculateCssSize(this.outlineWidth),
-          '--padding': this.padding,
-          '--color-valid': this.colorValid,
-          '--color-invalid': this.colorInvalid,
-        },
-        { '--resize' : this.resize ? this.resize : '' }
-      ]
-    }
+const defaultStyleVariables = [
+  { name: 'gap', type: 'size'},
+  { name: 'height', type: 'size'},
+  { name: 'width', type: 'size'},
+  { name: 'outlineWidth', type: 'size'},
+  { name: 'padding', type: 'size'},
+  { name: 'colorValid', type: 'color'},
+  { name: 'colorInvalid', type: 'color'},
+]
+
+export const formField = (customStyleVariables = []) => {
+  return {
+    mixins: [
+      formFieldProps,
+      formFieldValidations,
+      formFieldCounter,
+      styleVariables(defaultStyleVariables, customStyleVariables)
+    ],
   }
 }
+
+export default formField
