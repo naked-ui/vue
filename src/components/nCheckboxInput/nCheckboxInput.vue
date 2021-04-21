@@ -26,7 +26,7 @@
 <script>
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import formField from '@/utils/formField/index'
-import { color } from '@/utils/styleVariables'
+import { color } from '@/utils/styleVariables/variables'
 
 const customStyleVariables = [color]
 

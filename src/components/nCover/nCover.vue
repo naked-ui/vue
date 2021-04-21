@@ -42,7 +42,7 @@
 <script>
 import nCoverBackground from './nCoverBackground'
 import styleVariables from '../../utils/styleVariables'
-import { height, width, padding } from '../../utils/styleVariables'
+import { height, width, padding } from '../../utils/styleVariables/variables'
 
 
 const defaultStyleVariables = [height, width, padding]

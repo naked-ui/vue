@@ -17,7 +17,7 @@
 <script>
 import styleVariables from '../../utils/styleVariables/index.js'
 import hrefIsExternalMixin from '../../utils/hrefIsExternal'
-import { size } from '../../utils/styleVariables'
+import { size } from '../../utils/styleVariables/variables'
 
 const defaultStyleVariables = [size]
 

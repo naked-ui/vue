@@ -64,9 +64,6 @@ export default {
       default: ''
     }
   },
-  methods: {
-    ...calculateCssSize
-  }
 }
 </script>
 
