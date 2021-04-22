@@ -13,6 +13,7 @@
         :checked="isChecked"
         :value="value"
         :name="name"
+        :nui-validation="validationEnabled"
         formnovalidate
       />{{ label }}</label
     >

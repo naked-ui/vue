@@ -10,7 +10,11 @@
   >
     <div
       v-if="$slots['icon--left']"
-      :class="baseClassname ? `${baseClassname}__icon ${baseClassname}__icon--left` : false"
+      :class="
+        baseClassname
+          ? `${baseClassname}__icon ${baseClassname}__icon--left`
+          : false
+      "
     >
       <slot name="icon--left" />
     </div>
@@ -23,7 +27,11 @@
     </span>
     <div
       v-if="$slots['icon--right']"
-      :class="baseClassname ? `${baseClassname}__icon ${baseClassname}__icon--right` : false"
+      :class="
+        baseClassname
+          ? `${baseClassname}__icon ${baseClassname}__icon--right`
+          : false
+      "
     >
       <slot name="icon--right" />
     </div>
@@ -103,17 +111,18 @@ export default {
     }
   },
   computed: {
-    tag () {
+    tag() {
       if (!this.href) {
         return 'button'
       } else if (
         this.href.includes('http') ||
         this.href.includes('mailto:') ||
         this.href.includes('tel:')
-      ) return 'a'
+      )
+        return 'a'
       else return 'router-link'
     },
-    attrs () {
+    attrs() {
       if (!this.href) {
         return {
           type: this.type
@@ -129,30 +138,29 @@ export default {
             target: this.target,
             role: this.role
           }
-        } else return {
+        } else
+          return {
+            role: this.role
+          }
+      } else
+        return {
+          to: this.href,
           role: this.role
         }
-      }
-      else return {
-        to: this.href,
-        role: this.role
-      }
     },
     iconPosition () {
       if(this.$slots['icon--left']) {
         return 'left'
       }
-      if(this.$slots['icon--solo']) {
+      if (this.$slots['icon--solo']) {
         return 'solo'
       }
-      if(this.$slots['icon--right']) {
+      if (this.$slots['icon--right']) {
         return 'right'
       }
     },
-    componentClasses () {
-      if (this.baseClassname.length > 0) return [
-        this.baseClassname
-      ]
+    componentClasses() {
+      if (this.baseClassname.length > 0) return [this.baseClassname]
       else return false
     }
   }
