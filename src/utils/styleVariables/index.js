@@ -27,7 +27,7 @@ const styleVariables = (defaultStyleVariables, customStyleVariables = []) => ({
       const defaultVariables = fillStylingObject(this.$props, defaultStyleVariables)
       const customVariables = fillStylingObject(this.$props, customStyleVariables)
 
-      return {...defaultVariables, customVariables}
+      return {...defaultVariables, ...customVariables}
     }
   }
 })
