@@ -36,7 +36,7 @@ import styleVariables from '../../utils/styleVariables'
 import { textColor, backgroundColor, padding, height, gap } from '../../utils/styleVariables/helpers/variables'
 
 const defaultStyleVariables = [
-  textColor,
+  color,
   backgroundColor,
   padding,
   height,
