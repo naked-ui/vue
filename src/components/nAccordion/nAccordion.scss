@@ -1,0 +1,29 @@
+.n-accordion {
+    width: var(--width);
+
+    &--items {
+        width: 100%;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &--item {
+        width: 100%;
+
+        &__content {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--padding);
+            line-height: var(--height);
+        }
+
+        &__arrow {
+            transition: transform 0.4s;
+
+            &.open {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+}
