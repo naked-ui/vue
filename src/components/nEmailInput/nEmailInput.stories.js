@@ -79,12 +79,20 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { nEmailInput },
   props: Object.keys(argTypes),
+  methods: {
+    submit(e) {
+      if (!e.target.checkValidity()) return
+    }
+  },
   data: () => ({ val: '' }),
   template: `
-    <nEmailInput
-      v-model="val"
-      v-bind="$props"
-    />
+    <form novalidate @submit.prevent="submit">
+      <nEmailInput
+        v-model="val"
+        v-bind="$props"
+      />
+      <input style="margin-top: 16px;" type="submit" value="submit">
+    </form>
   `
 })
 
@@ -97,11 +105,13 @@ Default.args = {
   autofocus: false,
   disabled: false,
   outlineWidth: '2px',
-  customMessages: { valueMissing: 'Not empty!' },
+  // customMessages: { valueMissing: 'Not empty!' },
   rules: [
     (value) =>
       !value ||
       value.length > 2 ||
       'This is custom rule message: field not required, but min 3 chars!'
-  ]
+  ],
+  // pattern: '*'
+  pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
 }

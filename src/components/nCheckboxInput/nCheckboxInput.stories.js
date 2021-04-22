@@ -46,7 +46,12 @@ Default.args = {
   id: 'checkbox-input',
   name: 'checkbox-input',
   label: 'Label text',
-  customMessages: { valueMissing: 'Value is required!' },
+  // customMessages: {
+  //   valueMissing: {
+  //     text: 'Value is required!',
+  //     color: 'magenta'
+  //   }
+  // },
   gap: 8,
   validationEnabled: true,
   required: true
