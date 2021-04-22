@@ -23,7 +23,7 @@
     @include flex($place: center);
     color: var(--text-color);
     svg {
-      fill: var(--text-color) !important;
+      fill: var(--color) !important;
     }
   }
 
