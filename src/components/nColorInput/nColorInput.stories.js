@@ -80,13 +80,13 @@ const Template = (args, { argTypes }) => ({
   },
   data: () => ({ val: '#123456' }),
   template: `
-  <form novalidate @submit.prevent="submit">
-    <nColorInput
-      v-bind="$props"
-      v-model="val"
-    />
-    <input style="margin-top: 16px;" type="submit" value="submit">
-  </form>
+    <form novalidate @submit.prevent="submit">
+      <nColorInput
+        v-bind="$props"
+        v-model="val"
+      />
+      <input style="margin-top: 16px;" type="submit" value="submit">
+    </form>
   `
 })
 
