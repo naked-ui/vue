@@ -15,14 +15,17 @@
 </template>
 
 <script>
-import calculateCssSizeMixin from '../../utils/calculateCssSize'
+import styleVariables from '../../utils/styleVariables/index.js'
 import hrefIsExternalMixin from '../../utils/hrefIsExternal'
+import { size } from '../../utils/styleVariables/helpers/variables'
+
+const defaultStyleVariables = [size]
 
 export default {
   name: 'nIcon',
   mixins: [
     hrefIsExternalMixin,
-    calculateCssSizeMixin
+    styleVariables(defaultStyleVariables)
   ],
   props: {
     baseClassname: {
@@ -42,13 +45,6 @@ export default {
         this.baseClassname
       ]
     },
-    style () {
-      return [
-        {
-          '--size': this.calculateCssSize(this.size)
-        }
-      ]
-    }
   }
 }
 </script>

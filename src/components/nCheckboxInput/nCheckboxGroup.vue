@@ -12,9 +12,12 @@
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import formField from '@/utils/formField/index.js'
 import { messages } from '@/utils/validation'
+import { color, spacing } from '@/utils/styleVariables/helpers/variables'
+
+const customStyleVariables = [color, spacing]
 
 export default {
-  mixins: [formField],
+  mixins: [formField(customStyleVariables)],
   name: 'nCheckboxGroup',
   components: { nValidationAlerts },
   provide() {
@@ -49,15 +52,6 @@ export default {
       }
       return messages.valueMissing.default
     },
-    style() {
-      return [
-        ...this.$super(formField).style(),
-        {
-          '--color': this.color,
-          '--spacing': this.calculateCssSize(this.spacing)
-        }
-      ]
-    }
   },
   methods: {
     setValidity() {

@@ -8,7 +8,7 @@
   -moz-appearance: none !important;
   border: unset;
   cursor: pointer;
-  background-color: var(--button-background-color);
+  background-color: var(--background-color);
   padding: var(--padding);
   height: var(--height);
   font-size: var(--font-size, 16px);
@@ -21,9 +21,9 @@
   .n-button__text,
   .n-button__icon {
     @include flex($place: center);
-    color: var(--button-text-color);
+    color: var(--text-color);
     svg {
-      fill: var(--button-text-color) !important;
+      fill: var(--text-color) !important;
     }
   }
 
