@@ -17,7 +17,7 @@ const units = [
 ]
 
 const parseSizeWithUnit = (size) => {
-  if (isNaN(size) == false) return size + 'px'
+  if (isNaN(size) === false) return size + 'px'
   if (units.some(unit => size.includes(unit))) return size
 }
 
@@ -32,4 +32,3 @@ export const calculateCssSize = (value) => {
 
   return parseSizeWithUnit(value)
 }
-
