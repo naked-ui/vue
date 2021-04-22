@@ -31,12 +31,21 @@
 </template>
 
 <script>
-import calculateCssSizeMixin from '../../utils/calculateCssSize'
 import hrefIsExternalMixin from '../../utils/hrefIsExternal'
+import styleVariables from '../../utils/styleVariables'
+import { textColor, backgroundColor, padding, height, gap } from '../../utils/styleVariables/helpers/variables'
+
+const defaultStyleVariables = [
+  color,
+  backgroundColor,
+  padding,
+  height,
+  gap
+]
 
 export default {
   name: 'nButton',
-  mixins: [calculateCssSizeMixin, hrefIsExternalMixin],
+  mixins: [hrefIsExternalMixin, styleVariables(defaultStyleVariables)],
   props: {
     // Settings
     baseClassname: {
@@ -128,17 +137,6 @@ export default {
         to: this.href,
         role: this.role
       }
-    },
-    style () {
-      return [
-        {
-          '--button-text-color' : this.textColor,
-          '--button-background-color' : this.backgroundColor,
-          '--padding': this.padding,
-          '--height': this.height,
-          '--gap': this.calculateCssSize(this.gap)
-        }
-      ]
     },
     iconPosition () {
       if(this.$slots['icon--left']) {

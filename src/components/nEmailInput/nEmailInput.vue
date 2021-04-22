@@ -47,7 +47,7 @@ import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
 import nInputCounter from '../../utils/components/nInputCounter.vue'
 
 export default {
-  mixins: [formField],
+  mixins: [formField()],
   name: 'nEmailInput',
   components: {
     nValidationAlerts,
