@@ -1,4 +1,4 @@
-import { messages as defaultMessages } from '../validation/index'
+import { messages as defaultMessages } from '../../validation/index'
 
 function isObject(obj) {
   return obj === Object(obj)
