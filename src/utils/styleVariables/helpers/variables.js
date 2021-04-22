@@ -1,3 +1,4 @@
+// Size
 const width = {
     name: 'width',
     type: 'size'
@@ -23,16 +24,6 @@ const padding = {
     type: 'size'
 }
 
-const colorValid = {
-    name: 'colorValid',
-    type: 'color'
-}
-
-const colorInvalid = {
-    name: 'colorInvalid',
-    type: 'color'
-}
-
 const borderRadius = {
     name: 'borderRadius',
     type: 'size'
@@ -46,26 +37,6 @@ const size = {
 const fontSize = {
     name: 'fontSize',
     type: 'size'
-}
-
-const color = {
-    name: 'color',
-    type: 'color'
-}
-
-const background = {
-    name: 'background',
-    type: 'color'
-}
-
-const backgroundColor = {
-    name: 'backgroundColor',
-    type: 'color'
-}
-
-const textColor = {
-    name: 'textColor',
-    type: 'color'
 }
 
 const spacing = {
@@ -88,4 +59,54 @@ const resize = {
     type: 'size'
 }
 
-export { width, height, gap, outlineWidth, padding, colorValid, colorInvalid, borderRadius, size, fontSize, color, background, backgroundColor, textColor, spacing, itemsGap, viewportPadding, resize }
+// Color
+const colorValid = {
+    name: 'colorValid',
+    type: 'color'
+}
+
+const colorInvalid = {
+    name: 'colorInvalid',
+    type: 'color'
+}
+
+const color = {
+    name: 'color',
+    type: 'color'
+}
+
+const background = {
+    name: 'background',
+    type: 'color'
+}
+
+const backgroundColor = {
+    name: 'backgroundColor',
+    type: 'color'
+}
+
+const textColor = {
+    name: 'textColor',
+    type: 'color'
+}
+
+export {
+    width,
+    height,
+    gap,
+    outlineWidth,
+    padding,
+    colorValid,
+    colorInvalid,
+    borderRadius,
+    size,
+    fontSize,
+    color,
+    background,
+    backgroundColor,
+    textColor,
+    spacing,
+    itemsGap,
+    viewportPadding,
+    resize
+}

@@ -33,9 +33,15 @@
 <script>
 import hrefIsExternalMixin from '../../utils/hrefIsExternal'
 import styleVariables from '../../utils/styleVariables'
-import { textColor, backgroundColor, padding, height, gap } from '../../utils/styleVariables/variables'
+import { textColor, backgroundColor, padding, height, gap } from '../../utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [textColor, backgroundColor, padding, height, gap]
+const defaultStyleVariables = [
+  textColor,
+  backgroundColor,
+  padding,
+  height,
+  gap
+]
 
 export default {
   name: 'nButton',

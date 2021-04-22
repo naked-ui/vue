@@ -18,7 +18,7 @@
 
 <script>
 import styleVariables from '../../utils/styleVariables'
-import { itemsGap, viewportPadding } from '../../utils/styleVariables/variables'
+import { itemsGap, viewportPadding } from '../../utils/styleVariables/helpers/variables'
 
 const defaultStyleVariables = [itemsGap, viewportPadding]
 

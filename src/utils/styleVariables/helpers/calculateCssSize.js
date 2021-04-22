@@ -1,4 +1,20 @@
-const units = ['em', 'ex', 'px', 'cm', 'mm', 'in', 'pc', 'pt', 'em', 'rem', 'vh', 'vmin', 'vmax', '%', 'auto']
+const units = [
+  'em',
+  'ex',
+  'px',
+  'cm',
+  'mm',
+  'in',
+  'pc',
+  'pt',
+  'em',
+  'rem',
+  'vh',
+  'vmin',
+  'vmax',
+  '%',
+  'auto'
+]
 
 const parseSizeWithUnit = (size) => {
   if (isNaN(size) == false) return size + 'px'

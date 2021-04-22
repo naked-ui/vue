@@ -25,7 +25,7 @@
 
 <script>
 import styleVariables from '../../utils/styleVariables'
-import { width, height } from '../../utils/styleVariables/variables'
+import { width, height } from '../../utils/styleVariables/helpers/variables'
 
 const defaultStyleVariables = [width, height]
 

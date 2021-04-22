@@ -44,7 +44,7 @@
 import formField from '../../utils/formField/index.js'
 import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
 import nInputCounter from '../../utils/components/nInputCounter.vue'
-import { resize } from '../../utils/styleVariables/variables'
+import { resize } from '../../utils/styleVariables/helpers/variables'
 
 const customStyleVariables = [resize]
 

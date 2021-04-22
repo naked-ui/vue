@@ -9,9 +9,16 @@
 
 <script>
 import styleVariables from '../../utils/styleVariables'
-import { borderRadius, size, fontSize, padding, background, color } from '../../utils/styleVariables/variables'
+import { borderRadius, size, fontSize, padding, background, color } from '../../utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [borderRadius, size, fontSize, padding, background, color]
+const defaultStyleVariables = [
+  borderRadius,
+  size,
+  fontSize,
+  padding,
+  background,
+  color
+]
 
 export default {
   props: {
