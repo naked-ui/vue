@@ -77,7 +77,7 @@ const color = {
 
 const background = {
     name: 'background',
-    type: 'color'
+    type: 'other'
 }
 
 const backgroundColor = {
