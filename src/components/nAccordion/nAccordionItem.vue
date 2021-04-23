@@ -1,8 +1,8 @@
 <template>
   <li :class="`${componentClasses}--item`">
-    <div :class="`${componentClasses}--item__content`" @click="opened = !opened">
+    <div :class="[`${componentClasses}--item__content`, { 'open': open }]" @click="open = !open">
       <slot name="title" />
-      <nIcon class="" :class="[`${componentClasses}--item__arrow`, { 'open': opened }]" :size="12">
+      <nIcon class="" :class="[`${componentClasses}--item__arrow`, { 'open': open }]" :size="12">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
         <g>
           <g>
@@ -12,7 +12,7 @@
         </svg>
       </nIcon>
     </div>
-    <div v-show="opened">
+    <div :class="`${componentClasses}--item__text`" v-show="open">
       <slot name="text" />
     </div>
   </li>
@@ -38,7 +38,7 @@ export default {
     },
   },
   data: () => ({
-    opened: false
+    open: false
   })
 }
 </script>

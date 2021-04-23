@@ -6,7 +6,7 @@
       </template>
       <template v-else>
         <li :class="`${componentClasses}--item`" v-for="(item, $index) in accordionItems" :key="$index">
-          <div :class="`${componentClasses}--item__content`" @click="item.open = !item.open">
+          <div :class="[`${componentClasses}--item__content`, { 'open': item.open }]" @click="item.open = !item.open">
             <span> {{ item.title }} </span>
             <nIcon class="" :class="[`${componentClasses}--item__arrow`, { 'open': item.open }]" :size="12">
               <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
@@ -18,7 +18,7 @@
               </svg>
             </nIcon>
           </div>
-          <div v-show="item.open">{{ item.text }}</div>
+          <div :class="`${componentClasses}--item__text`" v-show="item.open">{{ item.text }}</div>
         </li>
       </template>
     </ul>
@@ -30,7 +30,12 @@ import nIcon from '../nIcon/nIcon'
 import styleVariables from '../../utils/styleVariables'
 import { width, height, padding } from '../../utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [width, height, padding]
+const defaultStyleVariables = [
+  width,
+  height,
+  padding,
+  { name: 'paddingBottom', type: 'size' }
+]
 
 export default {
   name: 'nAccordion',
@@ -56,6 +61,10 @@ export default {
     padding: {
       type: String,
       default: '6 0'
+    },
+    paddingBottom: {
+      type: String,
+      default: '12'
     }
   },
   computed: {
