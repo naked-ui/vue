@@ -1,24 +1,54 @@
 <template>
   <div :class="componentClasses" :style="style">
-    <ul :class="`${componentClasses}--items`" v-if="areSlotsProvided || areItemsProvided">
+    <ul
+      :class="`${componentClasses}__items`"
+      v-if="areSlotsProvided || areItemsProvided"
+    >
       <template v-if="areSlotsProvided">
         <slot />
       </template>
       <template v-else>
-        <li :class="`${componentClasses}--item`" v-for="(item, $index) in accordionItems" :key="$index">
-          <div :class="[`${componentClasses}--item__content`, { 'open': item.open }]" @click="item.open = !item.open">
-            <span> {{ item.title }} </span>
-            <nIcon class="" :class="[`${componentClasses}--item__arrow`, { 'open': item.open }]" :size="12">
-              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
-              <g>
+        <li
+          :class="`${componentClasses}-item`"
+          v-for="(item, $index) in accordionItems"
+          :key="$index"
+        >
+          <div
+            :class="[`${componentClasses}-item__inner`, { open: item.open }]"
+            @click="item.open = !item.open"
+          >
+            <span :class="`${componentClasses}-item__title`">
+              {{ item.title }}
+            </span>
+            <nIcon
+              class=""
+              :class="[`${componentClasses}-item__icon`, { open: item.open }]"
+              :size="12"
+            >
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                viewBox="0 0 256 256"
+                style="enable-background: new 0 0 256 256"
+                xml:space="preserve"
+              >
                 <g>
-                  <polygon points="225.813,48.907 128,146.72 30.187,48.907 0,79.093 128,207.093 256,79.093"/>
+                  <g>
+                    <polygon
+                      points="225.813,48.907 128,146.72 30.187,48.907 0,79.093 128,207.093 256,79.093"
+                    />
+                  </g>
                 </g>
-              </g>
               </svg>
             </nIcon>
           </div>
-          <div :class="`${componentClasses}--item__text`" v-show="item.open">{{ item.text }}</div>
+          <div :class="`${componentClasses}--item__content`" v-show="item.open">
+            {{ item.text }}
+          </div>
         </li>
       </template>
     </ul>
@@ -28,14 +58,9 @@
 <script>
 import nIcon from '../nIcon/nIcon'
 import styleVariables from '../../utils/styleVariables'
-import { width, height, padding } from '../../utils/styleVariables/helpers/variables'
+import { width } from '../../utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [
-  width,
-  height,
-  padding,
-  { name: 'paddingBottom', type: 'size' }
-]
+const defaultStyleVariables = [width]
 
 export default {
   name: 'nAccordion',
@@ -53,39 +78,25 @@ export default {
     width: {
       type: String,
       default: '250px'
-    },
-    height: {
-      type: String,
-      default: '16px'
-    },
-    padding: {
-      type: String,
-      default: '6 0'
-    },
-    paddingBottom: {
-      type: String,
-      default: '12'
     }
   },
   computed: {
-    componentClasses () {
-      return [
-        this.baseClassname
-      ]
+    componentClasses() {
+      return [this.baseClassname]
     },
-    areSlotsProvided () {
+    areSlotsProvided() {
       return this.$slots && this.$slots.default
     },
-    areItemsProvided () {
+    areItemsProvided() {
       return this.items && this.items.length > 0
     }
   },
   data: () => ({
     accordionItems: []
   }),
-  mounted () {
+  mounted() {
     if (this.areItemsProvided) {
-      this.accordionItems = this.items.map(item => ({ ...item, open: false }))
+      this.accordionItems = this.items.map((item) => ({ ...item, open: false }))
     }
   }
 }

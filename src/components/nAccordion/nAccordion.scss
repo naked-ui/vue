@@ -1,37 +1,36 @@
 .n-accordion {
-    width: var(--width);
+  width: var(--width);
 
-    &--items {
-        width: 100%;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
+  &__items {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &-item {
+    width: 100%;
+
+    &__inner {
+      display: flex;
+      justify-content: space-between;
+
+      &.open {
+        padding-bottom: var(--padding-bottom);
+      }
     }
 
-    &--item {
-        width: 100%;
-
-        &__content {
-            display: flex;
-            justify-content: space-between;
-            padding: var(--padding);
-            line-height: var(--height);
-
-            &.open {
-                padding-bottom: var(--padding-bottom);
-            }
-        }
-
-        &__arrow {
-            transition: transform 0.4s;
-
-            &.open {
-                transform: rotate(-180deg);
-            }
-        }
-
-        &__text {
-            padding-bottom: var(--padding-bottom);
-        }
+    &__title {
+      cursor: pointer;
+      width: 100%;
     }
+
+    &__arrow {
+      transition: transform 0.4s;
+
+      &.open {
+        transform: rotate(-180deg);
+      }
+    }
+  }
 }
