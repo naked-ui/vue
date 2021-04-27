@@ -85,11 +85,6 @@ const backgroundColor = {
     type: 'color'
 }
 
-const textColor = {
-    name: 'textColor',
-    type: 'color'
-}
-
 export {
     width,
     height,
@@ -104,7 +99,6 @@ export {
     color,
     background,
     backgroundColor,
-    textColor,
     spacing,
     itemsGap,
     viewportPadding,

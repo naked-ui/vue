@@ -5,9 +5,9 @@ export default {
   component: nButton,
   argTypes: {
     backgroundColor: { control: 'color' },
-    textColor: { control: 'color' },
-    buttonText: { control: { type: 'text'}, defaultValue: 'Button text' },
-    buttonBusyText: { control: { type: 'text'}, defaultValue: 'Button busy text' }
+    color: { control: 'color' },
+    buttonText: { control: { type: 'text' }, defaultValue: 'Button text' },
+    buttonBusyText: { control: { type: 'text' }, defaultValue: 'Button busy text' }
   },
 }
 
@@ -41,7 +41,7 @@ const IconLeftTemplate = (args, { argTypes }) => ({
     >
       <template v-slot:icon--left>
       <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width: 16px;">
-        <circle cx="16" cy="16" r="16" :fill="textColor" />
+        <circle cx="16" cy="16" r="16" :fill="color" />
       </svg>
       </template>
       {{ buttonText }}
@@ -67,7 +67,7 @@ const IconRightTemplate = (args, { argTypes }) => ({
     >
       <template v-slot:icon--right>
       <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width: 16px;">
-        <circle cx="16" cy="16" r="16" :fill="textColor" />
+        <circle cx="16" cy="16" r="16" :fill="color" />
       </svg>
       </template>
       {{ buttonText }}
