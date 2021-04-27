@@ -29,7 +29,10 @@ export default {
   }),
   created () {
     this.$parent.$emit('nui:add-tab', this.label)
-    console.log(this.currentTabContent)
+    this.$parent.$on('nui:set-tab', e => {
+      if (e === this.label) this.show = true
+      else this.show = false
+    })
   }
 }
 </script>

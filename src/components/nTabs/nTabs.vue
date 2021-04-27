@@ -13,8 +13,8 @@
     <div v-if="!$slots.default" :class="`${componentClasses}__content`">
       {{ currentTabContent }}
     </div>
-    <template slot-scope="currentTabContent" v-else>
-      <slot :currentTabContent="currentTabContent" />
+    <template v-else>
+      <slot v-bind:currentTabContent="currentTabContent" />
     </template>
   </div>
 </template>
@@ -97,16 +97,18 @@ export default {
   methods: {
     changeTab(index) {
       this.currentTab = index
+      this.$emit('nui:set-tab', this.tabTitles[index])
     },
     addTab(tab) {
       this.slotTabs.push(tab)
-    }
+    },
   },
   created () {
     this.$on('nui:add-tab', this.addTab)
   },
   mounted () {
     if (this.defaultTab) this.currentTab = this.defaultTab
+    this.$emit('nui:set-tab', this.tabTitles[this.currentTab])
   },
   destroyed () {
     this.$off('nui:add-tab')
