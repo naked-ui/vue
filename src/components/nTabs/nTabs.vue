@@ -14,7 +14,7 @@
       {{ currentTabContent }}
     </div>
     <template v-else>
-      <slot v-bind:currentTabContent="currentTabContent" />
+      <slot />
     </template>
   </div>
 </template>
