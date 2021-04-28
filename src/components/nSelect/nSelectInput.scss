@@ -158,9 +158,9 @@
         }
       }
 
-      // &.candidate {
-      //   background-color: var(--option-hover-color);
-      // }
+      &.candidate {
+        background-color: var(--option-hover-color);
+      }
     }
   }
 
