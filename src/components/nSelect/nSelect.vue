@@ -13,6 +13,7 @@
         :aria-labelledby="uiElementID"
         v-if="canBeNative"
         v-on="listeners"
+        tabindex="-1"
       >
         <!-- Fake placeholder for native select -->
         <option value="" selected disabled>
@@ -126,7 +127,7 @@ export default {
     },
     tabindex: {
       type: Number,
-      default: -1
+      default: 0
     },
     searchInputRefName: {
       type: String,
@@ -154,7 +155,7 @@ export default {
     },
     enableSearchInput: {
       type: Boolean,
-      default: true
+      default: false
     },
     enableMultiSelect: {
       type: Boolean,
