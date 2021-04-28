@@ -20,16 +20,6 @@ function deepSearch(object, key) {
   return undefined // more verbose result for `not found`
 }
 
-Vue.prototype.$super = function (options) {
-  return new Proxy(options, {
-    get: (options, name) => {
-      const res = deepSearch(options, name)
-      if (typeof res === 'function') return res.bind(this)
-      return res
-    }
-  })
-}
-
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   options: {

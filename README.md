@@ -1,3 +1,6 @@
+[![NPM Version](https://badgen.net/npm/v/@naked-ui/vue)](https://npmjs.org/package/@naked-ui/vue)
+[![Bundle size](https://badgen.net/bundlephobia/min/@naked-ui/vue)]()
+
 # @naked-ui/vue
 
 ## Project setup

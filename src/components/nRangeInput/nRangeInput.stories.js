@@ -15,13 +15,19 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { nRangeInput },
   props: Object.keys(argTypes),
+  methods: {
+    submit(e) {
+      if (!e.target.checkValidity()) return
+    }
+  },
   data: () => ({ val: '' }),
   template: `
-    <div>
+    <form novalidate @submit.prevent="submit">
       <nRangeInput v-bind="$props" v-model="val" />
       <br>
       <code>{{ val }}</code>
-    </div>
+      <input style="margin-top: 16px;" type="submit" value="submit">
+    </form>
   `,
 });
 

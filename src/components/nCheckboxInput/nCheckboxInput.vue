@@ -13,6 +13,7 @@
         :checked="isChecked"
         :value="value"
         :name="name"
+        :nui-validation="validationEnabled"
       />
       {{ label }}
     </label>
@@ -26,9 +27,12 @@
 <script>
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import formField from '@/utils/formField/index'
+import { color } from '@/utils/styleVariables/helpers/variables'
+
+const customStyleVariables = [color]
 
 export default {
-  mixins: [formField],
+  mixins: [formField(customStyleVariables)],
   name: 'nCheckboxInput',
   components: { nValidationAlerts },
   inject: {
@@ -41,7 +45,6 @@ export default {
       type: String,
       default: 'n-form-field'
     },
-    // input attrs
     checked: {
       type: Boolean,
       default: false
@@ -74,9 +77,6 @@ export default {
         return value.includes(this.value)
       }
       return false
-    },
-    style() {
-      return [...this.$super(formField).style(), , { '--color': this.color }]
     },
     componentClasses() {
       return [this.baseClassname]

@@ -71,12 +71,23 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { nDateInput },
   props: Object.keys(argTypes),
+  methods: {
+    submit(e) {
+      if (!e.target.checkValidity()) return
+    }
+  },
   data: () => ({ val: '' }),
   template: `
-    <nDateInput
-      v-model="val"
-      v-bind="$props"
-    />
+    <div>
+      <form novalidate @submit.prevent="submit">
+        <nDateInput
+          v-model="val"
+          v-bind="$props"
+        />
+        <input style="margin-top: 16px;" type="submit" value="submit">
+      </form>
+      <code>{{ val }}</code>
+    </div>
   `
 })
 
@@ -88,5 +99,6 @@ Default.args = {
   padding: '0 12px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px'
+  outlineWidth: '2px',
+  pattern: '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))'
 }

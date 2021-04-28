@@ -52,7 +52,7 @@ import formField from '../../utils/formField/index.js'
 import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
 
 export default {
-  mixins: [formField],
+  mixins: [formField()],
   components: {
     nValidationAlerts
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="checkbox-group" :style="style">
+  <div class="n-checkbox-group n-form-field" :style="style">
     <slot></slot>
     <nValidationAlerts
       v-if="validationMessages.length > 0"
@@ -12,9 +12,12 @@
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import formField from '@/utils/formField/index.js'
 import { messages } from '@/utils/validation'
+import { color, spacing } from '@/utils/styleVariables/helpers/variables'
+
+const customStyleVariables = [color, spacing]
 
 export default {
-  mixins: [formField],
+  mixins: [formField(customStyleVariables)],
   name: 'nCheckboxGroup',
   components: { nValidationAlerts },
   provide() {
@@ -48,15 +51,6 @@ export default {
         return this.customMessages['valueMissing']
       }
       return messages.valueMissing.default
-    },
-    style() {
-      return [
-        ...this.$super(formField).style(),
-        {
-          '--color': this.color,
-          '--spacing': this.calculateCssSize(this.spacing)
-        }
-      ]
     }
   },
   methods: {

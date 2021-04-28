@@ -1,5 +1,4 @@
-.checkbox-group {
-  .checkbox-input + .checkbox-input {
-    margin-top: var(--spacing, 0);
-  }
+.n-checkbox-group {
+  display: grid;
+  gap: var(--spacing);
 }

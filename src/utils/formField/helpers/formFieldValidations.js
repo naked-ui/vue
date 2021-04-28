@@ -1,4 +1,4 @@
-import { messages as defaultMessages } from '../validation/index'
+import { messages as defaultMessages } from '../../validation/index'
 
 function isObject(obj) {
   return obj === Object(obj)
@@ -22,10 +22,10 @@ export default {
     }
   },
   methods: {
-    pushValidationMessage(message) {
+    pushValidationMessage(content, color) {
       this.validationMessages.push({
-        content: message,
-        color: this.colorInvalid
+        content,
+        color
       })
     },
     validateCustomRules(target) {
@@ -48,7 +48,7 @@ export default {
       }
       // use default
       const msg = defaultMessages[error]
-
+      if(msg === null) return false
       if (isObject(msg)) return msg[field.type] || msg.default
       return msg || defaultMessages.default
     },
@@ -66,8 +66,13 @@ export default {
       for (let errorType in validity) {
         const hasError = validity[errorType]
         if (hasError) {
-          const msg = this.getValidationMessage(errorType, target)
-          this.pushValidationMessage(msg)
+          const data = this.getValidationMessage(errorType, target)
+          if (typeof data === 'string'){
+            this.pushValidationMessage(data, this.colorInvalid)
+          } else if(isObject(data)){
+            const { text, color = this.colorInvalid } = data
+            this.pushValidationMessage(text, color)
+          }
         }
       }
     },

@@ -61,7 +61,7 @@ import formField from '../../utils/formField/index.js'
 
 export default {
   name: 'nRangeInput',
-  mixins: [formField],
+  mixins: [formField()],
   props: {
     baseClassname: {
       type: String,

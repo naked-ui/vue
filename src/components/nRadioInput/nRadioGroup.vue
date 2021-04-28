@@ -1,5 +1,5 @@
 <template>
-  <div class="radio-group" :style="style">
+  <div class="n-radio-group n-form-field" :style="style">
     <slot></slot>
     <nValidationAlerts
       v-if="validationMessages.length > 0"
@@ -11,9 +11,12 @@
 <script>
 import formField from '../../utils/formField/index.js'
 import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+import { color, spacing } from '../../utils/styleVariables/helpers/variables'
+
+const customStyleVariables = [color, spacing]
 
 export default {
-  mixins: [formField],
+  mixins: [formField(customStyleVariables)],
   name: 'nRadioGroup',
   components: { nValidationAlerts },
   provide() {
@@ -30,17 +33,6 @@ export default {
     spacing: {
       type: [Number, String],
       default: null
-    }
-  },
-  computed: {
-    style() {
-      return [
-        ...this.$super(formField).style(),
-        {
-          '--color': this.color,
-          '--spacing': this.calculateCssSize(this.spacing)
-        }
-      ]
     }
   },
   methods: {
