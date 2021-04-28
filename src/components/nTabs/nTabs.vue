@@ -10,9 +10,13 @@
           {{ title }}
       </button>
     </div>
-    <div v-if="!$slots.default" :class="`${componentClasses}__content`">
-      {{ currentTabContent }}
-    </div>
+    <template v-if="!$slots.default">
+    <Transition mode="out-in" name="fade-in">
+      <div :class="`${componentClasses}__content`" :key="currentTabContent">
+        {{ currentTabContent }}
+      </div>
+    </Transition>
+    </template>
     <template v-else>
       <slot />
     </template>

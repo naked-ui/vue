@@ -1,7 +1,9 @@
 <template>
-  <div v-show="show" :class="`${componentClasses}__content`">
-    <slot />
-  </div>
+  <Transition mode="out-in" name="fade-in">
+      <div v-show="show" :class="`${componentClasses}__content`">
+        <slot />
+      </div>
+  </Transition>
 </template>
 
 <script>
