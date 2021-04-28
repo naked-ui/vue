@@ -2,7 +2,7 @@
   <div
     class="n-select"
     :class="{ 'n-select--native-handler': enableNativeSelect }"
-    :style="styleVariables"
+    :style="style"
   >
     <span class="n-select__label" v-if="label" :id="uiElementID">
       {{ label }}
@@ -108,12 +108,37 @@
 import uuidMixin from '@/utils/uuid'
 import clickout from '@/utils/clickout'
 import nChip from '@/utils/components/nChip'
-import SelectStyling from './SelectStyling'
+import styleVariables from '../../utils/styleVariables'
+import {
+  color,
+  width,
+  height,
+  fontSize,
+  lineHeight,
+  borderColor,
+  borderRadius,
+  backgroundColor,
+} from '../../utils/styleVariables/helpers/variables'
+
+const defaultStyleVariables = [
+  color,
+  width,
+  height,
+  fontSize,
+  lineHeight,
+  borderColor,
+  borderRadius,
+  backgroundColor,
+  { name: 'lineHeight', type: 'size' },
+  { name: 'paddingSelect', type: 'size' },
+  { name: 'paddingOption', type: 'size' },
+  { name: 'optionHoverColor', type: 'color' },
+]
 
 export default {
   name: 'nSelect',
   inheritAttrs: false,
-  mixins: [uuidMixin, SelectStyling],
+  mixins: [uuidMixin, styleVariables(defaultStyleVariables)],
   directives: { clickout },
   components: { nChip },
   props: {
@@ -160,7 +185,51 @@ export default {
     enableMultiSelect: {
       type: Boolean,
       default: false
-    }
+    },
+    width: {
+      type: String,
+      default: '20rem'
+    },
+    height: {
+      type: String,
+      default: '3rem'
+    },
+    paddingSelect: {
+      type: String,
+      default: '0.5rem'
+    },
+    paddingOption: {
+      type: String,
+      default: '0.3rem'
+    },
+    lineHeight: {
+      type: String,
+      default: '3rem'
+    },
+    fontSize: {
+      type: String,
+      default: '1rem'
+    },
+    color: {
+      type: String,
+      default: '#FFF'
+    },
+    backgroundColor: {
+      type: String,
+      default: '#333'
+    },
+    optionHoverColor: {
+      type: String,
+      default: '#555'
+    },
+    borderRadius: {
+      type: String,
+      default: '0rem'
+    },
+    borderColor: {
+      type: String,
+      default: '#222'
+    },
   },
   watch: {
     showSearchInput(value) {

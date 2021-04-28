@@ -36,7 +36,7 @@
     position: relative;
     width: var(--width);
     height: var(--height);
-    color: var(--text-color);
+    color: var(--color);
   }
 
   &--custom {
@@ -92,7 +92,7 @@
       font: inherit;
       background: none;
       border: none;
-      color: var(--text-color);
+      color: var(--color);
       max-width: calc(var(--width) - calc(3 * var(--padding-select)));
       padding-right: var(--padding-select);
 

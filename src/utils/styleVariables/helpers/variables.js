@@ -9,6 +9,11 @@ const height = {
     type: 'size'
 }
 
+const lineHeight = {
+    name: 'lineHeight',
+    type: 'size'
+}
+
 const gap = {
     name: 'gap',
     type: 'size'
@@ -90,6 +95,11 @@ const textColor = {
     type: 'color'
 }
 
+const borderColor = {
+    name: 'borderColor',
+    type: 'color'
+}
+
 export {
     width,
     height,
@@ -108,5 +118,7 @@ export {
     spacing,
     itemsGap,
     viewportPadding,
-    resize
+    resize,
+    borderColor,
+    lineHeight
 }
