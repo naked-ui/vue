@@ -46,7 +46,7 @@
               </svg>
             </nIcon>
           </div>
-          <div :class="`${componentClasses}--item__content`" v-show="item.open">
+          <div :class="[`${componentClasses}-item__content`, { open: item.open }]">
             {{ item.text }}
           </div>
         </li>
@@ -60,7 +60,10 @@ import nIcon from '../nIcon/nIcon'
 import styleVariables from '../../utils/styleVariables'
 import { width } from '../../utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [width]
+const defaultStyleVariables = [
+  width,
+  { name: 'itemHeight', type: 'size' }
+]
 
 export default {
   name: 'nAccordion',
@@ -78,6 +81,10 @@ export default {
     width: {
       type: String,
       default: '250px'
+    },
+    itemHeight: {
+      type: [String, Number],
+      default: 60
     }
   },
   computed: {
@@ -89,7 +96,7 @@ export default {
     },
     areItemsProvided() {
       return this.items && this.items.length > 0
-    }
+    },
   },
   data: () => ({
     accordionItems: []

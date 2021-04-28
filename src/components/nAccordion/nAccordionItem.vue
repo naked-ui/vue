@@ -1,7 +1,7 @@
 <template>
   <li :class="`${componentClasses}-item`">
     <div
-      :class="[`${componentClasses}-item__inner`, { open: open }]"
+      :class="[`${componentClasses}-item__inner`, { open }]"
       @click="open = !open"
     >
       <span :class="`${componentClasses}-item__title`">
@@ -9,7 +9,7 @@
       </span>
       <nIcon
         class=""
-        :class="[`${componentClasses}-item__icon`, { open: open }]"
+        :class="[`${componentClasses}-item__icon`, { open }]"
         :size="12"
       >
         <svg
@@ -32,7 +32,7 @@
         </svg>
       </nIcon>
     </div>
-    <div :class="`${componentClasses}-item__content`" v-show="open">
+    <div :class="[`${componentClasses}-item__content`, { open }]">
       <slot name="text" />
     </div>
   </li>
