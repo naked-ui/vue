@@ -41,7 +41,7 @@
 <script>
 import hrefIsExternalMixin from '../../utils/hrefIsExternal'
 import styleVariables from '../../utils/styleVariables'
-import { textColor, backgroundColor, padding, height, gap } from '../../utils/styleVariables/helpers/variables'
+import { color, backgroundColor, padding, height, gap } from '../../utils/styleVariables/helpers/variables'
 
 const defaultStyleVariables = [
   color,
@@ -90,7 +90,7 @@ export default {
       type: String,
       default: '#333'
     },
-    textColor: {
+    color: {
       type: String,
       default: '#fff'
     },

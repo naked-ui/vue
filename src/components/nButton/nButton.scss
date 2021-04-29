@@ -21,7 +21,7 @@
   .n-button__text,
   .n-button__icon {
     @include flex($place: center);
-    color: var(--text-color);
+    color: var(--color);
     svg {
       fill: var(--color) !important;
     }
