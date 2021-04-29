@@ -1,5 +1,5 @@
 .n-radio-group {
-  gap: var(--gap);
+  gap: var(--spacing) !important;
 
   .radio-input + .radio-input {
     margin-top: var(--spacing, 0);
