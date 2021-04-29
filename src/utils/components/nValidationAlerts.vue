@@ -1,13 +1,11 @@
 <template functional>
-  <div
-    class="n-validation-alerts"
-  >
+  <div class="n-validation-alerts">
     <span
       class="n-validation-alert"
       v-for="(message, index) in props.validationMessages"
       :key="index"
       :style="`
-        --color: ${message.color}
+        --color: ${message.color ? message.color : ''}
       `"
       v-html="message.content"
     />
@@ -20,7 +18,7 @@ export default {
   props: {
     validationMessages: {
       type: Array,
-      default () {
+      default() {
         return []
       }
     }
