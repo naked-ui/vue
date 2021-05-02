@@ -34,6 +34,11 @@ const borderRadius = {
     type: 'size'
 }
 
+const borderWidth = {
+    name: 'borderWidth',
+    type: 'size'
+}
+
 const size = {
     name: 'size',
     type: 'size'
@@ -109,6 +114,7 @@ export {
     colorValid,
     colorInvalid,
     borderRadius,
+    borderWidth,
     size,
     fontSize,
     color,

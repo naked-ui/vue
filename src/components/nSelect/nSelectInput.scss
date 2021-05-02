@@ -10,6 +10,22 @@
     user-select: none;
   }
 
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: var(--padding-select);
+    padding: 0rem var(--padding-select);
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
   &--native-handler {
     .n-select--custom {
       display: none;
@@ -27,16 +43,19 @@
     }
   }
 
-  &__wrapper {
+  &__inner {
     position: relative;
+    width: var(--width);
+    height: var(--height);
+    outline: var(--outline-width) solid;
+    outline-offset: calc(var(--negative-factor) * var(--outline-width));
   }
 
   select,
   &--custom {
     position: relative;
-    width: var(--width);
-    height: var(--height);
     color: var(--color);
+    @include size(100%);
   }
 
   &--custom {
@@ -152,30 +171,11 @@
     }
   }
 
-  &__label {
-    display: block;
-    margin-bottom: 0.4rem;
-  }
-
-  &__wrapper {
-    position: relative;
-  }
-
   select,
   &--custom__placeholder {
     font-size: var(--text-size);
     background-color: var(--background-color);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-  }
-
-  select {
-    appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-    background-repeat: no-repeat;
-    background-position-x: 100%;
-    background-position-y: var(--padding-select);
-    padding: 0rem var(--padding-select);
-    pointer-events: none;
   }
 }

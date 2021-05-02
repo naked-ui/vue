@@ -6,9 +6,11 @@ export default {
     argTypes: {
         color: { control: { type: 'color' } },
         backgroundColor: { control: { type: 'color' } },
-        borderColor: { control: { type: 'color' } },
+        outlineWidth: { control: { type: 'range' }, defaultValue: 2 },
         optionHoverColor: { control: { type: 'color' } },
         label: { defaultValue: 'Label text' },
+        width: { defaultValue: '280px' },
+        height: { defaultValue: '48px' },
         // optionSelectedColor: { control: { type: 'color' } },
     }
 }

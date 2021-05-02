@@ -7,7 +7,7 @@
     <span class="n-select__label" v-if="label" :id="uiElementID">
       {{ label }}
     </span>
-    <div class="n-select__wrapper">
+    <div class="n-select__inner">
       <select
         :aria-labelledby="uiElementID"
         v-if="canBeNative"
@@ -115,8 +115,9 @@ import {
   height,
   fontSize,
   lineHeight,
-  borderColor,
-  borderRadius,
+  outlineWidth,
+  // borderColor,
+  // borderRadius,
   backgroundColor
 } from '../../utils/styleVariables/helpers/variables'
 
@@ -126,8 +127,9 @@ const defaultStyleVariables = [
   height,
   fontSize,
   lineHeight,
-  borderColor,
-  borderRadius,
+  outlineWidth,
+  // borderColor,
+  // borderRadius,
   backgroundColor,
   { name: 'lineHeight', type: 'size' },
   { name: 'paddingSelect', type: 'size' },
@@ -222,11 +224,11 @@ export default {
       type: String,
       default: ''
     },
-    borderRadius: {
-      type: String,
-      default: ''
-    },
-    borderColor: {
+    // borderRadius: {
+    //   type: String,
+    //   default: ''
+    // },
+    outlineWidth: {
       type: String,
       default: ''
     }
