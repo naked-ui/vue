@@ -21,7 +21,7 @@
         display: block;
       }
 
-      .n-select--native:focus + .n-select--custom {
+      select:focus + .n-select--custom {
         display: none;
       }
     }
@@ -31,7 +31,7 @@
     position: relative;
   }
 
-  &--native,
+  select,
   &--custom {
     position: relative;
     width: var(--width);
@@ -173,7 +173,7 @@
     position: relative;
   }
 
-  &--native,
+  select,
   &--custom__placeholder {
     font-size: var(--text-size);
     background-color: var(--background-color);
@@ -181,7 +181,7 @@
     border-radius: var(--border-radius);
   }
 
-  &--native {
+  select {
     appearance: none;
     background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
     background-repeat: no-repeat;
