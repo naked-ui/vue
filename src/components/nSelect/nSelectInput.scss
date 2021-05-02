@@ -59,10 +59,6 @@
         line-height: var(--line-height);
         right: var(--padding-select);
       }
-
-      // &:hover {
-      //   border-color: var(--border-hover-color);
-      // }
     }
 
     &__chips {
@@ -104,13 +100,9 @@
     &__options {
       position: absolute;
       cursor: pointer;
-      // top: calc(var(--line-height) + var(--padding-select));
       left: 0;
       width: 100%;
-      // border: 1px solid var(--border-color);
-      // border-radius: var(--border-radius);
       background-color: var(--background-color);
-      // box-shadow: 0 0 4px #e9e1f8;
       z-index: 1;
       display: none;
 
@@ -126,8 +118,7 @@
     &__option {
       font-size: var(--text-size);
       position: relative;
-      padding: var(--padding-option);
-      padding-left: 2rem;
+      // padding: var(--padding-option);
 
       &:hover {
         background-color: var(--option-hover-color);
@@ -141,12 +132,9 @@
         bottom: 0;
         left: 0.3rem;
         right: 0.3rem;
-        // border-bottom: 1px solid var(--option-border-color);
       }
 
       &.selected {
-        // background-color: var(--option-selected-color);
-
         &:hover {
           background-color: var(--option-hover-color);
         }
@@ -188,5 +176,6 @@
     background-position-x: 100%;
     background-position-y: var(--padding-select);
     padding: 0rem var(--padding-select);
+    pointer-events: none;
   }
 }

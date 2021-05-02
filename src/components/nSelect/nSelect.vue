@@ -9,7 +9,6 @@
     </span>
     <div class="n-select__wrapper">
       <select
-        class="n-select--native"
         :aria-labelledby="uiElementID"
         v-if="canBeNative"
         v-on="listeners"
@@ -62,6 +61,7 @@
               v-for="option in selected"
               :key="option.value"
               @click.stop="handleClickOnChip(option)"
+              class="n-select-multiselect-option"
             >
               <!-- <template v-if="$slot['multiselect-option'] && $slot['multiselect-option'].length > 0"> -->
               {{ option.name }}
@@ -117,7 +117,7 @@ import {
   lineHeight,
   borderColor,
   borderRadius,
-  backgroundColor,
+  backgroundColor
 } from '../../utils/styleVariables/helpers/variables'
 
 const defaultStyleVariables = [
@@ -132,7 +132,7 @@ const defaultStyleVariables = [
   { name: 'lineHeight', type: 'size' },
   { name: 'paddingSelect', type: 'size' },
   { name: 'paddingOption', type: 'size' },
-  { name: 'optionHoverColor', type: 'color' },
+  { name: 'optionHoverColor', type: 'color' }
 ]
 
 export default {
@@ -188,48 +188,48 @@ export default {
     },
     width: {
       type: String,
-      default: '20rem'
+      default: ''
     },
     height: {
       type: String,
-      default: '3rem'
+      default: ''
     },
     paddingSelect: {
       type: String,
-      default: '0.5rem'
+      default: ''
     },
     paddingOption: {
       type: String,
-      default: '0.3rem'
+      default: ''
     },
     lineHeight: {
       type: String,
-      default: '3rem'
+      default: ''
     },
     fontSize: {
       type: String,
-      default: '1rem'
+      default: ''
     },
     color: {
       type: String,
-      default: '#FFF'
+      default: ''
     },
     backgroundColor: {
       type: String,
-      default: '#333'
+      default: ''
     },
     optionHoverColor: {
       type: String,
-      default: '#555'
+      default: ''
     },
     borderRadius: {
       type: String,
-      default: '0rem'
+      default: ''
     },
     borderColor: {
       type: String,
-      default: '#222'
-    },
+      default: ''
+    }
   },
   watch: {
     showSearchInput(value) {
