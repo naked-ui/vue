@@ -24,9 +24,10 @@ const Template = (args, { argTypes }) => ({
         selectValue: null
     }),
     template: `
-    <div style="width: 100%;">
+    <form novalidate @submit.prevent="submit">
         <nSelect v-bind="$props" v-model="selectValue" />
-    </div>
+        <input style="margin-top: 16px;" type="submit" value="submit">
+    </form>
     `
 })
 
