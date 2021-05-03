@@ -4,6 +4,7 @@
   position: relative;
   box-sizing: border-box;
   cursor: pointer;
+  width: var(--width);
 
   * {
     box-sizing: inherit;
@@ -23,7 +24,6 @@
 
   &__label {
     display: block;
-    margin-bottom: 0.4rem;
   }
 
   &--native-handler {
@@ -45,10 +45,11 @@
 
   &__inner {
     position: relative;
-    width: var(--width);
     height: var(--height);
+    width: var(--width);
     outline: var(--outline-width) solid;
     outline-offset: calc(var(--negative-factor) * var(--outline-width));
+    padding: var(--padding);
   }
 
   select,
@@ -61,6 +62,7 @@
   &--custom {
     top: 0;
     left: 0;
+    padding: var(--padding);
 
     &__placeholder {
       @include flex($align-items: center);
@@ -71,12 +73,14 @@
       padding: 0 var(--padding-select);
       cursor: pointer;
       line-height: var(--line-height);
+      color: var(--placeholder-color);
 
       &::after {
         content: '▾';
         position: absolute;
         line-height: var(--line-height);
-        right: var(--padding-select);
+        right: 0;
+        color: #000;
       }
     }
 

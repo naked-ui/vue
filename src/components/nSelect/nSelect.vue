@@ -1,6 +1,6 @@
 <template>
   <div
-    class="n-select"
+    class="n-select n-form-field"
     :class="{ 'n-select--native-handler': enableNativeSelect }"
     :style="style"
   >
@@ -116,6 +116,8 @@ import {
   fontSize,
   lineHeight,
   outlineWidth,
+  gap,
+  padding,
   // borderColor,
   // borderRadius,
   backgroundColor
@@ -128,13 +130,16 @@ const defaultStyleVariables = [
   fontSize,
   lineHeight,
   outlineWidth,
+  gap,
+  padding,
   // borderColor,
   // borderRadius,
   backgroundColor,
   { name: 'lineHeight', type: 'size' },
   { name: 'paddingSelect', type: 'size' },
   { name: 'paddingOption', type: 'size' },
-  { name: 'optionHoverColor', type: 'color' }
+  { name: 'optionHoverColor', type: 'color' },
+  { name: 'placeholderColor', type: 'color' }
 ]
 
 export default {
@@ -196,11 +201,23 @@ export default {
       type: String,
       default: ''
     },
-    paddingSelect: {
+    gap: {
       type: String,
       default: ''
     },
-    paddingOption: {
+    // paddingSelect: {
+    //   type: String,
+    //   default: ''
+    // },
+    // paddingOption: {
+    //   type: String,
+    //   default: ''
+    // },
+    placeholderColor: {
+      type: String,
+      default: ''
+    },
+    padding: {
       type: String,
       default: ''
     },

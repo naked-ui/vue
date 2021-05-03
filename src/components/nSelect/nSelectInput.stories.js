@@ -11,7 +11,9 @@ export default {
         label: { defaultValue: 'Label text' },
         width: { defaultValue: '280px' },
         height: { defaultValue: '48px' },
-        // optionSelectedColor: { control: { type: 'color' } },
+        gap: { control: { type: 'range', min: 0 }, defaultValue: 8 },
+        padding: { defaultValue: '0 12px' },
+        placeholderColor: { defaultValue: '#838383' }
     }
 }
 
