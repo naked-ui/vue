@@ -66,12 +66,12 @@
       height: 100%;
       background-color: var(--background-color);
       cursor: pointer;
-      line-height: var(--line-height);
+      // line-height: var(--line-height);
 
       &::after {
         content: '▾';
         position: absolute;
-        line-height: var(--line-height);
+        // line-height: var(--line-height);
         right: var(--padding);
         color: #000;
       }
@@ -106,7 +106,7 @@
       border: none;
       color: var(--color);
       max-width: calc(var(--width) - calc(3 * var(--padding-select)));
-      padding-right: var(--padding-select);
+      padding: 0 !important;
 
       &:focus {
         outline: none;

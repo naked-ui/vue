@@ -120,8 +120,6 @@ import {
   borderWidth,
   gap,
   padding,
-  // borderColor,
-  // borderRadius,
   backgroundColor
 } from '../../utils/styleVariables/helpers/variables'
 
@@ -134,10 +132,8 @@ const defaultStyleVariables = [
   borderWidth,
   gap,
   padding,
-  // borderColor,
-  // borderRadius,
   backgroundColor,
-  { name: 'lineHeight', type: 'size' },
+  // { name: 'lineHeight', type: 'size' },
   { name: 'paddingSelect', type: 'size' },
   { name: 'optionPadding', type: 'size' },
   { name: 'optionHoverColor', type: 'color' },
@@ -207,10 +203,6 @@ export default {
       type: String,
       default: ''
     },
-    // paddingSelect: {
-    //   type: String,
-    //   default: ''
-    // },
     optionPadding: {
       type: String,
       default: ''
@@ -243,10 +235,6 @@ export default {
       type: String,
       default: ''
     },
-    // borderRadius: {
-    //   type: String,
-    //   default: ''
-    // },
     borderWidth: {
       type: String,
       default: ''
