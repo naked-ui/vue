@@ -51,8 +51,8 @@
   select,
   &--custom {
     position: relative;
-    color: var(--color);
     @include size(100%);
+    color: var(--color);
   }
 
   &--custom {
@@ -67,18 +67,16 @@
       height: 100%;
       background-color: var(--background-color);
       cursor: pointer;
-      // line-height: var(--line-height);
 
       &::after {
         content: '▾';
         position: absolute;
-        // line-height: var(--line-height);
         right: var(--padding);
         color: #000;
       }
     }
 
-    &__chips {
+    &__multiselect-options {
       position: relative;
       display: flex;
       align-items: center;
@@ -98,6 +96,18 @@
       height: 100%;
       top: 0;
       gap: 4px;
+      overflow-y: hidden;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      &__item {
+        white-space: nowrap;
+      }
     }
 
     &__search-input {

@@ -36,7 +36,9 @@
       >
         <div
           class="n-select--custom__placeholder"
-          :class="{ 'n-select--custom__chips': displayChips }"
+          :class="{
+            'n-select--custom__multiselect-options': displayMultiselectOptions
+          }"
           @click="handleClickOnPlaceholder"
         >
           <input
@@ -53,7 +55,9 @@
           />
           <div
             class="n-select--custom__selected-options"
-            :class="{ 'n-select--custom__chips__placeholder': showSearchInput }"
+            :class="{
+              'n-select--custom__multiselect-options__placeholder': showSearchInput
+            }"
             v-show="!searchInputValue.length"
             v-if="enableMultiSelect"
           >
@@ -61,7 +65,7 @@
               v-for="option in selected"
               :key="option.value"
               @click.stop="handleClickOnChip(option)"
-              class="n-select-multiselect-option"
+              class="n-select--custom__selected-options__item"
             >
               <!-- <template v-if="$slot['multiselect-option'] && $slot['multiselect-option'].length > 0"> -->
               {{ option.name }}
@@ -304,7 +308,7 @@ export default {
         !this.enableMultiSelect
       )
     },
-    displayChips() {
+    displayMultiselectOptions() {
       return !this.showSearchInput && this.enableMultiSelect
     },
     displayDefaultPlaceholder() {
