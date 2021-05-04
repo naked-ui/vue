@@ -136,8 +136,8 @@ const defaultStyleVariables = [
   // { name: 'lineHeight', type: 'size' },
   { name: 'paddingSelect', type: 'size' },
   { name: 'optionPadding', type: 'size' },
-  { name: 'optionHoverColor', type: 'color' },
-  { name: 'placeholderColor', type: 'color' }
+  { name: 'optionHoverColor', type: 'color' }
+  // { name: 'placeholderColor', type: 'color' }
 ]
 
 export default {
@@ -207,22 +207,22 @@ export default {
       type: String,
       default: ''
     },
-    placeholderColor: {
-      type: String,
-      default: ''
-    },
+    // placeholderColor: {
+    //   type: String,
+    //   default: ''
+    // },
     padding: {
       type: String,
       default: ''
     },
-    lineHeight: {
-      type: String,
-      default: ''
-    },
-    fontSize: {
-      type: String,
-      default: ''
-    },
+    // lineHeight: {
+    //   type: String,
+    //   default: ''
+    // },
+    // fontSize: {
+    //   type: String,
+    //   default: ''
+    // },
     color: {
       type: String,
       default: ''
