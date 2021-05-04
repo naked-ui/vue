@@ -44,6 +44,7 @@
     height: var(--height);
     width: var(--width);
     border: var(--border-width) solid;
+    border-color: var(--border-color);
     padding: var(--padding);
   }
 
@@ -123,6 +124,7 @@
       display: none;
       background: #fff;
       border: var(--border-width) solid;
+      border-color: var(--border-color);
       width: calc(100% + 2 * var(--border-width));
       transform: translateX(calc(var(--negative-factor) * var(--border-width)));
       outline: none;
@@ -138,6 +140,7 @@
       padding: var(--option-padding);
       height: var(--height);
       @include flex($place: 'start center');
+      background-color: var(--option-background-color);
 
       &-inner {
         width: 100%;
@@ -145,7 +148,7 @@
 
       &.selected {
         &:hover {
-          background-color: var(--option-hover-color);
+          background-color: var(--option-hover-background-color);
         }
 
         .n-select--custom__option-inner {
@@ -158,12 +161,12 @@
       }
 
       &:hover {
-        background-color: var(--option-hover-color);
+        background-color: var(--option-hover-background-color);
         cursor: default;
       }
 
       &.candidate {
-        background-color: var(--option-hover-color);
+        background-color: var(--option-hover-background-color);
       }
     }
   }

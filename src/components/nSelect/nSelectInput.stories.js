@@ -6,8 +6,10 @@ export default {
     argTypes: {
         color: { control: { type: 'color' } },
         backgroundColor: { control: { type: 'color' } },
+        borderColor: { control: { type: 'color' } },
         borderWidth: { control: { type: 'range' }, defaultValue: 2 },
-        optionHoverColor: { control: { type: 'color' }, defaultValue: '#eee' },
+        optionBackgroundColor: { control: { type: 'color' } },
+        optionHoverBackgroundColor: { control: { type: 'color' }, defaultValue: '#eee' },
         label: { defaultValue: 'Label text' },
         width: { defaultValue: '280px' },
         height: { defaultValue: '48px' },

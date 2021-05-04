@@ -118,6 +118,7 @@ import {
   fontSize,
   lineHeight,
   borderWidth,
+  borderColor,
   gap,
   padding,
   backgroundColor
@@ -130,14 +131,14 @@ const defaultStyleVariables = [
   fontSize,
   lineHeight,
   borderWidth,
+  borderColor,
   gap,
   padding,
   backgroundColor,
-  // { name: 'lineHeight', type: 'size' },
   { name: 'paddingSelect', type: 'size' },
   { name: 'optionPadding', type: 'size' },
-  { name: 'optionHoverColor', type: 'color' }
-  // { name: 'placeholderColor', type: 'color' }
+  { name: 'optionBackgroundColor', type: 'color' },
+  { name: 'optionHoverBackgroundColor', type: 'color' }
 ]
 
 export default {
@@ -207,22 +208,10 @@ export default {
       type: String,
       default: ''
     },
-    // placeholderColor: {
-    //   type: String,
-    //   default: ''
-    // },
     padding: {
       type: String,
       default: ''
     },
-    // lineHeight: {
-    //   type: String,
-    //   default: ''
-    // },
-    // fontSize: {
-    //   type: String,
-    //   default: ''
-    // },
     color: {
       type: String,
       default: ''
@@ -231,11 +220,19 @@ export default {
       type: String,
       default: ''
     },
-    optionHoverColor: {
+    optionHoverBackgroundColor: {
+      type: String,
+      default: ''
+    },
+    optionBackgroundColor: {
       type: String,
       default: ''
     },
     borderWidth: {
+      type: String,
+      default: ''
+    },
+    borderColor: {
       type: String,
       default: ''
     }
