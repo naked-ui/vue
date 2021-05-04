@@ -73,7 +73,7 @@
       padding: 0 var(--padding-select);
       cursor: pointer;
       line-height: var(--line-height);
-      color: var(--placeholder-color);
+      // color: var(--placeholder-color);
 
       &::after {
         content: '▾';
@@ -128,10 +128,16 @@
       background-color: var(--background-color);
       z-index: 1;
       display: none;
+      background: #fff;
+      outline: var(--outline-width) solid;
+      outline-offset: calc(var(--negative-factor) * var(--outline-width));
+      transform: translateY(
+        calc(var(--negative-factor) * var(--outline-width))
+      );
 
-      &:focus {
-        outline: none;
-      }
+      // &:focus {
+      //   outline: none;
+      // }
     }
 
     &.active &__options {
@@ -141,20 +147,38 @@
     &__option {
       font-size: var(--text-size);
       position: relative;
-      // padding: var(--padding-option);
+      padding: var(--option-padding);
+      height: var(--height);
+      @include flex($place: 'start center');
 
       &:hover {
         background-color: var(--option-hover-color);
-        color: var(--text-hover-color);
+        border-left: var(--outline-width) solid;
+        border-right: var(--outline-width) solid;
+        padding: calc(var(--option-padding) - var(--outline-width));
         cursor: default;
+
+        &:first-child {
+          border-top: var(--outline-width) solid;
+          padding-top: calc(var(--option-padding) - 2 * var(--outline-width));
+
+          .n-select--custom__option-inner {
+            &::after {
+              right: calc(var(--option-padding) - var(--outline-width));
+            }
+          }
+        }
+
+        &:last-child {
+          border-bottom: var(--outline-width) solid;
+          padding-bottom: calc(
+            var(--option-padding) - 2 * var(--outline-width)
+          );
+        }
       }
 
-      &:not(:last-of-type)::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0.3rem;
-        right: 0.3rem;
+      &-inner {
+        width: 100%;
       }
 
       &.selected {
@@ -162,10 +186,12 @@
           background-color: var(--option-hover-color);
         }
 
-        &::before {
-          content: '✓';
-          position: absolute;
-          left: var(--padding-option);
+        .n-select--custom__option-inner {
+          &::after {
+            content: '✓';
+            position: absolute;
+            right: var(--option-padding);
+          }
         }
       }
 

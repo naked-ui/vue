@@ -96,7 +96,9 @@
             :data-value="option.value"
             @click.stop="handleClickOnOption(option)"
           >
-            {{ option.name }}
+            <span class="n-select--custom__option-inner">
+              {{ option.name }}
+            </span>
           </div>
         </div>
       </div>
@@ -137,7 +139,7 @@ const defaultStyleVariables = [
   backgroundColor,
   { name: 'lineHeight', type: 'size' },
   { name: 'paddingSelect', type: 'size' },
-  { name: 'paddingOption', type: 'size' },
+  { name: 'optionPadding', type: 'size' },
   { name: 'optionHoverColor', type: 'color' },
   { name: 'placeholderColor', type: 'color' }
 ]
@@ -209,10 +211,10 @@ export default {
     //   type: String,
     //   default: ''
     // },
-    // paddingOption: {
-    //   type: String,
-    //   default: ''
-    // },
+    optionPadding: {
+      type: String,
+      default: ''
+    },
     placeholderColor: {
       type: String,
       default: ''
