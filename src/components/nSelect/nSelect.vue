@@ -117,7 +117,7 @@ import {
   height,
   fontSize,
   lineHeight,
-  outlineWidth,
+  borderWidth,
   gap,
   padding,
   // borderColor,
@@ -131,7 +131,7 @@ const defaultStyleVariables = [
   height,
   fontSize,
   lineHeight,
-  outlineWidth,
+  borderWidth,
   gap,
   padding,
   // borderColor,
@@ -247,7 +247,7 @@ export default {
     //   type: String,
     //   default: ''
     // },
-    outlineWidth: {
+    borderWidth: {
       type: String,
       default: ''
     }

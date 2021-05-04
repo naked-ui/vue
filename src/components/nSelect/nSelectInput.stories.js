@@ -6,13 +6,13 @@ export default {
     argTypes: {
         color: { control: { type: 'color' } },
         backgroundColor: { control: { type: 'color' } },
-        outlineWidth: { control: { type: 'range' }, defaultValue: 2 },
+        borderWidth: { control: { type: 'range' }, defaultValue: 2 },
         optionHoverColor: { control: { type: 'color' }, defaultValue: '#eee' },
         label: { defaultValue: 'Label text' },
         width: { defaultValue: '280px' },
         height: { defaultValue: '48px' },
         gap: { control: { type: 'range', min: 0 }, defaultValue: 8 },
-        padding: { defaultValue: '0 12px' },
+        padding: { defaultValue: '10px' },
         optionPadding: { defaultValue: '12px' },
         // placeholderColor: { defaultValue: '#838383' }
     }
