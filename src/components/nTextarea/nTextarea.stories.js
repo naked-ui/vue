@@ -112,7 +112,7 @@ Default.args = {
   disabled: false,
   maxlength: 24,
   minlength: 3,
-  outlineWidth: '2px',
+  borderWidth: '2px',
   padding: '15px 12px',
   resize: 'both',
   counterEnabled: true,

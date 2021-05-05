@@ -95,10 +95,10 @@ Default.args = {
   gap: 8,
   height: 48,
   width: '96px',
-  padding: '0 12px',
+  padding: '10px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px',
+  borderWidth: '2px',
   // customMessages: {
   //   patternMismatch: { text: 'Enter valid HEX value', color: 'magenta' },
   //   tooShort: { text: 'Enter 6 characters HEX value', color: 'indigo' }

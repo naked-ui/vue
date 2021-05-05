@@ -96,9 +96,9 @@ Default.args = {
   gap: 8,
   height: 48,
   width: 'auto',
-  padding: '0 12px',
+  padding: '10px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px',
+  borderWidth: '2px',
   pattern: '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))'
 }

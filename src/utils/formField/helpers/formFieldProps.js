@@ -84,7 +84,7 @@ export default {
     padding: {
       type: String
     },
-    outlineWidth: {
+    borderWidth: {
       type: [String, Number]
     },
     colorInvalid: {

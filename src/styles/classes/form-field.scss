@@ -1,7 +1,7 @@
 @import 'sxcss';
 
 :root {
-  --negative-factor: -1;
+  --negative-factor: -1; // We need this as CSSO compression causes always appending "-1" value after CSS Variable in calc() function and it throws parsing error for final minified CSS file
 }
 
 .n-form-field {
@@ -29,11 +29,8 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border: none;
-    outline: var(--outline-width) solid;
-    outline-offset: calc(
-      var(--negative-factor) * var(--outline-width)
-    ); // We need this as CSSO compression causes always appending "-1" value after CSS Variable in calc() function and it throws parsing error for final minified CSS file
+    border: var(--border-width) solid;
+    border-color: var(--border-color);
     padding: var(--padding);
     font-family: inherit;
 
@@ -46,12 +43,12 @@
       &:not(:required):invalid,
       &:not(:placeholder-shown):required:invalid,
       &:focus:required:invalid {
-        outline-color: var(--color-invalid);
+        border-color: var(--color-invalid);
       }
 
       &:not(:placeholder-shown):valid,
       &:required:valid {
-        outline-color: var(--color-valid);
+        border-color: var(--color-valid);
       }
 
       &[disabled='disabled'] ~ .alerts {
@@ -64,7 +61,7 @@
       }
 
       &:not(:focus):required:invalid {
-        outline-color: inherit;
+        border-color: inherit;
       }
     }
   }

@@ -6,7 +6,7 @@ import {
   height,
   width,
   gap,
-  outlineWidth,
+  borderWidth,
   padding,
   colorValid,
   colorInvalid
@@ -16,7 +16,7 @@ const defaultStyleVariables = [
   gap,
   height,
   width,
-  outlineWidth,
+  borderWidth,
   padding,
   colorValid,
   colorInvalid

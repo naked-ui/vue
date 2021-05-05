@@ -101,10 +101,10 @@ Default.args = {
   gap: 8,
   height: 48,
   width: '280px',
-  padding: '0 12px',
+  padding: '10px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px',
+  borderWidth: '2px',
   pattern: '.*\\S.*',
   // customMessages: { valueMissing: 'Not empty!' },
   rules: [
