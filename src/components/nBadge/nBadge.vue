@@ -1,15 +1,19 @@
 <template>
-  <div
-    class="n-badge"
-    :style="style"
-  >
+  <div class="n-badge" :style="style">
     <slot />
   </div>
 </template>
 
 <script>
-import styleVariables from '../../utils/styleVariables'
-import { borderRadius, size, fontSize, padding, background, color } from '../../utils/styleVariables/helpers/variables'
+import styleVariables from '@/utils/styleVariables'
+import {
+  borderRadius,
+  size,
+  fontSize,
+  padding,
+  background,
+  color
+} from '@/utils/styleVariables/helpers/variables'
 
 const defaultStyleVariables = [
   borderRadius,
@@ -48,11 +52,9 @@ export default {
   },
   mixins: [styleVariables(defaultStyleVariables)],
   computed: {
-    copmonentClasses () {
-      return [
-        this.baseClassname
-      ]
-    },
+    copmonentClasses() {
+      return [this.baseClassname]
+    }
   }
 }
 </script>

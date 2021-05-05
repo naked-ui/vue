@@ -1,12 +1,6 @@
 <template>
-  <div
-    class="n-progress"
-    :style="style"
-  >
-    <label
-      :for="id"
-      v-if="label && label.length > 0"
-    >
+  <div class="n-progress" :style="style">
+    <label :for="id" v-if="label && label.length > 0">
       {{ label }}
     </label>
     <progress
@@ -24,8 +18,8 @@
 </template>
 
 <script>
-import styleVariables from '../../utils/styleVariables'
-import { width, height } from '../../utils/styleVariables/helpers/variables'
+import styleVariables from '@/utils/styleVariables'
+import { width, height } from '@/utils/styleVariables/helpers/variables'
 
 const defaultStyleVariables = [width, height]
 
@@ -63,7 +57,7 @@ export default {
       type: String,
       default: ''
     }
-  },
+  }
 }
 </script>
 

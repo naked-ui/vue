@@ -1,79 +1,10 @@
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
 import nTextInput from './nTextInput.vue'
 
 export default {
   title: 'Form/Input/TextInput',
   component: nTextInput,
-  argTypes: {
-    autocorrect: {
-      defaultValue: null,
-      description: '`autocorrect` prop is Safari only'
-    },
-    customMessages: {
-      control: 'object'
-    },
-    rules: {
-      control: 'array'
-    },
-    name: {
-      defaultValue: 'text-input-name',
-      description: '`name` prop is required'
-    },
-    id: {
-      defaultValue: 'text-input-id',
-      description: '`id` prop is required'
-    },
-    title: {
-      defaultValue: 'text-input-title'
-    },
-    label: {
-      defaultValue: 'Label text'
-    },
-    placeholder: {
-      defaultValue: 'Placeholder text'
-    },
-    pattern: {
-      control: 'text'
-    },
-    required: {
-      control: 'boolean'
-    },
-    disabled: {
-      control: 'boolean'
-    },
-    autofocus: {
-      control: 'boolean'
-    },
-    readonly: {
-      control: 'boolean'
-    },
-    counterEnabled: {
-      defaultValue: false
-    },
-    validationEnabled: {
-      control: 'boolean',
-      defaultValue: true
-    },
-    colorValid: {
-      control: 'color'
-    },
-    colorInvalid: {
-      control: 'color'
-    },
-    height: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    }
-  }
+  argTypes: formFieldArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
@@ -106,11 +37,17 @@ Default.args = {
   disabled: false,
   borderWidth: '2px',
   pattern: '.*\\S.*',
+  name: 'text-input-name',
+  id: 'text-input-id',
+  title: 'text-input-title',
+  label: 'Text input label',
+  placeholder: 'Text input placeholder',
+  autocorrect: false,
   // customMessages: { valueMissing: 'Not empty!' },
   rules: [
     (value) =>
       !value ||
-      value.length > 2 ||
-      'This is custom rule message: field not required, but min 3 chars!'
+      value.includes('Naked UI') ||
+      'Value doesn\'t include \"Naked UI\"'
   ]
 }

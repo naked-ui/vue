@@ -24,9 +24,6 @@ export default {
 
     // Styling
 
-    gap: {
-      type: [String, Number]
-    },
     height: {
       type: [String, Number]
     },
@@ -35,6 +32,9 @@ export default {
     },
     padding: {
       type: String
+    },
+    gap: {
+      type: [String, Number]
     },
     borderWidth: {
       type: [String, Number]

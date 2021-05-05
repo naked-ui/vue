@@ -15,113 +15,90 @@
     display: block;
   }
 
-  &__select-wrapper {
+  &__select {
     position: relative;
-  }
 
-  select {
-    appearance: none;
-    pointer-events: none;
-    border: var(--border-width) solid !important;
-    border-color: var(--border-color) !important;
-    padding: var(--padding) !important;
-  }
-
-  &__multiselect-options {
-    border: var(--border-width) solid !important;
-    border-color: var(--border-color) !important;
-    padding: var(--padding);
-    position: absolute;
-    top: 0;
-    @include size(100%);
-    @include flex($align-items: center, $wrap: nowrap);
-    gap: 4px;
-    overflow-y: hidden;
-    overflow-x: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
+    &--native {
+      appearance: none;
+      pointer-events: none;
+      padding: var(--padding);
     }
 
-    &__item {
-      white-space: nowrap;
-    }
-  }
-
-  &--native-handler {
-    .n-select--custom {
-      display: none;
+    &--multiselect {
+      border: var(--border-width) solid;
+      border-color: var(--border-color);
+      padding: var(--padding);
       position: absolute;
-    }
-
-    @media (hover: hover) {
-      .n-select--custom {
-        display: block;
-      }
-
-      select:focus + .n-select--custom {
+      top: 0;
+      @include size(100%);
+      @include flex($align-items: center, $wrap: nowrap);
+      gap: 4px;
+      overflow-y: hidden;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
         display: none;
       }
-    }
-  }
 
-  &-custom-input {
-    @include flex($align-items: center);
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-color: var(--background-color);
-    cursor: pointer;
-
-    &__search-input {
-      @include flex($align-items: center);
-      font: inherit;
-      background: none;
-      border: none;
-      color: var(--color);
-      max-width: calc(var(--width) - calc(3 * var(--padding-select)));
-      padding: 0 !important;
-
-      &:focus {
-        outline: none;
+      &__item {
+        white-space: nowrap;
       }
     }
+  }
 
-    &--multiselect-options {
-      position: relative;
-      @include flex($align-items: center);
+  // &--native-handler {
+
+  //   @media (hover: hover) {
+  //     .n-select--custom {
+  //       display: block;
+  //     }
+
+  //     select:focus + .n-select--custom {
+  //       display: none;
+  //     }
+  //   }
+  // }
+
+  &__search-input {
+    @include flex($align-items: center);
+    font: inherit;
+    background: none;
+    border: none;
+    color: var(--color);
+    max-width: calc(var(--width) - calc(3 * var(--padding-select)));
+    padding: 0 !important;
+
+    &:focus {
+      outline: none;
     }
   }
 
-  &__options {
+  &__options-wrapper {
     top: 0;
     left: 0;
 
-    &__options {
-      position: absolute;
-      cursor: pointer;
-      left: 0;
-      width: 100%;
-      background-color: var(--background-color);
-      z-index: 1;
-      display: none;
-      background: #fff;
-      border: var(--border-width) solid;
-      border-color: var(--border-color);
-      // width: calc(100% + 2 * var(--border-width));
-      // transform: translateX(calc(var(--negative-factor) * var(--border-width)));
-      transform: translateY(calc(var(--negative-factor) * var(--border-width)));
-      outline: none;
-    }
-
-    &.active &__options {
+    &.active .n-select__options {
       display: block;
     }
   }
 
-  &-option {
+  &__options {
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+    width: 100%;
+    background-color: var(--background-color);
+    z-index: 1;
+    display: none;
+    background: #fff;
+    border: var(--border-width) solid;
+    border-color: var(--border-color);
+    transform: translateY(calc(var(--negative-factor) * var(--border-width)));
+    outline: none;
+  }
+
+  &__option {
     font-size: var(--text-size);
     position: relative;
     padding: var(--option-padding);

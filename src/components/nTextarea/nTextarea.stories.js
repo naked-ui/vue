@@ -1,85 +1,10 @@
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
 import nTextarea from './nTextarea.vue'
 
 export default {
   title: 'Form/Textarea',
   component: nTextarea,
-  argTypes: {
-    resize: {
-      control: {
-        type: 'select',
-        options: ['both', 'horizontal', 'vertical', 'none']
-      }
-    },
-    autocorrect: {
-      defaultValue: null,
-      description: '`autocorrect` prop is Safari only'
-    },
-    customMessages: {
-      control: 'object'
-    },
-    rules: {
-      control: 'array'
-    },
-    name: {
-      defaultValue: 'text-input-name',
-      description: '`name` prop is required'
-    },
-    id: {
-      defaultValue: 'text-input-id',
-      description: '`id` prop is required'
-    },
-    title: {
-      defaultValue: 'text-input-title'
-    },
-    label: {
-      defaultValue: 'Label text'
-    },
-    placeholder: {
-      defaultValue: 'Placeholder text'
-    },
-    pattern: {
-      control: 'text'
-    },
-    required: {
-      control: 'boolean'
-    },
-    disabled: {
-      control: 'boolean'
-    },
-    autofocus: {
-      control: 'boolean'
-    },
-    readonly: {
-      control: 'boolean'
-    },
-    counterEnabled: {
-      defaultValue: false
-    },
-    validationEnabled: {
-      control: 'boolean',
-      defaultValue: true
-    },
-    colorValid: {
-      control: 'color'
-    },
-    colorInvalid: {
-      control: 'color'
-    },
-    height: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    }
-  }
+  argTypes: formFieldArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
@@ -105,7 +30,7 @@ Default.args = {
   name: 'textarea',
   label: 'Label text',
   placeholder: 'Placeholder text',
-  gap: 10,
+  gap: 8,
   height: 80,
   width: 320,
   autofocus: false,

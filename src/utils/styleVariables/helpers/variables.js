@@ -66,7 +66,7 @@ const viewportPadding = {
 
 const resize = {
     name: 'resize',
-    type: 'size'
+    type: 'other'
 }
 
 // Color

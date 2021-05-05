@@ -1,14 +1,9 @@
 <template>
-  <div
-    :class="componentClasses"
-    :style="style"
-  >
+  <div :class="componentClasses" :style="style">
     <div :class="`${baseClassname}__viewport-wrapper`">
       <ul
         :class="`${baseClassname}__viewport`"
-        :style="
-          !snapItems ? `scroll-snap-type: none !important;` : false
-        "
+        :style="!snapItems ? `scroll-snap-type: none !important;` : false"
       >
         <slot />
       </ul>
@@ -17,8 +12,11 @@
 </template>
 
 <script>
-import styleVariables from '../../utils/styleVariables'
-import { itemsGap, viewportPadding } from '../../utils/styleVariables/helpers/variables'
+import styleVariables from '@/utils/styleVariables'
+import {
+  itemsGap,
+  viewportPadding
+} from '@/utils/styleVariables/helpers/variables'
 
 const defaultStyleVariables = [itemsGap, viewportPadding]
 
@@ -41,13 +39,11 @@ export default {
     snapItems: {
       type: Boolean,
       default: true
-    },
+    }
   },
   computed: {
-    componentClasses () {
-      return [
-        this.baseClassname
-      ]
+    componentClasses() {
+      return [this.baseClassname]
     }
   }
 }

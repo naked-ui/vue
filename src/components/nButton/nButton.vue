@@ -39,17 +39,17 @@
 </template>
 
 <script>
-import hrefIsExternalMixin from '../../utils/hrefIsExternal'
-import styleVariables from '../../utils/styleVariables'
-import { color, backgroundColor, padding, height, gap } from '../../utils/styleVariables/helpers/variables'
-
-const defaultStyleVariables = [
+import hrefIsExternalMixin from '@/utils/hrefIsExternal'
+import styleVariables from '@/utils/styleVariables'
+import {
   color,
   backgroundColor,
   padding,
   height,
   gap
-]
+} from '@/utils/styleVariables/helpers/variables'
+
+const defaultStyleVariables = [color, backgroundColor, padding, height, gap]
 
 export default {
   name: 'nButton',
@@ -148,8 +148,8 @@ export default {
           role: this.role
         }
     },
-    iconPosition () {
-      if(this.$slots['icon--left']) {
+    iconPosition() {
+      if (this.$slots['icon--left']) {
         return 'left'
       }
       if (this.$slots['icon--solo']) {

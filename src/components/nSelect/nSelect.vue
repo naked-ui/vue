@@ -5,11 +5,12 @@
     </label>
     <div class="n-select__inner">
       <div
-        class="n-select__select-wrapper"
+        class="n-select__select"
         @click="handleClickOnSelect"
         v-clickout="handleClickout"
       >
         <select
+          class="n-select__select--native"
           :aria-hidden="!showOptions"
           v-on="listeners"
           tabindex="-1"
@@ -29,7 +30,7 @@
           <!--  -->
         </select>
         <div
-          class="n-select__multiselect-options"
+          class="n-select__select--multiselect"
           v-show="!searchInputValue.length"
           v-if="enableMultiSelect"
         >
@@ -37,13 +38,13 @@
             v-for="option in selected"
             :key="option.value"
             @click.stop="handleClickOnChip(option)"
-            class="n-select__multiselect-options__item"
+            class="n-select__select--multiselect__item"
           >
             {{ option.name }}
           </div>
         </div>
         <input
-          class="n-select-custom-input__search-input"
+          class="n-select__search-input"
           type="text"
           :ref="searchInputRefName"
           :placeholder="defaultPlaceholder"
@@ -56,13 +57,13 @@
         />
       </div>
       <div
-        class="n-select__options"
+        class="n-select__options-wrapper"
         :class="{ active: showOptions }"
         :aria-hidden="!showOptions"
         :aria-labelledby="uiElementID"
       >
         <div
-          class="n-select__options__options"
+          class="n-select__options"
           :tabindex="tabindex"
           :ref="optionsRefName"
           @keyup.up.prevent="handleKeyupUp"
@@ -70,11 +71,11 @@
           @keyup.esc.prevent="handleKeyupEsc"
           @keyup.enter.prevent="handleKeyupEnter"
         >
-          <div class="n-select-option" v-if="!filteredOptions.length">
+          <div class="n-select__option" v-if="!filteredOptions.length">
             {{ noOptionsPlaceholder }}
           </div>
           <div
-            class="n-select-option"
+            class="n-select__option"
             :class="{
               selected: isSelected(option),
               candidate: isCandidate(option)
@@ -84,7 +85,7 @@
             :data-value="option.value"
             @click.stop="handleClickOnOption(option)"
           >
-            <span class="n-select-option__inner">
+            <span class="n-select__option__inner">
               {{ option.name }}
             </span>
           </div>
@@ -98,8 +99,8 @@
 import uuidMixin from '@/utils/uuid'
 import clickout from '@/utils/clickout'
 import nChip from '@/utils/components/nChip'
-import styleVariables from '../../utils/styleVariables'
-import formField from '@/utils/formField/index.js'
+import styleVariables from '@/utils/styleVariables'
+// import formField from '@/utils/formField/index.js'
 import {
   color,
   width,
@@ -111,7 +112,7 @@ import {
   gap,
   padding,
   backgroundColor
-} from '../../utils/styleVariables/helpers/variables'
+} from '@/utils/styleVariables/helpers/variables'
 
 const defaultStyleVariables = [
   color,

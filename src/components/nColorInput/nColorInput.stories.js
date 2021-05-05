@@ -1,73 +1,10 @@
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
 import nColorInput from './nColorInput.vue'
 
 export default {
   title: 'Form/Input/ColorInput',
   component: nColorInput,
-  argTypes: {
-    customMessages: {
-      control: 'object'
-    },
-    name: {
-      defaultValue: 'color-input-name',
-      description: '`name` prop is required'
-    },
-    id: {
-      defaultValue: 'color-input-id',
-      description: '`id` prop is required'
-    },
-    title: {
-      defaultValue: 'color-input-title'
-    },
-    label: {
-      defaultValue: 'Label text'
-    },
-    placeholder: {
-      defaultValue: '#1b2b3c'
-    },
-    pattern: {
-      control: 'text',
-      defaultValue: '/0x[\da-f]/i'
-    },
-    required: {
-      control: 'boolean'
-    },
-    disabled: {
-      control: 'boolean'
-    },
-    autofocus: {
-      control: 'boolean'
-    },
-    readonly: {
-      control: 'boolean'
-    },
-    counterEnabled: {
-      defaultValue: false
-    },
-    validationEnabled: {
-      control: 'boolean',
-      defaultValue: true
-    },
-    colorValid: {
-      control: 'color'
-    },
-    colorInvalid: {
-      control: 'color'
-    },
-    height: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    }
-  }
+  argTypes: formFieldArgTypes
 }
 
 const Template = (args, { argTypes }) => ({

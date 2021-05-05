@@ -1,18 +1,15 @@
 <template>
-  <div
-    :class="componentClasses"
-    :style="style"
-  >
-    <label
-      :for="id"
-      :disabled="disabled"
-    >
+  <div :class="componentClasses" :style="style">
+    <label :for="id" :disabled="disabled">
       {{ label }}
     </label>
     <textarea
       :value="value"
       @invalid="onInvalid"
-      @input="$emit('input', $event.target.value);validateFormField($event)"
+      @input="
+        $emit('input', $event.target.value)
+        validateFormField($event)
+      "
       @blur.capture="validateFormField"
       :autofocus="autofocus"
       :autocorrect="autocorrect"
@@ -41,10 +38,10 @@
 </template>
 
 <script>
-import formField from '../../utils/formField/index.js'
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
-import nInputCounter from '../../utils/components/nInputCounter.vue'
-import { resize } from '../../utils/styleVariables/helpers/variables'
+import formField from '@/utils/formField/index.js'
+import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
+import nInputCounter from '@/utils/components/nInputCounter.vue'
+import { resize } from '@/utils/styleVariables/helpers/variables'
 
 const customStyleVariables = [resize]
 
@@ -62,14 +59,12 @@ export default {
     },
     resize: {
       type: String
-    },
+    }
   },
   computed: {
-    componentClasses () {
-      return [
-        this.baseClassname
-      ]
-    },
-  },
+    componentClasses() {
+      return [this.baseClassname]
+    }
+  }
 }
 </script>

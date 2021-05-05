@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import formField from '../../utils/formField/index.js'
+import formField from '@/utils/formField/index.js'
 
 export default {
   name: 'nRangeInput',

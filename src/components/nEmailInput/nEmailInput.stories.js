@@ -1,79 +1,10 @@
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
 import nEmailInput from './nEmailInput.vue'
 
 export default {
   title: 'Form/Input/EmailInput',
   component: nEmailInput,
-  argTypes: {
-    autocorrect: {
-      defaultValue: null,
-      description: '`autocorrect` prop is Safari only'
-    },
-    customMessages: {
-      control: 'object'
-    },
-    rules: {
-      control: 'array'
-    },
-    name: {
-      defaultValue: 'email-input-name',
-      description: '`name` prop is required'
-    },
-    id: {
-      defaultValue: 'email-input-id',
-      description: '`id` prop is required'
-    },
-    title: {
-      defaultValue: 'email-input-title'
-    },
-    label: {
-      defaultValue: 'Label text'
-    },
-    placeholder: {
-      defaultValue: 'Placeholder text'
-    },
-    pattern: {
-      control: 'text'
-    },
-    required: {
-      control: 'boolean'
-    },
-    disabled: {
-      control: 'boolean'
-    },
-    autofocus: {
-      control: 'boolean'
-    },
-    readonly: {
-      control: 'boolean'
-    },
-    counterEnabled: {
-      defaultValue: false
-    },
-    validationEnabled: {
-      control: 'boolean',
-      defaultValue: true
-    },
-    colorValid: {
-      control: 'color'
-    },
-    colorInvalid: {
-      control: 'color'
-    },
-    height: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    }
-  }
+  argTypes: formFieldArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
