@@ -1,77 +1,29 @@
 export default {
   props: {
     value: null,
-    autocorrect: {
-      type: String,
-      default: null,
-      validator: (v) => ['on', 'off'].includes(v)
-    },
-    autofocus: {
-      type: Boolean,
-      default: false
-    },
-    counterEnabled: {
-      type: Boolean,
-      default: false
-    },
+
+    // States
+
     disabled: {
       type: Boolean,
       default: false
-    },
-    form: {
-      type: String
-    },
-    id: {
-      type: String,
-      required: true
-    },
-    label: {
-      type: String
-    },
-    max: {
-      type: [Number, String],
-      default: null
-    },
-    min: {
-      type: [Number, String],
-      default: null
-    },
-    maxlength: {
-      type: [Number, String],
-      default: null
-    },
-    minlength: {
-      type: [Number, String],
-      default: null
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    pattern: {
-      type: String,
-      // default: '.*\\S.*'
-      default: null
-    },
-    placeholder: {
-      type: String
     },
     readonly: {
       type: Boolean,
       default: false
     },
-    required: {
-      type: Boolean,
-      default: false
-    },
-    title: {
+
+    // UI Text
+
+    label: {
       type: String
     },
-    validationEnabled: {
-      type: Boolean,
-      default: false
+    placeholder: {
+      type: String
     },
+
     // Styling
+
     gap: {
       type: [String, Number]
     },
@@ -94,6 +46,71 @@ export default {
     colorValid: {
       type: String,
       default: 'green'
-    }
+    },
+
+    // Meta
+
+    id: {
+      type: String,
+      required: true
+    },
+    form: {
+      type: String
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String
+    },
+
+    // General settings
+
+    validationEnabled: {
+      type: Boolean,
+      default: false
+    },
+    counterEnabled: {
+      type: Boolean,
+      default: false
+    },
+    autofocus: {
+      type: Boolean,
+      default: false
+    },
+    autocorrect: {
+      type: String,
+      default: null,
+      validator: (v) => ['on', 'off'].includes(v)
+    },
+
+    // Validated values
+
+    required: {
+      type: Boolean,
+      default: false
+    },
+    max: {
+      type: [Number, String],
+      default: null
+    },
+    min: {
+      type: [Number, String],
+      default: null
+    },
+    maxlength: {
+      type: [Number, String],
+      default: null
+    },
+    minlength: {
+      type: [Number, String],
+      default: null
+    },
+    pattern: {
+      type: String,
+      // default: '.*\\S.*'
+      default: null
+    },
   }
 }
