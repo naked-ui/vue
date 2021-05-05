@@ -20,7 +20,8 @@
   }
 
   textarea,
-  input:is([type='text'], [type='email'], [type='tel'], [type='pasword'], [type='date'], [type='time'], [type='url'], ) {
+  select,
+  input:is([type='text'], [type='email'], [type='tel'], [type='pasword'], [type='date'], [type='time'], [type='url']) {
     font-size: inherit;
     box-sizing: border-box;
     height: var(--height);

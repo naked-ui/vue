@@ -1,48 +1,49 @@
 <template>
-  <div
-    class="n-select n-form-field"
-    :class="{ 'n-select--native-handler': enableNativeSelect }"
-    :style="style"
-  >
+  <div class="n-select" :class="componentClasses" :style="style">
     <span class="n-select__label" v-if="label" :id="uiElementID">
       {{ label }}
     </span>
     <div class="n-select__inner">
-      <select
-        :aria-labelledby="uiElementID"
-        v-if="canBeNative"
-        v-on="listeners"
-        tabindex="-1"
-      >
-        <!-- Fake placeholder for native select -->
-        <option value="" selected disabled>
-          {{ defaultPlaceholder }}
-        </option>
-        <option
-          v-for="option in options"
-          :key="option.value"
-          :value="option.value"
-        >
-          {{ option.name }}
-        </option>
-      </select>
       <div
-        class="n-select--custom"
-        :class="{ active: showOptions }"
-        :aria-hidden="!showOptions"
-        :aria-labelledby="uiElementID"
+        class="n-select__select-wrapper"
         @click="handleClickOnSelect"
         v-clickout="handleClickout"
       >
+        <select
+          :aria-labelledby="uiElementID"
+          :aria-hidden="!showOptions"
+          v-on="listeners"
+          tabindex="-1"
+        >
+          <!-- Fake placeholder for native select -->
+          <option value="" selected disabled>
+            {{ defaultPlaceholder }}
+          </option>
+          <option
+            v-for="option in options"
+            :key="option.value"
+            :value="option.value"
+          >
+            {{ option.name }}
+          </option>
+          <!--  -->
+        </select>
+      </div>
+      <div
+        class="n-select__custom-items"
+        :class="{ active: showOptions }"
+        :aria-hidden="!showOptions"
+        :aria-labelledby="uiElementID"
+      >
         <div
-          class="n-select--custom__placeholder"
+          class="n-select-custom-input"
           :class="{
-            'n-select--custom__multiselect-options': displayMultiselectOptions
+            'n-select-custom-input--multiselect-options': displayMultiselectOptions
           }"
           @click="handleClickOnPlaceholder"
         >
           <input
-            class="n-select--custom__search-input"
+            class="n-select-custom-input__search-input"
             type="text"
             :ref="searchInputRefName"
             :placeholder="defaultPlaceholder"
@@ -54,7 +55,7 @@
             @keyup.down.prevent="handleInputKeyupDown"
           />
           <div
-            class="n-select--custom__selected-options"
+            class="n-select__custom-items__selected-options"
             :class="{
               'n-select--custom__multiselect-options__placeholder': showSearchInput
             }"
@@ -67,18 +68,15 @@
               @click.stop="handleClickOnChip(option)"
               class="n-select--custom__selected-options__item"
             >
-              <!-- <template v-if="$slot['multiselect-option'] && $slot['multiselect-option'].length > 0"> -->
               {{ option.name }}
-              <!-- </template> -->
-              <!-- <slot name="multiselect-option" v-else /> -->
             </div>
           </div>
-          <template v-if="displayDefaultPlaceholder">
+          <!-- <template v-if="displayDefaultPlaceholder">
             {{ defaultPlaceholder }}
-          </template>
+          </template> -->
         </div>
         <div
-          class="n-select--custom__options"
+          class="n-select__custom-items__options"
           :tabindex="tabindex"
           :ref="optionsRefName"
           @keyup.up.prevent="handleKeyupUp"
@@ -86,11 +84,14 @@
           @keyup.esc.prevent="handleKeyupEsc"
           @keyup.enter.prevent="handleKeyupEnter"
         >
-          <div class="n-select--custom__option" v-if="!filteredOptions.length">
+          <div
+            class="n-select__custom-items__option"
+            v-if="!filteredOptions.length"
+          >
             {{ noOptionsPlaceholder }}
           </div>
           <div
-            class="n-select--custom__option"
+            class="n-select__custom-items__option"
             :class="{
               selected: isSelected(option),
               candidate: isCandidate(option)
@@ -100,7 +101,7 @@
             :data-value="option.value"
             @click.stop="handleClickOnOption(option)"
           >
-            <span class="n-select--custom__option-inner">
+            <span class="n-select__custom-items__option-inner">
               {{ option.name }}
             </span>
           </div>
@@ -115,6 +116,7 @@ import uuidMixin from '@/utils/uuid'
 import clickout from '@/utils/clickout'
 import nChip from '@/utils/components/nChip'
 import styleVariables from '../../utils/styleVariables'
+import formField from '@/utils/formField/index.js'
 import {
   color,
   width,
@@ -152,6 +154,10 @@ export default {
   directives: { clickout },
   components: { nChip },
   props: {
+    baseClassname: {
+      type: String,
+      default: 'n-form-field'
+    },
     value: {
       required: true
     },
@@ -205,8 +211,8 @@ export default {
       default: ''
     },
     gap: {
-      type: String,
-      default: ''
+      type: [String, Number],
+      default: null
     },
     optionPadding: {
       type: String,
@@ -233,8 +239,8 @@ export default {
       default: ''
     },
     borderWidth: {
-      type: String,
-      default: ''
+      type: [String, Number],
+      default: null
     },
     borderColor: {
       type: String,
@@ -258,6 +264,12 @@ export default {
     candidate: null
   }),
   computed: {
+    componentClasses() {
+      return [
+        this.baseClassname,
+        { 'n-select--native-handler': this.enableNativeSelect }
+      ]
+    },
     listeners() {
       return {
         ...this.$listeners,
@@ -438,4 +450,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="./nSelectInput.scss" />
+<style lang="scss" src="./nSelect.scss" />

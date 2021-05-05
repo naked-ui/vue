@@ -40,9 +40,9 @@
 </template>
 
 <script>
-import formField from '../../utils/formField/index.js'
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
-import nInputCounter from '../../utils/components/nInputCounter.vue'
+import formField from '@/utils/formField/index.js'
+import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
+import nInputCounter from '@/utils/components/nInputCounter.vue'
 
 export default {
   mixins: [formField()],

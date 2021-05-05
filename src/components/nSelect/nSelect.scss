@@ -14,8 +14,20 @@
   select {
     appearance: none;
     pointer-events: none;
-    opacity: 0;
-    visibility: hidden;
+    height: var(--height) !important;
+    width: var(--width) !important;
+    border: var(--border-width) solid !important;
+    border-color: var(--border-color) !important;
+    padding: var(--padding) !important;
+    // opacity: 0;
+    // visibility: hidden;
+
+    // &::after {
+    //   content: '▾';
+    //   position: absolute;
+    //   right: var(--padding);
+    //   color: #000;
+    // }
   }
 
   &__label {
@@ -39,44 +51,41 @@
     }
   }
 
-  &__inner {
-    position: relative;
-    height: var(--height);
-    width: var(--width);
-    border: var(--border-width) solid;
-    border-color: var(--border-color);
-    padding: var(--padding);
-  }
+  // &__inner {
+  //   position: relative;
+  // }
 
-  select,
+  // select,
   &--custom {
-    position: relative;
-    @include size(100%);
+    // position: absolute;
+    // @include size(100%);
     color: var(--color);
   }
 
-  &--custom {
-    top: 0;
-    left: 0;
+  &-custom-input {
+    // padding: var(--padding);
+    @include flex($align-items: center);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    cursor: pointer;
 
-    &__placeholder {
-      padding: var(--padding);
+    &__search-input {
       @include flex($align-items: center);
-      position: relative;
-      width: 100%;
-      height: 100%;
-      background-color: var(--background-color);
-      cursor: pointer;
+      font: inherit;
+      background: none;
+      border: none;
+      color: var(--color);
+      max-width: calc(var(--width) - calc(3 * var(--padding-select)));
+      padding: 0 !important;
 
-      &::after {
-        content: '▾';
-        position: absolute;
-        right: var(--padding);
-        color: #000;
+      &:focus {
+        outline: none;
       }
     }
 
-    &__multiselect-options {
+    &--multiselect-options {
       position: relative;
       display: flex;
       align-items: center;
@@ -90,6 +99,11 @@
         opacity: 0.7;
       }
     }
+  }
+
+  &__custom-items {
+    top: 0;
+    left: 0;
 
     &__selected-options {
       @include flex($align-items: center, $wrap: nowrap);
@@ -110,20 +124,6 @@
       }
     }
 
-    &__search-input {
-      @include flex($align-items: center);
-      font: inherit;
-      background: none;
-      border: none;
-      color: var(--color);
-      max-width: calc(var(--width) - calc(3 * var(--padding-select)));
-      padding: 0 !important;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
     &__options {
       position: absolute;
       cursor: pointer;
@@ -135,8 +135,9 @@
       background: #fff;
       border: var(--border-width) solid;
       border-color: var(--border-color);
-      width: calc(100% + 2 * var(--border-width));
-      transform: translateX(calc(var(--negative-factor) * var(--border-width)));
+      // width: calc(100% + 2 * var(--border-width));
+      // transform: translateX(calc(var(--negative-factor) * var(--border-width)));
+      transform: translateY(calc(var(--negative-factor) * var(--border-width)));
       outline: none;
     }
 
