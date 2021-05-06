@@ -19,11 +19,19 @@
   &__select {
     position: relative;
 
+    &__trigger {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
     &--native,
     &--multiselect,
     option {
       // color: var(--color);
-      background-color: var(--background-color);
+      background-color: var(--background-color, #fff);
     }
 
     &--native {
@@ -62,18 +70,24 @@
     }
   }
 
-  // &--native-handler {
+  &--native-handler {
+    .n-select__select {
+      pointer-events: none;
 
-  //   @media (hover: hover) {
-  //     .n-select--custom {
-  //       display: block;
-  //     }
+      &--native {
+        pointer-events: all !important;
+      }
+    }
+    //   @media (hover: hover) {
+    //     .n-select--custom {
+    //       display: block;
+    //     }
 
-  //     select:focus + .n-select--custom {
-  //       display: none;
-  //     }
-  //   }
-  // }
+    //     select:focus + .n-select--custom {
+    //       display: none;
+    //     }
+    //   }
+  }
 
   &__search-input {
     @include flex($align-items: center);
@@ -89,21 +103,21 @@
     }
   }
 
-  &__options-wrapper {
+  &__options {
     top: 0;
     left: 0;
 
-    &.active .n-select__options {
+    &.active .n-select-options {
       display: block;
     }
   }
 
-  &__options {
+  &-options {
     position: absolute;
     cursor: pointer;
     left: 0;
     width: 100%;
-    background-color: var(--background-color);
+    background-color: var(--background-color, #fff);
     z-index: 1;
     display: none;
     // background: #fff;
@@ -115,7 +129,7 @@
     outline: none;
   }
 
-  &__option {
+  &-option {
     color: var(--color);
     font-size: var(--text-size);
     position: relative;

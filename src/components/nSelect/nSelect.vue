@@ -4,11 +4,7 @@
       {{ label }}
     </label>
     <div class="n-select__inner">
-      <div
-        class="n-select__select"
-        @click="handleClickOnSelect"
-        v-clickout="handleClickout"
-      >
+      <div class="n-select__select">
         <select
           class="n-select__select--native"
           :aria-hidden="!showOptions"
@@ -29,6 +25,11 @@
           </option>
           <!--  -->
         </select>
+        <div
+          class="n-select__select__trigger"
+          @click="handleClickOnSelect"
+          v-clickout="handleClickout"
+        />
         <div
           class="n-select__select--multiselect"
           v-show="!searchInputValue.length"
@@ -57,13 +58,13 @@
         />
       </div>
       <div
-        class="n-select__options-wrapper"
+        class="n-select__options"
         :class="{ active: showOptions }"
         :aria-hidden="!showOptions"
         :aria-labelledby="uiElementID"
       >
         <div
-          class="n-select__options"
+          class="n-select-options"
           :tabindex="tabindex"
           :ref="optionsRefName"
           @keyup.up.prevent="handleKeyupUp"
@@ -71,11 +72,11 @@
           @keyup.esc.prevent="handleKeyupEsc"
           @keyup.enter.prevent="handleKeyupEnter"
         >
-          <div class="n-select__option" v-if="!filteredOptions.length">
+          <div class="n-select-option" v-if="!filteredOptions.length">
             {{ noOptionsPlaceholder }}
           </div>
           <div
-            class="n-select__option"
+            class="n-select-option"
             :class="{
               selected: isSelected(option),
               candidate: isCandidate(option)
@@ -85,7 +86,7 @@
             :data-value="option.value"
             @click.stop="handleClickOnOption(option)"
           >
-            <span class="n-select__option__inner">
+            <span class="n-select-option__inner">
               {{ option.name }}
             </span>
           </div>
