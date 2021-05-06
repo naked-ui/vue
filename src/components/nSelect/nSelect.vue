@@ -100,41 +100,45 @@ import uuidMixin from '@/utils/uuid'
 import clickout from '@/utils/clickout'
 import nChip from '@/utils/components/nChip'
 import styleVariables from '@/utils/styleVariables'
-// import formField from '@/utils/formField/index.js'
+import formField from '@/utils/formField/helpers/formFieldProps'
 import {
   color,
+  backgroundColor,
   width,
   height,
   fontSize,
   lineHeight,
-  borderWidth,
-  borderColor,
   gap,
   padding,
-  backgroundColor
+  border,
+  borderColor,
+  borderWidth,
+  borderStyle
 } from '@/utils/styleVariables/helpers/variables'
 
 const defaultStyleVariables = [
   color,
+  backgroundColor,
   width,
   height,
   fontSize,
   lineHeight,
-  borderWidth,
-  borderColor,
   gap,
   padding,
-  backgroundColor,
-  { name: 'paddingSelect', type: 'size' },
-  { name: 'optionPadding', type: 'size' },
-  { name: 'optionBackgroundColor', type: 'color' },
-  { name: 'optionHoverBackgroundColor', type: 'color' }
+  border,
+  borderColor,
+  borderWidth,
+  borderStyle
+  // { name: 'paddingSelect', type: 'size' },
+  // { name: 'optionPadding', type: 'size' },
+  // { name: 'optionBackgroundColor', type: 'color' },
+  // { name: 'optionHoverBackgroundColor', type: 'color' }
 ]
 
 export default {
   name: 'nSelect',
   inheritAttrs: false,
-  mixins: [uuidMixin, styleVariables(defaultStyleVariables)],
+  mixins: [uuidMixin, styleVariables(defaultStyleVariables), formField],
   directives: { clickout },
   components: { nChip },
   props: {
@@ -186,31 +190,7 @@ export default {
       type: Boolean,
       default: false
     },
-    width: {
-      type: String,
-      default: ''
-    },
-    height: {
-      type: String,
-      default: ''
-    },
-    gap: {
-      type: [String, Number],
-      default: null
-    },
     optionPadding: {
-      type: String,
-      default: ''
-    },
-    padding: {
-      type: String,
-      default: ''
-    },
-    color: {
-      type: String,
-      default: ''
-    },
-    backgroundColor: {
       type: String,
       default: ''
     },
@@ -219,14 +199,6 @@ export default {
       default: ''
     },
     optionBackgroundColor: {
-      type: String,
-      default: ''
-    },
-    borderWidth: {
-      type: [String, Number],
-      default: null
-    },
-    borderColor: {
       type: String,
       default: ''
     }

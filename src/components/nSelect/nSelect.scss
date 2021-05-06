@@ -5,6 +5,7 @@
   box-sizing: border-box;
   cursor: pointer;
   width: var(--width);
+  color: var(--color);
 
   * {
     box-sizing: inherit;
@@ -18,8 +19,14 @@
   &__select {
     position: relative;
 
+    &--native,
+    &--multiselect,
+    option {
+      // color: var(--color);
+      background-color: var(--background-color);
+    }
+
     &--native {
-      appearance: none;
       pointer-events: none;
       padding: var(--padding);
     }
@@ -44,6 +51,14 @@
       &__item {
         white-space: nowrap;
       }
+    }
+
+    &::after {
+      content: '▾';
+      position: absolute;
+      right: var(--padding);
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 
@@ -91,20 +106,23 @@
     background-color: var(--background-color);
     z-index: 1;
     display: none;
-    background: #fff;
-    border: var(--border-width) solid;
+    // background: #fff;
+    // border: var(--border);
+    border-width: var(--border-width);
+    border-style: var(--border-style);
     border-color: var(--border-color);
     transform: translateY(calc(var(--negative-factor) * var(--border-width)));
     outline: none;
   }
 
   &__option {
+    color: var(--color);
     font-size: var(--text-size);
     position: relative;
-    padding: var(--option-padding);
+    padding: var(--padding);
     height: var(--height);
     @include flex($place: 'start center');
-    background-color: var(--option-background-color);
+    background-color: var(--background-color);
 
     &__inner {
       width: 100%;

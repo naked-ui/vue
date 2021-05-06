@@ -36,6 +36,7 @@ Default.args = {
   autofocus: false,
   disabled: false,
   borderWidth: '2px',
+  borderStyle: 'solid',
   // customMessages: { valueMissing: 'Not empty!' },
   rules: [
     (value) =>

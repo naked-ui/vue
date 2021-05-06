@@ -24,16 +24,20 @@
   input:is([type='text'], [type='email'], [type='tel'], [type='pasword'], [type='date'], [type='time'], [type='url']) {
     font-size: inherit;
     box-sizing: border-box;
-    height: var(--height);
-    width: var(--width);
+    margin: 0;
     -webkit-appearance: none;
     -moz-appearance: none;
+    height: var(--height);
+    width: var(--width);
     appearance: none;
-    border: var(--border-width) solid;
+    color: var(--color);
+    // border: var(--border);
+    border-width: var(--border-width);
+    border-style: var(--border-style);
     border-color: var(--border-color);
-    // border-width: var(--border-width);
     padding: var(--padding);
     font-family: inherit;
+    background-color: var(--background-color);
 
     &[nui-validation='true'] {
       &:not(:invalid) ~ &,

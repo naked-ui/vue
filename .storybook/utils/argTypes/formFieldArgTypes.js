@@ -20,6 +20,12 @@ export default {
 
   // Styling
 
+  color: {
+    control: 'color'
+  },
+  backgroundColor: {
+    control: 'color'
+  },
   height: {
     control: 'text'
   },
@@ -32,8 +38,17 @@ export default {
   gap: {
     control: 'text'
   },
+  border: {
+    control: 'text'
+  },
   borderWidth: {
     control: 'text'
+  },
+  borderStyle: {
+    control: 'text'
+  },
+  borderColor: {
+    control: 'color'
   },
   colorValid: {
     control: 'color'

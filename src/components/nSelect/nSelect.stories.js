@@ -1,22 +1,10 @@
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
 import nSelect from './nSelect'
 
 export default {
   title: 'Form/Select',
   component: nSelect,
-  argTypes: {
-    color: { control: { type: 'color' } },
-    backgroundColor: { control: { type: 'color' } },
-    borderColor: { control: { type: 'color' } },
-    borderWidth: { control: { type: 'range' }, defaultValue: 2 },
-    optionBackgroundColor: { control: { type: 'color' } },
-    optionHoverBackgroundColor: { control: { type: 'color' }, defaultValue: '#eee' },
-    label: { defaultValue: 'Label text' },
-    width: { defaultValue: '280px' },
-    height: { defaultValue: '48px' },
-    gap: { control: { type: 'range', min: 0 }, defaultValue: 8 },
-    padding: { defaultValue: '10px' },
-    optionPadding: { defaultValue: '12px' }
-  }
+  argTypes: formFieldArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
@@ -40,6 +28,14 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
+  width: 280,
+  height: 48,
+  gap: 8,
+  padding: 10,
+  borderWidth: '2px',
+  borderStyle: 'solid',
+  optionHoverBackgroundColor: '#eee',
+  optionPadding: 12,
   options: [
     {
       name: 'Option 1',
