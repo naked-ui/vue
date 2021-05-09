@@ -6,20 +6,28 @@ import {
   height,
   width,
   gap,
-  borderWidth,
+  backgroundColor,
   padding,
   colorValid,
-  colorInvalid
+  colorInvalid,
+  borderWidth,
+  borderColor,
+  borderStyle,
+  borderRadius,
 } from '../styleVariables/helpers/variables'
 
 const defaultStyleVariables = [
   gap,
   height,
   width,
-  borderWidth,
+  backgroundColor,
   padding,
   colorValid,
-  colorInvalid
+  colorInvalid,
+  borderWidth,
+  borderColor,
+  borderStyle,
+  borderRadius,
 ]
 
 export const formField = (customStyleVariables = []) => {

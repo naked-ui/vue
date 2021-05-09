@@ -36,6 +36,7 @@ Default.args = {
   autofocus: false,
   disabled: false,
   borderWidth: '2px',
+  borderStyle: 'solid',
   pattern: '.*\\S.*',
   name: 'text-input-name',
   id: 'text-input-id',

@@ -1,20 +1,22 @@
 <template>
-  <div class="n-select" :class="componentClasses" :style="style">
+  <div
+    class="n-select"
+    :class="componentClasses"
+    :style="style"
+    :disabled="disabled"
+  >
     <label class="n-select__label" v-if="label" :for="uiElementID">
       {{ label }}
     </label>
     <div class="n-select__inner">
-      <div
-        class="n-select__select"
-        @click="handleClickOnSelect"
-        v-clickout="handleClickout"
-      >
+      <div class="n-select__select">
         <select
           class="n-select__select--native"
           :aria-hidden="!showOptions"
           v-on="listeners"
           tabindex="-1"
           :id="uiElementID"
+          :disabled="disabled"
         >
           <!-- Fake placeholder for native select -->
           <option value="" selected disabled>
@@ -29,6 +31,12 @@
           </option>
           <!--  -->
         </select>
+        <div
+          v-if="!disabled"
+          class="n-select__select__trigger"
+          @click="handleClickOnSelect"
+          v-clickout="handleClickout"
+        />
         <div
           class="n-select__select--multiselect"
           v-show="!searchInputValue.length"
@@ -57,13 +65,13 @@
         />
       </div>
       <div
-        class="n-select__options-wrapper"
-        :class="{ active: showOptions }"
+        class="n-select__options"
+        :class="{ 'n-select__options--active': showOptions }"
         :aria-hidden="!showOptions"
         :aria-labelledby="uiElementID"
       >
         <div
-          class="n-select__options"
+          class="n-select-options"
           :tabindex="tabindex"
           :ref="optionsRefName"
           @keyup.up.prevent="handleKeyupUp"
@@ -71,11 +79,11 @@
           @keyup.esc.prevent="handleKeyupEsc"
           @keyup.enter.prevent="handleKeyupEnter"
         >
-          <div class="n-select__option" v-if="!filteredOptions.length">
-            {{ noOptionsPlaceholder }}
+          <div class="n-select-option" v-if="!filteredOptions.length">
+            <slot name="no-options-text">No options to display</slot>
           </div>
           <div
-            class="n-select__option"
+            class="n-select-option"
             :class="{
               selected: isSelected(option),
               candidate: isCandidate(option)
@@ -85,7 +93,7 @@
             :data-value="option.value"
             @click.stop="handleClickOnOption(option)"
           >
-            <span class="n-select__option__inner">
+            <span class="n-select-option__inner">
               {{ option.name }}
             </span>
           </div>
@@ -100,41 +108,42 @@ import uuidMixin from '@/utils/uuid'
 import clickout from '@/utils/clickout'
 import nChip from '@/utils/components/nChip'
 import styleVariables from '@/utils/styleVariables'
-// import formField from '@/utils/formField/index.js'
+import formField from '@/utils/formField/helpers/formFieldProps'
 import {
   color,
+  backgroundColor,
   width,
   height,
   fontSize,
   lineHeight,
-  borderWidth,
-  borderColor,
   gap,
   padding,
-  backgroundColor
+  // border,
+  borderColor,
+  borderWidth,
+  borderStyle
 } from '@/utils/styleVariables/helpers/variables'
 
 const defaultStyleVariables = [
   color,
+  backgroundColor,
   width,
   height,
   fontSize,
   lineHeight,
-  borderWidth,
-  borderColor,
   gap,
   padding,
-  backgroundColor,
-  { name: 'paddingSelect', type: 'size' },
-  { name: 'optionPadding', type: 'size' },
-  { name: 'optionBackgroundColor', type: 'color' },
+  // border,
+  borderColor,
+  borderWidth,
+  borderStyle,
   { name: 'optionHoverBackgroundColor', type: 'color' }
 ]
 
 export default {
   name: 'nSelect',
   inheritAttrs: false,
-  mixins: [uuidMixin, styleVariables(defaultStyleVariables)],
+  mixins: [uuidMixin, styleVariables(defaultStyleVariables), formField],
   directives: { clickout },
   components: { nChip },
   props: {
@@ -145,38 +154,17 @@ export default {
     value: {
       required: true
     },
-    label: {
-      type: String,
-      required: false,
-      default: undefined
-    },
     tabindex: {
       type: Number,
       default: 0
-    },
-    searchInputRefName: {
-      type: String,
-      default: 'searchInput'
-    },
-    optionsRefName: {
-      type: String,
-      default: 'options'
     },
     options: {
       type: Array,
       required: true
     },
-    placeholder: {
-      type: String,
-      default: 'Select...'
-    },
-    noOptionsPlaceholder: {
-      type: String,
-      default: 'No options to display...'
-    },
     enableNativeSelect: {
       type: Boolean,
-      default: true
+      default: false
     },
     enableSearchInput: {
       type: Boolean,
@@ -186,49 +174,17 @@ export default {
       type: Boolean,
       default: false
     },
-    width: {
+    optionsRefName: {
       type: String,
-      default: ''
-    },
-    height: {
-      type: String,
-      default: ''
-    },
-    gap: {
-      type: [String, Number],
-      default: null
-    },
-    optionPadding: {
-      type: String,
-      default: ''
-    },
-    padding: {
-      type: String,
-      default: ''
-    },
-    color: {
-      type: String,
-      default: ''
-    },
-    backgroundColor: {
-      type: String,
-      default: ''
+      default: 'options'
     },
     optionHoverBackgroundColor: {
       type: String,
       default: ''
     },
-    optionBackgroundColor: {
+    searchInputRefName: {
       type: String,
-      default: ''
-    },
-    borderWidth: {
-      type: [String, Number],
-      default: null
-    },
-    borderColor: {
-      type: String,
-      default: ''
+      default: 'searchInput'
     }
   },
   watch: {

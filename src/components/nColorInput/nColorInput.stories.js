@@ -36,6 +36,7 @@ Default.args = {
   autofocus: false,
   disabled: false,
   borderWidth: '2px',
+  borderStyle: 'solid',
   // customMessages: {
   //   patternMismatch: { text: 'Enter valid HEX value', color: 'magenta' },
   //   tooShort: { text: 'Enter 6 characters HEX value', color: 'indigo' }

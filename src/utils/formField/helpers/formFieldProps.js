@@ -36,8 +36,20 @@ export default {
     gap: {
       type: [String, Number]
     },
+    color: {
+      type: [String, Number]
+    },
+    backgroundColor: {
+      type: [String, Number]
+    },
     borderWidth: {
       type: [String, Number]
+    },
+    borderStyle: {
+      type: String
+    },
+    borderColor: {
+      type: String
     },
     colorInvalid: {
       type: String,

@@ -20,6 +20,12 @@ export default {
 
   // Styling
 
+  color: {
+    control: 'color'
+  },
+  backgroundColor: {
+    control: 'color'
+  },
   height: {
     control: 'text'
   },
@@ -34,6 +40,12 @@ export default {
   },
   borderWidth: {
     control: 'text'
+  },
+  borderStyle: {
+    control: 'text'
+  },
+  borderColor: {
+    control: 'color'
   },
   colorValid: {
     control: 'color'
@@ -74,6 +86,7 @@ export default {
   // Settings
 
   autocorrect: {
+    control: { type: 'select', options: ['off', 'on'] },
     defaultValue: null,
     description: '`autocorrect` prop is Safari only'
   },
