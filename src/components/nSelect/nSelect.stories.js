@@ -1,10 +1,19 @@
 import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
 import nSelect from './nSelect'
 
+const selectArgTypes = {
+  optionHoverBackgroundColor: {
+    control: 'color',
+    defaultValue: '#eee'
+  }
+}
+
+let customArgTypes = { ...formFieldArgTypes, ...selectArgTypes };
+
 export default {
   title: 'Form/Select',
   component: nSelect,
-  argTypes: formFieldArgTypes
+  argTypes: customArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
@@ -35,7 +44,6 @@ Default.args = {
   borderWidth: '2px',
   borderStyle: 'solid',
   optionHoverBackgroundColor: '#eee',
-  optionPadding: 12,
   options: [
     {
       name: 'Option 1',

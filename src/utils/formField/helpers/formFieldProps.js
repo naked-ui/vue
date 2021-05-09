@@ -42,9 +42,6 @@ export default {
     backgroundColor: {
       type: [String, Number]
     },
-    border: {
-      type: [String, Number]
-    },
     borderWidth: {
       type: [String, Number]
     },
