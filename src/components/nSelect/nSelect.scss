@@ -7,6 +7,12 @@
   width: var(--width);
   color: var(--color);
 
+  &--active {
+    .n-select__select::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+
   &[nui-validation='true'][disabled='disabled'] {
     cursor: not-allowed;
   }
@@ -66,11 +72,18 @@
     }
 
     &::after {
-      content: '▾';
+      content: '';
+      background-image: url('../../icons/chevron-down.svg');
+      background-size: 20px;
+      background-repeat: no-repeat;
+      background-position: center;
       position: absolute;
       right: 10px;
       top: 50%;
       transform: translateY(-50%);
+      @include size(24px);
+      transition: transform 0.2s ease-out;
+      pointer-events: none;
     }
   }
 

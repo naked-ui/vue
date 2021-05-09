@@ -201,6 +201,7 @@ export default {
   data: () => ({
     showOptions: false,
     showSearchInput: false,
+    isActive: false,
     searchInputValue: '',
     selected: null,
     candidate: null
@@ -209,7 +210,8 @@ export default {
     componentClasses() {
       return [
         this.baseClassname,
-        { 'n-select--native-handler': this.enableNativeSelect }
+        { 'n-select--native-handler': this.enableNativeSelect },
+        { 'n-select--active': this.isActive }
       ]
     },
     listeners() {
@@ -310,6 +312,7 @@ export default {
     },
     async handleClickOnSelect() {
       this.showOptions = !this.showOptions
+      this.isActive = !this.isActive
 
       if (this.showOptions && !this.enableSearchInput) await this.focusOptions()
     },

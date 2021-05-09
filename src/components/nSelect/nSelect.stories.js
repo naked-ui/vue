@@ -40,24 +40,17 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  label: 'Textarea label',
-  placeholder: 'Textarea placeholder',
-  name: 'textarea-name',
-  id: 'textarea-id',
-  title: 'textarea-title',
-  pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$',
+  label: 'Select label',
+  placeholder: 'Select placeholder',
+  name: 'select-name',
+  id: 'select-id',
+  title: 'select-title',
   // customMessages: {
   //   valueMissing: {
-  //     text: 'Value is required!',
+  //     text: 'Select option',
   //     color: 'magenta'
   //   }
   // },
-  rules: [
-    (value) =>
-      !value ||
-      value.length > 2 ||
-      'This is custom rule message: field not required, but min 3 chars!'
-  ],
   height: '48px',
   width: '280px',
   gap: '8px',
