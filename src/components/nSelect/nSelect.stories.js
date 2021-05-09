@@ -58,7 +58,7 @@ Default.args = {
       value.length > 2 ||
       'This is custom rule message: field not required, but min 3 chars!'
   ],
-  height: '96px',
+  height: '48px',
   width: '280px',
   gap: '8px',
   padding: '10px',
