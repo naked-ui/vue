@@ -1,5 +1,10 @@
 <template>
-  <div class="n-select" :class="componentClasses" :style="style">
+  <div
+    class="n-select"
+    :class="componentClasses"
+    :style="style"
+    :disabled="disabled"
+  >
     <label class="n-select__label" v-if="label" :for="uiElementID">
       {{ label }}
     </label>
@@ -11,6 +16,7 @@
           v-on="listeners"
           tabindex="-1"
           :id="uiElementID"
+          :disabled="disabled"
         >
           <!-- Fake placeholder for native select -->
           <option value="" selected disabled>
@@ -26,6 +32,7 @@
           <!--  -->
         </select>
         <div
+          v-if="!disabled"
           class="n-select__select__trigger"
           @click="handleClickOnSelect"
           v-clickout="handleClickout"
@@ -59,7 +66,7 @@
       </div>
       <div
         class="n-select__options"
-        :class="{ active: showOptions }"
+        :class="{ 'n-select__options--active': showOptions }"
         :aria-hidden="!showOptions"
         :aria-labelledby="uiElementID"
       >
@@ -73,7 +80,7 @@
           @keyup.enter.prevent="handleKeyupEnter"
         >
           <div class="n-select-option" v-if="!filteredOptions.length">
-            {{ noOptionsPlaceholder }}
+            <slot name="no-options-text">No options to display</slot>
           </div>
           <div
             class="n-select-option"
@@ -111,7 +118,7 @@ import {
   lineHeight,
   gap,
   padding,
-  border,
+  // border,
   borderColor,
   borderWidth,
   borderStyle
@@ -126,14 +133,11 @@ const defaultStyleVariables = [
   lineHeight,
   gap,
   padding,
-  border,
+  // border,
   borderColor,
   borderWidth,
-  borderStyle
-  // { name: 'paddingSelect', type: 'size' },
-  // { name: 'optionPadding', type: 'size' },
-  // { name: 'optionBackgroundColor', type: 'color' },
-  // { name: 'optionHoverBackgroundColor', type: 'color' }
+  borderStyle,
+  { name: 'optionHoverBackgroundColor', type: 'color' }
 ]
 
 export default {
@@ -150,38 +154,17 @@ export default {
     value: {
       required: true
     },
-    label: {
-      type: String,
-      required: false,
-      default: undefined
-    },
     tabindex: {
       type: Number,
       default: 0
-    },
-    searchInputRefName: {
-      type: String,
-      default: 'searchInput'
-    },
-    optionsRefName: {
-      type: String,
-      default: 'options'
     },
     options: {
       type: Array,
       required: true
     },
-    placeholder: {
-      type: String,
-      default: 'Select...'
-    },
-    noOptionsPlaceholder: {
-      type: String,
-      default: 'No options to display...'
-    },
     enableNativeSelect: {
       type: Boolean,
-      default: true
+      default: false
     },
     enableSearchInput: {
       type: Boolean,
@@ -191,17 +174,17 @@ export default {
       type: Boolean,
       default: false
     },
-    optionPadding: {
+    optionsRefName: {
       type: String,
-      default: ''
+      default: 'options'
     },
     optionHoverBackgroundColor: {
       type: String,
       default: ''
     },
-    optionBackgroundColor: {
+    searchInputRefName: {
       type: String,
-      default: ''
+      default: 'searchInput'
     }
   },
   watch: {

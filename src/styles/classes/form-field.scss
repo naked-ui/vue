@@ -6,38 +6,29 @@
 
 .n-form-field {
   display: grid;
-  row-gap: var(--gap);
   justify-content: start;
+  row-gap: var(--gap);
   width: var(--width);
-
-  .n-validation-alerts {
-    display: grid;
-    gap: calc(var(--gap) / 4);
-  }
-
-  .n-validation-alert {
-    color: var(--color, var(--color-invalid));
-  }
 
   textarea,
   select,
   input:is([type='text'], [type='email'], [type='tel'], [type='pasword'], [type='date'], [type='time'], [type='url']) {
-    font-size: inherit;
+    appearance: none;
     box-sizing: border-box;
-    margin: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     height: var(--height);
     width: var(--width);
-    appearance: none;
-    color: var(--color);
-    // border: var(--border);
+    padding: var(--padding);
+    margin: 0;
     border-width: var(--border-width);
     border-style: var(--border-style);
     border-color: var(--border-color);
-    padding: var(--padding);
+    font-size: inherit;
     font-family: inherit;
-    background-color: var(--background-color);
+
+    &:not([disabled='disabled']) {
+      background-color: var(--background-color);
+      color: var(--color);
+    }
 
     &[nui-validation='true'] {
       &:not(:invalid) ~ &,
@@ -73,5 +64,14 @@
 
   textarea {
     resize: var(--resize);
+  }
+
+  .n-validation-alerts {
+    display: grid;
+    gap: calc(var(--gap) / 4);
+  }
+
+  .n-validation-alert {
+    color: var(--color, var(--color-invalid));
   }
 }
