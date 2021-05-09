@@ -1,10 +1,15 @@
-import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
 import nTextInput from './nTextInput.vue'
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import stateArgTypes from '../../../.storybook/utils/argTypes/stateArgTypes.js';
+import styleArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js';
+const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes }
+
 
 export default {
   title: 'Form/Input/TextInput',
   component: nTextInput,
-  argTypes: formFieldArgTypes
+  argTypes: customArgTypes
 }
 
 const Template = (args, { argTypes }) => ({

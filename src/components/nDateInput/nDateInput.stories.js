@@ -1,10 +1,15 @@
-import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
 import nDateInput from './nDateInput.vue'
+
+import stateArgTypes from '../../../.storybook/utils/argTypes/stateArgTypes.js';
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import styleArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js';
+const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes }
 
 export default {
   title: 'Form/Input/DateInput',
   component: nDateInput,
-  argTypes: formFieldArgTypes
+  argTypes: customArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
@@ -32,13 +37,22 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  gap: 8,
-  height: 48,
+  label: 'Date input label',
+  placeholder: 'YYYY-MM-DD',
+  name: 'date-input-name',
+  id: 'date-input-id',
+  title: 'date-input-title',
+  pattern: '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))',
+  customMessages: {
+    valueMissing: {
+      text: 'Value is required!',
+      color: 'magenta'
+    }
+  },
+  gap: '8px',
+  height: '48px',
   width: 'auto',
   padding: '10px',
-  autofocus: false,
-  disabled: false,
   borderWidth: '2px',
   borderStyle: 'solid',
-  pattern: '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))'
 }

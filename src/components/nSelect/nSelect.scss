@@ -7,6 +7,10 @@
   width: var(--width);
   color: var(--color);
 
+  &[nui-validation='true'][disabled='disabled'] {
+    cursor: not-allowed;
+  }
+
   * {
     box-sizing: inherit;
     user-select: none;

@@ -1,71 +1,31 @@
 export default {
 
-  // States
-
-  disabled: {
-    control: 'boolean'
-  },
-  readonly: {
-    control: 'boolean'
-  },
-
   // UI Text
 
   label: {
-    defaultValue: 'Label text'
+    defaultValue: 'Label text',
+    control: 'text'
   },
   placeholder: {
-    defaultValue: 'Placeholder text'
-  },
-
-  // Styling
-
-  color: {
-    control: 'color'
-  },
-  backgroundColor: {
-    control: 'color'
-  },
-  height: {
+    defaultValue: 'Placeholder text',
     control: 'text'
-  },
-  width: {
-    control: 'text'
-  },
-  padding: {
-    control: 'text'
-  },
-  gap: {
-    control: 'text'
-  },
-  borderWidth: {
-    control: 'text'
-  },
-  borderStyle: {
-    control: 'text'
-  },
-  borderColor: {
-    control: 'color'
-  },
-  colorValid: {
-    control: 'color'
-  },
-  colorInvalid: {
-    control: 'color'
   },
 
   // Meta
 
   name: {
     defaultValue: 'text-input-name',
-    description: '`name` prop is required'
+    description: '`name` prop is required',
+    control: 'text'
   },
   id: {
     defaultValue: 'text-input-id',
-    description: '`id` prop is required'
+    description: '`id` prop is required',
+    control: 'text'
   },
   title: {
-    defaultValue: 'text-input-title'
+    defaultValue: 'text-input-title',
+    control: 'text'
   },
 
   // Validated values
@@ -77,10 +37,10 @@ export default {
     control: 'text'
   },
   minlength: {
-    control: { type: 'number' }
+    control: 'number'
   },
   maxlength: {
-    control: { type: 'number' }
+    control: 'number'
   },
 
   // Settings
@@ -101,20 +61,4 @@ export default {
     control: 'boolean',
     defaultValue: true
   },
-  resize: {
-    control: {
-      type: 'select',
-      options: ['both', 'horizontal', 'vertical', 'none']
-    }
-  },
-
-  // Validation settings
-
-  customMessages: {
-    control: 'object'
-  },
-  rules: {
-    control: 'array'
-  },
-
 }

@@ -1,6 +1,8 @@
-import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
 import nSelect from './nSelect'
 
+import { disabled } from '../../../.storybook/utils/argTypes/stateArgTypes.js';
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import styleArgTypes from '../../../.storybook/utils/argTypes/styleArgTypes.js';
 const selectArgTypes = {
   optionHoverBackgroundColor: {
     control: 'color',
@@ -8,7 +10,7 @@ const selectArgTypes = {
   }
 }
 
-let customArgTypes = { ...formFieldArgTypes, ...selectArgTypes };
+let customArgTypes = { disabled, ...formFieldArgTypes, ...styleArgTypes, ...selectArgTypes, ...validationArgTypes };
 
 export default {
   title: 'Form/Select',

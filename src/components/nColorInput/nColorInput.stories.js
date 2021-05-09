@@ -1,10 +1,15 @@
-import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
 import nColorInput from './nColorInput.vue'
+
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import stateArgTypes from '../../../.storybook/utils/argTypes/stateArgTypes.js';
+import styleArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js';
+const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes };
 
 export default {
   title: 'Form/Input/ColorInput',
   component: nColorInput,
-  argTypes: formFieldArgTypes
+  argTypes: customArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
@@ -28,17 +33,27 @@ const Template = (args, { argTypes }) => ({
 })
 
 export const Default = Template.bind({})
+
 Default.args = {
-  gap: 8,
-  height: 48,
+  label: 'Color input label',
+  placeholder: 'Color input placeholder',
+  name: 'color-name',
+  id: 'color-id',
+  title: 'color-title',
+  customMessages: {
+    patternMismatch: { text: 'Enter valid HEX value', color: 'magenta' },
+    tooShort: { text: 'Enter 6 characters HEX value', color: 'indigo' },
+  },
+  rules: [
+    (value) =>
+      !value ||
+      value.length > 2 ||
+      'This is custom rule message: field not required, but min 3 chars!'
+  ],
+  height: '48px',
   width: '96px',
+  gap: '8px',
   padding: '10px',
-  autofocus: false,
-  disabled: false,
   borderWidth: '2px',
-  borderStyle: 'solid',
-  // customMessages: {
-  //   patternMismatch: { text: 'Enter valid HEX value', color: 'magenta' },
-  //   tooShort: { text: 'Enter 6 characters HEX value', color: 'indigo' }
-  // }
+  borderStyle: 'solid'
 }

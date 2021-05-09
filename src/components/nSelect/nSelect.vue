@@ -4,6 +4,7 @@
     :class="componentClasses"
     :style="style"
     :disabled="disabled"
+    :nui-validation="validationEnabled"
   >
     <label class="n-select__label" v-if="label" :for="uiElementID">
       {{ label }}
@@ -17,6 +18,7 @@
           tabindex="-1"
           :id="uiElementID"
           :disabled="disabled"
+          :nui-validation="validationEnabled"
         >
           <!-- Fake placeholder for native select -->
           <option value="" selected disabled>

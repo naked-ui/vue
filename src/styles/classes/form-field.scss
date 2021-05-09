@@ -25,7 +25,7 @@
     font-size: inherit;
     font-family: inherit;
 
-    &:not([disabled='disabled']) {
+    &:not([disabled='disabled']):not([readonly='readonly']) {
       background-color: var(--background-color);
       color: var(--color);
     }

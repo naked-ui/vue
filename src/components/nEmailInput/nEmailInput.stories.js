@@ -1,10 +1,15 @@
-import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
 import nEmailInput from './nEmailInput.vue'
+
+import stateArgTypes from '../../../.storybook/utils/argTypes/stateArgTypes.js';
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import styleArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js';
+const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes }
 
 export default {
   title: 'Form/Input/EmailInput',
   component: nEmailInput,
-  argTypes: formFieldArgTypes
+  argTypes: customArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
@@ -29,21 +34,28 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  gap: 8,
-  height: 48,
-  width: '280px',
-  padding: '10px',
-  autofocus: false,
-  disabled: false,
-  borderWidth: '2px',
-  borderStyle: 'solid',
-  // customMessages: { valueMissing: 'Not empty!' },
+  label: 'Email input label',
+  placeholder: 'Email input placeholder',
+  name: 'email-input-name',
+  id: 'email-input-id',
+  title: 'email-input-title',
+  pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$',
+  // customMessages: {
+  //   valueMissing: {
+  //     text: 'Value is required!',
+  //     color: 'magenta'
+  //   }
+  // },
   rules: [
     (value) =>
       !value ||
       value.length > 2 ||
       'This is custom rule message: field not required, but min 3 chars!'
   ],
-  // pattern: '*'
-  pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
+  height: '48px',
+  width: '280px',
+  gap: '8px',
+  padding: '10px',
+  borderWidth: '2px',
+  borderStyle: 'solid',
 }
