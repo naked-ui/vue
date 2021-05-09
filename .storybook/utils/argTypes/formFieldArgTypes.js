@@ -38,9 +38,6 @@ export default {
   gap: {
     control: 'text'
   },
-  border: {
-    control: 'text'
-  },
   borderWidth: {
     control: 'text'
   },
@@ -89,6 +86,7 @@ export default {
   // Settings
 
   autocorrect: {
+    control: { type: 'select', options: ['off', 'on'] },
     defaultValue: null,
     description: '`autocorrect` prop is Safari only'
   },
