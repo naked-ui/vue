@@ -2,7 +2,7 @@ import nTextarea from './nTextarea.vue'
 
 import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
 import stateArgTypes from '../../../.storybook/utils/argTypes/stateArgTypes.js';
-import styleArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import styleArgTypes from '../../../.storybook/utils/argTypes/styleArgTypes.js';
 import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js';
 const textareaArgTypes = {
   resize: {
