@@ -28,21 +28,6 @@ export default {
     control: 'text'
   },
 
-  // Validated values
-
-  required: {
-    control: 'boolean'
-  },
-  pattern: {
-    control: 'text'
-  },
-  minlength: {
-    control: 'number'
-  },
-  maxlength: {
-    control: 'number'
-  },
-
   // Settings
 
   autocorrect: {
@@ -56,9 +41,5 @@ export default {
   counterEnabled: {
     control: 'boolean',
     defaultValue: false
-  },
-  validationEnabled: {
-    control: 'boolean',
-    defaultValue: true
   },
 }
