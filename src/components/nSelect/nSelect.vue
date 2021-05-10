@@ -15,6 +15,7 @@
           class="n-select__select--native"
           :aria-hidden="!showOptions"
           v-on="listeners"
+          v-model="dummySelected"
           tabindex="-1"
           :id="uiElementID"
           :disabled="disabled"
@@ -201,17 +202,17 @@ export default {
   data: () => ({
     showOptions: false,
     showSearchInput: false,
-    isActive: false,
     searchInputValue: '',
     selected: null,
-    candidate: null
+    candidate: null,
+    dummySelected: ''
   }),
   computed: {
     componentClasses() {
       return [
         this.baseClassname,
         { 'n-select--native-handler': this.enableNativeSelect },
-        { 'n-select--active': this.isActive }
+        { 'n-select--active': this.showOptions }
       ]
     },
     listeners() {
@@ -277,6 +278,7 @@ export default {
     setSelected(value) {
       if (!value) return
       this.selected = [...this.options].find((option) => option.value === value)
+      this.dummySelected = value
     },
     isSelected(option) {
       return (
@@ -312,7 +314,6 @@ export default {
     },
     async handleClickOnSelect() {
       this.showOptions = !this.showOptions
-      this.isActive = !this.isActive
 
       if (this.showOptions && !this.enableSearchInput) await this.focusOptions()
     },
