@@ -59,7 +59,7 @@
         </div>
         <input
           class="n-select__search-input"
-          type="text"
+          type="search"
           :ref="searchInputRefName"
           v-if="showSearchInput"
           v-model="searchInputValue"
