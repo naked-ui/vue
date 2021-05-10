@@ -47,6 +47,7 @@
           v-show="!searchInputValue.length"
           v-if="enableMultiSelect"
         >
+          <span v-if="!selected.length">{{ multiselectPlaceholder }}</span>
           <div
             v-for="option in selected"
             :key="option.value"
@@ -189,6 +190,10 @@ export default {
     searchInputRefName: {
       type: String,
       default: 'searchInput'
+    },
+    multiselectPlaceholder: {
+      type: String,
+      default: 'Select options'
     }
   },
   watch: {
@@ -279,7 +284,7 @@ export default {
     },
     customTabindex() {
       return !this.enableNativeSelect ? this.tabindex : -1
-    },
+    }
   },
   methods: {
     setSelected(value) {
@@ -322,7 +327,8 @@ export default {
     async handleClickOnSelect() {
       this.showOptions = !this.showOptions
 
-      if (this.enableSearchInput && !this.enableNativeSelect) this.showSearchInput = true
+      if (this.enableSearchInput && !this.enableNativeSelect)
+        this.showSearchInput = true
       if (this.showOptions && !this.enableSearchInput) await this.focusOptions()
     },
     emitInput() {
@@ -353,10 +359,7 @@ export default {
       this.closeOptions()
     },
     handleBlurInput(e) {
-      if (
-        e.relatedTarget &&
-        e.relatedTarget.className === 'n-select-options'
-      )
+      if (e.relatedTarget && e.relatedTarget.className === 'n-select-options')
         return
       this.closeOptions()
     },

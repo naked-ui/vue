@@ -8,7 +8,19 @@ const selectArgTypes = {
   optionHoverBackgroundColor: {
     control: 'color',
     defaultValue: '#eee'
-  }
+  },
+  enableNativeSelect: {
+    control: 'boolean'
+  },
+  enableSearchInput: {
+    control: 'boolean'
+  },
+  multiselectPlaceholder: {
+    control: 'text'
+  },
+  enableMultiSelect: {
+    control: 'boolean'
+  },
 }
 
 let customArgTypes = { disabled, ...formFieldArgTypes, ...styleArgTypes, ...selectArgTypes, ...validationArgTypes };

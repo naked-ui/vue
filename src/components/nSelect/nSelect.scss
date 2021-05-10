@@ -47,7 +47,7 @@
 
     &--native {
       pointer-events: none;
-      padding: var(--padding);
+      padding-left: calc(var(--padding) - 4px) !important;
     }
 
     &--multiselect {
@@ -157,10 +157,11 @@
 
     &.selected {
       .n-select-option__inner {
-        &::after {
+        padding-left: calc(10px + var(--padding));
+        &::before {
           content: '✓';
           position: absolute;
-          right: var(--padding);
+          left: var(--padding);
         }
       }
     }
