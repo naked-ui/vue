@@ -218,7 +218,8 @@ export default {
       return [
         this.baseClassname,
         { 'n-select--native-handler': this.enableNativeSelect },
-        { 'n-select--active': this.showOptions }
+        { 'n-select--active': this.showOptions },
+        { 'n-select--search-active': this.showSearchInput }
       ]
     },
     listeners() {

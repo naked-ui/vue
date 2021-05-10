@@ -13,6 +13,12 @@
     }
   }
 
+  &--search-active {
+    .n-select__select--native {
+      color: transparent !important;
+    }
+  }
+
   &[nui-validation='true'][disabled='disabled'] {
     cursor: not-allowed;
   }
