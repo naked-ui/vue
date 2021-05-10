@@ -26,4 +26,7 @@ export default {
   borderColor: {
     type: String
   },
+  fontSize: {
+    type: String
+  },
 }

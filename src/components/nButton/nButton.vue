@@ -46,70 +46,56 @@ import {
   backgroundColor,
   padding,
   height,
-  gap
+  width,
+  gap,
+  borderWidth,
+  borderStyle,
+  borderColor,
+  fontSize
 } from '@/utils/styleVariables/helpers/variables'
+import hyperlinkProps from '@/utils/props/hyperlinkProps'
+import { disabled, busy } from '@/utils/props/stateProps'
+import styleProps from '@/utils/props/styleProps'
 
-const defaultStyleVariables = [color, backgroundColor, padding, height, gap]
+const defaultStyleVariables = [
+  color,
+  backgroundColor,
+  padding,
+  height,
+  width,
+  gap,
+  borderWidth,
+  borderStyle,
+  borderColor,
+  fontSize
+]
+
+const componentProps = {
+  ...hyperlinkProps,
+  type: {
+    type: String,
+    default: 'button'
+  },
+  role: {
+    type: String,
+    default: 'button'
+  },
+  disabled,
+  busy,
+  buttonBusyText: {
+    type: String
+  },
+  ...styleProps,
+  baseClassname: {
+    type: String,
+    default: 'n-button'
+  }
+}
 
 export default {
   name: 'nButton',
   mixins: [hrefIsExternalMixin, styleVariables(defaultStyleVariables)],
-  props: {
-    // Settings
-    baseClassname: {
-      type: String,
-      default: 'n-button'
-    },
-    href: {
-      type: String,
-      default: '',
-      required: false
-    },
-    type: {
-      type: String,
-      default: 'button'
-    },
-    role: {
-      type: String,
-      default: 'button'
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    busy: {
-      type: Boolean,
-      default: false
-    },
-    target: {
-      type: String,
-      default: ''
-    },
-    // Styles
-    backgroundColor: {
-      type: String,
-      default: '#333'
-    },
-    color: {
-      type: String,
-      default: '#fff'
-    },
-    padding: {
-      type: [String, Number],
-      default: '0 16px'
-    },
-    height: {
-      type: [String, Number],
-      default: '48px'
-    },
-    gap: {
-      type: [String, Number],
-      default: '8px'
-    },
-    buttonBusyText: {
-      type: String
-    }
-  },
+  props: componentProps,
   computed: {
     tag() {
       if (!this.href) {
@@ -132,7 +118,7 @@ export default {
         this.href.includes('mailto:') ||
         this.href.includes('tel:')
       ) {
-        if (!this.disabled) {
+        if (!this.disabled || !this.busy) {
           return {
             href: this.href,
             target: this.target,

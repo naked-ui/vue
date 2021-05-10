@@ -2,7 +2,7 @@ export default {
   disabled: {
     control: 'boolean'
   },
-  readonly: {
+  busy: {
     control: 'boolean'
   },
 }

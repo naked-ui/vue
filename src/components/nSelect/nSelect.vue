@@ -47,7 +47,9 @@
           v-show="!searchInputValue.length"
           v-if="enableMultiSelect"
         >
-          <span v-if="!selected.length">{{ multiselectPlaceholder }}</span>
+          <span v-if="!selected || !selected.length">
+            {{ multiselectPlaceholder }}
+          </span>
           <div
             v-for="option in selected"
             :key="option.value"
@@ -123,7 +125,6 @@ import {
   lineHeight,
   gap,
   padding,
-  // border,
   borderColor,
   borderWidth,
   borderStyle
@@ -138,7 +139,6 @@ const defaultStyleVariables = [
   lineHeight,
   gap,
   padding,
-  // border,
   borderColor,
   borderWidth,
   borderStyle,

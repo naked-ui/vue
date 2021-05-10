@@ -26,4 +26,7 @@ export default {
   borderColor: {
     control: 'color'
   },
+  fontSize: {
+    control: 'text'
+  }
 }

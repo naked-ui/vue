@@ -1,5 +1,11 @@
 export default {
 
+  // States
+
+  readonly: {
+    control: 'boolean'
+  },
+
   // UI Text
 
   label: {

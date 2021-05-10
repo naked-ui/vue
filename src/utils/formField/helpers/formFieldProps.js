@@ -8,6 +8,10 @@ const constructedProps = {
   // States
 
   ...stateProps,
+  readonly: {
+    type: Boolean,
+    default: false
+  },
 
   // UI Text
 

@@ -3,7 +3,7 @@ export default {
     type: Boolean,
     default: false
   },
-  readonly: {
+  busy: {
     type: Boolean,
     default: false
   },
