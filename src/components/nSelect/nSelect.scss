@@ -106,6 +106,7 @@
     color: var(--color);
     max-width: calc(var(--width) - calc(3 * var(--padding-select)));
     padding: 0 !important;
+    z-index: 1;
 
     &:focus {
       outline: none;
@@ -150,11 +151,11 @@
     }
 
     &.selected {
-      .n-select--custom__option-inner {
+      .n-select-option__inner {
         &::after {
           content: '✓';
           position: absolute;
-          right: var(--option-padding);
+          right: var(--padding);
         }
       }
     }
