@@ -357,7 +357,7 @@ export default {
     },
     handleKeyupEnter() {
       if (this.enableMultiSelect) return this.handleMultiSelect(this.candidate)
-      this.selected = this.candidate
+      this.setSelected(this.candidate.value)
       this.closeOptions()
     },
     handleKeyupUp() {
