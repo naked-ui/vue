@@ -105,8 +105,13 @@
     border: none;
     color: var(--color);
     max-width: calc(var(--width) - calc(3 * var(--padding-select)));
-    padding: 0 !important;
-    z-index: 1;
+    padding: var(--padding) !important;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
 
     &:focus {
       outline: none;

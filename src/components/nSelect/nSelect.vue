@@ -16,7 +16,7 @@
           :aria-hidden="!showOptions"
           v-on="listeners"
           v-model="dummySelected"
-          :tabindex="enableNativeSelect ? selectTabindex : -1"
+          :tabindex="nativeTabindex"
           :id="uiElementID"
           :disabled="disabled"
           :nui-validation="validationEnabled"
@@ -38,7 +38,9 @@
           v-if="!disabled"
           class="n-select__select__trigger"
           @click="handleClickOnSelect"
+          @keyup.enter.stop="handleClickOnSelect"
           v-clickout="handleClickout"
+          :tabindex="customTabindex"
         />
         <div
           class="n-select__select--multiselect"
@@ -58,7 +60,6 @@
           class="n-select__search-input"
           type="text"
           :ref="searchInputRefName"
-          :placeholder="defaultPlaceholder"
           v-if="showSearchInput"
           v-model="searchInputValue"
           @blur="handleBlurInput"
@@ -75,7 +76,7 @@
       >
         <div
           class="n-select-options"
-          :tabindex="optionsTabindex"
+          :tabindex="customTabindex"
           :ref="optionsRefName"
           @keyup.up.prevent="handleKeyupUp"
           @keyup.down.prevent="handleKeyupDown"
@@ -157,13 +158,9 @@ export default {
     value: {
       required: true
     },
-    selectTabindex: {
+    tabindex: {
       type: Number,
-      default: -1
-    },
-    optionsTabindex: {
-      type: Number,
-      default: -1
+      default: 0
     },
     options: {
       type: Array,
@@ -276,7 +273,13 @@ export default {
       return (
         !this.showSearchInput && !(this.selected && this.selected.length > 0)
       )
-    }
+    },
+    nativeTabindex() {
+      return this.enableNativeSelect ? this.tabindex : -1
+    },
+    customTabindex() {
+      return !this.enableNativeSelect ? this.tabindex : -1
+    },
   },
   methods: {
     setSelected(value) {
@@ -319,6 +322,7 @@ export default {
     async handleClickOnSelect() {
       this.showOptions = !this.showOptions
 
+      if (this.enableSearchInput && !this.enableNativeSelect) this.showSearchInput = true
       if (this.showOptions && !this.enableSearchInput) await this.focusOptions()
     },
     emitInput() {
@@ -351,7 +355,7 @@ export default {
     handleBlurInput(e) {
       if (
         e.relatedTarget &&
-        e.relatedTarget.className === 'n-select--custom__options'
+        e.relatedTarget.className === 'n-select-options'
       )
         return
       this.closeOptions()
