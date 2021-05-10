@@ -16,7 +16,7 @@
           :aria-hidden="!showOptions"
           v-on="listeners"
           v-model="dummySelected"
-          tabindex="-1"
+          :tabindex="enableNativeSelect ? selectTabindex : -1"
           :id="uiElementID"
           :disabled="disabled"
           :nui-validation="validationEnabled"
@@ -75,7 +75,7 @@
       >
         <div
           class="n-select-options"
-          :tabindex="tabindex"
+          :tabindex="optionsTabindex"
           :ref="optionsRefName"
           @keyup.up.prevent="handleKeyupUp"
           @keyup.down.prevent="handleKeyupDown"
@@ -157,9 +157,13 @@ export default {
     value: {
       required: true
     },
-    tabindex: {
+    selectTabindex: {
       type: Number,
-      default: 0
+      default: -1
+    },
+    optionsTabindex: {
+      type: Number,
+      default: -1
     },
     options: {
       type: Array,
