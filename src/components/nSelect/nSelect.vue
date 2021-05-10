@@ -21,7 +21,7 @@
           :nui-validation="validationEnabled"
         >
           <!-- Fake placeholder for native select -->
-          <option value="" selected disabled>
+          <option v-if="!selected" value="" selected disabled>
             {{ defaultPlaceholder }}
           </option>
           <option
