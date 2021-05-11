@@ -42,13 +42,13 @@ import {
   padding
 } from '@/utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [height, width, padding]
+const componentStyleVariables = [height, width, padding]
 
 export default {
   components: {
     nCoverBackground
   },
-  mixins: [styleVariables(defaultStyleVariables)],
+  mixins: [styleVariables(componentStyleVariables)],
   props: {
     hasOverlay: {
       type: Boolean,

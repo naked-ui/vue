@@ -10,11 +10,11 @@
 import styleVariables from '@/utils/styleVariables'
 import { width, height } from '@/utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [width, height]
+const componentStyleVariables = [width, height]
 
 export default {
   name: 'nOverflowCarouselItem',
-  mixins: [styleVariables(defaultStyleVariables)],
+  mixins: [styleVariables(componentStyleVariables)],
   props: {
     baseClassname: {
       type: String,

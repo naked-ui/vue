@@ -6,51 +6,40 @@
 
 <script>
 import styleVariables from '@/utils/styleVariables'
+import styleProps from '@/utils/props/styleProps'
+
 import {
   borderRadius,
   size,
   fontSize,
   padding,
-  background,
+  backgroundColor,
   color
 } from '@/utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [
+const componentStyleVariables = [
   borderRadius,
   size,
   fontSize,
   padding,
-  background,
+  backgroundColor,
   color
 ]
 
-export default {
-  props: {
-    baseClassname: {
-      type: String,
-      default: 'n-badge'
-    },
-    borderRadius: {
-      type: [String, Number],
-      default: '100%'
-    },
-    size: {
-      type: [String, Number]
-    },
-    background: {
-      type: String
-    },
-    color: {
-      type: String
-    },
-    fontSize: {
-      type: String
-    },
-    padding: {
-      type: [String, Number]
-    }
+const componentProps = {
+  baseClassname: {
+    type: String,
+    default: 'n-badge'
   },
-  mixins: [styleVariables(defaultStyleVariables)],
+  ...styleProps,
+  size: {
+    type: [String, Number]
+  }
+}
+
+export default {
+  props: componentProps,
+  mixins: [styleVariables(componentStyleVariables)],
   computed: {
     copmonentClasses() {
       return [this.baseClassname]

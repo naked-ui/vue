@@ -21,11 +21,11 @@
 import styleVariables from '@/utils/styleVariables'
 import { width, height } from '@/utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [width, height]
+const componentStyleVariables = [width, height]
 
 export default {
   name: 'nProgress',
-  mixins: [styleVariables(defaultStyleVariables)],
+  mixins: [styleVariables(componentStyleVariables)],
   props: {
     label: {
       type: String,

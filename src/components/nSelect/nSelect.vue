@@ -130,7 +130,7 @@ import {
   borderStyle
 } from '@/utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [
+const componentStyleVariables = [
   color,
   backgroundColor,
   width,
@@ -148,7 +148,7 @@ const defaultStyleVariables = [
 export default {
   name: 'nSelect',
   inheritAttrs: false,
-  mixins: [uuidMixin, styleVariables(defaultStyleVariables), formField],
+  mixins: [uuidMixin, styleVariables(componentStyleVariables), formField],
   directives: { clickout },
   components: { nChip },
   props: {

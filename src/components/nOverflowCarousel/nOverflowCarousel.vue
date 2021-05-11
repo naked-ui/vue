@@ -18,11 +18,11 @@ import {
   viewportPadding
 } from '@/utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [itemsGap, viewportPadding]
+const componentStyleVariables = [itemsGap, viewportPadding]
 
 export default {
   name: 'nOverflowCarousel',
-  mixins: [styleVariables(defaultStyleVariables)],
+  mixins: [styleVariables(componentStyleVariables)],
   props: {
     baseClassname: {
       type: String,
