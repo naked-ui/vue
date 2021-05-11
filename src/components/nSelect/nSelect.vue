@@ -116,6 +116,7 @@ import clickout from '@/utils/clickout'
 import nChip from '@/utils/components/nChip'
 import styleVariables from '@/utils/styleVariables'
 import keyboardHandler from './logic/keyboardHandler'
+import indexHandler from './logic/indexHandler'
 import formField from '@/utils/formField/helpers/formFieldProps'
 import {
   color,
@@ -149,7 +150,7 @@ const defaultStyleVariables = [
 export default {
   name: 'nSelect',
   inheritAttrs: false,
-  mixins: [uuidMixin, styleVariables(defaultStyleVariables), formField, keyboardHandler],
+  mixins: [uuidMixin, styleVariables(defaultStyleVariables), formField, keyboardHandler, indexHandler],
   directives: { clickout },
   components: { nChip },
   props: {
@@ -246,31 +247,9 @@ export default {
         return parsedOption.includes(parsedSearch)
       })
     },
-    currentIndex() {
-      if (!this.candidate && this.showSearchInput) return -1
-      if (this.candidate) return this.filteredOptions.indexOf(this.candidate)
-      return -1
-    },
-    prevOptionIndex() {
-      if (!this.currentIndex || this.currentIndex <= 0)
-        return this.filteredOptions.length - 1
-      return this.currentIndex - 1
-    },
-    nextOptionIndex() {
-      if (!this.currentIndex && this.currentIndex !== 0) return 0
-      if (this.currentIndex === this.filteredOptions.length - 1) return 0
-      return this.currentIndex + 1
-    },
     isAbleToFocusSearchInput() {
       return (
         this.enableSearchInput && this.showSearchInput && this.currentIndex >= 0
-      )
-    },
-    canBeNative() {
-      return (
-        this.enableNativeSelect &&
-        !this.enableSearchInput &&
-        !this.enableMultiSelect
       )
     },
     displayMultiselectOptions() {
