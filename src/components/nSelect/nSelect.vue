@@ -247,11 +247,6 @@ export default {
         return parsedOption.includes(parsedSearch)
       })
     },
-    isAbleToFocusSearchInput() {
-      return (
-        this.enableSearchInput && this.showSearchInput && this.currentIndex >= 0
-      )
-    },
     displayMultiselectOptions() {
       return !this.showSearchInput && this.enableMultiSelect
     },

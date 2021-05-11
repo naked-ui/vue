@@ -1,4 +1,11 @@
 export default {
+  computed: {
+    isAbleToFocusSearchInput() {
+      return (
+        this.enableSearchInput && this.showSearchInput && this.currentIndex >= 0
+      )
+    },
+  },
   methods: {
     handleKeyupEsc() {
       this.closeOptions()
