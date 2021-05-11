@@ -57,7 +57,7 @@ import hyperlinkProps from '@/utils/props/hyperlinkProps'
 import { disabled, busy } from '@/utils/props/stateProps'
 import styleProps from '@/utils/props/styleProps'
 
-const defaultStyleVariables = [
+const componentStyleVariables = [
   color,
   backgroundColor,
   padding,
@@ -94,7 +94,7 @@ const componentProps = {
 
 export default {
   name: 'nButton',
-  mixins: [hrefIsExternalMixin, styleVariables(defaultStyleVariables)],
+  mixins: [hrefIsExternalMixin, styleVariables(componentStyleVariables)],
   props: componentProps,
   computed: {
     tag() {

@@ -1,17 +1,14 @@
 <template>
-  <div class="toggle-input" :nui-namespace="uiNamespace">
-    <label class="switch toggle-input__label">
-      <input type="checkbox" class="toggle-input__checkbox" />
-      <span class="slider round toggle-input__node" />
+  <div class="n-toggle-input">
+    <label class="switch n-toggle-input__label">
+      <input type="checkbox" class="n-toggle-input__checkbox" />
+      <span class="slider round n-toggle-input__node" />
     </label>
   </div>
 </template>
 
 <script>
-import namespaceMixin from '@/utils/namespace'
-
 export default {
-  mixins: [namespaceMixin],
   name: 'nToggleInput'
 }
 </script>

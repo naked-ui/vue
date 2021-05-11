@@ -12,11 +12,11 @@ import styleVariables from '@/utils/styleVariables/index.js'
 import hrefIsExternalMixin from '@/utils/hrefIsExternal'
 import { size } from '@/utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [size]
+const componentStyleVariables = [size]
 
 export default {
   name: 'nIcon',
-  mixins: [hrefIsExternalMixin, styleVariables(defaultStyleVariables)],
+  mixins: [hrefIsExternalMixin, styleVariables(componentStyleVariables)],
   props: {
     baseClassname: {
       type: String,
