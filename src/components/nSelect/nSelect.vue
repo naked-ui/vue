@@ -197,6 +197,10 @@ export default {
     multiselectPlaceholder: {
       type: String,
       default: 'Select options'
+    },
+    emitOnlyValue: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
@@ -277,8 +281,12 @@ export default {
       this.emitInput()
     },
     emitInput() {
-      this.$emit('input', this.selected)
-      this.$emit('change', this.selected)
+      const toEmit = (this.emitOnlyValue && !this.enableMultiSelect) ?
+        this.selected.value :
+        this.selected
+
+      this.$emit('input', toEmit)
+      this.$emit('change', toEmit)
     },
     closeOptions() {
       this.showOptions = false
@@ -305,6 +313,10 @@ export default {
     if (this.enableNativeSelect && this.enableMultiSelect)
       console.error(
         `You can't use multi select feature with native select enabled.`
+      )
+    if (this.emitOnlyValue && this.enableMultiSelect)
+      console.error(
+        `You can't use multi select feature with emint only value enabled.`
       )
   },
   created() {
