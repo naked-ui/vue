@@ -107,6 +107,10 @@
         </div>
       </div>
     </div>
+    <nValidationAlerts
+      v-if="validationMessages.length > 0"
+      :validationMessages="validationMessages"
+    />
   </div>
 </template>
 
@@ -114,11 +118,13 @@
 import uuidMixin from '@/utils/uuid'
 import clickout from '@/utils/clickout'
 import nChip from '@/utils/components/nChip'
+import indexHandler from './logic/indexHandler'
 import eventsHandler from './logic/eventsHandler'
 import styleVariables from '@/utils/styleVariables'
 import keyboardHandler from './logic/keyboardHandler'
-import indexHandler from './logic/indexHandler'
+import validationHandler from './logic/validationHandler'
 import formField from '@/utils/formField/helpers/formFieldProps'
+import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import {
   color,
   backgroundColor,
@@ -151,9 +157,9 @@ const defaultStyleVariables = [
 export default {
   name: 'nSelect',
   inheritAttrs: false,
-  mixins: [uuidMixin, styleVariables(defaultStyleVariables), formField, eventsHandler, keyboardHandler, indexHandler],
+  mixins: [uuidMixin, styleVariables(defaultStyleVariables), formField, eventsHandler, keyboardHandler, indexHandler, validationHandler],
   directives: { clickout },
-  components: { nChip },
+  components: { nChip, nValidationAlerts },
   props: {
     baseClassname: {
       type: String,
@@ -226,7 +232,8 @@ export default {
         this.baseClassname,
         { 'n-select--native-handler': this.enableNativeSelect },
         { 'n-select--active': this.showOptions },
-        { 'n-select--search-active': this.showSearchInput }
+        { 'n-select--search-active': this.showSearchInput },
+        { 'n-select--error': this.isError },
       ]
     },
     listeners() {
@@ -293,6 +300,7 @@ export default {
       this.showSearchInput = false
       this.searchInputValue = ''
       this.candidate = null
+      this.validateFormField()
       this.emitInput()
     },
     isSelected(option) {
