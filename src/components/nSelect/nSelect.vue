@@ -228,8 +228,8 @@ export default {
     listeners() {
       return {
         ...this.$listeners,
-        input: (e) => this.$emit('input', this.setSelected(e.target.value)),
-        change: (e) => this.$emit('change', this.setSelected(e.target.value))
+        input: (e) => this.setSelected(e.target.value),
+        change: (e) => this.setSelected(e.target.value)
       }
     },
     defaultPlaceholder() {
@@ -274,6 +274,7 @@ export default {
         this.selected.push(option)
       }
       this.searchInputValue = ''
+      this.emitInput()
     },
     emitInput() {
       this.$emit('input', this.selected)
