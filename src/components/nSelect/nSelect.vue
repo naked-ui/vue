@@ -115,6 +115,7 @@ import uuidMixin from '@/utils/uuid'
 import clickout from '@/utils/clickout'
 import nChip from '@/utils/components/nChip'
 import styleVariables from '@/utils/styleVariables'
+import keyboardHandler from './logic/keyboardHandler'
 import formField from '@/utils/formField/helpers/formFieldProps'
 import {
   color,
@@ -148,7 +149,7 @@ const defaultStyleVariables = [
 export default {
   name: 'nSelect',
   inheritAttrs: false,
-  mixins: [uuidMixin, styleVariables(defaultStyleVariables), formField],
+  mixins: [uuidMixin, styleVariables(defaultStyleVariables), formField, keyboardHandler],
   directives: { clickout },
   components: { nChip },
   props: {
@@ -363,37 +364,6 @@ export default {
       if (e.relatedTarget && e.relatedTarget.className === 'n-select-options')
         return
       this.closeOptions()
-    },
-    handleKeyupEsc() {
-      this.closeOptions()
-    },
-    handleKeyupEnter() {
-      if (this.enableMultiSelect) return this.handleMultiSelect(this.candidate)
-      this.setSelected(this.candidate.value)
-      this.closeOptions()
-    },
-    handleKeyupUp() {
-      if (
-        this.isAbleToFocusSearchInput &&
-        this.prevOptionIndex === this.filteredOptions.length - 1
-      )
-        return this.focusSearchInput()
-
-      this.candidate = this.filteredOptions[this.prevOptionIndex]
-    },
-    handleKeyupDown() {
-      if (this.isAbleToFocusSearchInput && this.nextOptionIndex === 0)
-        return this.focusSearchInput()
-
-      this.candidate = this.filteredOptions[this.nextOptionIndex]
-    },
-    async handleInputKeyupUp() {
-      await this.focusOptions()
-      this.handleKeyupUp()
-    },
-    async handleInputKeyupDown() {
-      await this.focusOptions()
-      this.handleKeyupDown()
     }
   },
   mounted() {
