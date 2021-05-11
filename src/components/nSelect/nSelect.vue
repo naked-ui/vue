@@ -114,6 +114,7 @@
 import uuidMixin from '@/utils/uuid'
 import clickout from '@/utils/clickout'
 import nChip from '@/utils/components/nChip'
+import eventsHandler from './logic/eventsHandler'
 import styleVariables from '@/utils/styleVariables'
 import keyboardHandler from './logic/keyboardHandler'
 import indexHandler from './logic/indexHandler'
@@ -150,7 +151,7 @@ const defaultStyleVariables = [
 export default {
   name: 'nSelect',
   inheritAttrs: false,
-  mixins: [uuidMixin, styleVariables(defaultStyleVariables), formField, keyboardHandler, indexHandler],
+  mixins: [uuidMixin, styleVariables(defaultStyleVariables), formField, eventsHandler, keyboardHandler, indexHandler],
   directives: { clickout },
   components: { nChip },
   props: {
@@ -234,7 +235,7 @@ export default {
     defaultPlaceholder() {
       if (this.enableMultiSelect) {
         if (this.selected && this.selected.length) return ''
-        else return 'No options selected...'
+        else return this.multiselectPlaceholder
       }
       return this.selected ? this.selected.name : this.placeholder
     },
@@ -246,14 +247,6 @@ export default {
 
         return parsedOption.includes(parsedSearch)
       })
-    },
-    displayMultiselectOptions() {
-      return !this.showSearchInput && this.enableMultiSelect
-    },
-    displayDefaultPlaceholder() {
-      return (
-        !this.showSearchInput && !(this.selected && this.selected.length > 0)
-      )
     },
     nativeTabindex() {
       return this.enableNativeSelect ? this.tabindex : -1
@@ -267,17 +260,6 @@ export default {
       if (!value) return
       this.selected = [...this.options].find((option) => option.value === value)
       this.dummySelected = value
-    },
-    isSelected(option) {
-      return (
-        (this.selected && this.selected.value === option.value) ||
-        (this.selected &&
-          this.selected.length > 0 &&
-          this.selected.includes(option))
-      )
-    },
-    isCandidate(option) {
-      return this.candidate && this.candidate.value === option.value
     },
     handleMultiSelect(option) {
       if (!this.enableMultiSelect) return
@@ -293,6 +275,10 @@ export default {
       }
       this.searchInputValue = ''
     },
+    emitInput() {
+      this.$emit('input', this.selected)
+      this.$emit('change', this.selected)
+    },
     closeOptions() {
       this.showOptions = false
       this.showSearchInput = false
@@ -300,45 +286,17 @@ export default {
       this.candidate = null
       this.emitInput()
     },
-    async handleClickOnSelect() {
-      this.showOptions = !this.showOptions
-
-      if (this.enableSearchInput && !this.enableNativeSelect)
-        this.showSearchInput = true
-      if (this.showOptions && !this.enableSearchInput) await this.focusOptions()
+    isSelected(option) {
+      return (
+        (this.selected && this.selected.value === option.value) ||
+        (this.selected &&
+          this.selected.length > 0 &&
+          this.selected.includes(option))
+      )
     },
-    emitInput() {
-      this.$emit('input', this.selected)
-      this.$emit('change', this.selected)
+    isCandidate(option) {
+      return this.candidate && this.candidate.value === option.value
     },
-    async focusSearchInput() {
-      this.candidate = null
-      await this.$nextTick(() => this.$refs[this.searchInputRefName].focus())
-    },
-    async focusOptions() {
-      await this.$nextTick(() => this.$refs[this.optionsRefName].focus())
-    },
-    handleClickOnPlaceholder() {
-      if (!this.enableSearchInput) return
-      if (!this.enableSearchInput && this.enableNativeSelect) return
-      this.showSearchInput = true
-    },
-    handleClickOnOption(option) {
-      if (this.enableMultiSelect) return this.handleMultiSelect(option)
-      this.setSelected(option.value)
-      this.closeOptions()
-    },
-    handleClickOnChip(option) {
-      this.handleMultiSelect(option)
-    },
-    handleClickout() {
-      this.closeOptions()
-    },
-    handleBlurInput(e) {
-      if (e.relatedTarget && e.relatedTarget.className === 'n-select-options')
-        return
-      this.closeOptions()
-    }
   },
   mounted() {
     if (this.enableNativeSelect && this.enableSearchInput)
@@ -347,6 +305,8 @@ export default {
       console.error(
         `You can't use multi select feature with native select enabled.`
       )
+  },
+  created() {
     if (this.enableMultiSelect) this.selected = []
   }
 }
