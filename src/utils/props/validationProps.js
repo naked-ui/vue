@@ -1,39 +1,60 @@
+const validationEnabled = {
+  type: Boolean,
+  default: false
+}
+const required = {
+  type: Boolean,
+  default: false
+}
+const max = {
+  type: [Number, String],
+  default: null
+}
+const min = {
+  type: [Number, String],
+  default: null
+}
+const maxlength = {
+  type: [Number, String],
+  default: null
+}
+const minlength = {
+  type: [Number, String],
+  default: null
+}
+const pattern = {
+  type: String,
+  // default: '.*\\S.*'
+  default: null
+}
+const colorInvalid = {
+  type: String,
+  default: 'red'
+}
+const colorValid = {
+  type: String,
+  default: 'green'
+}
+
+export {
+  validationEnabled,
+  required,
+  max,
+  min,
+  maxlength,
+  minlength,
+  pattern,
+  colorInvalid,
+  colorValid
+}
 export default {
-  validationEnabled: {
-    type: Boolean,
-    default: false
-  },
-  required: {
-    type: Boolean,
-    default: false
-  },
-  max: {
-    type: [Number, String],
-    default: null
-  },
-  min: {
-    type: [Number, String],
-    default: null
-  },
-  maxlength: {
-    type: [Number, String],
-    default: null
-  },
-  minlength: {
-    type: [Number, String],
-    default: null
-  },
-  pattern: {
-    type: String,
-    // default: '.*\\S.*'
-    default: null
-  },
-  colorInvalid: {
-    type: String,
-    default: 'red'
-  },
-  colorValid: {
-    type: String,
-    default: 'green'
-  },
+  validationEnabled,
+  required,
+  max,
+  min,
+  maxlength,
+  minlength,
+  pattern,
+  colorInvalid,
+  colorValid
 }

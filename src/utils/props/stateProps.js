@@ -1,10 +1,11 @@
-export default {
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  busy: {
-    type: Boolean,
-    default: false
-  },
+const disabled = {
+  type: Boolean,
+  default: false
 }
+const busy = {
+  type: Boolean,
+  default: false
+}
+
+export { disabled, busy }
+export default { disabled, busy }
