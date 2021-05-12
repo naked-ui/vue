@@ -25,6 +25,7 @@
           <option v-if="!selected" value="" selected disabled>
             {{ defaultPlaceholder }}
           </option>
+          <!--  -->
           <option
             v-for="option in options"
             :key="option.value"
@@ -32,7 +33,6 @@
           >
             {{ option.name }}
           </option>
-          <!--  -->
         </select>
         <div
           v-if="!disabled"
