@@ -10,7 +10,7 @@
       {{ label }}
     </label>
     <div class="n-select__inner">
-      <div class="n-select__select">
+      <div class="n-select__select-wrapper">
         <select
           class="n-select__select--native"
           :aria-hidden="!showOptions"

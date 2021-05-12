@@ -8,7 +8,7 @@
   color: var(--color);
 
   &--active {
-    .n-select__select::after {
+    .n-select__select-wrapper::after {
       transform: translateY(-50%) rotate(180deg);
     }
   }
@@ -33,7 +33,24 @@
   }
 
   &__select {
-    position: relative;
+    &-wrapper {
+      position: relative;
+
+      &::after {
+        content: '';
+        background-image: url('../../icons/chevron-down.svg');
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        @include size(24px);
+        transition: transform 0.2s ease-out;
+        pointer-events: none;
+      }
+    }
 
     &__trigger {
       position: absolute;
@@ -47,7 +64,6 @@
     &--native,
     &--multiselect,
     option {
-      // color: var(--color);
       background-color: var(--background-color, #fff);
     }
 
@@ -77,26 +93,13 @@
         white-space: nowrap;
       }
     }
-
-    &::after {
-      content: '';
-      background-image: url('../../icons/chevron-down.svg');
-      background-size: 20px;
-      background-repeat: no-repeat;
-      background-position: center;
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      @include size(24px);
-      transition: transform 0.2s ease-out;
-      pointer-events: none;
-    }
   }
 
   &--native-handler {
     .n-select__select {
-      pointer-events: none;
+      &-wrapper {
+        pointer-events: none;
+      }
 
       &--native {
         pointer-events: all !important;
