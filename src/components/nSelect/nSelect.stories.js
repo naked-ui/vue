@@ -1,9 +1,9 @@
 import nSelect from './nSelect'
+import { disabled } from '../../../.storybook/utils/argTypes/stateArgTypes.js'
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js'
+import styleArgTypes from '../../../.storybook/utils/argTypes/styleArgTypes.js'
+import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js'
 
-import { disabled } from '../../../.storybook/utils/argTypes/stateArgTypes.js';
-import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
-import styleArgTypes from '../../../.storybook/utils/argTypes/styleArgTypes.js';
-import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js';
 const selectArgTypes = {
   optionHoverBackgroundColor: {
     control: 'color',
@@ -20,10 +20,16 @@ const selectArgTypes = {
   },
   enableMultiSelect: {
     control: 'boolean'
-  },
+  }
 }
 
-let customArgTypes = { disabled, ...formFieldArgTypes, ...styleArgTypes, ...selectArgTypes, ...validationArgTypes };
+let customArgTypes = {
+  disabled,
+  ...formFieldArgTypes,
+  ...styleArgTypes,
+  ...selectArgTypes,
+  ...validationArgTypes
+}
 
 export default {
   title: 'Form/Select',
@@ -43,8 +49,16 @@ const Template = (args, { argTypes }) => ({
     selectValue: null,
     validationRules: [
       { rule: (val) => !val, message: 'This form field is required.' },
-      { rule: (val) => val && !(val.length > 1), message: 'You have to select minimum 2 options.', for: 'multi' },
-      { rule: (val) => val && !(val.length < 3), message: 'You have to select maximum 3 options.', for: 'multi' },
+      {
+        rule: (val) => val && !(val.length > 1),
+        message: 'You have to select minimum 2 options.',
+        for: 'multi'
+      },
+      {
+        rule: (val) => val && !(val.length < 3),
+        message: 'You have to select maximum 3 options.',
+        for: 'multi'
+      }
     ]
   }),
   template: `
@@ -92,6 +106,6 @@ Default.args = {
     {
       name: 'Option 4',
       value: 'Option 4'
-    },
+    }
   ]
 }
