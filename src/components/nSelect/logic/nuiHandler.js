@@ -1,5 +1,4 @@
 import uuidMixin from '@/utils/uuid'
-import nChip from '@/utils/components/nChip'
 import formField from '@/utils/formField/helpers/formFieldProps'
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 
@@ -15,5 +14,5 @@ export default {
     },
   },
   mixins: [uuidMixin, formField],
-  components: { nChip, nValidationAlerts }
+  components: { nValidationAlerts }
 }
