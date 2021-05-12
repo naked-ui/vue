@@ -48,7 +48,7 @@
           v-if="enableMultiSelect"
         >
           <span v-if="!selected || !selected.length">
-            {{ multiselectPlaceholder }}
+            {{ multiSelectPlaceholder }}
           </span>
           <div
             v-for="option in selected"
@@ -115,14 +115,11 @@
 </template>
 
 <script>
+import logicHandlers from './logic'
 import uuidMixin from '@/utils/uuid'
 import clickout from '@/utils/clickout'
 import nChip from '@/utils/components/nChip'
-import indexHandler from './logic/indexHandler'
-import eventsHandler from './logic/eventsHandler'
 import styleVariables from '@/utils/styleVariables'
-import keyboardHandler from './logic/keyboardHandler'
-import validationHandler from './logic/validationHandler'
 import formField from '@/utils/formField/helpers/formFieldProps'
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import {
@@ -157,7 +154,7 @@ const componentStyleVariables = [
 export default {
   name: 'nSelect',
   inheritAttrs: false,
-  mixins: [uuidMixin, styleVariables(componentStyleVariables), formField, eventsHandler, keyboardHandler, indexHandler, validationHandler],
+  mixins: [uuidMixin, styleVariables(componentStyleVariables), formField, logicHandlers],
   directives: { clickout },
   components: { nChip, nValidationAlerts },
   props: {
@@ -184,10 +181,6 @@ export default {
       type: Boolean,
       default: false
     },
-    enableMultiSelect: {
-      type: Boolean,
-      default: false
-    },
     optionsRefName: {
       type: String,
       default: 'options'
@@ -200,10 +193,6 @@ export default {
       type: String,
       default: 'searchInput'
     },
-    multiselectPlaceholder: {
-      type: String,
-      default: 'Select options'
-    },
     emitOnlyValue: {
       type: Boolean,
       default: false
@@ -212,19 +201,15 @@ export default {
   watch: {
     showSearchInput(value) {
       if (value) this.focusSearchInput()
-    },
-    enableMultiSelect(value) {
-      if (value) this.selected = []
-      else this.selected = null
     }
   },
   data: () => ({
-    showOptions: false,
-    showSearchInput: false,
-    searchInputValue: '',
     selected: null,
     candidate: null,
-    dummySelected: ''
+    dummySelected: '',
+    searchInputValue: '',
+    showOptions: false,
+    showSearchInput: false
   }),
   computed: {
     componentClasses() {
@@ -246,7 +231,7 @@ export default {
     defaultPlaceholder() {
       if (this.enableMultiSelect) {
         if (this.selected && this.selected.length) return ''
-        else return this.multiselectPlaceholder
+        else return this.multiSelectPlaceholder
       }
       return this.selected ? this.selected.name : this.placeholder
     },
@@ -271,21 +256,6 @@ export default {
       if (!value) return
       this.selected = [...this.options].find((option) => option.value === value)
       this.dummySelected = value
-    },
-    handleMultiSelect(option) {
-      if (!this.enableMultiSelect) return
-
-      if (
-        this.selected &&
-        this.selected.length &&
-        this.selected.includes(option)
-      ) {
-        this.selected = this.selected.filter((el) => el.value !== option.value)
-      } else {
-        this.selected.push(option)
-      }
-      this.searchInputValue = ''
-      this.emitInput()
     },
     emitInput() {
       const toEmit = (this.emitOnlyValue && !this.enableMultiSelect) ?
@@ -318,18 +288,7 @@ export default {
   mounted() {
     if (this.enableNativeSelect && this.enableSearchInput)
       console.error(`You can't use search feature with native select enabled.`)
-    if (this.enableNativeSelect && this.enableMultiSelect)
-      console.error(
-        `You can't use multi select feature with native select enabled.`
-      )
-    if (this.emitOnlyValue && this.enableMultiSelect)
-      console.error(
-        `You can't use multi select feature with emint only value enabled.`
-      )
   },
-  created() {
-    if (this.enableMultiSelect) this.selected = []
-  }
 }
 </script>
 

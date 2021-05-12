@@ -15,7 +15,7 @@ const selectArgTypes = {
   enableSearchInput: {
     control: 'boolean'
   },
-  multiselectPlaceholder: {
+  multiSelectPlaceholder: {
     control: 'text'
   },
   enableMultiSelect: {
