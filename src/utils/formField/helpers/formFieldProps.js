@@ -58,6 +58,10 @@ const constructedProps = {
     default: null,
     validator: (v) => ['on', 'off'].includes(v)
   },
+  tabindex: {
+    type: [Number, String],
+    default: 0
+  },
 
   // Validation
 

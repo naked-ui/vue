@@ -115,59 +115,18 @@
 </template>
 
 <script>
-import logicHandlers from './logic'
-import uuidMixin from '@/utils/uuid'
+import logic from './logic'
 import clickout from '@/utils/clickout'
-import nChip from '@/utils/components/nChip'
-import styleVariables from '@/utils/styleVariables'
-import formField from '@/utils/formField/helpers/formFieldProps'
-import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
-import {
-  color,
-  backgroundColor,
-  width,
-  height,
-  fontSize,
-  lineHeight,
-  gap,
-  padding,
-  borderColor,
-  borderWidth,
-  borderStyle
-} from '@/utils/styleVariables/helpers/variables'
-
-const componentStyleVariables = [
-  color,
-  backgroundColor,
-  width,
-  height,
-  fontSize,
-  lineHeight,
-  gap,
-  padding,
-  borderColor,
-  borderWidth,
-  borderStyle,
-  { name: 'optionHoverBackgroundColor', type: 'color' }
-]
 
 export default {
   name: 'nSelect',
   inheritAttrs: false,
-  mixins: [uuidMixin, styleVariables(componentStyleVariables), formField, logicHandlers],
+  mixins: [logic],
   directives: { clickout },
-  components: { nChip, nValidationAlerts },
   props: {
     baseClassname: {
       type: String,
       default: 'n-form-field'
-    },
-    value: {
-      required: true
-    },
-    tabindex: {
-      type: Number,
-      default: 0
     },
     options: {
       type: Array,
@@ -181,19 +140,7 @@ export default {
       type: Boolean,
       default: false
     },
-    optionsRefName: {
-      type: String,
-      default: 'options'
-    },
-    optionHoverBackgroundColor: {
-      type: String,
-      default: ''
-    },
-    searchInputRefName: {
-      type: String,
-      default: 'searchInput'
-    },
-    emitOnlyValue: {
+    enableOnlyValueEmit: {
       type: Boolean,
       default: false
     }
@@ -218,7 +165,7 @@ export default {
         { 'n-select--native-handler': this.enableNativeSelect },
         { 'n-select--active': this.showOptions },
         { 'n-select--search-active': this.showSearchInput },
-        { 'n-select--error': this.isError },
+        { 'n-select--error': this.isError }
       ]
     },
     listeners() {
@@ -258,9 +205,10 @@ export default {
       this.dummySelected = value
     },
     emitInput() {
-      const toEmit = (this.emitOnlyValue && !this.enableMultiSelect) ?
-        this.selected.value :
-        this.selected
+      const toEmit =
+        this.enableOnlyValueEmit && !this.enableMultiSelect
+          ? this.selected.value
+          : this.selected
 
       this.$emit('input', toEmit)
       this.$emit('change', toEmit)
@@ -283,12 +231,12 @@ export default {
     },
     isCandidate(option) {
       return this.candidate && this.candidate.value === option.value
-    },
+    }
   },
   mounted() {
     if (this.enableNativeSelect && this.enableSearchInput)
       console.error(`You can't use search feature with native select enabled.`)
-  },
+  }
 }
 </script>
 
