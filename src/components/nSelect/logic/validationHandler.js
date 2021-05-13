@@ -11,7 +11,7 @@ export default {
       default: () => []
     },
   },
-  data: () =>  ({
+  data: () => ({
     validationMessages: []
   }),
   computed: {
