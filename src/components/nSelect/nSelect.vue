@@ -20,6 +20,7 @@
           :id="uiElementID"
           :disabled="disabled"
           :nui-validation="validationEnabled"
+          @blur="e => enableNativeSelect ? validateFormField(e) : null"
         >
           <!-- Fake placeholder for native select -->
           <option v-if="!selected" value="" selected disabled>
@@ -148,6 +149,9 @@ export default {
   watch: {
     showSearchInput(value) {
       if (value) this.focusSearchInput()
+    },
+    showOptions(value) {
+      if (!value) this.validateFormField()
     }
   },
   data: () => ({
@@ -162,10 +166,10 @@ export default {
     componentClasses() {
       return [
         this.baseClassname,
-        { 'n-select--native-handler': this.enableNativeSelect },
+        { 'n-select--error': this.isError },
         { 'n-select--active': this.showOptions },
         { 'n-select--search-active': this.showSearchInput },
-        { 'n-select--error': this.isError }
+        { 'n-select--native-handler': this.enableNativeSelect }
       ]
     },
     listeners() {
@@ -218,7 +222,6 @@ export default {
       this.showSearchInput = false
       this.searchInputValue = ''
       this.candidate = null
-      this.validateFormField()
       this.emitInput()
     },
     isSelected(option) {
@@ -231,7 +234,7 @@ export default {
     },
     isCandidate(option) {
       return this.candidate && this.candidate.value === option.value
-    }
+    },
   },
   mounted() {
     if (this.enableNativeSelect && this.enableSearchInput)

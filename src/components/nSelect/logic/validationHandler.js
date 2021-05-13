@@ -1,6 +1,7 @@
 const matchingTree = {
   multi: ($props) => $props['enableMultiSelect'],
   native: ($props) => $props['enableNativeSelect'],
+  custom: ($props) => !$props['enableNativeSelect'],
 }
 
 export default {
@@ -19,7 +20,7 @@ export default {
     }
   },
   methods: {
-    validateFormField() {
+    validateFormField(e = undefined) {
       if (!this.validationEnabled) return
 
       const currentErrors = []
