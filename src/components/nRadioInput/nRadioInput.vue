@@ -1,8 +1,8 @@
 <template>
-  <div class="n-radio-input" :style="style" :class="componentClasses">
-    <label class="n-radio-input__label" :disabled="disabled" :for="id">
+  <div class="nui-radio-input" :style="style" :class="componentClasses">
+    <label class="nui-radio-input__label" :disabled="disabled" :for="id">
       <input
-        class="n-radio-input__radio"
+        class="nui-radio-input__radio"
         type="radio"
         @invalid="$setValidity"
         @change="$validate"
@@ -43,7 +43,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-form-field'
+      default: 'nui-form-field'
     },
     // input attrs
     checked: {

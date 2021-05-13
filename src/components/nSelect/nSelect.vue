@@ -1,18 +1,18 @@
 <template>
   <div
-    class="n-select"
+    class="nui-select"
     :class="componentClasses"
     :style="style"
     :disabled="disabled"
     :nui-validation="validationEnabled"
   >
-    <label class="n-select__label" v-if="label" :for="uiElementID">
+    <label class="nui-select__label" v-if="label" :for="uiElementID">
       {{ label }}
     </label>
-    <div class="n-select__inner">
-      <div class="n-select__select-wrapper">
+    <div class="nui-select__inner">
+      <div class="nui-select__select-wrapper">
         <select
-          class="n-select__select--native"
+          class="nui-select__select--native"
           :aria-hidden="!showOptions"
           v-on="listeners"
           v-model="dummySelected"
@@ -20,7 +20,7 @@
           :id="uiElementID"
           :disabled="disabled"
           :nui-validation="validationEnabled"
-          @blur="e => enableNativeSelect ? validateFormField(e) : null"
+          @blur="(e) => (enableNativeSelect ? validateFormField(e) : null)"
           :required="required"
         >
           <!-- Fake placeholder for native select -->
@@ -38,14 +38,14 @@
         </select>
         <div
           v-if="!disabled"
-          class="n-select__select__trigger"
+          class="nui-select__select__trigger"
           @click="handleClickOnSelect"
           @keyup.enter.stop="handleClickOnSelect"
           v-clickout="handleClickout"
           :tabindex="customTabindex"
         />
         <div
-          class="n-select__select--multiselect"
+          class="nui-select__select--multiselect"
           v-show="!searchInputValue.length"
           v-if="enableMultiSelect"
         >
@@ -56,13 +56,13 @@
             v-for="option in selected"
             :key="option.value"
             @click.stop="handleClickOnChip(option)"
-            class="n-select__select--multiselect__item"
+            class="nui-select__select--multiselect__item"
           >
             {{ option.name }}
           </div>
         </div>
         <input
-          class="n-select__search-input"
+          class="nui-select__search-input"
           type="search"
           :ref="searchInputRefName"
           v-if="showSearchInput"
@@ -74,13 +74,13 @@
         />
       </div>
       <div
-        class="n-select__options"
-        :class="{ 'n-select__options--active': showOptions }"
+        class="nui-select__options"
+        :class="{ 'nui-select__options--active': showOptions }"
         :aria-hidden="!showOptions"
         :aria-labelledby="uiElementID"
       >
         <div
-          class="n-select-options"
+          class="nui-select-options"
           :tabindex="customTabindex"
           :ref="optionsRefName"
           @keyup.up.prevent="handleKeyupUp"
@@ -88,11 +88,11 @@
           @keyup.esc.prevent="handleKeyupEsc"
           @keyup.enter.prevent="handleKeyupEnter"
         >
-          <div class="n-select-option" v-if="!filteredOptions.length">
+          <div class="nui-select-option" v-if="!filteredOptions.length">
             <slot name="no-options-text">No options to display</slot>
           </div>
           <div
-            class="n-select-option"
+            class="nui-select-option"
             :class="{
               selected: isSelected(option),
               candidate: isCandidate(option)
@@ -102,7 +102,7 @@
             :data-value="option.value"
             @click.stop="handleClickOnOption(option)"
           >
-            <span class="n-select-option__inner">
+            <span class="nui-select-option__inner">
               {{ option.name }}
             </span>
           </div>
@@ -128,7 +128,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-form-field'
+      default: 'nui-form-field'
     },
     options: {
       type: Array,
@@ -167,10 +167,10 @@ export default {
     componentClasses() {
       return [
         this.baseClassname,
-        { 'n-select--error': this.isError },
-        { 'n-select--active': this.showOptions },
-        { 'n-select--search-active': this.showSearchInput },
-        { 'n-select--native-handler': this.enableNativeSelect }
+        { 'nui-select--error': this.isError },
+        { 'nui-select--active': this.showOptions },
+        { 'nui-select--search-active': this.showSearchInput },
+        { 'nui-select--native-handler': this.enableNativeSelect }
       ]
     },
     listeners() {
@@ -235,7 +235,7 @@ export default {
     },
     isCandidate(option) {
       return this.candidate && this.candidate.value === option.value
-    },
+    }
   },
   mounted() {
     if (this.enableNativeSelect && this.enableSearchInput)

@@ -2,7 +2,7 @@
 
 @import 'sxcss';
 
-.n-button {
+.nui-button {
   @include flex($place: center);
   appearance: none;
   -webkit-appearance: none;
@@ -24,8 +24,8 @@
 
   /// Text & icons color
 
-  .n-button__text,
-  .n-button__icon {
+  .nui-button__text,
+  .nui-button__icon {
     @include flex($place: center);
     svg {
       fill: var(--color) !important;
@@ -34,7 +34,7 @@
 
   /// Icons
 
-  .n-button__icon {
+  .nui-button__icon {
     &--left {
       margin-right: var(--gap);
     }

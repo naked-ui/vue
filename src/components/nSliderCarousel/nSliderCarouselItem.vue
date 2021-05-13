@@ -24,7 +24,7 @@ export default {
     },
     baseClassname: {
       type: String,
-      default: 'n-slider-carousel'
+      default: 'nui-slider-carousel'
     },
     slideIndex: {
       type: Number,
@@ -35,6 +35,6 @@ export default {
       type: Number,
       default: 1
     }
-  },
+  }
 }
 </script>

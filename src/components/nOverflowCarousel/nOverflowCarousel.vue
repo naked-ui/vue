@@ -26,7 +26,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-overflow-carousel'
+      default: 'nui-overflow-carousel'
     },
     itemsGap: {
       type: Number,

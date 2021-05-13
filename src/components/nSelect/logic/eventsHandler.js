@@ -26,7 +26,7 @@ export default {
       this.closeOptions()
     },
     handleBlurInput(e) {
-      if (e.relatedTarget && e.relatedTarget.className === 'n-select-options')
+      if (e.relatedTarget && e.relatedTarget.className === 'nui-select-options')
         return
       this.closeOptions()
     }

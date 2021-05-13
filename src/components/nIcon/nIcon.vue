@@ -20,7 +20,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-icon'
+      default: 'nui-icon'
     },
     size: {
       type: [String, Number]

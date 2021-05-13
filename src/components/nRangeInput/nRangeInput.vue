@@ -2,7 +2,7 @@
   <div
     :id="id"
     :name="name"
-    class="n-range-input n-form-field"
+    class="nui-range-input n-form-field"
     role="group"
     :aria-labelledby="`${baseClassname}--label`"
     :style="`
@@ -23,14 +23,14 @@
   >
     <label :id="`${baseClassname}--label`" v-if="label">{{ label }}</label>
     <div
-      class="n-range-input__wrap"
+      class="nui-range-input__wrap"
       role="group"
       :aria-labelledby="`${baseClassname}--label`"
       :style="rangeVariables"
     >
       <template v-for="index in dots">
         <label
-          class="n-range-input__sr-only"
+          class="nui-range-input__sr-only"
           :for="`v${index - 1}`"
           :key="`label_${index - 1}`"
         >
@@ -65,7 +65,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-range-input'
+      default: 'nui-range-input'
     },
     min: {
       type: Number,

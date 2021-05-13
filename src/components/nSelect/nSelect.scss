@@ -1,6 +1,6 @@
 @import 'sxcss';
 
-.n-select {
+.nui-select {
   position: relative;
   box-sizing: border-box;
   cursor: pointer;
@@ -8,13 +8,13 @@
   color: var(--color);
 
   &--active {
-    .n-select__select-wrapper::after {
+    .nui-select__select-wrapper::after {
       transform: translateY(-50%) rotate(180deg);
     }
   }
 
   &--search-active {
-    .n-select__select--native {
+    .nui-select__select--native {
       color: transparent !important;
     }
   }
@@ -96,7 +96,7 @@
   }
 
   &--native-handler {
-    .n-select__select {
+    .nui-select__select {
       &-wrapper {
         pointer-events: none;
       }
@@ -131,7 +131,7 @@
     top: 0;
     left: 0;
 
-    &--active .n-select-options {
+    &--active .nui-select-options {
       display: block;
     }
   }
@@ -165,7 +165,7 @@
     }
 
     &.selected {
-      .n-select-option__inner {
+      .nui-select-option__inner {
         padding-left: calc(10px + var(--padding));
         &::before {
           content: '✓';

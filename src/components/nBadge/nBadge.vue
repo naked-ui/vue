@@ -1,5 +1,5 @@
 <template>
-  <div class="n-badge" :style="style">
+  <div class="nui-badge" :style="style">
     <slot />
   </div>
 </template>
@@ -29,7 +29,7 @@ const componentStyleVariables = [
 const componentProps = {
   baseClassname: {
     type: String,
-    default: 'n-badge'
+    default: 'nui-badge'
   },
   ...styleProps,
   size: {
