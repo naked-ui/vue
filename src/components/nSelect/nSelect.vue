@@ -21,6 +21,7 @@
           :disabled="disabled"
           :nui-validation="validationEnabled"
           @blur="e => enableNativeSelect ? validateFormField(e) : null"
+          :required="required"
         >
           <!-- Fake placeholder for native select -->
           <option v-if="!selected" value="" selected disabled>
