@@ -11,7 +11,9 @@ import {
   padding,
   borderColor,
   borderWidth,
-  borderStyle
+  borderStyle,
+  colorInvalid,
+  colorValid,
 } from '@/utils/styleVariables/helpers/variables'
 
 const componentStyleVariables = [
@@ -26,6 +28,8 @@ const componentStyleVariables = [
   borderColor,
   borderWidth,
   borderStyle,
+  colorInvalid,
+  colorValid,
   { name: 'optionHoverBackgroundColor', type: 'color' }
 ]
 
