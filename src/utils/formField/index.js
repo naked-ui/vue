@@ -1,5 +1,5 @@
 import styleVariables from '../styleVariables'
-import formFieldProps from './helpers/formFieldProps'
+import formFieldProps from '../props/formFieldProps'
 import formFieldCounter from './helpers/formFieldCounter'
 import formFieldValidations from './helpers/formFieldValidations'
 import {
