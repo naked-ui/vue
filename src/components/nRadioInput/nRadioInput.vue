@@ -25,14 +25,14 @@
 </template>
 
 <script>
-import formField from '../../utils/formField/index.js'
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
-import { color } from '../../utils/styleVariables/helpers/variables'
+import formField from '@/utils/formField/index.js'
+import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
+import { color } from '@/utils/styleVariables/helpers/variables'
 
-const customStyleVariables = [color]
+const componentStyleVariables = [color]
 
 export default {
-  mixins: [formField(customStyleVariables)],
+  mixins: [formField(componentStyleVariables)],
   name: 'nRadioInput',
   components: { nValidationAlerts },
   inject: {

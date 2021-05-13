@@ -1,40 +1,34 @@
 @import 'sxcss';
 
 :root {
-  --negative-factor: -1;
+  --negative-factor: -1; // We need this as CSSO compression causes always appending "-1" value after CSS Variable in calc() function and it throws parsing error for final minified CSS file
 }
 
 .n-form-field {
   display: grid;
-  row-gap: var(--gap);
   justify-content: start;
+  row-gap: var(--gap);
   width: var(--width);
 
-  .n-validation-alerts {
-    display: grid;
-    gap: calc(var(--gap) / 4);
-  }
-
-  .n-validation-alert {
-    color: var(--color, var(--color-invalid));
-  }
-
   textarea,
-  input:is([type='text'], [type='email'], [type='tel'], [type='pasword'], [type='date'], [type='time'], [type='url'], ) {
-    font-size: inherit;
+  select,
+  input:is([type='text'], [type='email'], [type='tel'], [type='pasword'], [type='date'], [type='search'], [type='time'], [type='url']) {
+    appearance: none;
     box-sizing: border-box;
     height: var(--height);
     width: var(--width);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: none;
-    outline: var(--outline-width) solid;
-    outline-offset: calc(
-      var(--negative-factor) * var(--outline-width)
-    ); // We need this as CSSO compression causes always appending "-1" value after CSS Variable in calc() function and it throws parsing error for final minified CSS file
     padding: var(--padding);
+    margin: 0;
+    border-width: var(--border-width);
+    border-style: var(--border-style);
+    border-color: var(--border-color);
+    font-size: inherit;
     font-family: inherit;
+
+    &:not([disabled='disabled']):not([readonly='readonly']) {
+      background-color: var(--background-color);
+      color: var(--color);
+    }
 
     &[nui-validation='true'] {
       &:not(:invalid) ~ &,
@@ -45,12 +39,12 @@
       &:not(:required):invalid,
       &:not(:placeholder-shown):required:invalid,
       &:focus:required:invalid {
-        outline-color: var(--color-invalid);
+        border-color: var(--color-invalid);
       }
 
       &:not(:placeholder-shown):valid,
       &:required:valid {
-        outline-color: var(--color-valid);
+        border-color: var(--color-valid);
       }
 
       &[disabled='disabled'] ~ .alerts {
@@ -63,12 +57,21 @@
       }
 
       &:not(:focus):required:invalid {
-        outline-color: inherit;
+        border-color: inherit;
       }
     }
   }
 
   textarea {
     resize: var(--resize);
+  }
+
+  .n-validation-alerts {
+    display: grid;
+    gap: calc(var(--gap) / 4);
+  }
+
+  .n-validation-alert {
+    color: var(--color, var(--color-invalid));
   }
 }

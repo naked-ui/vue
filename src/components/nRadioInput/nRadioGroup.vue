@@ -9,14 +9,14 @@
 </template>
 
 <script>
-import formField from '../../utils/formField/index.js'
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
-import { color, spacing } from '../../utils/styleVariables/helpers/variables'
+import formField from '@/utils/formField/index.js'
+import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
+import { color, spacing } from '@/utils/styleVariables/helpers/variables'
 
-const customStyleVariables = [color, spacing]
+const componentStyleVariables = [color, spacing]
 
 export default {
-  mixins: [formField(customStyleVariables)],
+  mixins: [formField(componentStyleVariables)],
   name: 'nRadioGroup',
   components: { nValidationAlerts },
   provide() {

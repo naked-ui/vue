@@ -4,15 +4,21 @@
 
 .n-button {
   @include flex($place: center);
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-sizing: border-box;
   border: unset;
   cursor: pointer;
-  background-color: var(--background-color);
   padding: var(--padding);
   height: var(--height);
+  width: var(--width);
   font-size: var(--font-size, 16px);
   text-decoration: none;
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  color: initial;
+  background-color: #f0f0f0;
 
   /** CONTENT **/
 
@@ -21,7 +27,6 @@
   .n-button__text,
   .n-button__icon {
     @include flex($place: center);
-    color: var(--color);
     svg {
       fill: var(--color) !important;
     }
@@ -40,9 +45,14 @@
 
   /** STATES **/
 
-  &.n-button[disabled='disabled'],
-  &.n-button[disabled='disabled'] * {
+  &:not([disabled='disabled']),
+  &[busy='true'] {
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+    color: var(--color);
+  }
+
+  &[disabled='disabled'] {
     cursor: not-allowed;
-    opacity: 0.75;
   }
 }

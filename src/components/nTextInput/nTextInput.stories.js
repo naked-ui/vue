@@ -1,79 +1,15 @@
 import nTextInput from './nTextInput.vue'
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import stateArgTypes from '../../../.storybook/utils/argTypes/stateArgTypes.js';
+import styleArgTypes from '../../../.storybook/utils/argTypes/styleArgTypes.js';
+import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js';
+const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes }
+
 
 export default {
   title: 'Form/Input/TextInput',
   component: nTextInput,
-  argTypes: {
-    autocorrect: {
-      defaultValue: null,
-      description: '`autocorrect` prop is Safari only'
-    },
-    customMessages: {
-      control: 'object'
-    },
-    rules: {
-      control: 'array'
-    },
-    name: {
-      defaultValue: 'text-input-name',
-      description: '`name` prop is required'
-    },
-    id: {
-      defaultValue: 'text-input-id',
-      description: '`id` prop is required'
-    },
-    title: {
-      defaultValue: 'text-input-title'
-    },
-    label: {
-      defaultValue: 'Label text'
-    },
-    placeholder: {
-      defaultValue: 'Placeholder text'
-    },
-    pattern: {
-      control: 'text'
-    },
-    required: {
-      control: 'boolean'
-    },
-    disabled: {
-      control: 'boolean'
-    },
-    autofocus: {
-      control: 'boolean'
-    },
-    readonly: {
-      control: 'boolean'
-    },
-    counterEnabled: {
-      defaultValue: false
-    },
-    validationEnabled: {
-      control: 'boolean',
-      defaultValue: true
-    },
-    colorValid: {
-      control: 'color'
-    },
-    colorInvalid: {
-      control: 'color'
-    },
-    height: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    }
-  }
+  argTypes: customArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
@@ -101,16 +37,23 @@ Default.args = {
   gap: 8,
   height: 48,
   width: '280px',
-  padding: '0 12px',
+  padding: '10px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px',
+  borderWidth: '2px',
+  borderStyle: 'solid',
   pattern: '.*\\S.*',
+  name: 'text-input-name',
+  id: 'text-input-id',
+  title: 'text-input-title',
+  label: 'Text input label',
+  placeholder: 'Text input placeholder',
+  autocorrect: false,
   // customMessages: { valueMissing: 'Not empty!' },
   rules: [
     (value) =>
       !value ||
-      value.length > 2 ||
-      'This is custom rule message: field not required, but min 3 chars!'
+      value.includes('Naked UI') ||
+      'Value doesn\'t include \"Naked UI\"'
   ]
 }

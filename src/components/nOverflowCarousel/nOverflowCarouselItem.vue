@@ -1,8 +1,5 @@
 <template>
-  <li
-    :class="componentClasses"
-    :style="style"
-  >
+  <li :class="componentClasses" :style="style">
     <div :class="[`${baseClassname}-content`]">
       <slot />
     </div>
@@ -10,14 +7,14 @@
 </template>
 
 <script>
-import styleVariables from '../../utils/styleVariables'
-import { width, height } from '../../utils/styleVariables/helpers/variables'
+import styleVariables from '@/utils/styleVariables'
+import { width, height } from '@/utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [width, height]
+const componentStyleVariables = [width, height]
 
 export default {
   name: 'nOverflowCarouselItem',
-  mixins: [styleVariables(defaultStyleVariables)],
+  mixins: [styleVariables(componentStyleVariables)],
   props: {
     baseClassname: {
       type: String,
@@ -33,10 +30,8 @@ export default {
     }
   },
   computed: {
-    componentClasses () {
-      return [
-        `${this.baseClassname}`
-      ]
+    componentClasses() {
+      return [`${this.baseClassname}`]
     }
   }
 }
