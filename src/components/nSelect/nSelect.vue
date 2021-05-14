@@ -20,8 +20,10 @@
           :id="uiElementID"
           :disabled="disabled"
           :nui-validation="validationEnabled"
-          @blur="e => enableNativeSelect ? validateFormField(e) : null"
+          @blur.capture="e => enableNativeSelect ? validateFormField(e) : null"
+          @change="e => !enableNativeSelect ? validateFormField(e) : null"
           :required="required"
+          :ref="selectRefName"
         >
           <!-- Fake placeholder for native select -->
           <option v-if="!selected" value="" selected disabled>
@@ -151,9 +153,6 @@ export default {
     showSearchInput(value) {
       if (value) this.focusSearchInput()
     },
-    showOptions(value) {
-      if (!value) this.validateFormField()
-    }
   },
   data: () => ({
     selected: null,

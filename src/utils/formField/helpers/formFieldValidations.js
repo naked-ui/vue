@@ -1,5 +1,7 @@
 import { messages as defaultMessages } from '../../validation/index'
 
+const isDOM = el => el instanceof Element
+
 export default {
   props: {
     rules: {
@@ -30,12 +32,14 @@ export default {
       // validate custom rules
       // TODO use `this.value` to allow validate non-primitive values
       for (const rule of this.rules) {
-        const { text: content, color = this.colorInvalid } = rule
-        if (rule.rule(target.value)) currentErrors.push({ content, color })
+        const { text: content, color = this.colorInvalid, forType = null } = rule
+        if (this.matchRule(forType)) continue
+        const value = isDOM(target) ? target.value : target
+        if (rule.rule(value)) currentErrors.push({ content, color })
       }
 
       this.validationMessages = currentErrors
-      if (currentErrors && currentErrors.length) target.setCustomValidity(currentErrors[0])
+      if (currentErrors.length && isDOM(target)) target.setCustomValidity(currentErrors[0])
     },
     getValidationMessage(error) {
       // custom message provided
@@ -78,8 +82,10 @@ export default {
     },
     validateFormField(e) {
       if (!this.validationEnabled) return
+      if (!e || !isDOM(e.target)) return this.validateCustomRules(e)
 
       const { target } = e
+
       this.resetValidation(e)
 
       const htmlValid = target.checkValidity() // triggers `invalid` input event

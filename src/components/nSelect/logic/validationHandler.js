@@ -1,3 +1,6 @@
+import formFieldValidations from '@/utils/formField/helpers/formFieldValidations'
+
+
 const matchingTree = {
   multi: ($props) => $props['enableMultiSelect'],
   native: ($props) => $props['enableNativeSelect'],
@@ -5,37 +8,20 @@ const matchingTree = {
 }
 
 export default {
-  props: {
-    rules: {
-      type: Array,
-      default: () => []
+  mixins: [formFieldValidations],
+  watch: {
+    showOptions(value) {
+      if (!value && this.validationEnabled) this.validateFormField(this.selected)
     },
-  },
-  data: () => ({
-    validationMessages: []
-  }),
-  computed: {
-    isError() {
-      return this.validationMessages && this.validationMessages.length
+    validationMessages(value) {
+      if (value.length) this.$refs[this.selectRefName].setCustomValidity(value[0])
     }
   },
   methods: {
-    validateFormField(e = undefined) {
-      if (!this.validationEnabled) return
-
-      const currentErrors = []
-      for (let rule of this.rules) {
-        if (this.matchRule(rule)) continue
-        const { text: content, color = this.colorInvalid } = rule
-        if (rule.rule(this.selected)) currentErrors.push({ content, color })
-      }
-
-      this.validationMessages = currentErrors
-    },
-    matchRule(rule) {
-      if (rule && !rule.hasOwnProperty('for')) return false
+    matchRule(forType) {
+      if (!forType) return false
       else {
-        if (matchingTree.hasOwnProperty(rule.for)) return !matchingTree[rule.for](this.$props)
+        if (matchingTree.hasOwnProperty(forType)) return !matchingTree[forType](this.$props)
         else return false
       }
     }

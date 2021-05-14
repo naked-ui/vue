@@ -4,6 +4,10 @@ import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 
 export default {
   props: {
+    selectRefName: {
+      type: String,
+      default: 'nativeSelect'
+    },
     optionsRefName: {
       type: String,
       default: 'options'
