@@ -61,12 +61,12 @@ export default {
     },
     baseClassname: {
       type: String,
-      default: 'n-form-field'
+      default: 'nui-form-field'
     }
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'n-color-input']
+      return [this.baseClassname, 'nui-color-input']
     }
   },
   methods: {

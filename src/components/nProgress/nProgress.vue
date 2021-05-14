@@ -1,5 +1,5 @@
 <template>
-  <div class="n-progress" :style="style">
+  <div class="nui-progress" :style="style">
     <label :for="id" v-if="label && label.length > 0">
       {{ label }}
     </label>

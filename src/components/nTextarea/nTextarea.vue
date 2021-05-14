@@ -55,7 +55,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-form-field'
+      default: 'nui-form-field'
     },
     resize: {
       type: String

@@ -18,7 +18,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-overflow-carousel__item'
+      default: 'nui-overflow-carousel__item'
     },
     width: {
       type: String,
