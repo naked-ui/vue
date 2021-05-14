@@ -53,11 +53,11 @@ Default.args = {
   rules: [
     {
       rule: (value) => !value,
-      message: 'Value is missing.'
+      text: 'Value is missing.'
     },
     {
       rule: (value) => !value.includes('Naked UI'),
-      message: 'Value doesn\'t include \"Naked UI\"'
+      text: 'Value doesn\'t include \"Naked UI\"'
     },
   ]
 }
