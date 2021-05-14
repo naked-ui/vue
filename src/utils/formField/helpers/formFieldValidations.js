@@ -22,24 +22,16 @@ export default {
     }
   },
   methods: {
-    pushValidationMessage(content, color) {
-      this.validationMessages.push({
-        content,
-        color
-      })
-    },
     validateCustomRules(target) {
-      let hasErrors = false
+      const currentErrors = []
       // validate custom rules
       // TODO use `this.value` to allow validate non-primitive values
-      this.rules.forEach((rule) => {
-        const message = rule(target.value) // pass `value` to custom rule argument
-        if (message !== true) {
-          this.pushValidationMessage(message)
-          hasErrors = message
-        }
-      })
-      if (hasErrors) target.setCustomValidity(hasErrors) // report `customError` only once
+      for (const rule of this.rules) {
+        if (rule.rule(target.value)) currentErrors.push({ content: rule.message })
+      }
+
+      this.validationMessages = currentErrors
+      if (currentErrors && currentErrors.length) target.setCustomValidity(currentErrors[0])
     },
     getValidationMessage(error, field) {
       // custom message provided
@@ -60,6 +52,8 @@ export default {
         target
       } = e
 
+      const currentErrors = []
+
       if (validity.customError || validity.valid) return
       this.resetValidation(e)
 
@@ -68,13 +62,15 @@ export default {
         if (hasError) {
           const data = this.getValidationMessage(errorType, target)
           if (typeof data === 'string'){
-            this.pushValidationMessage(data, this.colorInvalid)
+            currentErrors.push({ content: data })
           } else if(isObject(data)){
-            const { text, color = this.colorInvalid } = data
-            this.pushValidationMessage(text, color)
+            const { text } = data
+            currentErrors.push({ content: text })
           }
         }
       }
+
+      this.validationMessages = currentErrors
     },
     resetValidation(e) {
       e.target.setCustomValidity('')
