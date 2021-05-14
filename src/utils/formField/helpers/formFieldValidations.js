@@ -16,6 +16,14 @@ export default {
       validationMessages: []
     }
   },
+  computed: {
+    isInvalid() {
+      return this.validationMessages.length
+    },
+    isValid() {
+      return !this.validationMessages.length
+    }
+  },
   methods: {
     validateCustomRules(target) {
       const currentErrors = []
