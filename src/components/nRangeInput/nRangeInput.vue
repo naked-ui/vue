@@ -2,7 +2,7 @@
   <div
     :id="id"
     :name="name"
-    class="nui-range-input n-form-field"
+    class="nui-range-input nui-form-field"
     role="group"
     :aria-labelledby="`${baseClassname}--label`"
     :style="`
