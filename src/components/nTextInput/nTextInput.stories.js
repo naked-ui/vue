@@ -51,9 +51,13 @@ Default.args = {
   autocorrect: false,
   // customMessages: { valueMissing: 'Not empty!' },
   rules: [
-    (value) =>
-      !value ||
-      value.includes('Naked UI') ||
-      'Value doesn\'t include \"Naked UI\"'
+    {
+      rule: (value) => !value,
+      message: 'Value is missing.'
+    },
+    {
+      rule: (value) => !value.includes('Naked UI'),
+      message: 'Value doesn\'t include \"Naked UI\"'
+    },
   ]
 }

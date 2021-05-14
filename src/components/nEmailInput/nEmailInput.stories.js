@@ -47,10 +47,10 @@ Default.args = {
   //   }
   // },
   rules: [
-    (value) =>
-      !value ||
-      value.length > 2 ||
-      'This is custom rule message: field not required, but min 3 chars!'
+    {
+      rule: (value) => !!value && value.length < 3,
+      message: 'This is custom rule message: field not required, but min 3 chars!'
+    },
   ],
   height: '48px',
   width: '280px',
