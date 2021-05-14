@@ -1,17 +1,12 @@
 import { messages as defaultMessages } from '../../validation/index'
 
-function isObject(obj) {
-  return obj === Object(obj)
-}
-
 export default {
   props: {
     rules: {
       type: Array,
-      default: () => [] // e.g. (val) => !!val || 'This field is required'
+      default: () => []
     },
     customMessages: {
-      // custom error messages for default rules
       type: Object,
       default: () => ({})
     }
@@ -27,29 +22,31 @@ export default {
       // validate custom rules
       // TODO use `this.value` to allow validate non-primitive values
       for (const rule of this.rules) {
-        if (rule.rule(target.value)) currentErrors.push({ content: rule.message })
+        const { text: content, color = this.colorInvalid } = rule
+        if (rule.rule(target.value)) currentErrors.push({ content, color })
       }
 
       this.validationMessages = currentErrors
       if (currentErrors && currentErrors.length) target.setCustomValidity(currentErrors[0])
     },
-    getValidationMessage(error, field) {
+    getValidationMessage(error) {
       // custom message provided
-      if (this.customMessages.hasOwnProperty(error)) {
-        return this.customMessages[error]
+      const customMessage = this.customMessages.hasOwnProperty(error) ? this.customMessages[error] : null
+      if (customMessage && customMessage.hasOwnProperty('text')) {
+        const { text, color = this.colorInvalid } = customMessage
+
+        return { text, color }
       }
+
       // use default
-      const msg = defaultMessages[error]
-      if(msg === null) return false
-      if (isObject(msg)) return msg[field.type] || msg.default
-      return msg || defaultMessages.default
+      const { color } = customMessage ? customMessage : { color: this.colorInvalid }
+      return { text: defaultMessages[error] || defaultMessages.default, color }
     },
     setValidity(e) {
       if (!this.validationEnabled) return
       // handle `invalid` input event
       const {
-        target: { validity },
-        target
+        target: { validity }
       } = e
 
       const currentErrors = []
@@ -60,13 +57,8 @@ export default {
       for (let errorType in validity) {
         const hasError = validity[errorType]
         if (hasError) {
-          const data = this.getValidationMessage(errorType, target)
-          if (typeof data === 'string'){
-            currentErrors.push({ content: data })
-          } else if(isObject(data)){
-            const { text } = data
-            currentErrors.push({ content: text })
-          }
+          const { text: content, color } = this.getValidationMessage(errorType)
+          currentErrors.push({ content, color })
         }
       }
 
@@ -80,8 +72,6 @@ export default {
       if (!this.validationEnabled) return
 
       const { target } = e
-      // const target = this.$refs.input
-      // clear validations every time
       this.resetValidation(e)
 
       const htmlValid = target.checkValidity() // triggers `invalid` input event

@@ -26,7 +26,8 @@ export default {
       const currentErrors = []
       for (let rule of this.rules) {
         if (this.matchRule(rule)) continue
-        if (rule.rule(this.selected)) currentErrors.push({ content: rule.message })
+        const { text: content, color = this.colorInvalid } = rule
+        if (rule.rule(this.selected)) currentErrors.push({ content, color })
       }
 
       this.validationMessages = currentErrors
