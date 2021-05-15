@@ -26,6 +26,7 @@
 
 <script>
 import formField from '@/utils/formField/index.js'
+import { formFieldProps } from '@/utils/props/formFieldProps'
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import { color } from '@/utils/styleVariables/helpers/variables'
 
@@ -41,6 +42,7 @@ export default {
     }
   },
   props: {
+    ...formFieldProps,
     baseClassname: {
       type: String,
       default: 'nui-form-field'

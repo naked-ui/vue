@@ -2,16 +2,12 @@ import stateProps from '@/utils/props/stateProps'
 import styleProps from '@/utils/props/styleProps'
 import validationProps from '@/utils/props/validationProps'
 
-const constructedProps = {
+const formFieldProps = {
   value: null,
 
   // States
 
   ...stateProps,
-  readonly: {
-    type: Boolean,
-    default: false
-  },
 
   // UI Text
 
@@ -22,10 +18,6 @@ const constructedProps = {
     type: String
   },
 
-  // Styling
-
-  ...styleProps,
-
   // Meta
 
   id: {
@@ -35,17 +27,21 @@ const constructedProps = {
   form: {
     type: String
   },
-  name: {
-    type: String,
-    required: true
-  },
-  title: {
-    type: String
-  },
+
+  // Styling
+
+  ...styleProps,
 
   // General settings
 
   counterEnabled: {
+    type: Boolean,
+    default: false
+  },
+
+  // Native attributes
+
+  autocomplete: {
     type: Boolean,
     default: false
   },
@@ -58,6 +54,25 @@ const constructedProps = {
     default: null,
     validator: (v) => ['on', 'off'].includes(v)
   },
+  form: {
+    type: String,
+    default: ''
+  },
+  list: {
+    type: String,
+    default: ''
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  readonly: {
+    type: Boolean,
+    default: false
+  },
+
+  // Tabindex
+
   tabindex: {
     type: [Number, String],
     default: 0
@@ -68,6 +83,10 @@ const constructedProps = {
   ...validationProps
 }
 
+export {
+  formFieldProps
+}
+
 export default {
-  props: constructedProps
+  formFieldProps
 }

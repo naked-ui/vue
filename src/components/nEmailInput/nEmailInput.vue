@@ -40,6 +40,7 @@
 
 <script>
 import formField from '@/utils/formField/index.js'
+import { formFieldProps } from '@/utils/props/formFieldProps'
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import nInputCounter from '@/utils/components/nInputCounter.vue'
 
@@ -51,14 +52,11 @@ export default {
     nInputCounter
   },
   props: {
+    ...formFieldProps,
     baseClassname: {
       type: String,
       default: 'nui-form-field'
     }
-    // pattern: {
-    //   type: String,
-    //   default: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
-    // }
   },
   computed: {
     componentClasses() {

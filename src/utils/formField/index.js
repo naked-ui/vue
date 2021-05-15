@@ -1,5 +1,4 @@
-import styleVariables from '../styleVariables'
-import formFieldProps from '../props/formFieldProps'
+import styleVariables from '@/utils/styleVariables'
 import formFieldCounter from './helpers/formFieldCounter'
 import formFieldValidations from './helpers/formFieldValidations'
 import {
@@ -8,35 +7,32 @@ import {
   gap,
   backgroundColor,
   padding,
-  colorValid,
-  colorInvalid,
   borderWidth,
   borderColor,
   borderStyle,
   borderRadius,
-} from '../styleVariables/helpers/variables'
+} from '@/utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [
-  gap,
+const formFieldStyleVariables = [
   height,
   width,
+  gap,
   backgroundColor,
   padding,
-  colorValid,
-  colorInvalid,
   borderWidth,
   borderColor,
   borderStyle,
   borderRadius,
+  { name: 'colorValid', type: 'color' },
+  { name: 'colorInvalid', type: 'color' },
 ]
 
-export const formField = (customStyleVariables = []) => {
+export const formField = () => {
   return {
     mixins: [
-      formFieldProps,
       formFieldValidations,
       formFieldCounter,
-      styleVariables(defaultStyleVariables, customStyleVariables)
+      styleVariables(formFieldStyleVariables)
     ],
   }
 }

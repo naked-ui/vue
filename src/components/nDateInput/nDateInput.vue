@@ -34,6 +34,7 @@
 
 <script>
 import formField from '@/utils/formField/index.js'
+import { formFieldProps } from '@/utils/props/formFieldProps'
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 
 export default {
@@ -43,6 +44,7 @@ export default {
   },
   name: 'nDateInput',
   props: {
+    ...formFieldProps,
     baseClassname: {
       type: String,
       default: 'nui-form-field'

@@ -41,6 +41,7 @@
 
 <script>
 import formField from '@/utils/formField/index.js'
+import { formFieldProps } from '@/utils/props/formFieldProps'
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import nInputCounter from '@/utils/components/nInputCounter.vue'
 
@@ -52,6 +53,7 @@ export default {
     nInputCounter
   },
   props: {
+    ...formFieldProps,
     baseClassname: {
       type: String,
       default: 'nui-form-field'

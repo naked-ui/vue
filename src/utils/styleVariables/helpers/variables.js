@@ -67,21 +67,6 @@ const viewportPadding = {
 
 // Color
 
-const borderColor = {
-  name: 'borderColor',
-  type: 'color'
-}
-
-const colorValid = {
-  name: 'colorValid',
-  type: 'color'
-}
-
-const colorInvalid = {
-  name: 'colorInvalid',
-  type: 'color'
-}
-
 const color = {
   name: 'color',
   type: 'color'
@@ -92,8 +77,8 @@ const backgroundColor = {
   type: 'color'
 }
 
-const textColor = {
-  name: 'textColor',
+const borderColor = {
+  name: 'borderColor',
   type: 'color'
 }
 
@@ -125,8 +110,6 @@ export {
   gap,
   outlineWidth,
   padding,
-  colorValid,
-  colorInvalid,
   border,
   borderWidth,
   borderStyle,
@@ -137,7 +120,6 @@ export {
   color,
   background,
   backgroundColor,
-  textColor,
   spacing,
   itemsGap,
   viewportPadding,
