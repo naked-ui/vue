@@ -13,7 +13,6 @@
       <div class="nui-select__select-wrapper">
         <select
           class="nui-select__select--native"
-          :aria-hidden="!showOptions"
           v-on="listeners"
           v-model="dummySelected"
           @blur="(e) => (enableNativeSelect ? validateFormField(e) : null)"
@@ -22,7 +21,6 @@
           :id="uiElementID"
           :disabled="disabled"
           :nui-validation="validationEnabled"
-          @blur="(e) => (enableNativeSelect ? validateFormField(e) : null)"
           :required="required"
         >
           <!-- Fake placeholder for native select -->
@@ -119,7 +117,6 @@
 </template>
 
 <script>
-import logic from './logic'
 import clickout from '@/utils/clickout'
 import { formFieldProps } from '@/utils/props/formFieldProps'
 import logic from './logic'
