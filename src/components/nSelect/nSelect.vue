@@ -16,6 +16,8 @@
           :aria-hidden="!showOptions"
           v-on="listeners"
           v-model="dummySelected"
+          @blur="(e) => (enableNativeSelect ? validateFormField(e) : null)"
+          :aria-hidden="!showOptions"
           :tabindex="nativeTabindex"
           :id="uiElementID"
           :disabled="disabled"
@@ -119,6 +121,8 @@
 <script>
 import logic from './logic'
 import clickout from '@/utils/clickout'
+import { formFieldProps } from '@/utils/props/formFieldProps'
+import logic from './logic'
 
 export default {
   name: 'nSelect',
@@ -126,6 +130,7 @@ export default {
   mixins: [logic],
   directives: { clickout },
   props: {
+    ...formFieldProps,
     baseClassname: {
       type: String,
       default: 'nui-form-field'
