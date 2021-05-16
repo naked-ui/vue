@@ -1,15 +1,15 @@
 import nDateInput from './nDateInput.vue'
 
-import stateArgTypes from '../../../.storybook/utils/argTypes/stateArgTypes.js';
 import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
-import styleArgTypes from '../../../.storybook/utils/argTypes/styleArgTypes.js';
-import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js';
-const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes }
+// import stateArgTypes from '../../../.storybook/utils/argTypes/stateArgTypes.js';
+// import styleArgTypes from '../../../.storybook/utils/argTypes/styleArgTypes.js';
+// import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js';
+// const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes }
 
 export default {
   title: 'Form/Input/DateInput',
   component: nDateInput,
-  argTypes: customArgTypes
+  argTypes: formFieldArgTypes
 }
 
 const Template = (args, { argTypes }) => ({

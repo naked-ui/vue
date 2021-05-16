@@ -1,5 +1,5 @@
 <template>
-  <div class="nui-checkbox-group nui-form-field" :style="style">
+  <div class="nui-checkbox-group nui-form-field" :style="style" :busy="busy">
     <slot></slot>
     <nValidationAlerts
       v-if="validationMessages.length > 0"

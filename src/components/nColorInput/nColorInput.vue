@@ -1,5 +1,5 @@
 <template>
-  <div :class="componentClasses" :style="style">
+  <div :class="componentClasses" :style="style" :busy="busy">
     <label :disabled="disabled" :for="id">
       {{ label }}
     </label>

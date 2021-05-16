@@ -4,55 +4,41 @@ import validationProps from '@/utils/props/validationProps'
 
 const formFieldProps = {
   value: null,
-
-  // States
-
-  ...stateProps,
-
-  // UI Text
-
+  // UI
   label: {
     type: String
   },
   placeholder: {
     type: String
   },
-
-  // Meta
-
-  id: {
-    type: String,
-    required: true
-  },
-  form: {
-    type: String
-  },
-
-  // Styling
-
-  ...styleProps,
-
-  // General settings
-
   counterEnabled: {
     type: Boolean,
     default: false
   },
-
-  // Native attributes
-
-  autocomplete: {
-    type: Boolean,
-    default: false
+  // Meta
+  id: {
+    type: String,
+    required: true
   },
-  autofocus: {
-    type: Boolean,
-    default: false
+  // States
+  ...stateProps,
+  // Styling
+  ...styleProps,
+  // Validation
+  ...validationProps,
+  // Native attributes
+  autocomplete: {
+    type: String,
+    default: ''
   },
   autocorrect: {
     type: String,
     default: null,
     validator: (v) => ['on', 'off'].includes(v)
+  },
+  autofocus: {
+    type: Boolean,
+    default: false
   },
   form: {
     type: String,
@@ -70,17 +56,11 @@ const formFieldProps = {
     type: Boolean,
     default: false
   },
-
   // Tabindex
-
   tabindex: {
     type: [Number, String],
     default: 0
   },
-
-  // Validation
-
-  ...validationProps
 }
 
 export {

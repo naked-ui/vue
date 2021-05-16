@@ -1,5 +1,5 @@
 <template>
-  <div :target="target" :class="componentClasses" :style="style">
+  <div :target="target" :class="componentClasses" :style="style" :busy="busy">
     <slot />
     <div v-if="$slots['badge']" :class="`${baseClassname}__badge`">
       <slot name="badge" />
