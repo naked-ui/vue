@@ -14,7 +14,11 @@ export default {
       if (!value && this.validationEnabled) this.validateFormField(this.selected)
     },
     validationMessages(value) {
-      if (value.length) this.$refs[this.selectRefName].setCustomValidity(value[0])
+      const selectElement = this.$refs[this.selectRefName]
+      if (value.length) selectElement.setCustomValidity(value[0])
+      else selectElement.setCustomValidity('')
+
+      console.dir(selectElement.validity)
     }
   },
   methods: {
@@ -25,5 +29,5 @@ export default {
         else return false
       }
     }
-  }
+  },
 }
