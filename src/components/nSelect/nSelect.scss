@@ -61,8 +61,8 @@
       z-index: 1;
     }
 
+    // &--multiselect,
     &--native,
-    &--multiselect,
     option {
       background-color: var(--background-color, #fff);
     }
@@ -73,8 +73,8 @@
     }
 
     &--multiselect {
-      border: var(--border-width) solid;
-      border-color: var(--border-color);
+      // border: var(--border-width) solid;
+      // border-color: var(--border-color);
       padding: var(--padding);
       position: absolute;
       top: 0;
