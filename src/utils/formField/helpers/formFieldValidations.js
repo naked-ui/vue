@@ -33,7 +33,7 @@ export default {
       // TODO use `this.value` to allow validate non-primitive values
       for (const rule of this.rules) {
         const { text: content, color = this.colorInvalid, forType = null } = rule
-        if (this.matchRule(forType)) continue
+        if (forType && this.matchRule(forType)) continue
         const value = isDOM(target) ? target.value : target
         if (rule.rule(value)) currentErrors.push({ content, color })
       }
