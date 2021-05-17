@@ -1,6 +1,6 @@
 export default {
   props: {
-    enableMultiSelect: {
+    multiple: {
       type: Boolean,
       default: false
     },
@@ -10,7 +10,7 @@ export default {
     },
   },
   watch: {
-    enableMultiSelect(value) {
+    multiple(value) {
       if (value) {
         this.selected = []
         this.dummySelected = []
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     handleMultiSelect(option) {
-      if (!this.enableMultiSelect) return
+      if (!this.multiple) return
       if (
         this.selected &&
         this.selected.length &&
@@ -37,17 +37,17 @@ export default {
     }
   },
   created() {
-    if (this.enableMultiSelect) {
+    if (this.multiple) {
       this.selected = []
       this.dummySelected = []
     }
   },
   mounted() {
-    if (this.enableNativeSelect && this.enableMultiSelect)
+    if (this.enableNativeSelect && this.multiple)
       console.error(
         `You can't use multi select feature with native select enabled.`
       )
-    if (this.emitOnlyValue && this.enableMultiSelect)
+    if (this.emitOnlyValue && this.multiple)
       console.error(
         `You can't use multi select feature with emit only value enabled.`
       )

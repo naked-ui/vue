@@ -18,7 +18,7 @@ const selectArgTypes = {
   multiSelectPlaceholder: {
     control: 'text'
   },
-  enableMultiSelect: {
+  multiple: {
     control: 'boolean'
   }
 }

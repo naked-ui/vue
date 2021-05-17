@@ -6,7 +6,7 @@ const prepareExtendedValue = (target) =>
     : [target.dataset.value]
 
 const matchingTree = {
-  multi: ($props) => $props['enableMultiSelect'],
+  multi: ($props) => $props['multiple'],
   native: ($props) => $props['enableNativeSelect'],
   custom: ($props) => !$props['enableNativeSelect']
 }
@@ -16,7 +16,7 @@ export default {
   watch: {
     async showOptions(value) {
       const selectElement = this.$refs[this.selectRefName]
-      const extendedValue = this.enableMultiSelect ? prepareExtendedValue : null
+      const extendedValue = this.multiple ? prepareExtendedValue : null
       if (!value && this.validationEnabled)
         await this.$nextTick(() =>
           this.validateFormField({ target: selectElement }, extendedValue)

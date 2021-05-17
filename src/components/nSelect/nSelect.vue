@@ -21,12 +21,14 @@
           :id="uiElementID"
           :disabled="disabled"
           :nui-validation="validationEnabled"
-          @blur.capture="e => enableNativeSelect ? validateFormField(e) : null"
+          @blur.capture="
+            (e) => (enableNativeSelect ? validateFormField(e) : null)
+          "
           @change="validateFormField"
           :required="required"
           :readonly="readonly"
           :ref="selectRefName"
-          :multiple="enableMultiSelect"
+          :multiple="multiple"
         >
           <!-- Fake placeholder for native select -->
           <option v-if="!selected" value="" selected disabled>
@@ -52,7 +54,7 @@
         <div
           class="nui-select__select--multiselect"
           v-show="!searchInputValue.length"
-          v-if="enableMultiSelect"
+          v-if="multiple"
         >
           <span v-if="!selected || !selected.length">
             {{ multiSelectPlaceholder }}
@@ -155,7 +157,7 @@ export default {
   watch: {
     showSearchInput(value) {
       if (value) this.focusSearchInput()
-    },
+    }
   },
   data: () => ({
     selected: null,
@@ -183,7 +185,7 @@ export default {
       }
     },
     defaultPlaceholder() {
-      if (this.enableMultiSelect) {
+      if (this.multiple) {
         if (this.selected && this.selected.length) return ''
         else return this.multiSelectPlaceholder
       }
@@ -213,7 +215,7 @@ export default {
     },
     emitInput() {
       const toEmit =
-        this.enableOnlyValueEmit && !this.enableMultiSelect
+        this.enableOnlyValueEmit && !this.multiple
           ? this.selected.value
           : this.selected
 
