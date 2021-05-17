@@ -1,7 +1,10 @@
 export default {
   methods: {
     async handleClickOnSelect() {
+      const selectElememt = document.getElementById(this.uiElementID)
+
       this.showOptions = !this.showOptions
+      selectElememt.focus()
 
       if (this.enableSearchInput && !this.enableNativeSelect)
         this.showSearchInput = true
