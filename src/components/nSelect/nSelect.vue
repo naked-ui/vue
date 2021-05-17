@@ -16,16 +16,17 @@
           :aria-hidden="!showOptions"
           v-on="listeners"
           v-model="dummySelected"
-          :data-inputed="dummySelected"
+          :data-value="dummySelected"
           :tabindex="nativeTabindex"
           :id="uiElementID"
           :disabled="disabled"
           :nui-validation="validationEnabled"
           @blur.capture="e => enableNativeSelect ? validateFormField(e) : null"
-          @change="e => !enableNativeSelect ? validateFormField(e) : null"
+          @change="validateFormField"
           :required="required"
           :readonly="readonly"
           :ref="selectRefName"
+          :multiple="enableMultiSelect"
         >
           <!-- Fake placeholder for native select -->
           <option v-if="!selected" value="" selected disabled>

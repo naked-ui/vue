@@ -11,8 +11,14 @@ export default {
   },
   watch: {
     enableMultiSelect(value) {
-      if (value) this.selected = []
-      else this.selected = null
+      if (value) {
+        this.selected = []
+        this.dummySelected = []
+      }
+      else {
+        this.selected = ''
+        this.dummySelected = ''
+      }
     }
   },
   methods: {
@@ -26,12 +32,15 @@ export default {
       else this.selected.push(option)
 
       this.searchInputValue = ''
-      this.dummySelected = this.selected.join(',')
+      this.dummySelected = this.selected.map(el => el.value)
       this.emitInput()
     }
   },
   created() {
-    if (this.enableMultiSelect) this.selected = []
+    if (this.enableMultiSelect) {
+      this.selected = []
+      this.dummySelected = []
+    }
   },
   mounted() {
     if (this.enableNativeSelect && this.enableMultiSelect)

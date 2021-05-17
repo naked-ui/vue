@@ -24,7 +24,7 @@
       :required="required"
       :title="title"
       :nui-validation="validationEnabled"
-      :data-inputed="value"
+      :data-value="value"
     />
     <nValidationAlerts
       v-if="validationMessages.length > 0"
