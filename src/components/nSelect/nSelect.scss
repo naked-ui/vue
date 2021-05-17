@@ -71,6 +71,36 @@
     &--native {
       pointer-events: none;
       padding-left: calc(var(--padding) - 4px) !important;
+
+      &:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 #000;
+      }
+
+      option,
+      option:is(:active, :focus, :hover) {
+        appearance: none;
+        outline: none;
+        border: none;
+        display: none;
+
+        &:-moz-focusring {
+          color: transparent;
+          text-shadow: 0 0 0 #000;
+        }
+      }
+
+      &[multiple='multiple'] {
+        option {
+          visibility: hidden;
+          pointer-events: none;
+        }
+      }
+
+      &:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 #000;
+      }
     }
 
     &--multiselect {
