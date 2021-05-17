@@ -92,7 +92,7 @@ export default {
     },
     baseClassname: {
       type: String,
-      default: 'n-cover'
+      default: 'nui-cover'
     }
   },
   computed: {

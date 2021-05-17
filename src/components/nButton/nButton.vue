@@ -88,7 +88,7 @@ const componentProps = {
   ...styleProps,
   baseClassname: {
     type: String,
-    default: 'n-button'
+    default: 'nui-button'
   }
 }
 

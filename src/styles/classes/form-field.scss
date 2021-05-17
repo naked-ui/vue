@@ -4,7 +4,7 @@
   --negative-factor: -1; // We need this as CSSO compression causes always appending "-1" value after CSS Variable in calc() function and it throws parsing error for final minified CSS file
 }
 
-.n-form-field {
+.nui-form-field {
   display: grid;
   justify-content: start;
   row-gap: var(--gap);
@@ -66,12 +66,12 @@
     resize: var(--resize);
   }
 
-  .n-validation-alerts {
+  .nui-validation-alerts {
     display: grid;
     gap: calc(var(--gap) / 4);
   }
 
-  .n-validation-alert {
+  .nui-validation-alert {
     color: var(--color, var(--color-invalid));
   }
 }
