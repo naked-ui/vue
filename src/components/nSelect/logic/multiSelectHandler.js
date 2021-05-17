@@ -26,6 +26,7 @@ export default {
       else this.selected.push(option)
 
       this.searchInputValue = ''
+      this.dummySelected = this.selected.join(',')
       this.emitInput()
     }
   },
