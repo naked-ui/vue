@@ -16,6 +16,7 @@
           :aria-hidden="!showOptions"
           v-on="listeners"
           v-model="dummySelected"
+          :data-inputed="dummySelected"
           :tabindex="nativeTabindex"
           :id="uiElementID"
           :disabled="disabled"
@@ -23,6 +24,7 @@
           @blur.capture="e => enableNativeSelect ? validateFormField(e) : null"
           @change="e => !enableNativeSelect ? validateFormField(e) : null"
           :required="required"
+          :readonly="readonly"
           :ref="selectRefName"
         >
           <!-- Fake placeholder for native select -->
