@@ -1,7 +1,5 @@
 import { messages as defaultMessages } from '../../validation/index'
 
-const isDOM = el => el instanceof Element
-
 export default {
   props: {
     rules: {
@@ -27,23 +25,34 @@ export default {
     }
   },
   methods: {
-    validateCustomRules(target) {
+    validateCustomRules(target, extendedValue) {
       const currentErrors = []
       // validate custom rules
       // TODO use `this.value` to allow validate non-primitive values
       for (const rule of this.rules) {
-        const { text: content, color = this.colorInvalid, forType = null } = rule
+        const {
+          text: content,
+          color = this.colorInvalid,
+          forType = null
+        } = rule
+
         if (forType && this.matchRule(forType)) continue
-        const value = isDOM(target) ? target.value : target
+
+        const value = extendedValue
+          ? extendedValue(target)
+          : target.dataset.value || target.value
+
         if (rule.rule(value)) currentErrors.push({ content, color })
       }
 
       this.validationMessages = currentErrors
-      if (currentErrors.length && isDOM(target)) target.setCustomValidity(currentErrors[0])
+      if (currentErrors.length) target.setCustomValidity(currentErrors[0])
     },
     getValidationMessage(error) {
       // custom message provided
-      const customMessage = this.customMessages.hasOwnProperty(error) ? this.customMessages[error] : null
+      const customMessage = this.customMessages.hasOwnProperty(error)
+        ? this.customMessages[error]
+        : null
       if (customMessage && customMessage.hasOwnProperty('text')) {
         const { text, color = this.colorInvalid } = customMessage
 
@@ -51,7 +60,9 @@ export default {
       }
 
       // use default
-      const { color } = customMessage ? customMessage : { color: this.colorInvalid }
+      const { color } = customMessage
+        ? customMessage
+        : { color: this.colorInvalid }
       return { text: defaultMessages[error] || defaultMessages.default, color }
     },
     setValidity(e) {
@@ -80,12 +91,10 @@ export default {
       e.target.setCustomValidity('')
       this.validationMessages = []
     },
-    validateFormField(e) {
+    validateFormField(e, extendedValue = null) {
       if (!this.validationEnabled) return
-      if (!e || !isDOM(e.target)) return this.validateCustomRules(e)
 
       const { target } = e
-
       this.resetValidation(e)
 
       const htmlValid = target.checkValidity() // triggers `invalid` input event
@@ -93,7 +102,7 @@ export default {
       // base validation passed
       if (htmlValid) {
         // check custom validation rules
-        this.validateCustomRules(target)
+        this.validateCustomRules(target, extendedValue)
       }
 
       console.dir(target.validity)
