@@ -54,8 +54,15 @@
         }
     }
 
+    &__wrapper {
+        position: relative;
+        width: 100%;
+    }
+
     &__content {
+        position: absolute;
         font-size: inherit;
+        width: 100%;
         padding: var(--content-padding);
     }
 }

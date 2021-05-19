@@ -2,24 +2,26 @@
   <div :class="[componentClasses, currentDirection]" :style="[style, tabCount]">
     <div :class="`${componentClasses}__buttons`">
       <button
-      :class="{'active': $index === currentTab}"
+        :class="{ active: $index === currentTab }"
         v-for="(title, $index) in tabTitles"
         :key="$index"
         @click="changeTab($index)"
       >
-          {{ title }}
+        {{ title }}
       </button>
     </div>
-    <template v-if="!$slots.default">
-    <Transition mode="out-in" name="fade-in">
-      <div :class="`${componentClasses}__content`" :key="currentTabContent">
-        {{ currentTabContent }}
-      </div>
-    </Transition>
-    </template>
-    <template v-else>
-      <slot />
-    </template>
+    <div :class="`${componentClasses}__wrapper`">
+      <template v-if="!$slots.default">
+        <Transition mode="out-in" name="fade-in">
+          <div :class="`${componentClasses}__content`" :key="currentTabContent">
+            {{ currentTabContent }}
+          </div>
+        </Transition>
+      </template>
+      <template v-else>
+        <slot />
+      </template>
+    </div>
   </div>
 </template>
 
@@ -30,7 +32,7 @@ import { width } from '../../utils/styleVariables/helpers/variables'
 const defaultStyleVariables = [
   width,
   { name: 'tabPadding', type: 'size' },
-  { name: 'contentPadding', type: 'size' },
+  { name: 'contentPadding', type: 'size' }
 ]
 
 export default {
@@ -67,30 +69,28 @@ export default {
     }
   },
   computed: {
-    componentClasses () {
-      return [
-        this.baseClassname,
-      ]
+    componentClasses() {
+      return [this.baseClassname]
     },
-    tabTitles () {
+    tabTitles() {
       if (this.slotTabs && this.slotTabs.length) return this.slotTabs
       if (!this.items) return
 
-      return this.items.map(el => el.title)
+      return this.items.map((el) => el.title)
     },
-    tabContents () {
+    tabContents() {
       if (!this.items) return
 
-      return this.items.map(el => el.content)
+      return this.items.map((el) => el.content)
     },
-    tabCount () {
+    tabCount() {
       return { '--tab-count': this.items ? this.items.length : 1 }
     },
-    currentTabContent () {
+    currentTabContent() {
       if (!this.tabContents) return ''
       return this.tabContents[this.currentTab]
     },
-    currentDirection () {
+    currentDirection() {
       return this.horizontal ? 'horizontal' : 'vertical'
     }
   },
@@ -105,16 +105,16 @@ export default {
     },
     addTab(tab) {
       this.slotTabs.push(tab)
-    },
+    }
   },
-  created () {
+  created() {
     this.$on('nui:add-tab', this.addTab)
   },
-  mounted () {
+  mounted() {
     if (this.defaultTab) this.currentTab = this.defaultTab
     this.$emit('nui:set-tab', this.tabTitles[this.currentTab])
   },
-  destroyed () {
+  destroyed() {
     this.$off('nui:add-tab')
   }
 }
