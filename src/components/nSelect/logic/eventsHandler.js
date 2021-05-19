@@ -1,9 +1,6 @@
 export default {
   methods: {
     async handleClickOnSelect() {
-      const selectElement = this.$refs[this.selectRefName]
-
-      selectElement.focus()
       this.showOptions = !this.showOptions
 
       if (this.enableSearchInput && !this.enableNativeSelect)

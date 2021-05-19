@@ -157,6 +157,12 @@ export default {
   watch: {
     showSearchInput(value) {
       if (value) this.focusSearchInput()
+    },
+    async showOptions(value) {
+      if (!value) return
+      const selectElement = this.$refs[this.selectRefName]
+
+      await this.$nextTick(() => selectElement.focus())
     }
   },
   data: () => ({

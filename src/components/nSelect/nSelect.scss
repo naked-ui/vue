@@ -77,20 +77,8 @@
         text-shadow: 0 0 0 #000;
       }
 
-      option,
-      option:is(:active, :focus, :hover) {
-        appearance: none;
-        outline: none;
-        border: none;
-        display: none;
-
-        &:-moz-focusring {
-          color: transparent;
-          text-shadow: 0 0 0 #000;
-        }
-      }
-
       &[multiple='multiple'] {
+        overflow-y: hidden;
         option {
           visibility: hidden;
           pointer-events: none;
@@ -100,6 +88,11 @@
       &:-moz-focusring {
         color: transparent;
         text-shadow: 0 0 0 #000;
+      }
+
+      &:focus {
+        outline: -webkit-focus-ring-color auto 1px;
+        outline-offset: 0px;
       }
     }
 
