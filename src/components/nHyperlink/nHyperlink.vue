@@ -1,16 +1,11 @@
 <template>
-  <component
-    :is="tag"
-    v-bind="attrs"
-    :target="target"
-    class="hyperlink"
-  >
+  <component :is="tag" v-bind="attrs" :target="target" class="hyperlink">
     <slot />
   </component>
 </template>
 
 <script>
-import hrefIsExternalMixin from '../../utils/hrefIsExternal'
+import hrefIsExternalMixin from '@/utils/hrefIsExternal'
 
 export default {
   name: 'nHyperlink',
@@ -28,17 +23,18 @@ export default {
     }
   },
   computed: {
-    tag () {
+    tag() {
       if (!this.href) return
       if (this.hrefIsExternal) return 'a'
       else return 'router-link'
     },
-    attrs () {
+    attrs() {
       if (!this.href) return
-      if (this.hrefIsExternal) return {
-        href: this.href,
-        rel: 'noreferrer'
-      }
+      if (this.hrefIsExternal)
+        return {
+          href: this.href,
+          rel: 'noreferrer'
+        }
       else return { to: this.href }
     }
   }

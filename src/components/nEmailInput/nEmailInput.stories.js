@@ -1,79 +1,15 @@
 import nEmailInput from './nEmailInput.vue'
 
+import stateArgTypes from '../../../.storybook/utils/argTypes/stateArgTypes.js';
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import styleArgTypes from '../../../.storybook/utils/argTypes/styleArgTypes.js';
+import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js';
+const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes }
+
 export default {
   title: 'Form/Input/EmailInput',
   component: nEmailInput,
-  argTypes: {
-    autocorrect: {
-      defaultValue: null,
-      description: '`autocorrect` prop is Safari only'
-    },
-    customMessages: {
-      control: 'object'
-    },
-    rules: {
-      control: 'array'
-    },
-    name: {
-      defaultValue: 'email-input-name',
-      description: '`name` prop is required'
-    },
-    id: {
-      defaultValue: 'email-input-id',
-      description: '`id` prop is required'
-    },
-    title: {
-      defaultValue: 'email-input-title'
-    },
-    label: {
-      defaultValue: 'Label text'
-    },
-    placeholder: {
-      defaultValue: 'Placeholder text'
-    },
-    pattern: {
-      control: 'text'
-    },
-    required: {
-      control: 'boolean'
-    },
-    disabled: {
-      control: 'boolean'
-    },
-    autofocus: {
-      control: 'boolean'
-    },
-    readonly: {
-      control: 'boolean'
-    },
-    counterEnabled: {
-      defaultValue: false
-    },
-    validationEnabled: {
-      control: 'boolean',
-      defaultValue: true
-    },
-    colorValid: {
-      control: 'color'
-    },
-    colorInvalid: {
-      control: 'color'
-    },
-    height: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    }
-  }
+  argTypes: customArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
@@ -98,20 +34,28 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  gap: 8,
-  height: 48,
-  width: '280px',
-  padding: '0 12px',
-  autofocus: false,
-  disabled: false,
-  outlineWidth: '2px',
-  // customMessages: { valueMissing: 'Not empty!' },
+  label: 'Email input label',
+  placeholder: 'Email input placeholder',
+  name: 'email-input-name',
+  id: 'email-input-id',
+  title: 'email-input-title',
+  pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$',
+  // customMessages: {
+  //   valueMissing: {
+  //     text: 'Value is required!',
+  //     color: 'magenta'
+  //   }
+  // },
   rules: [
     (value) =>
       !value ||
       value.length > 2 ||
       'This is custom rule message: field not required, but min 3 chars!'
   ],
-  // pattern: '*'
-  pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
+  height: '48px',
+  width: '280px',
+  gap: '8px',
+  padding: '10px',
+  borderWidth: '2px',
+  borderStyle: 'solid',
 }

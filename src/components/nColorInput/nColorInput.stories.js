@@ -1,73 +1,15 @@
 import nColorInput from './nColorInput.vue'
 
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+import stateArgTypes from '../../../.storybook/utils/argTypes/stateArgTypes.js';
+import styleArgTypes from '../../../.storybook/utils/argTypes/styleArgTypes.js';
+import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js';
+const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes };
+
 export default {
   title: 'Form/Input/ColorInput',
   component: nColorInput,
-  argTypes: {
-    customMessages: {
-      control: 'object'
-    },
-    name: {
-      defaultValue: 'color-input-name',
-      description: '`name` prop is required'
-    },
-    id: {
-      defaultValue: 'color-input-id',
-      description: '`id` prop is required'
-    },
-    title: {
-      defaultValue: 'color-input-title'
-    },
-    label: {
-      defaultValue: 'Label text'
-    },
-    placeholder: {
-      defaultValue: '#1b2b3c'
-    },
-    pattern: {
-      control: 'text',
-      defaultValue: '/0x[\da-f]/i'
-    },
-    required: {
-      control: 'boolean'
-    },
-    disabled: {
-      control: 'boolean'
-    },
-    autofocus: {
-      control: 'boolean'
-    },
-    readonly: {
-      control: 'boolean'
-    },
-    counterEnabled: {
-      defaultValue: false
-    },
-    validationEnabled: {
-      control: 'boolean',
-      defaultValue: true
-    },
-    colorValid: {
-      control: 'color'
-    },
-    colorInvalid: {
-      control: 'color'
-    },
-    height: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 80
-      }
-    }
-  }
+  argTypes: customArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
@@ -91,16 +33,27 @@ const Template = (args, { argTypes }) => ({
 })
 
 export const Default = Template.bind({})
+
 Default.args = {
-  gap: 8,
-  height: 48,
+  label: 'Color input label',
+  placeholder: 'Color input placeholder',
+  name: 'color-name',
+  id: 'color-id',
+  title: 'color-title',
+  customMessages: {
+    patternMismatch: { text: 'Enter valid HEX value', color: 'magenta' },
+    tooShort: { text: 'Enter 6 characters HEX value', color: 'indigo' },
+  },
+  rules: [
+    (value) =>
+      !value ||
+      value.length > 2 ||
+      'This is custom rule message: field not required, but min 3 chars!'
+  ],
+  height: '48px',
   width: '96px',
-  padding: '0 12px',
-  autofocus: false,
-  disabled: false,
-  outlineWidth: '2px',
-  // customMessages: {
-  //   patternMismatch: { text: 'Enter valid HEX value', color: 'magenta' },
-  //   tooShort: { text: 'Enter 6 characters HEX value', color: 'indigo' }
-  // }
+  gap: '8px',
+  padding: '10px',
+  borderWidth: '2px',
+  borderStyle: 'solid'
 }

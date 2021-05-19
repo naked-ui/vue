@@ -1,14 +1,19 @@
 import nBadge from './nBadge.vue'
+import { color, backgroundColor, padding, borderRadius } from '../../../.storybook/utils/argTypes/styleArgTypes'
+
+const componentArgTypes = {
+  color,
+  backgroundColor,
+  padding,
+  borderRadius,
+  size: { control: 'text' },
+  badgeText: { control: 'text' }
+}
 
 export default {
   title: 'Helpers/Badge',
   component: nBadge,
-  argTypes: {
-    color: { control: 'color' },
-    background: { control: 'color' },
-    size: { control: 'range' },
-    badgeText: { control: 'text' }
-  }
+  argTypes: componentArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
@@ -24,10 +29,10 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({})
 
 Default.args = {
-  size: 24,
-  background: '#ff1100',
+  size: '24px',
+  backgroundColor: '#ff1100',
   color: '#fff',
-  padding: 6,
+  padding: '6px',
   badgeText: '123',
   borderRadius: '12px'
 }

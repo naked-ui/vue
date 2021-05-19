@@ -1,7 +1,7 @@
-.n-radio-group {
-  gap: var(--gap);
+.nui-radio-group {
+  gap: var(--spacing) !important;
 
-  .radio-input + .radio-input {
+  .nui-radio-input + .nui-radio-input {
     margin-top: var(--spacing, 0);
   }
 }

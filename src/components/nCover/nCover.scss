@@ -1,13 +1,13 @@
 @import 'sxcss';
 
-.n-cover {
+.nui-cover {
   display: flex;
   position: relative;
   padding: var(--padding);
   width: var(--width);
   height: var(--height);
   box-sizing: border-box;
-  
+
   &__background {
     z-index: -2;
     overflow: hidden;
@@ -22,7 +22,7 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
     }
   }
 
@@ -47,13 +47,12 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    
-    &-inner { 
+
+    &-inner {
       display: grid;
       place-content: var(--content-place-content);
     }
   }
-
 
   &__overlay {
     z-index: -1;

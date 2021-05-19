@@ -1,58 +1,49 @@
 <template>
-  <div
-    class="n-badge"
-    :style="style"
-  >
+  <div class="nui-badge" :style="style">
     <slot />
   </div>
 </template>
 
 <script>
-import styleVariables from '../../utils/styleVariables'
-import { borderRadius, size, fontSize, padding, background, color } from '../../utils/styleVariables/helpers/variables'
+import styleVariables from '@/utils/styleVariables'
+import styleProps from '@/utils/props/styleProps'
 
-const defaultStyleVariables = [
+import {
   borderRadius,
   size,
   fontSize,
   padding,
-  background,
+  backgroundColor,
+  color
+} from '@/utils/styleVariables/helpers/variables'
+
+const componentStyleVariables = [
+  borderRadius,
+  size,
+  fontSize,
+  padding,
+  backgroundColor,
   color
 ]
 
-export default {
-  props: {
-    baseClassname: {
-      type: String,
-      default: 'n-badge'
-    },
-    borderRadius: {
-      type: [String, Number],
-      default: '100%'
-    },
-    size: {
-      type: [String, Number]
-    },
-    background: {
-      type: String
-    },
-    color: {
-      type: String
-    },
-    fontSize: {
-      type: String
-    },
-    padding: {
-      type: [String, Number]
-    }
+const componentProps = {
+  baseClassname: {
+    type: String,
+    default: 'nui-badge'
   },
-  mixins: [styleVariables(defaultStyleVariables)],
+  ...styleProps,
+  size: {
+    type: [String, Number]
+  }
+}
+
+export default {
+  props: componentProps,
+  mixins: [styleVariables(componentStyleVariables)],
   computed: {
-    copmonentClasses () {
-      return [
-        this.baseClassname
-      ]
-    },
+    copmonentClasses() {
+      return [this.baseClassname]
+    }
   }
 }
 </script>
