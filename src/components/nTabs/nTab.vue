@@ -29,12 +29,15 @@ export default {
   data: () => ({
     show: false
   }),
+  methods: {
+    setTab(label) {
+      if (label === this.label) this.show = true
+      else this.show = false
+    }
+  },
   created () {
     this.$parent.$emit('nui:add-tab', this.label)
-    this.$parent.$on('nui:set-tab', e => {
-      if (e === this.label) this.show = true
-      else this.show = false
-    })
+    this.$parent.$on('nui:set-tab', e => this.setTab(e))
   }
 }
 </script>

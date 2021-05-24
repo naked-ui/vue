@@ -104,6 +104,7 @@ export default {
       this.$emit('nui:set-tab', this.tabTitles[index])
     },
     addTab(tab) {
+      if (this.slotTabs.includes(tab)) return
       this.slotTabs.push(tab)
     }
   },
