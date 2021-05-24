@@ -4,8 +4,8 @@ const prepareExtendedValue = (target) =>
   target.dataset.value && target.dataset.value.includes(',')
     ? target.dataset.value.split(',')
     : target.dataset.value.length > 0
-    ? [target.dataset.value]
-    : []
+      ? [target.dataset.value]
+      : []
 
 const matchingTree = {
   multi: ($props) => $props['multiple'],
@@ -14,16 +14,6 @@ const matchingTree = {
 }
 
 export default {
-  props: {
-    minimum: {
-      type: [Number, String],
-      required: false
-    },
-    maximum: {
-      type: [Number, String],
-      required: false
-    }
-  },
   mixins: [formFieldValidations],
   watch: {
     async showOptions(value) {
@@ -37,16 +27,16 @@ export default {
   },
   computed: {
     includedRules() {
-      if (!this.minimum || !this.maximum) return []
+      if (!this.min || !this.max) return []
 
       const minimalOptions = {
-        rule: (val) => val && !(val.length >= this.minimum),
-        text: `You have to select minimum ${this.minimum} options.`,
+        rule: (val) => val && !(val.length >= this.min),
+        text: `You have to select minimum ${this.min} options.`,
         forType: 'multi'
       }
       const maximumOptions = {
-        rule: (val) => val && !(val.length <= this.maximum),
-        text: `You have to select maximum ${this.maximum} options.`,
+        rule: (val) => val && !(val.length <= this.max),
+        text: `You have to select maximum ${this.max} options.`,
         forType: 'multi'
       }
 
