@@ -49,16 +49,16 @@ const Template = (args, { argTypes }) => ({
     selectValue: null,
     validationRules: [
       { rule: (val) => !val, text: 'This form field is required.' },
-      {
-        rule: (val) => val && !(val.length > 1),
-        text: 'You have to select minimum 2 options.',
-        forType: 'multi'
-      },
-      {
-        rule: (val) => val && !(val.length < 3),
-        text: 'You have to select maximum 3 options.',
-        forType: 'multi'
-      }
+      // {
+      //   rule: (val) => val && !(val.length > 1),
+      //   text: 'You have to select minimum 2 options.',
+      //   forType: 'multi'
+      // },
+      // {
+      //   rule: (val) => val && !(val.length < 3),
+      //   text: 'You have to select maximum 3 options.',
+      //   forType: 'multi'
+      // }
     ]
   }),
   template: `

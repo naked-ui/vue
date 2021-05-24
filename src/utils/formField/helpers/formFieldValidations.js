@@ -26,10 +26,14 @@ export default {
   },
   methods: {
     validateCustomRules(target, extendedValue) {
+      const customRules = this.includedRules
+        ? [...this.rules, ...this.includedRules]
+        : this.rules
       const currentErrors = []
-      // validate custom rules
-      // TODO use `this.value` to allow validate non-primitive values
-      for (const rule of this.rules) {
+
+      console.log(customRules)
+      
+      for (const rule of customRules) {
         const {
           text: content,
           color = this.colorInvalid,
@@ -41,9 +45,13 @@ export default {
         const value = extendedValue
           ? extendedValue(target)
           : target.dataset.value || target.value
+        
+        console.log(value)
 
         if (rule.rule(value)) currentErrors.push({ content, color })
       }
+      
+      console.log(currentErrors)
 
       this.validationMessages = currentErrors
       if (currentErrors.length) target.setCustomValidity(currentErrors[0])
