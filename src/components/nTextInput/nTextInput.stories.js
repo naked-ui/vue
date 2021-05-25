@@ -48,7 +48,7 @@ Default.args = {
   title: 'text-input-title',
   label: 'Text input label',
   placeholder: 'Text input placeholder',
-  autocorrect: false,
+  autocorrect: "off",
   // customMessages: { valueMissing: 'Not empty!' },
   rules: [
     {
