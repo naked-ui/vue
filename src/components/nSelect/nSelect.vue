@@ -29,6 +29,7 @@
           :readonly="readonly"
           :ref="selectRefName"
           :multiple="multiple"
+          @invalid="onInvalid"
         >
           <!-- Fake placeholder for native select -->
           <option v-if="!selected" value="" selected disabled>
