@@ -13,6 +13,7 @@
         validateFormField($event)
       "
       @blur.capture="validateFormField"
+      @keyup="checkInputMaxLength"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
@@ -60,7 +61,7 @@ export default {
   computed: {
     componentClasses() {
       return [this.baseClassname]
-    }
+    },
   }
 }
 </script>

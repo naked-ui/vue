@@ -11,6 +11,7 @@
         validateFormField($event)
       "
       @blur.capture="validateFormField"
+      @keyup="checkInputMaxLength"
       :autofocus="autofocus"
       :autocorrect="autocorrect"
       :disabled="disabled"
