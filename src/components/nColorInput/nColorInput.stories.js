@@ -41,14 +41,14 @@ Default.args = {
   id: 'color-id',
   title: 'color-title',
   customMessages: {
-    patternMismatch: { text: 'Enter valid HEX value', color: 'magenta' },
-    tooShort: { text: 'Enter 6 characters HEX value', color: 'indigo' },
+    patternMismatch: { text: 'Enter valid HEX value' },
+    tooShort: { text: 'Enter 6 characters HEX value' },
   },
   rules: [
-    (value) =>
-      !value ||
-      value.length > 2 ||
-      'This is custom rule message: field not required, but min 3 chars!'
+    {
+      rule: (value) => !!value && value.length < 3,
+      text: 'This is custom rule message: field not required, but min 3 chars!'
+    },
   ],
   height: '48px',
   width: '96px',

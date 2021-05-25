@@ -48,12 +48,16 @@ Default.args = {
   title: 'text-input-title',
   label: 'Text input label',
   placeholder: 'Text input placeholder',
-  autocorrect: false,
+  autocorrect: "off",
   // customMessages: { valueMissing: 'Not empty!' },
   rules: [
-    (value) =>
-      !value ||
-      value.includes('Naked UI') ||
-      'Value doesn\'t include \"Naked UI\"'
+    {
+      rule: (value) => !value,
+      text: 'Value is missing.'
+    },
+    {
+      rule: (value) => !value.includes('Naked UI'),
+      text: 'Value doesn\'t include \"Naked UI\"'
+    },
   ]
 }

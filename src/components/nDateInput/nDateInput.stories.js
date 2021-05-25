@@ -46,7 +46,6 @@ Default.args = {
   customMessages: {
     valueMissing: {
       text: 'Value is required!',
-      color: 'magenta'
     }
   },
   gap: '8px',

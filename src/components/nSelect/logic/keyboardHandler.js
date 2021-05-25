@@ -11,7 +11,7 @@ export default {
       this.closeOptions()
     },
     handleKeyupEnter() {
-      if (this.enableMultiSelect) return this.handleMultiSelect(this.candidate)
+      if (this.multiple) return this.handleMultiSelect(this.candidate)
       this.setSelected(this.candidate.value)
       this.closeOptions()
     },

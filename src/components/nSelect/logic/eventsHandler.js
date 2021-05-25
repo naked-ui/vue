@@ -15,7 +15,7 @@ export default {
       await this.$nextTick(() => this.$refs[this.optionsRefName].focus())
     },
     handleClickOnOption(option) {
-      if (this.enableMultiSelect) return this.handleMultiSelect(option)
+      if (this.multiple) return this.handleMultiSelect(option)
       this.setSelected(option.value)
       this.closeOptions()
     },

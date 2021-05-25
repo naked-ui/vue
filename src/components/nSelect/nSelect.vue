@@ -16,12 +16,20 @@
           :aria-hidden="!showOptions"
           v-on="listeners"
           v-model="dummySelected"
+          :data-value="dummySelected"
           :tabindex="nativeTabindex"
           :id="uiElementID"
           :disabled="disabled"
           :nui-validation="validationEnabled"
-          @blur="(e) => (enableNativeSelect ? validateFormField(e) : null)"
+          @blur.capture="
+            (e) => (enableNativeSelect ? validateFormField(e) : null)
+          "
+          @change="validateFormField"
           :required="required"
+          :readonly="readonly"
+          :ref="selectRefName"
+          :multiple="multiple"
+          @invalid="onInvalid"
         >
           <!-- Fake placeholder for native select -->
           <option v-if="!selected" value="" selected disabled>
@@ -47,7 +55,7 @@
         <div
           class="nui-select__select--multiselect"
           v-show="!searchInputValue.length"
-          v-if="enableMultiSelect"
+          v-if="multiple"
         >
           <span v-if="!selected || !selected.length">
             {{ multiSelectPlaceholder }}
@@ -151,8 +159,11 @@ export default {
     showSearchInput(value) {
       if (value) this.focusSearchInput()
     },
-    showOptions(value) {
-      if (!value) this.validateFormField()
+    async showOptions(value) {
+      if (!value) return
+      const selectElement = this.$refs[this.selectRefName]
+
+      await this.$nextTick(() => selectElement.focus())
     }
   },
   data: () => ({
@@ -181,7 +192,7 @@ export default {
       }
     },
     defaultPlaceholder() {
-      if (this.enableMultiSelect) {
+      if (this.multiple) {
         if (this.selected && this.selected.length) return ''
         else return this.multiSelectPlaceholder
       }
@@ -211,7 +222,7 @@ export default {
     },
     emitInput() {
       const toEmit =
-        this.enableOnlyValueEmit && !this.enableMultiSelect
+        this.enableOnlyValueEmit && !this.multiple
           ? this.selected.value
           : this.selected
 

@@ -42,7 +42,7 @@
         border-color: var(--color-invalid);
       }
 
-      &:not(:placeholder-shown):valid,
+      &:not(:placeholder-shown):valid:not([data-value=""]):valid,
       &:required:valid {
         border-color: var(--color-valid);
       }
