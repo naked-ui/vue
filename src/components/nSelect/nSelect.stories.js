@@ -46,24 +46,11 @@ const Template = (args, { argTypes }) => ({
     }
   },
   data: () => ({
-    selectValue: null,
-    validationRules: [
-      { rule: (val) => !val, text: 'This form field is required.' },
-      // {
-      //   rule: (val) => val && !(val.length > 1),
-      //   text: 'You have to select minimum 2 options.',
-      //   forType: 'multi'
-      // },
-      // {
-      //   rule: (val) => val && !(val.length < 3),
-      //   text: 'You have to select maximum 3 options.',
-      //   forType: 'multi'
-      // }
-    ]
+    selectValue: null
   }),
   template: `
     <form novalidate @submit.prevent="submit">
-      <nSelect v-bind="$props" v-model="selectValue" :rules="validationRules" />
+      <nSelect v-bind="$props" v-model="selectValue" />
       <input style="margin-top: 16px;" type="submit" value="submit">
       <pre>{{ selectValue }}</pre>
     </form>
@@ -107,5 +94,18 @@ Default.args = {
       name: 'Option 4',
       value: 'Option 4'
     }
+  ],
+  rules: [
+    { rule: (val) => !val, text: 'This form field is required.' }
+    // {
+    //   rule: (val) => val && !(val.length > 1),
+    //   text: 'You have to select minimum 2 options.',
+    //   forType: 'multi'
+    // },
+    // {
+    //   rule: (val) => val && !(val.length < 3),
+    //   text: 'You have to select maximum 3 options.',
+    //   forType: 'multi'
+    // }
   ]
 }
