@@ -12,7 +12,7 @@
 
   textarea,
   select,
-  input:is([type='text'], [type='email'], [type='tel'], [type='pasword'], [type='date'], [type='search'], [type='time'], [type='url']) {
+  input:is([type='text'], [type='email'], [type='tel'], [type='pasword'], [type='date'], [type='search'], [type='time'], [type='url'], [type='password']) {
     appearance: none;
     box-sizing: border-box;
     height: var(--height);
