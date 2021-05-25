@@ -30,8 +30,6 @@ export default {
         ? [...this.rules, ...this.includedRules]
         : this.rules
       const currentErrors = []
-
-      console.log(customRules)
       
       for (const rule of customRules) {
         const {
@@ -45,13 +43,9 @@ export default {
         const value = extendedValue
           ? extendedValue(target)
           : target.dataset.value || target.value
-        
-        console.log(value)
 
         if (rule.rule(value)) currentErrors.push({ content, color })
       }
-      
-      console.log(currentErrors)
 
       this.validationMessages = currentErrors
       if (currentErrors.length) target.setCustomValidity(currentErrors[0])
@@ -107,12 +101,12 @@ export default {
 
       const htmlValid = target.checkValidity() // triggers `invalid` input event
       // TODO custom rules not work on `submit`
-      // base validation passed
-      if (htmlValid) {
-        // check custom validation rules
-        this.validateCustomRules(target, extendedValue)
-      }
 
+      // base validation passed
+      if (htmlValid)
+        this.validateCustomRules(target, extendedValue)
+
+      
       console.dir(target.validity)
     },
     onInvalid(e) {
