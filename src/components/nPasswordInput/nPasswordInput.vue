@@ -35,11 +35,11 @@
       >
         {{ show ? 'Hide' : 'Show' }}
       </button>
-      <div
-        :class="`${componentClasses}__password-strength`"
-        :style="passwordStrength"
-      ></div>
     </div>
+    <div
+      :class="`${componentClasses}__password-strength`"
+      :style="passwordStrengthStyle"
+    />
     <nValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
@@ -49,10 +49,11 @@
 
 <script>
 import formField from '@/utils/formField/index.js'
+import passwordStrengthHandler from './logic/passwordStrengthHandler'
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 
 export default {
-  mixins: [formField()],
+  mixins: [formField(), passwordStrengthHandler],
   name: 'nPasswordInput',
   components: {
     nValidationAlerts
