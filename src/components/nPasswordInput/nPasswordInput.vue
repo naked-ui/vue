@@ -72,52 +72,6 @@ export default {
       if (this.show) return 'text'
       else return 'password'
     },
-    passwordStrength() {
-      const strongRegexp = new RegExp(
-        '^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$',
-        'g'
-      )
-      const mediumRegexp = new RegExp(
-        '^(?=.{4,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$',
-        'g'
-      )
-
-      const weakRegexp = new RegExp('(?=.{8,}).*', 'g')
-
-      const checkStrength = (value) => {
-        const styles = [
-          {
-            '--strength-width': '10%',
-            '--strength-color': 'red'
-          },
-          {
-            '--strength-width': '30%',
-            '--strength-color': 'red'
-          },
-          {
-            '--strength-width': '65%',
-            '--strength-color': 'orange'
-          },
-          {
-            '--strength-width': '100%',
-            '--strength-color': 'green'
-          }
-        ]
-
-        const strong = strongRegexp.test(value) ? 1 : 0
-        const medium = mediumRegexp.test(value) ? 1 : 0
-        const weak = weakRegexp.test(value) ? 1 : 0
-
-        return styles[strong + medium + weak]
-      }
-
-      return this.value
-        ? checkStrength(this.value)
-        : {
-            '--strength-width': '0%',
-            '--strength-color': 'red'
-          }
-    }
   },
   data: () => ({
     show: false
