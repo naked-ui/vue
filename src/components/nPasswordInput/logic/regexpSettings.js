@@ -28,12 +28,11 @@ const regexpStyles = {
   }
 }
 
-// const regexpMessages = {
-// TODO MESSAGES FOR EACH STRENGTH (0-3)
-// default - no input
-// 1 - at least 8 chars
-// 2 - at least 8 chars with big letters and numbers
-// 3 - at least 8 chars with big letters, numbers and special chars
-// }
+const regexpMessages = {
+  default: 'Password is missing small and big letters, numbers or special chars.',
+  1: 'Password is missing big letters, numbers or special chars.',
+  2: 'Password is missing big letters or special chars.',
+  3: ''
+}
 
-export { regexpLabels, regexpRules, regexpStyles }
+export { regexpLabels, regexpRules, regexpStyles, regexpMessages }
