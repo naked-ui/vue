@@ -170,6 +170,7 @@ export default {
       return [
         this.baseClassname,
         { 'nui-select--error': this.isError },
+        { 'nui-select--busy': this.busy },
         { 'nui-select--active': this.showOptions },
         { 'nui-select--search-active': this.showSearchInput },
         { 'nui-select--native-handler': this.enableNativeSelect }

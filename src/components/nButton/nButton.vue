@@ -54,7 +54,7 @@ import {
   fontSize
 } from '@/utils/styleVariables/helpers/variables'
 import hyperlinkProps from '@/utils/props/hyperlinkProps'
-import { disabled, busy } from '@/utils/props/stateProps'
+import stateProps from '@/utils/props/stateProps'
 import styleProps from '@/utils/props/styleProps'
 
 const componentStyleVariables = [
@@ -80,8 +80,7 @@ const componentProps = {
     type: String,
     default: 'button'
   },
-  disabled,
-  busy,
+  ...stateProps,
   buttonBusyText: {
     type: String
   },

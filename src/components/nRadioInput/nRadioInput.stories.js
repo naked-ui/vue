@@ -1,29 +1,34 @@
 import nRadioInput from './nRadioInput.vue'
 import nRadioGroup from './nRadioGroup.vue'
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
+
+const componentArgTypes = {
+  ...formFieldArgTypes
+}
 
 export default {
   title: 'Form/Input/RadioInput',
   component: nRadioInput,
-  argTypes: {
-    color: { control: 'color' },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 20
-      }
-    },
-    spacing: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 20
-      }
-    },
-    customMessages: {
-      control: 'object'
-    }
-  }
+  argTypes: formFieldArgTypes
+  // color: { control: 'color' },
+  // gap: {
+  //   control: {
+  //     type: 'range',
+  //     min: 0,
+  //     max: 20
+  //   }
+  // },
+  // // spacing: {
+  // //   control: {
+  // //     type: 'range',
+  // //     min: 0,
+  // //     max: 20
+  // //   }
+  // // },
+  // customMessages: {
+  //   control: 'object'
+  // }
+
 }
 
 const Template = (args, { argTypes }) => ({

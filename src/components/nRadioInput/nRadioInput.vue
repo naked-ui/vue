@@ -13,6 +13,7 @@
         :checked="isChecked"
         :value="value"
         :name="name"
+        :busy="busy"
         :nui-validation="validationEnabled"
         formnovalidate
       />{{ label }}</label
@@ -74,7 +75,10 @@ export default {
       )
     },
     componentClasses() {
-      return [this.baseClassname]
+      return [
+        this.baseClassname,
+        this.busy ? `${this.baseClassname}--busy` : ''
+      ]
     }
   },
   methods: {

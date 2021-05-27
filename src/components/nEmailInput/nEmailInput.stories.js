@@ -40,12 +40,6 @@ Default.args = {
   id: 'email-input-id',
   title: 'email-input-title',
   pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$',
-  // customMessages: {
-  //   valueMissing: {
-  //     text: 'Value is required!',
-  //     color: 'magenta'
-  //   }
-  // },
   rules: [
     (value) =>
       !value ||

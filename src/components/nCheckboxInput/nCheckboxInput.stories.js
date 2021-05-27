@@ -1,29 +1,11 @@
 import nCheckboxInput from './nCheckboxInput.vue'
 import nCheckboxGroup from './nCheckboxGroup.vue'
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes'
 
 export default {
   title: 'Form/Input/CheckboxInput',
   component: nCheckboxInput,
-  argTypes: {
-    color: { control: 'color' },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 20
-      }
-    },
-    spacing: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 20
-      }
-    },
-    customMessages: {
-      control: 'object'
-    }
-  }
+  argTypes: formFieldArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
@@ -41,20 +23,13 @@ export const Default = Template.bind({})
 Default.argTypes = {
   spacing: { table: { disable: true } }
 }
+
 Default.args = {
-  url: 'https://naked-ui.org/',
-  id: 'checkbox-input',
-  name: 'checkbox-input',
-  label: 'Label text',
-  // customMessages: {
-  //   valueMissing: {
-  //     text: 'Value is required!',
-  //     color: 'magenta'
-  //   }
-  // },
-  gap: 8,
-  validationEnabled: true,
-  required: true
+  label: 'Checkbox input label',
+  name: 'email-input-name',
+  id: 'email-input-id',
+  title: 'email-input-title',
+  gap: '8px'
 }
 
 const GroupTemplate = (args, { argTypes }) => ({
@@ -83,8 +58,3 @@ const GroupTemplate = (args, { argTypes }) => ({
 })
 
 export const CheckboxGroup = GroupTemplate.bind({})
-
-CheckboxGroup.args = {
-  ...Default.args,
-  spacing: 12
-}
