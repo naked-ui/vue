@@ -1,9 +1,7 @@
 <template>
-  <Transition mode="out-in" name="fade-in">
-      <div v-show="show" :class="`${componentClasses}__content`">
-        <slot />
-      </div>
-  </Transition>
+  <div v-show="show" :class="`${baseClassname}__tab`">
+    <slot />
+  </div>
 </template>
 
 <script>
@@ -12,19 +10,16 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-tabs'
+      default: 'nui-tabs'
     },
     label: {
       type: String,
       required: true
-    }
-  },
-  computed: {
-    componentClasses () {
-      return [
-        this.baseClassname,
-      ]
     },
+    contentPadding: {
+      type: [Number, String],
+      default: ''
+    }
   },
   data: () => ({
     show: false
@@ -35,13 +30,9 @@ export default {
       else this.show = false
     }
   },
-  created () {
+  created() {
     this.$parent.$emit('nui:add-tab', this.label)
-    this.$parent.$on('nui:set-tab', e => this.setTab(e))
+    this.$parent.$on('nui:set-tab', (e) => this.setTab(e))
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

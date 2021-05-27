@@ -1,81 +1,61 @@
-.n-tabs {
-    width: var(--width);
-    display: flex;
+.nui-tabs {
+  width: var(--width);
+  display: flex;
 
-    &.horizontal {
-        flex-direction: column;
+  &:not(.nui-tabs--vertical) {
+    flex-direction: column;
 
-        .n-tabs__buttons {
-            display: flex;
-            flex-direction: row;
-
-            button {
-                width: calc(100% / var(--tab-count));
-                padding: var(--tab-padding);
-                border-bottom: 2px solid #333;
-
-                &.active {
-                    border-bottom: 2px solid rgb(17, 0, 255);
-                }
-            }
-        }
+    .nui-tabs__controls {
+      display: flex;
+      flex-direction: row;
     }
 
-    &.vertical {
-        flex-direction: row;
+    .nui-tabs__control {
+      padding: var(--control-padding);
+      border-bottom: 2px solid transparent;
 
-        .n-tabs__buttons {
-            display: flex;
-            flex-direction: column;
-            white-space: nowrap;
+      &--active {
+        border-bottom: 2px solid #333;
+      }
+    }
+  }
 
-            button {
-                border-right: 2px solid #333;
-                padding: var(--tab-padding);
+  &--vertical {
+    flex-direction: row;
 
-                &.active {
-                    border-right: 2px solid rgb(17, 0, 255);
-                }
-            }
-        }
+    .nui-tabs__controls {
+      display: flex;
+      flex-direction: column;
+      white-space: nowrap;
     }
 
-    &__buttons {
-        button {
-            font-size: inherit;
-            background: none;
-            border: none;
-            padding: 0;
-            margin: 0;
+    .nui-tabs__control {
+      border-right: 2px solid transparent;
+      padding: var(--control-padding);
 
-            &:focus {
-                outline: none;
-            }
-        }
+      &--active {
+        border-right: 2px solid #333;
+      }
     }
+  }
 
-    &__wrapper {
-        position: relative;
-        width: 100%;
+  &__controls {
+    button {
+      font-size: inherit;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+
+      &:focus {
+        outline: none;
+      }
     }
+  }
 
-    &__content {
-        position: absolute;
-        font-size: inherit;
-        width: 100%;
-        padding: var(--content-padding);
-    }
-}
-
-.fade-in-enter-active {
-    transition: opacity 0.15s cubic-bezier(0.55, 0.085, 0.68, 0.53);
-}
-
-.fade-in-leave-active {
-    transition: opacity 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.fade-in-enter,
-.fade-in-leave-to {
-    opacity: 0;
+  &__tab {
+    font-size: inherit;
+    width: 100%;
+    padding: var(--tab-padding);
+  }
 }

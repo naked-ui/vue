@@ -1,8 +1,11 @@
 <template>
-  <div :class="[componentClasses, currentDirection]" :style="[style, tabCount]">
-    <div :class="`${componentClasses}__buttons`">
+  <div :class="componentClasses" :style="style">
+    <div :class="`${baseClassname}__controls`">
       <button
-        :class="{ active: $index === currentTab }"
+        :class="[
+          'nui-tabs__control',
+          { 'nui-tabs__control--active': $index === currentTab }
+        ]"
         v-for="(title, $index) in tabTitles"
         :key="$index"
         @click="changeTab($index)"
@@ -10,18 +13,7 @@
         {{ title }}
       </button>
     </div>
-    <div :class="`${componentClasses}__wrapper`">
-      <template v-if="!$slots.default">
-        <Transition mode="out-in" name="fade-in">
-          <div :class="`${componentClasses}__content`" :key="currentTabContent">
-            {{ currentTabContent }}
-          </div>
-        </Transition>
-      </template>
-      <template v-else>
-        <slot />
-      </template>
-    </div>
+    <slot />
   </div>
 </template>
 
@@ -31,8 +23,8 @@ import { width } from '../../utils/styleVariables/helpers/variables'
 
 const defaultStyleVariables = [
   width,
-  { name: 'tabPadding', type: 'size' },
-  { name: 'contentPadding', type: 'size' }
+  { name: 'controlPadding', type: 'size' },
+  { name: 'tabPadding', type: 'size' }
 ]
 
 export default {
@@ -41,63 +33,44 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-tabs'
+      default: 'nui-tabs'
     },
-    horizontal: {
+    vertical: {
       type: Boolean,
-      default: true
-    },
-    items: {
-      type: Array,
-      required: false
+      default: false
     },
     defaultTab: {
       type: Number,
       default: 0
     },
-    width: {
+    controlPadding: {
       type: [Number, String],
-      default: '250px'
+      default: ''
     },
     tabPadding: {
       type: [Number, String],
-      default: '2px 6px'
+      default: ''
     },
-    contentPadding: {
+    width: {
       type: [Number, String],
-      default: '2px 2px'
-    }
-  },
-  computed: {
-    componentClasses() {
-      return [this.baseClassname]
-    },
-    tabTitles() {
-      if (this.slotTabs && this.slotTabs.length) return this.slotTabs
-      if (!this.items) return
-
-      return this.items.map((el) => el.title)
-    },
-    tabContents() {
-      if (!this.items) return
-
-      return this.items.map((el) => el.content)
-    },
-    tabCount() {
-      return { '--tab-count': this.items ? this.items.length : 1 }
-    },
-    currentTabContent() {
-      if (!this.tabContents) return ''
-      return this.tabContents[this.currentTab]
-    },
-    currentDirection() {
-      return this.horizontal ? 'horizontal' : 'vertical'
+      default: ''
     }
   },
   data: () => ({
     currentTab: 0,
     slotTabs: []
   }),
+  computed: {
+    componentClasses() {
+      return [this.baseClassname, this.tabsDirection]
+    },
+    tabTitles() {
+      if (this.slotTabs && this.slotTabs.length) return this.slotTabs
+    },
+    tabsDirection() {
+      return this.vertical ? 'nui-tabs--vertical' : ''
+    }
+  },
   methods: {
     changeTab(index) {
       this.currentTab = index
