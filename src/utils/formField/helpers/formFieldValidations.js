@@ -13,7 +13,10 @@ export default {
   },
   data() {
     return {
-      validationMessages: []
+      validationMessages: [],
+      nui: {
+        '$$dirty': false
+      }
     }
   },
   computed: {
@@ -96,6 +99,7 @@ export default {
     validateFormField(e, extendedValue = null) {
       if (!this.validationEnabled) return
 
+      this.setDirty()
       const { target } = e
       this.resetValidation(e)
 
@@ -106,11 +110,13 @@ export default {
       if (htmlValid)
         this.validateCustomRules(target, extendedValue)
 
-      
       console.dir(target.validity)
     },
     onInvalid(e) {
       this.setValidity(e)
+    },
+    setDirty() {
+      this.nui.$$dirty = true
     }
-  }
+  },
 }
