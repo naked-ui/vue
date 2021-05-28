@@ -14,6 +14,7 @@
         :value="value"
         :name="name"
         :nui-validation="validationEnabled"
+        :data-dirty="nui.$$dirty"
       />
       {{ label }}
     </label>

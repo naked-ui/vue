@@ -15,6 +15,7 @@
         :name="name"
         :nui-validation="validationEnabled"
         formnovalidate
+        :data-dirty="nui.$$dirty"
       />{{ label }}</label
     >
     <nValidationAlerts

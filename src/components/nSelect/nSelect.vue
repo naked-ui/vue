@@ -16,7 +16,6 @@
           :aria-hidden="!showOptions"
           v-on="listeners"
           v-model="dummySelected"
-          :data-value="dummySelected"
           :tabindex="nativeTabindex"
           :id="uiElementID"
           :disabled="disabled"
@@ -30,6 +29,7 @@
           :ref="selectRefName"
           :multiple="multiple"
           @invalid="onInvalid"
+          :data-dirty="nui.$$dirty"
         >
           <!-- Fake placeholder for native select -->
           <option v-if="!selected" value="" selected disabled>
@@ -107,7 +107,6 @@
             }"
             v-for="option in filteredOptions"
             :key="option.value"
-            :data-value="option.value"
             @click.stop="handleClickOnOption(option)"
           >
             <span class="nui-select-option__inner">

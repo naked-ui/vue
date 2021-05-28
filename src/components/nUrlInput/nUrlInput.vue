@@ -26,6 +26,7 @@
       :minlength="minlength"
       :maxlength="maxlength"
       autocorrect="off"
+      :data-dirty="nui.$$dirty"
     />
     <nValidationAlerts
       v-if="validationMessages.length > 0"
