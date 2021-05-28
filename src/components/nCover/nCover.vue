@@ -1,12 +1,6 @@
 <template>
-  <div
-    :class="componentClasses"
-    :style="style"
-  >
-    <div
-      v-if="$slots['background']"
-      :class="`${componentClasses}__background`"
-    >
+  <div :class="componentClasses" :style="style">
+    <div v-if="$slots['background']" :class="`${componentClasses}__background`">
       <slot name="background" />
     </div>
     <nCoverBackground
@@ -41,17 +35,20 @@
 
 <script>
 import nCoverBackground from './nCoverBackground'
-import styleVariables from '../../utils/styleVariables'
-import { height, width, padding } from '../../utils/styleVariables/helpers/variables'
+import styleVariables from '@/utils/styleVariables'
+import {
+  height,
+  width,
+  padding
+} from '@/utils/styleVariables/helpers/variables'
 
-
-const defaultStyleVariables = [height, width, padding]
+const componentStyleVariables = [height, width, padding]
 
 export default {
   components: {
     nCoverBackground
   },
-  mixins: [styleVariables(defaultStyleVariables)],
+  mixins: [styleVariables(componentStyleVariables)],
   props: {
     hasOverlay: {
       type: Boolean,
@@ -63,7 +60,7 @@ export default {
     },
     overlayOpacity: {
       type: Number,
-      default: .3
+      default: 0.3
     },
     width: {
       type: String,
@@ -83,26 +80,24 @@ export default {
     },
     backgroundImage: {
       type: Object,
-      default () {
+      default() {
         return {}
       }
     },
     backgroundVideo: {
       type: Object,
-      default () {
+      default() {
         return {}
       }
     },
     baseClassname: {
       type: String,
-      default: 'n-cover'
+      default: 'nui-cover'
     }
   },
   computed: {
-    componentClasses () {
-      return [
-        this.baseClassname
-      ]
+    componentClasses() {
+      return [this.baseClassname]
     }
   }
 }

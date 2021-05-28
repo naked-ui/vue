@@ -1,6 +1,6 @@
 @import 'sxcss';
 
-.n-range-input {
+.nui-range-input {
   --fillDot: rgb(58, 58, 58);
   --fillRange: rgb(128, 128, 128);
   --fillBg: rgb(231, 231, 231);
@@ -31,7 +31,7 @@
     font-size: inherit;
   }
 
-  .n-range-input__wrap {
+  .nui-range-input__wrap {
     --d: var(--h);
     --r: calc(0.5 * var(--d));
     --uw: calc(var(--w) - var(--d));
@@ -73,7 +73,7 @@
     }
   }
 
-  .n-range-input__sr-only {
+  .nui-range-input__sr-only {
     position: absolute;
     clip-path: inset(50%);
   }
@@ -94,7 +94,7 @@
     pointer-events: none;
 
     &::-webkit-slider-runnable-track,
-    &::-moz-range-track  {
+    &::-moz-range-track {
       @include range-input-track;
     }
 

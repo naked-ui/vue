@@ -2,12 +2,12 @@
 
 @import 'sxcss';
 
-.n-badge {
+.nui-badge {
   border-radius: var(--border-radius);
   height: var(--size);
   min-width: var(--size);
   @include flex($place: center);
-  background: var(--background);
+  background-color: var(--background-color);
   color: var(--color);
   font-size: var(--font-size, 10px);
   padding: var(--padding);

@@ -1,57 +1,52 @@
 @import 'sxcss';
 
-.n-slider-carousel {
+.nui-slider-carousel {
   @include slider-carousel(
-    $base-classname: '.n-slider-carousel',
+    $base-classname: '.nui-slider-carousel',
     $navigation-enabled: true,
-
     $wrapper-height: 450px,
     $wrapper-width: 100%,
     $wrapper-max-width: 37.5rem,
-    $viewport-classname: '.n-slider-carousel__viewport',
+    $viewport-classname: '.nui-slider-carousel__viewport',
     $viewport-counter: true,
-
-    $item-classname: '.n-slider-carousel__item',
+    $item-classname: '.nui-slider-carousel__item',
     $item-flex: 0 0 100%,
     $item-width: 25%,
     $item-counter: true,
     $visible-items: var(--visible-items),
-
-    $navigation-classname: '.n-slider-carousel__navigation',
-
+    $navigation-classname: '.nui-slider-carousel__navigation',
     $pagination-enabled: true,
-    $pagination-classname: '.n-slider-carousel__pagination',
-    $pagination-list-classname: '.n-slider-carousel__pagination-list',
-    $pagination-item-classname: '.n-slider-carousel__pagination-item',
-    $pagination-input-classname: '.n-slider-carousel__pagination-input',
-
+    $pagination-classname: '.nui-slider-carousel__pagination',
+    $pagination-list-classname: '.nui-slider-carousel__pagination-list',
+    $pagination-item-classname: '.nui-slider-carousel__pagination-item',
+    $pagination-input-classname: '.nui-slider-carousel__pagination-input',
     $gap: 16px
   );
 
-  .n-slider-carousel__pagination-button {
+  .nui-slider-carousel__pagination-button {
     &:checked {
       background-color: #fff;
     }
   }
 
-  .n-slider-carousel__navigation {
+  .nui-slider-carousel__navigation {
     opacity: var(--navigation-initial-opacity);
-    transition: opacity .2s ease-out;
+    transition: opacity 0.2s ease-out;
   }
 
   &:hover {
-    .n-slider-carousel__navigation {
+    .nui-slider-carousel__navigation {
       opacity: 1;
     }
   }
 
-  .n-slider-carousel__pagination {
+  .nui-slider-carousel__pagination {
     opacity: var(--pagination-initial-opacity);
-    transition: opacity .2s ease-out;
+    transition: opacity 0.2s ease-out;
   }
 
   &:hover {
-    .n-slider-carousel__pagination {
+    .nui-slider-carousel__pagination {
       opacity: 1;
     }
   }

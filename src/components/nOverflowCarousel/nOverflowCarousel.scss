@@ -2,16 +2,16 @@
 
 $ref-name: 'overflow-carousel-item';
 
-
-.n-overflow-carousel {
+.nui-overflow-carousel {
   @include overflow-carousel(
-    $viewport-classname: '.n-overflow-carousel__viewport',
+    $viewport-classname: '.nui-overflow-carousel__viewport',
     $viewport-width: 100%,
     $gap: var(--items-gap),
     $viewport-padding: var(--viewport-padding),
-    $slide-classname: '.n-overflow-carousel__item',
+    $slide-classname: '.nui-overflow-carousel__item',
     $slide-width: var(--width),
     $slide-height: var(--height),
-    $snap: true  // Needs to be as CSS native as possible. Wanted to handle this via CSS Variables, but can't get boolean logic to enable/disable this via CSS Variables.
+    $snap: true
+      // Needs to be as CSS native as possible. Wanted to handle this via CSS Variables, but can't get boolean logic to enable/disable this via CSS Variables.
   );
 }

@@ -1,19 +1,18 @@
-[nui-namespace="nui"].toggle-input {
-
-  .toggle-input__label {
+.nui-toggle-input {
+  &__label {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
   }
 
-  .toggle-input__checkbox {
+  &__checkbox {
     opacity: 0;
     width: 0;
     height: 0;
   }
-  
-  .toggle-input__node {
+
+  &__node {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -21,33 +20,33 @@
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
     border-radius: 34px;
 
     &:before {
       position: absolute;
-      content: "";
+      content: '';
       height: 26px;
       width: 26px;
       left: 4px;
       bottom: 4px;
       background-color: white;
-      -webkit-transition: .4s;
-      transition: .4s;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
       border-radius: 50%;
     }
   }
 
-  .toggle-input__checkbox:checked + .toggle-input__node {
+  &__checkbox:checked + &__node {
     background-color: #000;
   }
 
-  .toggle-input__checkbox:focus + .toggle-input__node {
-    box-shadow: 0 0 1px #2196F3;
+  &__checkbox:focus + &__node {
+    box-shadow: 0 0 1px #2196f3;
   }
 
-  .toggle-input__checkbox:checked + .toggle-input__node:before {
+  &__checkbox:checked + &__node:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);

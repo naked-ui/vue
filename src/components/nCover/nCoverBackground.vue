@@ -13,14 +13,14 @@
         v-for="(image, index) in props.backgroundImage.sources"
         :key="index"
         v-bind="image"
-      >
+      />
       <img
         loading="lazy"
         decoding="async"
         style="content-visibility: auto"
         :src="props.backgroundImage.src"
         :alt="props.backgroundImage.alt"
-      >
+      />
     </picture>
     <video
       v-if="props.backgroundVideo && props.backgroundVideo.src"
@@ -36,7 +36,7 @@
         decoding="async"
         style="content-visibility: auto"
         v-bind="props.backgroundVideo"
-      >
+      />
     </video>
   </div>
 </template>
@@ -46,20 +46,20 @@ export default {
   props: {
     backgroundImage: {
       type: Object,
-      default () {
+      default() {
         return {}
       }
     },
     backgroundVideo: {
       type: Object,
-      default () {
+      default() {
         return {}
       }
     },
     baseClassname: {
       type: String,
-      default: 'n-cover'
+      default: 'nui-cover'
     }
-  },
+  }
 }
 </script>

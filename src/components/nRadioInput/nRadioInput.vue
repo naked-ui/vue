@@ -1,8 +1,8 @@
 <template>
-  <div class="n-radio-input" :style="style" :class="componentClasses">
-    <label class="n-radio-input__label" :disabled="disabled" :for="id">
+  <div class="nui-radio-input" :style="style" :class="componentClasses">
+    <label class="nui-radio-input__label" :disabled="disabled" :for="id">
       <input
-        class="n-radio-input__radio"
+        class="nui-radio-input__radio"
         type="radio"
         @invalid="$setValidity"
         @change="$validate"
@@ -25,14 +25,14 @@
 </template>
 
 <script>
-import formField from '../../utils/formField/index.js'
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
-import { color } from '../../utils/styleVariables/helpers/variables'
+import formField from '@/utils/formField/index.js'
+import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
+import { color } from '@/utils/styleVariables/helpers/variables'
 
-const customStyleVariables = [color]
+const componentStyleVariables = [color]
 
 export default {
-  mixins: [formField(customStyleVariables)],
+  mixins: [formField(componentStyleVariables)],
   name: 'nRadioInput',
   components: { nValidationAlerts },
   inject: {
@@ -43,7 +43,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-form-field'
+      default: 'nui-form-field'
     },
     // input attrs
     checked: {

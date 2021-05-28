@@ -1,7 +1,7 @@
 <template functional>
-  <div class="n-validation-alerts">
+  <div class="nui-validation-alerts">
     <span
-      class="n-validation-alert"
+      class="nui-validation-alert"
       v-for="(message, index) in props.validationMessages"
       :key="index"
       :style="`
