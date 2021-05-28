@@ -17,6 +17,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   methods: {
     submit(e) {
+      this.$emit('nui:on-form-submit')
       if (!e.target.checkValidity()) return
     }
   },
@@ -59,5 +60,6 @@ Default.args = {
       rule: (value) => !value.includes('Naked UI'),
       text: 'Value doesn\'t include \"Naked UI\"'
     },
-  ]
+  ],
+  required: true
 }

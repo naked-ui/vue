@@ -97,7 +97,7 @@ Default.args = {
     }
   ],
   rules: [
-    { rule: (val) => !val, text: 'This form field is required.' }
+    // { rule: (val) => !val, text: 'This form field is required.' }
     // {
     //   rule: (val) => val && !(val.length > 1),
     //   text: 'You have to select minimum 2 options.',
@@ -108,5 +108,6 @@ Default.args = {
     //   text: 'You have to select maximum 3 options.',
     //   forType: 'multi'
     // }
-  ]
+  ],
+  // required: true
 }

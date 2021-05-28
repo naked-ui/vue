@@ -17,6 +17,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   methods: {
     submit(e) {
+      this.$emit('nui:on-form-submit')
       if (!e.target.checkValidity()) return
     }
   },
@@ -58,4 +59,5 @@ Default.args = {
   padding: '10px',
   borderWidth: '2px',
   borderStyle: 'solid',
+  required: true
 }
