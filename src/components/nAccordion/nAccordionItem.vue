@@ -1,15 +1,15 @@
 <template>
-  <li :class="`${componentClasses}-item`">
+  <li :class="`${baseClassname}-item`">
     <div
-      :class="[`${componentClasses}-item__inner`, { open }]"
+      :class="[`${baseClassname}-item__inner`, { open }]"
       @click="open = !open"
     >
-      <span :class="`${componentClasses}-item__title`">
+      <span :class="`${baseClassname}-item__title`">
         <slot name="title" />
       </span>
       <nIcon
         class=""
-        :class="[`${componentClasses}-item__icon`, { open }]"
+        :class="[`${baseClassname}-item__icon`, { open }]"
         :size="12"
       >
         <svg
@@ -32,14 +32,14 @@
         </svg>
       </nIcon>
     </div>
-    <div :class="[`${componentClasses}-item__content`, { open }]">
+    <div :class="[`${baseClassname}-item__content`, { open }]">
       <slot name="text" />
     </div>
   </li>
 </template>
 
 <script>
-import nIcon from '../nIcon/nIcon'
+import nIcon from '@/components/nIcon/nIcon'
 
 export default {
   name: 'nAccordionitem',
@@ -47,7 +47,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-accordion'
+      default: 'nui-accordion'
     }
   },
   computed: {

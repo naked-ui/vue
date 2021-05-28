@@ -1,28 +1,25 @@
 <template>
   <div :class="componentClasses" :style="style">
-    <ul
-      :class="`${componentClasses}__items`"
-      v-if="areSlotsProvided || areItemsProvided"
-    >
-      <template v-if="areSlotsProvided">
+    <ul :class="`${baseClassname}__items`">
+      <template>
         <slot />
       </template>
-      <template v-else>
+      <!-- <template v-else>
         <li
-          :class="`${componentClasses}-item`"
+          :class="`${baseClassname}-item`"
           v-for="(item, $index) in accordionItems"
           :key="$index"
         >
           <div
-            :class="[`${componentClasses}-item__inner`, { open: item.open }]"
+            :class="[`${baseClassname}-item__inner`, { open: item.open }]"
             @click="item.open = !item.open"
           >
-            <span :class="`${componentClasses}-item__title`">
+            <span :class="`${baseClassname}-item__title`">
               {{ item.title }}
             </span>
             <nIcon
               class=""
-              :class="[`${componentClasses}-item__icon`, { open: item.open }]"
+              :class="[`${baseClassname}-item__icon`, { open: item.open }]"
               :size="12"
             >
               <svg
@@ -46,11 +43,11 @@
               </svg>
             </nIcon>
           </div>
-          <div :class="[`${componentClasses}-item__content`, { open: item.open }]">
+          <div :class="[`${baseClassname}-item__content`, { open: item.open }]">
             {{ item.text }}
           </div>
         </li>
-      </template>
+      </template> -->
     </ul>
   </div>
 </template>
@@ -60,10 +57,7 @@ import nIcon from '../nIcon/nIcon'
 import styleVariables from '../../utils/styleVariables'
 import { width } from '../../utils/styleVariables/helpers/variables'
 
-const defaultStyleVariables = [
-  width,
-  { name: 'itemHeight', type: 'size' }
-]
+const defaultStyleVariables = [width, { name: 'itemHeight', type: 'size' }]
 
 export default {
   name: 'nAccordion',
@@ -72,7 +66,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-accordion'
+      default: 'nui-accordion'
     },
     items: {
       type: Array,
@@ -90,13 +84,13 @@ export default {
   computed: {
     componentClasses() {
       return [this.baseClassname]
-    },
-    areSlotsProvided() {
-      return this.$slots && this.$slots.default
-    },
-    areItemsProvided() {
-      return this.items && this.items.length > 0
-    },
+    }
+    // areSlotsProvided() {
+    //   return this.$slots && this.$slots.default
+    // },
+    // areItemsProvided() {
+    //   return this.items && this.items.length > 0
+    // }
   },
   data: () => ({
     accordionItems: []
