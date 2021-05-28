@@ -30,7 +30,7 @@
       color: var(--color);
     }
 
-    &[nui-validation='true'] {
+    &[nui-validation='true'][data-dirty='true'] {
       &:not(:invalid) ~ &,
       &:not(:focus):required:invalid ~ & {
         display: none;
