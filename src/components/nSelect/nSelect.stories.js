@@ -42,6 +42,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   methods: {
     submit(e) {
+      this.$emit('nui:on-form-submit')
       if (!e.target.checkValidity()) return
     }
   },

@@ -119,4 +119,7 @@ export default {
       this.nui.$$dirty = true
     }
   },
+  mounted() {
+    this.$parent.$on('nui:on-form-submit', this.setDirty)
+  }
 }
