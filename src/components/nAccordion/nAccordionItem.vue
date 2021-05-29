@@ -1,62 +1,81 @@
 <template>
-  <li :class="`${baseClassname}-item`">
+  <li
+    :class="[
+      `${baseClassname}-item`,
+      active ? `${baseClassname}-item--active` : ''
+    ]"
+    :style="style"
+  >
+    <span :class="`${baseClassname}-item__title`" @click="active = !active">
+      <slot name="title" />
+    </span>
     <div
-      :class="[`${baseClassname}-item__inner`, { open }]"
-      @click="open = !open"
+      :class="[
+        `${baseClassname}-item__content`,
+        active ? `${baseClassname}-item__content--active` : ''
+      ]"
+      :id="uiElementID"
     >
-      <span :class="`${baseClassname}-item__title`">
-        <slot name="title" />
-      </span>
-      <nIcon
-        class=""
-        :class="[`${baseClassname}-item__icon`, { open }]"
-        :size="12"
-      >
-        <svg
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 256 256"
-          style="enable-background: new 0 0 256 256"
-          xml:space="preserve"
-        >
-          <g>
-            <g>
-              <polygon
-                points="225.813,48.907 128,146.72 30.187,48.907 0,79.093 128,207.093 256,79.093"
-              />
-            </g>
-          </g>
-        </svg>
-      </nIcon>
-    </div>
-    <div :class="[`${baseClassname}-item__content`, { open }]">
       <slot name="text" />
     </div>
   </li>
 </template>
 
 <script>
-import nIcon from '@/components/nIcon/nIcon'
+import styleVariables from '@/utils/styleVariables'
+import uuidMixin from '@/utils/uuid'
+
+const componentStyleVariables = [
+  { name: 'contentHeight', type: 'size' },
+  { name: 'contentPadding', type: 'size' },
+  { name: 'headingHeight', type: 'size' },
+  { name: 'headingPadding', type: 'size' }
+]
+
+const uuid = () => Math.random().toString(36).substr(2, 9)
 
 export default {
   name: 'nAccordionitem',
-  components: { nIcon },
+  mixins: [styleVariables(componentStyleVariables)],
   props: {
     baseClassname: {
       type: String,
       default: 'nui-accordion'
+    },
+    contentHeight: {
+      type: [String, Number],
+      default: '0'
+    },
+    contentPadding: {
+      type: [String, Number],
+      default: ''
+    },
+    titleHeight: {
+      type: [String, Number],
+      default: '100%'
+    },
+    titlePadding: {
+      type: [String, Number],
+      default: ''
     }
   },
   computed: {
     componentClasses() {
       return [this.baseClassname]
+    },
+    uiElementID() {
+      if (this.id) {
+        return `${this.id}_${uuid()}`
+      } else return `nui_${uuid()}`
+    },
+    contentHeight() {
+      this.contentHeight = document.getElementById(
+        this.uiElementID
+      ).clientHeight
     }
   },
   data: () => ({
-    open: false
+    active: false
   })
 }
 </script>

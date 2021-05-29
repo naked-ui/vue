@@ -1,47 +1,48 @@
-.nui-accordion {
-  width: var(--width);
+@import '@/styles/utils/chevron.scss';
 
-  &__items {
-    width: 100%;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
+.nui-accordion {
+  list-style: none;
+  margin: 0;
+  padding: var(--padding);
+  width: var(--width);
 
   &-item {
     width: 100%;
 
-    &__inner {
-      display: flex;
-      justify-content: space-between;
-
-      &.open {
-        padding-bottom: var(--padding-bottom);
+    &--active {
+      .nui-accordion-item__title::after {
+        transform: translateY(calc(-50% + 4px)) rotate(225deg);
       }
     }
 
     &__title {
+      display: flex;
+      justify-content: space-between;
       cursor: pointer;
       width: 100%;
-    }
+      position: relative;
 
-    &__icon {
-      transition: transform 0.2s;
-
-      &.open {
-        transform: rotate(-180deg);
+      &::after {
+        @include chevron;
+        right: 14px;
+        top: calc(50% - 3px);
+        transform: translateY(-50%) rotate(45deg);
+        transition: transform 0.1s ease-out;
+        transform-origin: center;
+        pointer-events: none;
       }
     }
 
     &__content {
       opacity: 0;
-      max-height: 0;
-      transition: opacity 0.2s, max-height 0.2s 0.08s;
+      &:not(.nui-accordion-item__content--active) {
+        max-height: 0;
+      }
+      transition: var(--transition);
 
-      &.open {
+      &--active {
         opacity: 1;
-        max-height: var(--item-height);
-        transition: opacity 0.2s 0.08s, max-height 0.2s;
+        max-height: var(--content-height);
       }
     }
   }
