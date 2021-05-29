@@ -9,10 +9,10 @@
 <script>
 import nIcon from '../nIcon/nIcon'
 import styleVariables from '@/utils/styleVariables'
-import { width, padding } from '@/utils/styleVariables/helpers/variables'
+import { maxWidth, padding } from '@/utils/styleVariables/helpers/variables'
 
 const componentStyleVariables = [
-  width,
+  maxWidth,
   padding,
   { name: 'transition', type: 'other' },
   { name: 'contentPadding', type: 'size' },
@@ -33,7 +33,7 @@ export default {
       type: Array,
       required: false
     },
-    width: {
+    maxWidth: {
       type: [Number, String],
       default: ''
     },

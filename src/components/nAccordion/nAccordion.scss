@@ -4,7 +4,7 @@
   list-style: none;
   margin: 0;
   padding: var(--padding);
-  width: var(--width);
+  max-width: var(--max-width);
 
   &-item {
     width: 100%;
