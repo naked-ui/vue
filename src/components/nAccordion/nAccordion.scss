@@ -13,6 +13,11 @@
       .nui-accordion-item__title::after {
         transform: translateY(calc(-50% + 4px)) rotate(225deg);
       }
+      .nui-accordion-item__content {
+        max-height: var(--content-height, 999px);
+        opacity: 1;
+        padding: var(--content-padding);
+      }
     }
 
     &__title {
@@ -21,6 +26,7 @@
       cursor: pointer;
       width: 100%;
       position: relative;
+      padding: var(--title-padding);
 
       &::after {
         @include chevron;
@@ -35,15 +41,8 @@
 
     &__content {
       opacity: 0;
-      &:not(.nui-accordion-item__content--active) {
-        max-height: 0;
-      }
+      max-height: 0;
       transition: var(--transition);
-
-      &--active {
-        opacity: 1;
-        max-height: var(--content-height);
-      }
     }
   }
 }

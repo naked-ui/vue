@@ -1,10 +1,8 @@
 <template>
   <ul :class="componentClasses" :style="style">
-    <!-- <ul :class="`${baseClassname}__items`"> -->
     <template>
       <slot />
     </template>
-    <!-- </ul> -->
   </ul>
 </template>
 
@@ -16,7 +14,10 @@ import { width, padding } from '@/utils/styleVariables/helpers/variables'
 const componentStyleVariables = [
   width,
   padding,
-  { name: 'transition', type: 'other' }
+  { name: 'transition', type: 'other' },
+  { name: 'contentPadding', type: 'size' },
+  { name: 'titleHeight', type: 'size' },
+  { name: 'titlePadding', type: 'size' }
 ]
 
 export default {
@@ -33,6 +34,10 @@ export default {
       required: false
     },
     width: {
+      type: [Number, String],
+      default: ''
+    },
+    padding: {
       type: [Number, String],
       default: ''
     },
