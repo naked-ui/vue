@@ -16,13 +16,14 @@ if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(ComponentLibrary)
 }
 
+export { nAccordion, nAccordionItem } from './components/nAccordion'
 export { nButton } from './components/nButton'
 export { nCover } from './components/nCover'
-export { nColorInput } from './components/nColorInput'
 export { nDateInput } from './components/nDateInput'
 export { nEmailInput } from './components/nEmailInput'
 export { nHyperlink } from './components/nHyperlink'
 export { nIcon } from './components/nIcon'
+export { nSelect } from './components/nSelect'
 export { nSliderCarousel, nSliderCarouselItem } from './components/nSliderCarousel'
 export { nOverflowCarousel, nOverflowCarouselItem } from './components/nOverflowCarousel'
 export { nTextarea } from './components/nTextarea'
