@@ -18,7 +18,7 @@ export default {
       if (this.customMessages.hasOwnProperty('valueMissing')) {
         return this.customMessages['valueMissing']
       }
-      return messages.valueMissing.default
+      return messages.valueMissing
     }
   },
   methods: {
