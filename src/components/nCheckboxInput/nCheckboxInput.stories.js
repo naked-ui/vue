@@ -29,8 +29,14 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { nCheckboxInput },
   props: Object.keys(argTypes),
+  methods: {
+    submit(e) {
+      this.$emit('nui:on-form-submit')
+      if (!e.target.checkValidity()) return
+    }
+  },
   template: `
-    <form novalidate @submit.prevent="e => {if (!e.target.checkValidity()) return}">
+    <form novalidate @submit.prevent="submit">
       <nCheckboxInput v-bind="$props" />
       <input style="margin-top: 16px;" type="submit" value="submit">
     </form>
@@ -65,8 +71,14 @@ const GroupTemplate = (args, { argTypes }) => ({
       val: []
     }
   },
+  methods: {
+    submit(e) {
+      this.$emit('nui:on-form-submit')
+      if (!e.target.checkValidity()) return
+    }
+  },
   template: `
-    <form novalidate @submit.prevent="e => {if (!e.target.checkValidity()) return}">
+    <form novalidate @submit.prevent="submit">
       <nCheckboxGroup v-bind="$props" v-model="val">
         <nCheckboxInput v-for="n in 3"
           name="chbxs"
