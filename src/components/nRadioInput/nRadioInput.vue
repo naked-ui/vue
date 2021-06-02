@@ -27,20 +27,14 @@
 
 <script>
 import formField from '@/utils/formField/index.js'
-import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
+import validationHandler from './logic/validationHandler'
 import { color } from '@/utils/styleVariables/helpers/variables'
 
 const componentStyleVariables = [color]
 
 export default {
-  mixins: [formField(componentStyleVariables)],
   name: 'nRadioInput',
-  components: { nValidationAlerts },
-  inject: {
-    radioGroup: {
-      default: false
-    }
-  },
+  mixins: [formField(componentStyleVariables), validationHandler],
   props: {
     baseClassname: {
       type: String,
@@ -57,41 +51,10 @@ export default {
     }
   },
   computed: {
-    isDisabled() {
-      return this.disabled || (!!this.radioGroup && this.radioGroup.disabled)
-    },
-    isReadonly() {
-      return this.readonly || (!!this.radioGroup && this.radioGroup.readonly)
-    },
-    isRequired() {
-      return this.required || (!!this.radioGroup && this.radioGroup.required)
-    },
-    isChecked() {
-      return (
-        this.checked ||
-        (!!this.radioGroup && this.radioGroup.value === this.value)
-      )
-    },
     componentClasses() {
       return [this.baseClassname]
     }
   },
-  methods: {
-    $setValidity(e) {
-      if (this.radioGroup && !e.target.validity.valid) {
-        this.radioGroup.setValidity()
-      } else {
-        this.setValidity(e)
-      }
-    },
-    $validate(e) {
-      if (this.radioGroup) {
-        this.radioGroup.validate(e)
-      } else {
-        this.validateFormField(e)
-      }
-    }
-  }
 }
 </script>
 
