@@ -18,7 +18,7 @@ const selectArgTypes = {
   multiSelectPlaceholder: {
     control: 'text'
   },
-  enableMultiSelect: {
+  multiple: {
     control: 'boolean'
   }
 }
@@ -42,28 +42,16 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   methods: {
     submit(e) {
+      this.$emit('nui:on-form-submit')
       if (!e.target.checkValidity()) return
     }
   },
   data: () => ({
-    selectValue: null,
-    validationRules: [
-      { rule: (val) => !val, message: 'This form field is required.' },
-      {
-        rule: (val) => val && !(val.length > 1),
-        message: 'You have to select minimum 2 options.',
-        for: 'multi'
-      },
-      {
-        rule: (val) => val && !(val.length < 3),
-        message: 'You have to select maximum 3 options.',
-        for: 'multi'
-      }
-    ]
+    selectValue: null
   }),
   template: `
     <form novalidate @submit.prevent="submit">
-      <nSelect v-bind="$props" v-model="selectValue" :rules="validationRules" />
+      <nSelect v-bind="$props" v-model="selectValue" />
       <input style="margin-top: 16px;" type="submit" value="submit">
       <pre>{{ selectValue }}</pre>
     </form>
@@ -107,5 +95,19 @@ Default.args = {
       name: 'Option 4',
       value: 'Option 4'
     }
-  ]
+  ],
+  rules: [
+    // { rule: (val) => !val, text: 'This form field is required.' }
+    // {
+    //   rule: (val) => val && !(val.length > 1),
+    //   text: 'You have to select minimum 2 options.',
+    //   forType: 'multi'
+    // },
+    // {
+    //   rule: (val) => val && !(val.length < 3),
+    //   text: 'You have to select maximum 3 options.',
+    //   forType: 'multi'
+    // }
+  ],
+  // required: true
 }

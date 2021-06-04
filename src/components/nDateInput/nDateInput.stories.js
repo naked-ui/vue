@@ -17,6 +17,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   methods: {
     submit(e) {
+      this.$emit('nui:on-form-submit')
       if (!e.target.checkValidity()) return
     }
   },
@@ -46,7 +47,6 @@ Default.args = {
   customMessages: {
     valueMissing: {
       text: 'Value is required!',
-      color: 'magenta'
     }
   },
   gap: '8px',
@@ -55,4 +55,5 @@ Default.args = {
   padding: '10px',
   borderWidth: '2px',
   borderStyle: 'solid',
+  required: true
 }

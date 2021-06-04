@@ -10,7 +10,7 @@
 
   &--active {
     .nui-select__select-wrapper::after {
-      transform: translateY(-50%) rotate(180deg);
+      transform: translateY(calc(-50% + 4px)) rotate(225deg);
     }
   }
 
@@ -38,17 +38,18 @@
       position: relative;
 
       &::after {
+        box-sizing: border-box;
         content: '';
-        background-image: url('../../icons/chevron-down.svg');
-        background-size: 20px;
-        background-repeat: no-repeat;
-        background-position: center;
         position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        @include size(24px);
+        width: 10px;
+        height: 10px;
+        border-bottom: 2px solid;
+        border-right: 2px solid;
+        right: 14px;
+        top: calc(50% - 3px);
+        transform: translateY(-50%) rotate(45deg);
         transition: transform 0.2s ease-out;
+        transform-origin: center;
         pointer-events: none;
       }
     }
@@ -62,8 +63,8 @@
       z-index: 1;
     }
 
+    // &--multiselect,
     &--native,
-    &--multiselect,
     option {
       background-color: var(--background-color, #fff);
     }
@@ -71,11 +72,34 @@
     &--native {
       pointer-events: none;
       padding-left: calc(var(--padding) - 4px) !important;
+
+      &:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 #000;
+      }
+
+      &[multiple='multiple'] {
+        overflow-y: hidden;
+        option {
+          visibility: hidden;
+          pointer-events: none;
+        }
+      }
+
+      &:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 #000;
+      }
+
+      &:focus {
+        outline: -webkit-focus-ring-color auto 1px;
+        outline-offset: 0px;
+      }
     }
 
     &--multiselect {
-      border: var(--border-width) solid;
-      border-color: var(--border-color);
+      // border: var(--border-width) solid;
+      // border-color: var(--border-color);
       padding: var(--padding);
       position: absolute;
       top: 0;
