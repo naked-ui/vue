@@ -11,11 +11,17 @@ export default {
       default: () => ({})
     }
   },
+  inject: {
+    nuiForm: {
+      default: false
+    }
+  },
   data() {
     return {
       validationMessages: [],
       nui: {
-        '$$dirty': false
+        '$$dirty': false,
+        '$$error': false
       }
     }
   },
@@ -51,6 +57,7 @@ export default {
       }
 
       this.validationMessages = currentErrors
+      this.setError(currentErrors.length)
       if (currentErrors.length) target.setCustomValidity(currentErrors[0])
     },
     getValidationMessage(error) {
@@ -109,6 +116,8 @@ export default {
       // base validation passed
       if (htmlValid)
         this.validateCustomRules(target, extendedValue)
+      else
+        this.setError(true)
 
       console.dir(target.validity)
     },
@@ -117,9 +126,18 @@ export default {
     },
     setDirty() {
       this.nui.$$dirty = true
+    },
+    setError(state) {
+      this.nui.$error = !!state
+
+      if (!this.nuiForm) return
+      this.$parent.$emit('nui:change-field-error-state', { name: this.name, state: !!state })
     }
   },
   mounted() {
     this.$parent.$on('nui:on-form-submit', this.setDirty)
+  },
+  beforeDestroy() {
+    this.$parent.$off('nui:on-form-submit', this.setDirty)
   }
 }
