@@ -1,22 +1,21 @@
 <template>
-  <div :target="target" :class="componentClasses" :style="style">
+  <a :class="componentClasses" :style="style">
     <slot />
     <div v-if="$slots['badge']" :class="`${baseClassname}__badge`">
       <slot name="badge" />
     </div>
-  </div>
+  </a>
 </template>
 
 <script>
 import styleVariables from '@/utils/styleVariables/index.js'
-import hrefIsExternalMixin from '@/utils/hrefIsExternal'
 import { size } from '@/utils/styleVariables/helpers/variables'
 
 const componentStyleVariables = [size]
 
 export default {
   name: 'nIcon',
-  mixins: [hrefIsExternalMixin, styleVariables(componentStyleVariables)],
+  mixins: [styleVariables(componentStyleVariables)],
   props: {
     baseClassname: {
       type: String,
@@ -24,9 +23,6 @@ export default {
     },
     size: {
       type: [String, Number]
-    },
-    target: {
-      type: String
     }
   },
   computed: {
