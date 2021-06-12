@@ -26,6 +26,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   methods: {
     submit(e) {
+      this.$emit('nui:on-form-submit')
       if (!e.target.checkValidity()) return
     }
   },
@@ -53,15 +54,16 @@ Default.args = {
   //   }
   // },
   rules: [
-    (value) =>
-      !value ||
-      value.length > 2 ||
-      'This is custom rule message: field not required, but min 3 chars!'
+    {
+      rule: (value) => !!value && value.length < 3,
+      text: 'This is custom rule message: field not required, but min 3 chars!'
+    },
   ],
   height: '96px',
   width: '280px',
   gap: '8px',
   padding: '10px',
   borderWidth: '2px',
-  borderStyle: 'solid'
+  borderStyle: 'solid',
+  required: true
 }

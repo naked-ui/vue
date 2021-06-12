@@ -19,6 +19,7 @@
       maxlength="7"
       minlength="7"
       :nui-validation="validationEnabled"
+      :data-dirty="nui.$$dirty"
     />
     <input
       type="color"

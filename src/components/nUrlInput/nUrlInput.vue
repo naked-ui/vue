@@ -12,6 +12,7 @@
         validateFormField($event)
       "
       @blur.capture="validateFormField"
+      @keyup="checkInputMaxLength"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
@@ -22,7 +23,10 @@
       :required="required"
       :title="title"
       :nui-validation="validationEnabled"
+      :minlength="minlength"
+      :maxlength="maxlength"
       autocorrect="off"
+      :data-dirty="nui.$$dirty"
     />
     <nValidationAlerts
       v-if="validationMessages.length > 0"

@@ -13,6 +13,7 @@
         validateFormField($event)
       "
       @blur.capture="validateFormField"
+      @keyup="checkInputMaxLength"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
@@ -26,6 +27,7 @@
       :minlength="minlength"
       :autocorrect="autocorrect"
       :pattern="pattern"
+      :data-dirty="nui.$$dirty"
     />
     <nValidationAlerts
       v-if="validationMessages.length > 0"
@@ -60,7 +62,7 @@ export default {
   computed: {
     componentClasses() {
       return [this.baseClassname]
-    }
+    },
   }
 }
 </script>
