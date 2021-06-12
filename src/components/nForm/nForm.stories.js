@@ -83,7 +83,6 @@ const Template = (arg, { argTypes }) => ({
 export const Default = Template.bind({})
 
 Default.args = {
-  validationEnabled: true,
   gap: '16px',
   width: '420px'
 }
