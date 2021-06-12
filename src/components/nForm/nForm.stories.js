@@ -7,7 +7,7 @@ import { nButton } from '../nButton'
 const textInputStyling = {
   gap: 8,
   height: 48,
-  width: '280px',
+  // width: '280px',
   padding: '10px',
   borderWidth: '2px',
   borderStyle: 'solid',
@@ -16,14 +16,14 @@ const textInputStyling = {
 
 const textareaStyling = {
   height: '96px',
-  width: '280px',
+  // width: '280px',
   gap: '8px',
   padding: '10px',
   borderWidth: '2px',
   borderStyle: 'solid',
 }
 
-const buttonStyling =  {
+const buttonStyling = {
   backgroundColor: '#333',
   color: '#fff',
   padding: '12px',
@@ -32,7 +32,11 @@ const buttonStyling =  {
 
 export default {
   title: 'Form/Form',
-  component: nForm
+  component: nForm,
+  argTypes: {
+    gap: { control: 'text' },
+    width: { control: 'text' }
+  }
 }
 
 const Template = (arg, { argTypes }) => ({
@@ -79,6 +83,7 @@ const Template = (arg, { argTypes }) => ({
 export const Default = Template.bind({})
 
 Default.args = {
-  baseClassname: 'nui',
-  validationEnabled: true
+  validationEnabled: true,
+  gap: '16px',
+  width: '420px'
 }

@@ -1,24 +1,78 @@
 <template>
-  <form class="nui-form" :class="componentClasses" @submit.prevent="onSubmit">
+  <form
+    :class="componentClasses"
+    @submit.prevent="onSubmit"
+    :style="style"
+    :action="action"
+    :accept-charset="acceptCharset"
+    :autocomplete="autocomplete"
+    :enctype="enctype"
+    :method="method"
+    :name="name"
+    :novalidate="novalidate"
+    :rel="rel"
+    :target="target"
+  >
     <slot />
   </form>
 </template>
 
 <script>
+import styleVariables from '@/utils/styleVariables'
+import { gap, width } from '@/utils/styleVariables/helpers/variables'
+
+const componentStyleVariables = [gap, width]
+
 export default {
   name: 'nForm',
+  mixins: [styleVariables(componentStyleVariables)],
   props: {
     baseClassname: {
       type: String,
-      default: 'nui'
+      default: 'nui-form'
     },
     validationEnabled: {
       type: Boolean,
       default: false
+    },
+    gap: {
+      type: [Number, String],
+      default: ''
+    },
+    width: {
+      type: [Number, String],
+      default: ''
+    },
+    action: {
+      type: String
+    },
+    acceptCharset: {
+      type: String
+    },
+    autocomplete: {
+      type: String
+    },
+    enctype: {
+      type: String
+    },
+    method: {
+      type: String
+    },
+    name: {
+      type: String
+    },
+    novalidate: {
+      type: String
+    },
+    rel: {
+      type: String
+    },
+    target: {
+      type: String
     }
   },
   provide: {
-    nuiForm: true,
+    nuiForm: true
   },
   watch: {
     areErrors: {
@@ -29,17 +83,15 @@ export default {
     }
   },
   data: () => ({
-    validationState: [],
+    validationState: []
   }),
   computed: {
     componentClasses() {
-      return [
-        this.baseClassname
-      ]
+      return [this.baseClassname]
     },
     areErrors() {
       if (!this.validationEnabled) return false
-      return this.validationState.some(el => el.state === true)
+      return this.validationState.some((el) => el.state === true)
     }
   },
   methods: {
@@ -50,12 +102,13 @@ export default {
       this.$emit('submit')
     },
     handleErroredField(e) {
-      const existingIndex = this.validationState.findIndex(el => el.name === e.name)
-      
-      if (existingIndex >= 0) 
+      const existingIndex = this.validationState.findIndex(
+        (el) => el.name === e.name
+      )
+
+      if (existingIndex >= 0)
         this.validationState[existingIndex].state = e.state
-      else
-        this.validationState.push(e)
+      else this.validationState.push(e)
     }
   },
   mounted() {
@@ -65,7 +118,7 @@ export default {
   beforeDestroy() {
     if (!this.validationEnabled) return
     this.$off('nui:change-field-error-state', this.handleErroredField)
-  },
+  }
 }
 </script>
 
