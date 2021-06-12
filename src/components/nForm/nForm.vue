@@ -31,10 +31,6 @@ export default {
       type: String,
       default: 'nui-form'
     },
-    validationEnabled: {
-      type: Boolean,
-      default: false
-    },
     gap: {
       type: [Number, String],
       default: ''
@@ -90,7 +86,7 @@ export default {
       return [this.baseClassname]
     },
     areErrors() {
-      if (!this.validationEnabled) return false
+      if (this.novalidate) return false
       return this.validationState.some((el) => el.state === true)
     }
   },
@@ -112,11 +108,11 @@ export default {
     }
   },
   mounted() {
-    if (!this.validationEnabled) return
+    if (this.novalidate) return
     this.$on('nui:change-field-error-state', this.handleErroredField)
   },
   beforeDestroy() {
-    if (!this.validationEnabled) return
+    if (this.novalidate) return
     this.$off('nui:change-field-error-state', this.handleErroredField)
   }
 }
