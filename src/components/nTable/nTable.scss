@@ -1,26 +1,8 @@
-.table {
-  width: 100%;
+.nui-table {
+  border-collapse: collapse;
+  width: var(--width);
 
-  &__heading,
-  &__cell {
-    // text-align: left;
-    // border-bottom: 1px solid $gray-4;
-    // padding-left: $size-4;
-  }
-
-  &__heading {
-    // @include text-style__font-primary__paragraph--body--bold;
-    // height: $size-10;
-    vertical-align: middle;
-  }
-
-  &__cell {
-    // @include text-style__font-primary__paragraph--body;
-    // height: $size-16;
-    vertical-align: middle;
-  }
-
-  &--width-auto {
-    width: auto;
+  thead {
+    font-weight: bold;
   }
 }

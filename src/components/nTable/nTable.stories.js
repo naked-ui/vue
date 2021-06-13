@@ -1,5 +1,4 @@
 import nTable from './nTable'
-import nTableHeader from './nTableHeader'
 import nTableRow from './nTableRow'
 import nTableCell from './nTableCell'
 
@@ -7,43 +6,77 @@ export default {
 	title: 'Content/Table',
 	components: {
 		nTable,
-		nTableHeader,
 		nTableRow,
 		nTableCell
+	},
+	argTypes: {
+		width: {
+			control: 'text'
+		}
 	}
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
+const SimpleTableTemplate = (args, { argTypes }) => ({
 	components: {
 		nTable,
-		nTableHeader,
 		nTableRow,
 		nTableCell
 	},
 	props: Object.keys(argTypes),
 	template: `
-		<nTable>
-			<nTableHeader>
-				<nTableCell>One</nTableCell>
-				<nTableCell>Two</nTableCell>
-				<nTableCell>Three</nTableCell>
-			</nTableHeader>
-			<nTableRow>
-				<nTableCell>One</nTableCell>
-				<nTableCell>Two</nTableCell>
-				<nTableCell>Three</nTableCell>
+		<nTable v-bind="$props">
+			<nTableRow height="48px">
+				<nTableCell isHeader>First name</nTableCell>
+				<nTableCell isHeader>Last name</nTableCell>
 			</nTableRow>
-			<nTableRow>
-				<nTableCell>One</nTableCell>
-				<nTableCell>Two</nTableCell>
-				<nTableCell>Three</nTableCell>
+			<nTableRow height="64px">
+				<nTableCell>Jane</nTableCell>
+				<nTableCell>Doe</nTableCell>
+			</nTableRow>
+			<nTableRow height="64px">
+				<nTableCell>John</nTableCell>
+				<nTableCell>Doe</nTableCell>
 			</nTableRow>
 		</nTable>
 	`,
 });
 
-export const Default = DefaultTemplate.bind({});
+export const SimpleTable = SimpleTableTemplate.bind({});
 
-Default.args = {
-	size: '32px'
+SimpleTable.args = {
+	width: '420px'
+}
+
+const TableWithHeaderAndFooterTemplate = (args, { argTypes }) => ({
+	components: {
+		nTable,
+		nTableRow,
+		nTableCell
+	},
+	props: Object.keys(argTypes),
+	template: `
+		<nTable v-bind="$props">
+			<template v-slot:thead>
+				<nTableRow height="48px">
+					<nTableCell>First name</nTableCell>
+					<nTableCell>Last name</nTableCell>
+				</nTableRow>
+			</template>
+			</nTableRow>
+			<nTableRow height="64px">
+				<nTableCell>Jane</nTableCell>
+				<nTableCell>Doe</nTableCell>
+			</nTableRow>
+			<nTableRow height="64px">
+				<nTableCell>John</nTableCell>
+				<nTableCell>Doe</nTableCell>
+			</nTableRow>
+		</nTable>
+	`,
+});
+
+export const TableWithHeaderAndFooter = TableWithHeaderAndFooterTemplate.bind({});
+
+TableWithHeaderAndFooter.args = {
+	width: '420px'
 }
