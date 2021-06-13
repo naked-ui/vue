@@ -29,11 +29,11 @@ const SimpleTableTemplate = (args, { argTypes }) => ({
 				<nTableCell isHeader>First name</nTableCell>
 				<nTableCell isHeader>Last name</nTableCell>
 			</nTableRow>
-			<nTableRow height="64px">
+			<nTableRow height="48px">
 				<nTableCell>Jane</nTableCell>
 				<nTableCell>Doe</nTableCell>
 			</nTableRow>
-			<nTableRow height="64px">
+			<nTableRow height="48px">
 				<nTableCell>John</nTableCell>
 				<nTableCell>Doe</nTableCell>
 			</nTableRow>
@@ -47,7 +47,7 @@ SimpleTable.args = {
 	width: '420px'
 }
 
-const TableWithHeaderAndFooterTemplate = (args, { argTypes }) => ({
+const TableWithTheadTbodyAndTfootTemplate = (args, { argTypes }) => ({
 	components: {
 		nTable,
 		nTableRow,
@@ -58,25 +58,32 @@ const TableWithHeaderAndFooterTemplate = (args, { argTypes }) => ({
 		<nTable v-bind="$props">
 			<template v-slot:thead>
 				<nTableRow height="48px">
-					<nTableCell>First name</nTableCell>
-					<nTableCell>Last name</nTableCell>
+					<nTableCell>Header content 1</nTableCell>
+					<nTableCell>Header content 2</nTableCell>
 				</nTableRow>
 			</template>
-			</nTableRow>
+			<template v-slot:tbody>
+				<nTableRow height="64px">
+					<nTableCell>Body content 1</nTableCell>
+					<nTableCell>Body content 2</nTableCell>
+				</nTableRow>
+			</template>
 			<nTableRow height="64px">
-				<nTableCell>Jane</nTableCell>
-				<nTableCell>Doe</nTableCell>
+				<nTableCell>Body content 1</nTableCell>
+				<nTableCell>Body content 2</nTableCell>
 			</nTableRow>
-			<nTableRow height="64px">
-				<nTableCell>John</nTableCell>
-				<nTableCell>Doe</nTableCell>
-			</nTableRow>
+			<template v-slot:tfoot>
+				<nTableRow height="48px">
+					<nTableCell>Footer content 1</nTableCell>
+					<nTableCell>Footer content 2</nTableCell>
+				</nTableRow>
+			</template>
 		</nTable>
 	`,
 });
 
-export const TableWithHeaderAndFooter = TableWithHeaderAndFooterTemplate.bind({});
+export const TableWithTheadTbodyAndTfoot = TableWithTheadTbodyAndTfootTemplate.bind({});
 
-TableWithHeaderAndFooter.args = {
+TableWithTheadTbodyAndTfoot.args = {
 	width: '420px'
 }

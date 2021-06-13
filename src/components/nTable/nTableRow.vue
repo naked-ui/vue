@@ -25,10 +25,6 @@ export default {
       type: String,
       default: 'nui-table'
     },
-    // borderBottom: {
-    //   type: [Number, String],
-    //   default: '1px'
-    // },
     borderBottomWidth: {
       type: [Number, String],
       default: '1px'
