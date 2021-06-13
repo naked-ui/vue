@@ -10,7 +10,7 @@
     >
       <slot name="thead" />
     </thead>
-    <tbody v-if="$slots['tbody'] && !bodyCollapsed">
+    <tbody v-if="$slots['tbody']" v-show="!bodyCollapsed">
       <slot name="tbody" />
     </tbody>
     <tfoot v-if="$slots['tfoot']">
