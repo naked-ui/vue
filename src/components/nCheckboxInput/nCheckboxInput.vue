@@ -13,6 +13,8 @@
         :checked="isChecked"
         :value="value"
         :name="name"
+        :nui-validation="validationEnabled"
+        :data-dirty="nui.$$dirty"
       />
       {{ label }}
     </label>
@@ -24,24 +26,20 @@
 </template>
 
 <script>
-import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import formField from '@/utils/formField/index'
+import validationHandler from './logic/validationHandler'
+import { color } from '@/utils/styleVariables/helpers/variables'
+
+const componentStyleVariables = [color]
 
 export default {
-  mixins: [formField],
+  mixins: [formField(componentStyleVariables), validationHandler],
   name: 'nCheckboxInput',
-  components: { nValidationAlerts },
-  inject: {
-    checkboxGroup: {
-      default: false
-    }
-  },
   props: {
     baseClassname: {
       type: String,
-      default: 'n-form-field'
+      default: 'nui-form-field'
     },
-    // input attrs
     checked: {
       type: Boolean,
       default: false
@@ -52,53 +50,10 @@ export default {
     }
   },
   computed: {
-    isDisabled() {
-      return (
-        this.disabled || (!!this.checkboxGroup && this.checkboxGroup.disabled)
-      )
-    },
-    isReadonly() {
-      return (
-        this.readonly || (!!this.checkboxGroup && this.checkboxGroup.readonly)
-      )
-    },
-    isRequired() {
-      return (
-        this.required || (!!this.checkboxGroup && this.checkboxGroup.required)
-      )
-    },
-    isChecked() {
-      if (this.checked) return this.checked
-      else if (this.checkboxGroup) {
-        const { value } = this.checkboxGroup
-        return value.includes(this.value)
-      }
-      return false
-    },
-    style() {
-      return [...this.$super(formField).style(), , { '--color': this.color }]
-    },
     componentClasses() {
       return [this.baseClassname]
     }
   },
-  methods: {
-    $setValidity(e) {
-      if (this.checkboxGroup) {
-        this.checkboxGroup.checkValidity()
-      } else {
-        this.setValidity(e)
-      }
-    },
-    $validate(e) {
-      if (this.checkboxGroup) {
-        // send value to compare equal values (e.g. checkbox `value` attribute converts numers to string)
-        this.checkboxGroup.validate(e, this.value)
-      } else {
-        this.validateFormField(e)
-      }
-    }
-  }
 }
 </script>
 

@@ -42,11 +42,9 @@ Default.argTypes = {
   spacing: { table: { disable: true } }
 }
 Default.args = {
-  url: 'https://naked-ui.org/',
-  id: 'radio-input',
-  name: 'radio-input',
-  label: 'Label text',
-  customMessages: { valueMissing: 'Value is required!' },
+  id: 'radio-input-id',
+  name: 'radio-input-name',
+  label: 'Radio input label',
   gap: 8,
   validationEnabled: true,
   required: true

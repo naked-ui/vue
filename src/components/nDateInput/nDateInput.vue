@@ -1,19 +1,16 @@
 <template>
-  <div
-    :class="componentClasses"
-    :style="style"
-  >
-    <label
-      :disabled="disabled"
-      :for="id"
-    >
+  <div :class="componentClasses" :style="style">
+    <label :disabled="disabled" :for="id">
       {{ label }}
     </label>
     <input
       type="date"
       :value="value"
       @invalid="onInvalid"
-      @input="$emit('input', $event.target.value);validateFormField($event)"
+      @input="
+        $emit('input', $event.target.value)
+        validateFormField($event)
+      "
       @blur.capture="validateFormField"
       :autofocus="autofocus"
       :disabled="disabled"
@@ -21,11 +18,14 @@
       :max="max"
       :min="min"
       :name="name"
+      :pattern="pattern"
       :placeholder="placeholder"
       :readonly="readonly"
       :required="required"
       :title="title"
-    >
+      :nui-validation="validationEnabled"
+      :data-dirty="nui.$$dirty"
+    />
     <nValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import formField from '../../utils/formField/index.js'
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+import formField from '@/utils/formField/index.js'
+import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 
 export default {
-  mixins: [formField],
+  mixins: [formField()],
   components: {
     nValidationAlerts
   },
@@ -46,15 +46,13 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-form-field'
-    },
-  },
-  computed: {
-    componentClasses () {
-      return [
-        this.baseClassname
-      ]
+      default: 'nui-form-field'
     }
   },
+  computed: {
+    componentClasses() {
+      return [this.baseClassname]
+    }
+  }
 }
 </script>

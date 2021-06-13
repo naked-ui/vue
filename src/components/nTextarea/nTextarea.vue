@@ -1,19 +1,17 @@
 <template>
-  <div
-    :class="componentClasses"
-    :style="style"
-  >
-    <label
-      :for="id"
-      :disabled="disabled"
-    >
+  <div :class="componentClasses" :style="style">
+    <label :for="id" :disabled="disabled">
       {{ label }}
     </label>
     <textarea
       :value="value"
       @invalid="onInvalid"
-      @input="$emit('input', $event.target.value);validateFormField($event)"
+      @input="
+        $emit('input', $event.target.value)
+        validateFormField($event)
+      "
       @blur.capture="validateFormField"
+      @keyup="checkInputMaxLength"
       :autofocus="autofocus"
       :autocorrect="autocorrect"
       :disabled="disabled"
@@ -27,6 +25,7 @@
       :required="required"
       :title="title"
       :nui-validation="validationEnabled"
+      :data-dirty="nui.$$dirty"
     />
     <nValidationAlerts
       v-if="validationMessages.length > 0"
@@ -41,12 +40,15 @@
 </template>
 
 <script>
-import formField from '../../utils/formField/index.js'
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
-import nInputCounter from '../../utils/components/nInputCounter.vue'
+import formField from '@/utils/formField/index.js'
+import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
+import nInputCounter from '@/utils/components/nInputCounter.vue'
+import { resize } from '@/utils/styleVariables/helpers/variables'
+
+const componentStyleVariables = [resize]
 
 export default {
-  mixins: [formField],
+  mixins: [formField(componentStyleVariables)],
   name: 'nTextarea',
   components: {
     nValidationAlerts,
@@ -55,18 +57,16 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-form-field'
+      default: 'nui-form-field'
     },
     resize: {
       type: String
-    },
+    }
   },
   computed: {
-    componentClasses () {
-      return [
-        this.baseClassname
-      ]
-    },
-  },
+    componentClasses() {
+      return [this.baseClassname]
+    }
+  }
 }
 </script>

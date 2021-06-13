@@ -15,17 +15,26 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { nRangeInput },
   props: Object.keys(argTypes),
+  methods: {
+    submit(e) {
+      if (!e.target.checkValidity()) return
+    }
+  },
+  data: () => ({ val: '' }),
   template: `
-    <div>
-      <nRangeInput v-bind="$props" v-model="test" />
+    <form novalidate @submit.prevent="submit">
+      <nRangeInput v-bind="$props" v-model="val" />
       <br>
-      <code>{{ test }}</code>
-    </div>
+      <code>{{ val }}</code>
+      <input style="margin-top: 16px;" type="submit" value="submit">
+    </form>
   `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
+  id: 'range-input-id',
+  name: 'range-input-name',
   height: '24px',
   width: '280px',
   ranges: 1,

@@ -13,6 +13,7 @@
         validateFormField($event)
       "
       @blur.capture="validateFormField"
+      @keyup="checkInputMaxLength"
       :autofocus="autofocus"
       :disabled="disabled"
       :id="id"
@@ -26,6 +27,7 @@
       :minlength="minlength"
       :autocorrect="autocorrect"
       :pattern="pattern"
+      :data-dirty="nui.$$dirty"
     />
     <nValidationAlerts
       v-if="validationMessages.length > 0"
@@ -40,12 +42,12 @@
 </template>
 
 <script>
-import formField from '../../utils/formField/index.js'
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
-import nInputCounter from '../../utils/components/nInputCounter.vue'
+import formField from '@/utils/formField/index.js'
+import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
+import nInputCounter from '@/utils/components/nInputCounter.vue'
 
 export default {
-  mixins: [formField],
+  mixins: [formField()],
   name: 'nTextInput',
   components: {
     nValidationAlerts,
@@ -54,13 +56,13 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'n-form-field'
+      default: 'nui-form-field'
     }
   },
   computed: {
     componentClasses() {
       return [this.baseClassname]
-    }
+    },
   }
 }
 </script>

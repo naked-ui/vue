@@ -1,6 +1,6 @@
 // CORE STYLES
 
-.radio-input {
+.nui-radio-input {
   label {
     display: inline-flex;
     align-items: center;
@@ -9,15 +9,14 @@
 
 // CUSTOM STYLES
 
-.radio-input {
+.nui-radio-input {
   label {
-    &[disabled='disabled'],
-    &:disabled {
-      opacity: 0.3;
+    &:focus-within .checkbox-input__checkbox:invalid {
+      border-color: var(--color-invalid);
     }
   }
 
-  .radio-input__radio {
+  .nui-radio-input__radio {
     appearance: none;
     height: var(--height, 16px);
     width: var(--width, 16px);

@@ -1,18 +1,18 @@
-.n-toggle-input {
-  .n-toggle-input__label {
+.nui-toggle-input {
+  &__label {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
   }
 
-  .n-toggle-input__checkbox {
+  &__checkbox {
     opacity: 0;
     width: 0;
     height: 0;
   }
 
-  .n-toggle-input__node {
+  &__node {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -38,15 +38,15 @@
     }
   }
 
-  .n-toggle-input__checkbox:checked + .n-toggle-input__node {
+  &__checkbox:checked + &__node {
     background-color: #000;
   }
 
-  .n-toggle-input__checkbox:focus + .n-toggle-input__node {
+  &__checkbox:focus + &__node {
     box-shadow: 0 0 1px #2196f3;
   }
 
-  .n-toggle-input__checkbox:checked + .n-toggle-input__node:before {
+  &__checkbox:checked + &__node:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);

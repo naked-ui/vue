@@ -2,34 +2,39 @@
 
 @import 'sxcss';
 
-.n-button {
+.nui-button {
   @include flex($place: center);
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-sizing: border-box;
   border: unset;
   cursor: pointer;
-  background-color: var(--button-background-color);
   padding: var(--padding);
   height: var(--height);
+  width: var(--width);
   font-size: var(--font-size, 16px);
   text-decoration: none;
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  color: initial;
+  background-color: #f0f0f0;
 
   /** CONTENT **/
 
   /// Text & icons color
 
-  .n-button__text,
-  .n-button__icon {
+  .nui-button__text,
+  .nui-button__icon {
     @include flex($place: center);
-    color: var(--button-text-color);
     svg {
-      fill: var(--button-text-color) !important;
+      fill: var(--color) !important;
     }
   }
 
   /// Icons
 
-  .n-button__icon {
+  .nui-button__icon {
     &--left {
       margin-right: var(--gap);
     }
@@ -40,9 +45,14 @@
 
   /** STATES **/
 
-  &.n-button[disabled='disabled'],
-  &.n-button[disabled='disabled'] * {
+  &:not([disabled='disabled']),
+  &[busy='true'] {
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+    color: var(--color);
+  }
+
+  &[disabled='disabled'] {
     cursor: not-allowed;
-    opacity: 0.75;
   }
 }

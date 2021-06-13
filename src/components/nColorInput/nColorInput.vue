@@ -1,12 +1,6 @@
 <template>
-  <div
-    :class="componentClasses"
-    :style="style"
-  >
-    <label
-      :disabled="disabled"
-      :for="id"
-    >
+  <div :class="componentClasses" :style="style">
+    <label :disabled="disabled" :for="id">
       {{ label }}
     </label>
     <input
@@ -20,11 +14,13 @@
       :id="id"
       :placeholder="placeholder"
       :disabled="disabled"
+      :readonly="readonly"
       required
       maxlength="7"
       minlength="7"
       :nui-validation="validationEnabled"
-    >
+      :data-dirty="nui.$$dirty"
+    />
     <input
       type="color"
       :value="value"
@@ -33,13 +29,12 @@
       @change="onChange"
       @blur.capture="validateFormField"
       :autofocus="autofocus"
-      :disabled="disabled"
+      :disabled="disabled || readonly"
       :name="name"
-      :readonly="readonly"
       :required="required"
       :title="title"
       :nui-validation="validationEnabled"
-    >
+    />
     <nValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
@@ -48,11 +43,11 @@
 </template>
 
 <script>
-import formField from '../../utils/formField/index.js'
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+import formField from '@/utils/formField/index.js'
+import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 
 export default {
-  mixins: [formField],
+  mixins: [formField()],
   components: {
     nValidationAlerts
   },
@@ -67,25 +62,21 @@ export default {
     },
     baseClassname: {
       type: String,
-      default: 'n-form-field'
+      default: 'nui-form-field'
     }
   },
   computed: {
-    componentClasses () {
-      return [
-        this.baseClassname,
-        'n-color-input'
-      ]
+    componentClasses() {
+      return [this.baseClassname, 'nui-color-input']
     }
   },
   methods: {
-    onChange (e) {
+    onChange(e) {
       this.$emit('input', e.target.value)
       this.validateFormField(e)
     }
   }
 }
-
 </script>
 
 <style lang="scss" src="./nColorInput.scss" />

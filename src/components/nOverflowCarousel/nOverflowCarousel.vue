@@ -1,17 +1,9 @@
 <template>
-  <div
-    :class="componentClasses"
-    :style="`
-      --items-gap: ${itemsGap}px;
-      --viewport-padding: ${viewportPadding}px;
-    `"
-  >
+  <div :class="componentClasses" :style="style">
     <div :class="`${baseClassname}__viewport-wrapper`">
       <ul
         :class="`${baseClassname}__viewport`"
-        :style="
-          !snapItems ? `scroll-snap-type: none !important;` : false
-        "
+        :style="!snapItems ? `scroll-snap-type: none !important;` : false"
       >
         <slot />
       </ul>
@@ -20,13 +12,21 @@
 </template>
 
 <script>
+import styleVariables from '@/utils/styleVariables'
+import {
+  itemsGap,
+  viewportPadding
+} from '@/utils/styleVariables/helpers/variables'
+
+const componentStyleVariables = [itemsGap, viewportPadding]
 
 export default {
   name: 'nOverflowCarousel',
+  mixins: [styleVariables(componentStyleVariables)],
   props: {
     baseClassname: {
       type: String,
-      default: 'n-overflow-carousel'
+      default: 'nui-overflow-carousel'
     },
     itemsGap: {
       type: Number,
@@ -39,13 +39,11 @@ export default {
     snapItems: {
       type: Boolean,
       default: true
-    },
+    }
   },
   computed: {
-    componentClasses () {
-      return [
-        this.baseClassname
-      ]
+    componentClasses() {
+      return [this.baseClassname]
     }
   }
 }

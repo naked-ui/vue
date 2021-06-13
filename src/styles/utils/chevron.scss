@@ -1,0 +1,9 @@
+@mixin chevron($border: 2px solid, $size: 10px) {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  width: $size;
+  height: $size;
+  border-bottom: $border;
+  border-right: $border;
+}

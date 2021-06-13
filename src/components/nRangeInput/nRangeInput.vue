@@ -1,14 +1,16 @@
 <template>
   <div
-    class="n-range-input n-form-field"
+    :id="id"
+    :name="name"
+    class="nui-range-input nui-form-field"
     role="group"
-    aria-labelledby="range-input--label"
+    :aria-labelledby="`${baseClassname}--label`"
     :style="`
       --gap: ${isNaN(gap) ? gap : gap + 'px'};
       --height: ${isNaN(height) ? height : height + 'px'};
       --width: ${isNaN(width) ? width : width + 'px'};
       --padding: ${padding};
-      --outline-width: ${isNaN(outlineWidth) ? outlineWidth : outlineWidth + 'px'};
+      --border-width: ${isNaN(borderWidth) ? borderWidth : borderWidth + 'px'};
       --color-invalid: ${colorInvalid};
       --color-valid: ${colorValid};
 
@@ -19,35 +21,35 @@
       --outputFontColor: ${this.outputFontColor};
     `"
   >
-    <label id="range-input--label" v-if="label">{{ label }}</label>
+    <label :id="`${baseClassname}--label`" v-if="label">{{ label }}</label>
     <div
-      class="n-range-input__wrap"
+      class="nui-range-input__wrap"
       role="group"
-      aria-labelledby="range-input--label"
+      :aria-labelledby="`${baseClassname}--label`"
       :style="rangeVariables"
     >
       <template v-for="index in dots">
         <label
-          class="n-range-input__sr-only"
-          :for="`v${index-1}`"
-          :key="`label_${index-1}`"
+          class="nui-range-input__sr-only"
+          :for="`v${index - 1}`"
+          :key="`label_${index - 1}`"
         >
-          Value {{index - 1}}
+          Value {{ index - 1 }}
         </label>
         <input
           type="range"
-          :id="`v${index-1}`"
+          :id="`v${index - 1}`"
           :min="min"
-          v-model.number="rangeValues[index-1]"
+          v-model.number="rangeValues[index - 1]"
           :max="max"
           @input="liveInput ? handleChange() : null"
           @change="!liveInput ? handleChange() : null"
-          :key="`input_${index-1}`"
+          :key="`input_${index - 1}`"
         />
         <output
-          :for="`v${index-1}`"
-          :style="`--c: var(--v${index-1})`"
-          :key="`output_${index-1}`"
+          :for="`v${index - 1}`"
+          :style="`--c: var(--v${index - 1})`"
+          :key="`output_${index - 1}`"
         />
       </template>
     </div>
@@ -55,12 +57,16 @@
 </template>
 
 <script>
-import formField from '../../utils/formField/index.js'
+import formField from '@/utils/formField/index.js'
 
 export default {
   name: 'nRangeInput',
-  mixins: [formField],
+  mixins: [formField()],
   props: {
+    baseClassname: {
+      type: String,
+      default: 'nui-range-input'
+    },
     min: {
       type: Number,
       default: 0
@@ -137,11 +143,11 @@ export default {
       for (let i of [...Array(this.dots).keys()]) {
         valuesVariables += `--v${i}: ${this.rangeValues[i]};`
         fill += `linear-gradient(90deg, red calc(var(--r) + (var(--v${i}) - var(--min))/var(--dif)*var(--uw)), transparent 0)`
-        i === this.dots - 1 ? fill += `;` : fill += `,`
+        i === this.dots - 1 ? (fill += `;`) : (fill += `,`)
       }
 
       return valuesVariables + limitationsVariables + fill
-    },
+    }
     // colorVariables() {
     //   const dotColor = this.dotColor ? `--fillDot: ${this.dotColor};` : ''
     //   const rangeColor = this.rangeColor ? `--fillRange: ${this.rangeColor};` : ''
@@ -160,17 +166,17 @@ export default {
       for (let i of [...Array(this.dots).keys()]) {
         if (i === this.dots) break
         else if (i === 0) values.push(this.min)
-        else if (i === (this.dots - 1)) values.push(this.max)
-        else values.push(+(values[+i-1] + perDotValue).toFixed(0))
+        else if (i === this.dots - 1) values.push(this.max)
+        else values.push(+(values[+i - 1] + perDotValue).toFixed(0))
       }
 
       this.rangeValues = values
       this.handleChange()
     },
     handleChange() {
-      const sortedRanges = [...this.rangeValues].sort((a,b) => a - b)
+      const sortedRanges = [...this.rangeValues].sort((a, b) => a - b)
       const splicedRanges = []
-      while(sortedRanges.length) {
+      while (sortedRanges.length) {
         splicedRanges.push(sortedRanges.splice(0, 2))
       }
 

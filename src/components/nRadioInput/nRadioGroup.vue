@@ -1,5 +1,5 @@
 <template>
-  <div class="radio-group" :style="style">
+  <div class="nui-radio-group nui-form-field" :style="style">
     <slot></slot>
     <nValidationAlerts
       v-if="validationMessages.length > 0"
@@ -9,18 +9,15 @@
 </template>
 
 <script>
-import formField from '../../utils/formField/index.js'
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
+import formField from '@/utils/formField/index.js'
+import groupValidationHandler from './logic/groupValidationHandler'
+import { color, spacing } from '@/utils/styleVariables/helpers/variables'
+
+const componentStyleVariables = [color, spacing]
 
 export default {
-  mixins: [formField],
+  mixins: [formField(componentStyleVariables), groupValidationHandler],
   name: 'nRadioGroup',
-  components: { nValidationAlerts },
-  provide() {
-    return {
-      radioGroup: this
-    }
-  },
   props: {
     // group attrs
     color: {
@@ -32,35 +29,6 @@ export default {
       default: null
     }
   },
-  computed: {
-    style() {
-      return [
-        ...this.$super(formField).style(),
-        {
-          '--color': this.color,
-          '--spacing': this.calculateCssSize(this.spacing)
-        }
-      ]
-    }
-  },
-  methods: {
-    setValidity() {
-      // radio(-group) has only one validation state: `required`
-      // custom `setValidity` is triggered by all inputs simultaneously,
-      // but the result can be only one
-      this.validationMessages = [
-        {
-          content: '&cross; This field is required', // or custom message
-          color: this.colorInvalid
-        }
-      ]
-    },
-    validate(e) {
-      // triggered by any radio-input child on value change
-      this.$emit('input', e.target.value)
-      this.validationMessages = []
-    }
-  }
 }
 </script>
 
