@@ -7,10 +7,24 @@
 <script>
 import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables'
-import { width } from '@/utils/styleVariables/helpers/variables'
+import {
+  width,
+  padding,
+  height,
+  background,
+  borderWidth,
+  borderStyle,
+  borderColor
+} from '@/utils/styleVariables/helpers/variables'
 
 const componentStyleVariables = [
   width,
+  padding,
+  height,
+  background,
+  borderWidth,
+  borderStyle,
+  borderColor,
   { name: 'borderBottomWidth', type: 'size' },
   { name: 'borderBottomColor', type: 'color' },
   { name: 'borderBottomStyle', type: 'other' },
@@ -25,19 +39,46 @@ export default {
       type: String,
       default: 'nui-table'
     },
+    width: {
+      type: [Number, String],
+      default: ''
+    },
+    height: {
+      type: [Number, String],
+      default: ''
+    },
+    padding: {
+      type: [Number, String],
+      default: ''
+    },
+    background: {
+      type: String,
+      default: ''
+    },
+    borderWidth: {
+      type: [Number, String]
+    },
+    borderStyle: {
+      type: String
+    },
+    borderColor: {
+      type: String
+    },
     borderBottomWidth: {
       type: [Number, String],
-      default: '1px'
+      default: ''
     },
     borderBottomColor: {
-      type: String
+      type: String,
+      default: ''
     },
     borderBottomStyle: {
       type: String,
-      default: 'solid'
+      default: ''
     },
     columnsAmount: {
-      type: Number
+      type: Number,
+      default: 0
     }
   },
   mounted() {
@@ -48,15 +89,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-tr {
-  border-bottom-width: var(--border-bottom-width);
-  border-bottom-style: var(--border-bottom-style);
-  border-bottom-color: var(--border-bottom-color);
-}
-
-th,
-td {
-  width: calc(100% / var(--columns));
-}
-</style>
+<style lang="scss"></style>

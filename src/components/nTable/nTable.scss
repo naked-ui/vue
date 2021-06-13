@@ -1,8 +1,28 @@
 .nui-table {
   border-collapse: collapse;
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-color: var(--border-color);
   width: var(--width);
 
   thead {
     font-weight: bold;
+  }
+
+  tr {
+    border-bottom-width: var(--border-bottom-width);
+    border-bottom-style: var(--border-bottom-style);
+    border-bottom-color: var(--border-bottom-color);
+  }
+
+  th,
+  td {
+    box-sizing: border-box;
+    vertical-align: middle;
+    text-align: center;
+    padding: var(--padding);
+    height: var(--height);
+    width: calc(100% / var(--columns));
+    background: var(--background);
   }
 }

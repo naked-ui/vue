@@ -7,9 +7,23 @@
 <script>
 import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables'
-import { height, padding } from '@/utils/styleVariables/helpers/variables'
+import {
+  height,
+  padding,
+  background,
+  borderWidth,
+  borderStyle,
+  borderColor
+} from '@/utils/styleVariables/helpers/variables'
 
-const componentStyleVariables = [height, padding]
+const componentStyleVariables = [
+  height,
+  padding,
+  background,
+  borderWidth,
+  borderStyle,
+  borderColor
+]
 
 export default {
   name: 'nTableCell',
@@ -28,6 +42,18 @@ export default {
     },
     padding: {
       type: [Number, String]
+    },
+    background: {
+      type: [Number, String]
+    },
+    borderWidth: {
+      type: [Number, String]
+    },
+    borderStyle: {
+      type: String
+    },
+    borderColor: {
+      type: String
     }
   },
   computed: {
@@ -38,11 +64,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-th,
-td {
-  vertical-align: middle;
-  text-align: center;
-}
-</style>
