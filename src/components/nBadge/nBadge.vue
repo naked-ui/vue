@@ -1,5 +1,5 @@
 <template>
-  <div :class="componentClasses" :id="uiElementID" :style="style">
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
     <slot />
   </div>
 </template>
@@ -42,7 +42,7 @@ export default {
   props: componentProps,
   mixins: [uuID, styleVariables(componentStyleVariables)],
   computed: {
-    copmonentClasses() {
+    componentClasses() {
       return [this.baseClassname]
     }
   }

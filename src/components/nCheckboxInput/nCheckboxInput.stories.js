@@ -49,15 +49,9 @@ Default.argTypes = {
 }
 Default.args = {
   url: 'https://naked-ui.org/',
-  id: 'checkbox-input',
-  name: 'checkbox-input',
+  id: 'checkbox-input-id',
+  name: 'checkbox-input-name',
   label: 'Label text',
-  // customMessages: {
-  //   valueMissing: {
-  //     text: 'Value is required!',
-  //     color: 'magenta'
-  //   }
-  // },
   gap: 8,
   validationEnabled: true,
   required: true
@@ -81,10 +75,10 @@ const GroupTemplate = (args, { argTypes }) => ({
     <form novalidate @submit.prevent="submit">
       <nCheckboxGroup v-bind="$props" v-model="val">
         <nCheckboxInput v-for="n in 3"
-          name="chbxs"
+          :nname="name"
           :key="n"
-          :id="\`checkbox\-input\-\${n}\`"
-          :label="\`Checkbox \${n}\`"
+          :id="id"
+          :label="label"
           :value="n"
           />
       </nCheckboxGroup>
@@ -98,5 +92,6 @@ export const CheckboxGroup = GroupTemplate.bind({})
 
 CheckboxGroup.args = {
   ...Default.args,
-  spacing: 12
+  spacing: 12,
+  baseClassname: 'nui-checkbox-group'
 }

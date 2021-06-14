@@ -1,25 +1,56 @@
 <template>
-  <component :is="tag" v-bind="attrs" :target="target" class="hyperlink">
+  <component
+    :is="tag"
+    v-bind="attrs"
+    :download="download"
+    :hreflang="hreflang"
+    :ping="ping"
+    :rel="rel"
+    :target="target"
+    :class="componentClasses"
+    :id="uiElementID()"
+  >
     <slot />
   </component>
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import hrefIsExternalMixin from '@/utils/hrefIsExternal'
 
 export default {
   name: 'nHyperlink',
-  mixins: [hrefIsExternalMixin],
+  mixins: [uuID, hrefIsExternalMixin],
   props: {
     href: {
       type: String,
       required: true,
-      default: null
+      default: ''
+    },
+    hreflang: {
+      type: String,
+      default: ''
+    },
+    download: {
+      type: String,
+      default: ''
+    },
+    ping: {
+      type: String,
+      default: ''
+    },
+    rel: {
+      type: String,
+      default: ''
     },
     target: {
       type: String,
       required: false,
       default: null
+    },
+    baseClassname: {
+      type: String,
+      default: 'nui-hyperlink'
     }
   },
   computed: {
@@ -30,12 +61,15 @@ export default {
     },
     attrs() {
       if (!this.href) return
-      if (this.hrefIsExternal)
+      if (this.hrefIsExternal) {
+        this.rel = 'noreferrer'
         return {
-          href: this.href,
-          rel: 'noreferrer'
+          href: this.href
         }
-      else return { to: this.href }
+      } else return { to: this.href }
+    },
+    componentClasses() {
+      return [this.baseClassname]
     }
   }
 }

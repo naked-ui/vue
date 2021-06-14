@@ -1,5 +1,5 @@
 <template>
-  <a :class="componentClasses" :style="style">
+  <a :class="componentClasses" :id="uiElementID()" :style="style">
     <slot />
     <div v-if="$slots['badge']" :class="`${baseClassname}__badge`">
       <slot name="badge" />
@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables/index.js'
 import { size } from '@/utils/styleVariables/helpers/variables'
 
@@ -15,7 +16,7 @@ const componentStyleVariables = [size]
 
 export default {
   name: 'nIcon',
-  mixins: [styleVariables(componentStyleVariables)],
+  mixins: [uuID, styleVariables(componentStyleVariables)],
   props: {
     baseClassname: {
       type: String,

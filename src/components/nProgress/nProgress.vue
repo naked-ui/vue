@@ -1,10 +1,10 @@
 <template>
-  <div class="nui-progress" :style="style">
-    <label :for="id" v-if="label && label.length > 0">
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
+    <label :for="IDForLabel" v-if="label && label.length > 0">
       {{ label }}
     </label>
     <progress
-      :id="id"
+      :id="IDForLabel"
       :max="max"
       :value="value"
       v-if="value != null || value != false"
@@ -18,15 +18,21 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
+import formField from '@/utils/formField/index.js'
 import styleVariables from '@/utils/styleVariables'
-import { width, height } from '@/utils/styleVariables/helpers/variables'
+import { width, height, gap } from '@/utils/styleVariables/helpers/variables'
 
-const componentStyleVariables = [width, height]
+const componentStyleVariables = [width, height, gap]
 
 export default {
   name: 'nProgress',
-  mixins: [styleVariables(componentStyleVariables)],
+  mixins: [uuID, formField(), styleVariables(componentStyleVariables)],
   props: {
+    baseClassname: {
+      type: String,
+      default: 'nui-progress'
+    },
     label: {
       type: String,
       defualt: ''
@@ -56,6 +62,15 @@ export default {
     width: {
       type: String,
       default: ''
+    },
+    gap: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    componentClasses() {
+      return [this.baseClassname, 'nui-form-field']
     }
   }
 }

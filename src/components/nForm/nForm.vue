@@ -1,6 +1,7 @@
 <template>
   <form
     :class="componentClasses"
+    :id="uiElementID()"
     @submit.prevent="onSubmit"
     :style="style"
     :action="action"
@@ -18,6 +19,7 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables'
 import { gap, width } from '@/utils/styleVariables/helpers/variables'
 
@@ -25,7 +27,7 @@ const componentStyleVariables = [gap, width]
 
 export default {
   name: 'nForm',
-  mixins: [styleVariables(componentStyleVariables)],
+  mixins: [uuID, styleVariables(componentStyleVariables)],
   props: {
     baseClassname: {
       type: String,

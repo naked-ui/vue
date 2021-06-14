@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="nui-checkbox-group nui-form-field"
-    :id="uiElementID()"
-    :style="style"
-  >
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
     <slot></slot>
     <nValidationAlerts
       v-if="validationMessages.length > 0"
@@ -18,29 +14,38 @@ import formField from '@/utils/formField/index.js'
 import groupValidationHandler from './logic/groupValidationHandler'
 import { color, spacing } from '@/utils/styleVariables/helpers/variables'
 
-const customStyleVariables = [color, spacing]
+const componentStyleVariables = [color, spacing]
 
 export default {
-  mixins: [uuID, formField(customStyleVariables), groupValidationHandler],
+  mixins: [uuID, formField(componentStyleVariables), groupValidationHandler],
   name: 'nCheckboxGroup',
+  data() {
+    return {
+      selectedValue: []
+    }
+  },
   props: {
     value: {
       type: Array,
       required: true
     },
+    baseClassname: {
+      type: String,
+      default: 'nui-checkbox-group'
+    },
     // input attrs
     color: {
       type: String,
-      default: null
+      default: ''
     },
     spacing: {
       type: [Number, String],
-      default: null
+      default: ''
     }
   },
-  data() {
-    return {
-      selectedValue: []
+  computed: {
+    componentClasses() {
+      return [this.baseClassname, 'nui-form-field']
     }
   }
 }

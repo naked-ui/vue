@@ -7,7 +7,6 @@ import { nButton } from '../nButton'
 const textInputStyling = {
   gap: 8,
   height: 48,
-  // width: '280px',
   padding: '10px',
   borderWidth: '2px',
   borderStyle: 'solid',
@@ -16,7 +15,6 @@ const textInputStyling = {
 
 const textareaStyling = {
   height: '96px',
-  // width: '280px',
   gap: '8px',
   padding: '10px',
   borderWidth: '2px',
@@ -70,7 +68,7 @@ const Template = (arg, { argTypes }) => ({
     }
   },
   template: `
-    <nForm v-bind="$props" style="width: 100%;" @submit="onSubmit" @error="onError">
+    <nForm v-bind="$props" @submit="onSubmit" @error="onError">
       <nTextInput v-bind="textInputStyling" id="name" name="name" v-model="form.name" label="Name" />
       <nEmailInput v-bind="textInputStyling" id="email" name="email" v-model="form.email" label="E-mail" :required="true" />
       <nTextarea v-bind="textareaStyling" id="message" name="message" v-model="form.message" label="Message" />
