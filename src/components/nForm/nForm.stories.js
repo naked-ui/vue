@@ -29,7 +29,7 @@ const buttonStyling = {
 }
 
 export default {
-  title: 'Form/Form',
+  title: 'Form',
   component: nForm,
   argTypes: {
     gap: { control: 'text' },

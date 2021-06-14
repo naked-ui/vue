@@ -1,7 +1,7 @@
 import nRangeInput from './nRangeInput.vue'
 
 export default {
-  title: 'Form/Input/RangeInput',
+  title: 'RangeInput',
   component: nRangeInput,
   argTypes: {
     dotColor: { control: 'color' },

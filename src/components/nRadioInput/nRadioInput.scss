@@ -10,13 +10,15 @@
 // CUSTOM STYLES
 
 .nui-radio-input {
+  color: var(--color);
+
   label {
-    &:focus-within .checkbox-input__checkbox:invalid {
+    &:focus-within input[type='radio']:invalid {
       border-color: var(--color-invalid);
     }
   }
 
-  .nui-radio-input__radio {
+  input[type='radio'] {
     appearance: none;
     height: var(--height, 16px);
     width: var(--width, 16px);

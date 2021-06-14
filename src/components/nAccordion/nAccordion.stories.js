@@ -2,7 +2,7 @@ import nAccordion from './nAccordion'
 import nAccordionItem from './nAccordionItem'
 
 export default {
-  title: 'Content/Accordion',
+  title: 'Accordion',
   component: nAccordion,
   argTypes: {
     items: { control: 'array' },

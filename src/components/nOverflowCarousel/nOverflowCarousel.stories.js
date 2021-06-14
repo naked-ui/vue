@@ -2,7 +2,7 @@ import nOverflowCarousel from './nOverflowCarousel.vue'
 import nOverflowCarouselItem from './nOverflowCarouselItem.vue'
 
 export default {
-  title: 'Content/OverflowCarousel',
+  title: 'OverflowCarousel',
   component: nOverflowCarousel,
   argTypes: {
     viewportPadding: { control: 'range', min: 0, max: 100, defaultValue: 12 },

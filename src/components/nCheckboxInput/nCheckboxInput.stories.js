@@ -2,7 +2,7 @@ import nCheckboxInput from './nCheckboxInput.vue'
 import nCheckboxGroup from './nCheckboxGroup.vue'
 
 export default {
-  title: 'Form/Input/CheckboxInput',
+  title: 'CheckboxInput',
   component: nCheckboxInput,
   argTypes: {
     color: { control: 'color' },

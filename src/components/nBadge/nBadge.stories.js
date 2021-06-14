@@ -11,7 +11,7 @@ const componentArgTypes = {
 }
 
 export default {
-  title: 'Helpers/Badge',
+  title: 'Badge',
   component: nBadge,
   argTypes: componentArgTypes
 }

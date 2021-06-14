@@ -10,6 +10,8 @@
 // CUSTOM STYLES
 
 .nui-checkbox-input {
+  color: var(--color);
+
   label {
     &:focus-within .checkbox-input__checkbox:invalid {
       border-color: var(--color-invalid);

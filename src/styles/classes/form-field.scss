@@ -10,9 +10,10 @@
   row-gap: var(--gap);
   width: var(--width);
 
-  textarea,
+  progress,
   select,
-  input:is([type='text'], [type='email'], [type='tel'], [type='pasword'], [type='date'], [type='search'], [type='time'], [type='url']) {
+  textarea,
+  input:is([type='color'], [type='date'], [type='email'], [type='pasword'], [type='range'], [type='search'], [type='tel'], [type='text'], [type='time'], [type='url']) {
     appearance: none;
     box-sizing: border-box;
     height: var(--height);

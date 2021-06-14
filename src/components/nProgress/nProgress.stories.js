@@ -1,13 +1,19 @@
 import nProgress from './nProgress.vue'
 
 export default {
-  title: 'Form/Progress',
+  title: 'Progress',
   component: nProgress,
   argTypes: {
     value: {
       control: 'range',
       min: 0,
       max: 100
+    },
+    gap: {
+      control: 'range'
+    },
+    name: {
+      control: 'text'
     },
     color: {
       control: 'color',

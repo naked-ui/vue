@@ -1,7 +1,7 @@
 import nCover from './nCover.vue'
 
 export default {
-  title: 'Content/Cover',
+  title: 'Cover',
   component: nCover,
   argTypes: {
     width: { control: 'text', defaultValue: '100%' },
@@ -32,9 +32,9 @@ export default {
 }
 
 export const BackgroundImageTemplate = (args, { argTypes }) => ({
-    components: { nCover },
-    props: Object.keys(argTypes),
-    template: `
+  components: { nCover },
+  props: Object.keys(argTypes),
+  template: `
       <nCover
         v-bind="$props"
         :backgroundImage="backgroundImage"
@@ -60,8 +60,8 @@ BackgroundImageTemplate.args = {
         srcset: 'https://images.pexels.com/photos/7082674/pexels-photo-7082674.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         media: '(min-width: 768px) and (max-width: 980px)'
       }
-    ]    
-},
+    ]
+  },
   // backgroundImage: 'https://images.pexels.com/photos/5232570/pexels-photo-5232570.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
   content: `
     <h2 style="color: #fff; margin: 0 0 24px 0;">Enim labore laboris dolor laboris veniam voluptate sunt velit.</h2>
@@ -87,6 +87,6 @@ export const VideoTemplate = (args, { argTypes }) => ({
 VideoTemplate.args = {
   backgroundVideo: {
     src: 'https://file-examples-com.github.io/uploads/2020/03/file_example_WEBM_1280_3_6MB.webm',
-    type:'video/webm'
+    type: 'video/webm'
   }
 }

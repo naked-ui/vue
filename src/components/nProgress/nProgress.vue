@@ -5,6 +5,7 @@
     </label>
     <progress
       :id="IDForLabel"
+      :name="name"
       :max="max"
       :value="value"
       v-if="value != null || value != false"

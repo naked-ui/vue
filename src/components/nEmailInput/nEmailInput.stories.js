@@ -7,7 +7,7 @@ import validationArgTypes from '../../../.storybook/utils/argTypes/validationArg
 const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes }
 
 export default {
-  title: 'Form/Input/EmailInput',
+  title: 'EmailInput',
   component: nEmailInput,
   argTypes: customArgTypes
 }
