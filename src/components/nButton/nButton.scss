@@ -24,8 +24,8 @@
 
   /// Text & icons color
 
-  .nui-button__text,
-  .nui-button__icon {
+  &__text,
+  &__icon {
     @include flex($place: center);
     svg {
       fill: var(--color) !important;
@@ -34,7 +34,7 @@
 
   /// Icons
 
-  .nui-button__icon {
+  &__icon {
     &--left {
       margin-right: var(--gap);
     }

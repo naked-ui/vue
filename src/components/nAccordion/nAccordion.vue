@@ -1,5 +1,5 @@
 <template>
-  <ul :class="componentClasses" :style="style">
+  <ul :class="componentClasses" :style="style" :id="uiElementID">
     <template>
       <slot />
     </template>
@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import nIcon from '../nIcon/nIcon'
+import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables'
 import { maxWidth, padding } from '@/utils/styleVariables/helpers/variables'
 
@@ -22,8 +22,7 @@ const componentStyleVariables = [
 
 export default {
   name: 'nAccordion',
-  mixins: [styleVariables(componentStyleVariables)],
-  components: { nIcon },
+  mixins: [uuID, styleVariables(componentStyleVariables)],
   props: {
     baseClassname: {
       type: String,

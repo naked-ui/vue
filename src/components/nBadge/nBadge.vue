@@ -1,10 +1,11 @@
 <template>
-  <div class="nui-badge" :style="style">
+  <div :class="componentClasses" :id="uiElementID" :style="style">
     <slot />
   </div>
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables'
 import styleProps from '@/utils/props/styleProps'
 
@@ -39,7 +40,7 @@ const componentProps = {
 
 export default {
   props: componentProps,
-  mixins: [styleVariables(componentStyleVariables)],
+  mixins: [uuID, styleVariables(componentStyleVariables)],
   computed: {
     copmonentClasses() {
       return [this.baseClassname]
