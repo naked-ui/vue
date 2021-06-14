@@ -2,6 +2,7 @@
   <div
     :class="componentClasses"
     :ref="refName"
+    :id="uiElementID()"
     :style="`
       --amount-to-scroll: ${amountToScroll}
     `"
@@ -91,6 +92,7 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import sliderCarouselIndex from './logic/sliderCarouselIndex'
 import sliderCarouselNavigation from './logic/sliderCarouselNavigation'
 import sliderCarouselPagination from './logic/sliderCarouselPagination'
@@ -100,6 +102,7 @@ import sliderCarouselSettings from './logic/sliderCarouselSettings'
 export default {
   name: 'nSliderCarousel',
   mixins: [
+    uuID,
     sliderCarouselIndex,
     sliderCarouselNavigation,
     sliderCarouselPagination,

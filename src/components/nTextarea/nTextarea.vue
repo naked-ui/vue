@@ -1,6 +1,6 @@
 <template>
-  <div :class="componentClasses" :style="style">
-    <label :for="id" :disabled="disabled">
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
+    <label :for="IDforLabel" :disabled="disabled">
       {{ label }}
     </label>
     <textarea
@@ -15,7 +15,7 @@
       :autofocus="autofocus"
       :autocorrect="autocorrect"
       :disabled="disabled"
-      :id="id"
+      :id="IDforLabel"
       :maxlength="maxlength"
       :minlength="minlength"
       :name="name"
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import nInputCounter from '@/utils/components/nInputCounter.vue'
@@ -48,7 +49,7 @@ import { resize } from '@/utils/styleVariables/helpers/variables'
 const componentStyleVariables = [resize]
 
 export default {
-  mixins: [formField(componentStyleVariables)],
+  mixins: [uuID, formField(componentStyleVariables)],
   name: 'nTextarea',
   components: {
     nValidationAlerts,

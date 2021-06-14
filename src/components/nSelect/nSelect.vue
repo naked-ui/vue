@@ -7,7 +7,7 @@
     :disabled="disabled"
     :nui-validation="validationEnabled"
   >
-    <label class="nui-select__label" v-if="label" :for="IDForLabel">
+    <label v-if="label" :for="IDForLabel">
       {{ label }}
     </label>
     <div class="nui-select__inner">

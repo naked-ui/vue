@@ -1,5 +1,5 @@
 <template>
-  <div :class="componentClasses" :style="style">
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
     <div :class="`${baseClassname}__controls`">
       <button
         :class="[
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import styleVariables from '../../utils/styleVariables'
 import { width } from '../../utils/styleVariables/helpers/variables'
 
@@ -29,7 +30,7 @@ const defaultStyleVariables = [
 
 export default {
   name: 'nTabs',
-  mixins: [styleVariables(defaultStyleVariables)],
+  mixins: [uuID, styleVariables(defaultStyleVariables)],
   props: {
     baseClassname: {
       type: String,

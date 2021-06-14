@@ -1,6 +1,6 @@
 <template>
-  <div :class="componentClasses" :style="style">
-    <label :disabled="disabled" :for="id">
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
+    <label :disabled="disabled" :for="IDforLabel">
       {{ label }}
     </label>
     <input
@@ -16,7 +16,7 @@
       @keyup="checkInputMaxLength"
       :autofocus="autofocus"
       :disabled="disabled"
-      :id="id"
+      :id="IDforLabel"
       :name="name"
       :placeholder="placeholder"
       :readonly="readonly"
@@ -42,12 +42,13 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import nInputCounter from '@/utils/components/nInputCounter.vue'
 
 export default {
-  mixins: [formField()],
+  mixins: [uuID, formField()],
   name: 'nTextInput',
   components: {
     nValidationAlerts,
@@ -62,7 +63,7 @@ export default {
   computed: {
     componentClasses() {
       return [this.baseClassname]
-    },
+    }
   }
 }
 </script>
