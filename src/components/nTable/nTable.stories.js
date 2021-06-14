@@ -13,6 +13,12 @@ export default {
 		width: {
 			control: 'text'
 		},
+		bodyIsCollapsable: {
+			control: 'boolean'
+		},
+		bodyMaxHeight: {
+			control: 'text'
+		},
 		cellHeight: {
 			control: 'text'
 		},
@@ -289,7 +295,6 @@ TableWithHeaderBodyAndFooter.args = {
 	rowBorderBottomStyle: 'solid',
 	tableBorderWidth: '2px',
 	tableBorderStyle: 'solid',
-	bodyIsCollapsable: 'false',
 }
 
 const TableWithHeaderAndCellHeadersTemplate = (args, { argTypes }) => ({
@@ -403,11 +408,11 @@ const TableWithHeaderAndCellHeadersTemplate = (args, { argTypes }) => ({
 export const TableWithHeaderAndCellHeaders = TableWithHeaderAndCellHeadersTemplate.bind({});
 
 TableWithHeaderAndCellHeaders.storyName = 'Table with Header and Cell Headers'
-TableWithHeaderAndCellHeaders.argTypes = {
-	bodyIsCollapsable: {
-		control: 'boolean'
-	}
-}
+// TableWithHeaderAndCellHeaders.argTypes = {
+// 	bodyIsCollapsable: {
+// 		control: 'boolean'
+// 	}
+// }
 TableWithHeaderAndCellHeaders.args = {
 	width: '640px',
 	cellHeight: '48px',
@@ -417,4 +422,378 @@ TableWithHeaderAndCellHeaders.args = {
 	rowBorderBottomWidth: '1px',
 	rowBorderBottomStyle: 'solid',
 	bodyIsCollapsable: 'false',
+}
+
+const TableWithHeaderAndScrollableBodyTemplate = (args, { argTypes }) => ({
+	components: {
+		nTable,
+		nTableRow,
+		nTableCell
+	},
+	props: Object.keys(argTypes),
+	template: `
+		<nTable v-bind="$props"
+			:borderWidth="tableBorderWidth"
+			:borderStyle="tableBorderStyle"
+			:borderColor="tableBorderColor"
+		>
+
+			<template v-slot:thead>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+					background="#ddd"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Header content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Header content 2
+					</nTableCell>
+				</nTableRow>
+			</template>
+
+			<template v-slot:tbody>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+				<nTableRow
+					:height="cellHeight"
+					:padding="cellPadding"
+					:borderBottomWidth="rowBorderBottomWidth"
+					:borderBottomStyle="rowBorderBottomStyle"
+					:borderBottomColor="rowBorderBottomColor"
+				>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 1
+					</nTableCell>
+					<nTableCell
+						:borderWidth="cellBorderWidth"
+						:borderStyle="cellBorderStyle"
+						:borderColor="cellBorderColor"
+					>
+						Body content 2
+					</nTableCell>
+				</nTableRow>
+			</template>
+
+		</nTable>
+	`,
+});
+
+export const TableWithHeaderAndScrollableBody = TableWithHeaderAndScrollableBodyTemplate.bind({});
+
+TableWithHeaderAndScrollableBody.argTypes = {
+	bodyIsCollapsable: {
+		control: 'boolean'
+	}
+}
+
+TableWithHeaderAndScrollableBody.args = {
+	width: '480px',
+	bodyMaxHeight: '360px',
+	cellHeight: '48px',
+	cellPadding: '12px',
+	rowBorderBottomWidth: '1px',
+	rowBorderBottomStyle: 'solid',
+	tableBorderWidth: '2px',
+	tableBorderStyle: 'solid',
 }

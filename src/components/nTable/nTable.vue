@@ -35,7 +35,8 @@ const componentStyleVariables = [
   width,
   borderWidth,
   borderStyle,
-  borderColor
+  borderColor,
+  { name: 'bodyMaxHeight', type: 'size' }
 ]
 
 export default {
@@ -66,11 +67,14 @@ export default {
     bodyIsCollapsable: {
       type: Boolean,
       default: false
+    },
+    bodyMaxHeight: {
+      type: [Number, String]
     }
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.baseClassname, this.bodyMaxHeight ? 'scrollable' : '']
     }
   },
   methods: {

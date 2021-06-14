@@ -1,3 +1,5 @@
+@import 'sxcss';
+
 .nui-table {
   border-collapse: collapse;
   border-width: var(--border-width);
@@ -5,11 +7,15 @@
   border-color: var(--border-color);
   width: var(--width);
 
+  * {
+    box-sizing: border-box;
+  }
+
   thead {
     font-weight: bold;
   }
 
-  tr {
+  tr:not(:last-child) {
     border-bottom-width: var(--border-bottom-width);
     border-bottom-style: var(--border-bottom-style);
     border-bottom-color: var(--border-bottom-color);
@@ -17,12 +23,43 @@
 
   th,
   td {
-    box-sizing: border-box;
     vertical-align: middle;
     text-align: center;
     padding: var(--padding);
     height: var(--height);
     width: calc(100% / var(--columns-amount));
     background: var(--background);
+  }
+
+  &.scrollable {
+    position: relative;
+    padding: var(--height);
+    @include flex($direction: column);
+
+    thead {
+      margin-top: translateY(
+        calc(var(--border-width) * var(--negative-factor))
+      );
+    }
+
+    :is(thead, tbody) {
+      tr {
+        display: flex;
+        width: calc(var(--width) - calc(var(--border-width) * 2));
+
+        td,
+        th {
+          @include flex($place: center);
+          height: calc(var(--height) - var(--border-width) / 2);
+        }
+      }
+    }
+
+    tbody {
+      display: inline-block;
+      width: 100%;
+      overflow: auto;
+      max-height: var(--body-max-height);
+    }
   }
 }
