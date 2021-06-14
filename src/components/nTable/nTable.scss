@@ -22,7 +22,7 @@
     text-align: center;
     padding: var(--padding);
     height: var(--height);
-    width: calc(100% / var(--columns));
+    width: calc(100% / var(--columns-amount));
     background: var(--background);
   }
 }
