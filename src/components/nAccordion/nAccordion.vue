@@ -1,5 +1,5 @@
 <template>
-  <ul :class="componentClasses" :style="style" :id="uiElementID">
+  <ul :class="componentClasses" :style="style" :id="uiElementID()">
     <template>
       <slot />
     </template>

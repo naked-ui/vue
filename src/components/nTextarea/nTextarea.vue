@@ -1,6 +1,6 @@
 <template>
   <div :class="componentClasses" :id="uiElementID()" :style="style">
-    <label :for="IDforLabel" :disabled="disabled">
+    <label :for="IDForLabel" :disabled="disabled">
       {{ label }}
     </label>
     <textarea
@@ -15,7 +15,7 @@
       :autofocus="autofocus"
       :autocorrect="autocorrect"
       :disabled="disabled"
-      :id="IDforLabel"
+      :id="IDForLabel"
       :maxlength="maxlength"
       :minlength="minlength"
       :name="name"
@@ -58,7 +58,7 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'nui-form-field'
+      default: 'nui-textarea'
     },
     resize: {
       type: String
@@ -66,7 +66,7 @@ export default {
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.baseClassname, 'nui-form-field']
     }
   }
 }

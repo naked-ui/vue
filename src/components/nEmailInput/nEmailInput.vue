@@ -58,10 +58,6 @@ export default {
       type: String,
       default: 'nui-email-input'
     }
-    // pattern: {
-    //   type: String,
-    //   default: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
-    // }
   },
   computed: {
     componentClasses() {

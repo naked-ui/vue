@@ -1,10 +1,9 @@
 <template>
   <div :class="componentClasses" :id="uiElementID()" :style="style">
-    <label :disabled="disabled" :for="IDforLabel">
+    <label :disabled="disabled" :for="IDForLabel">
       {{ label }}
     </label>
     <input
-      ref="input"
       type="text"
       :value="value"
       @invalid="onInvalid"
@@ -16,10 +15,11 @@
       @keyup="checkInputMaxLength"
       :autofocus="autofocus"
       :disabled="disabled"
-      :id="IDforLabel"
+      :id="IDForLabel"
       :name="name"
       :placeholder="placeholder"
       :readonly="readonly"
+      ref="input"
       :required="required"
       :title="title"
       :nui-validation="validationEnabled"
@@ -57,12 +57,12 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'nui-form-field'
+      default: 'nui-text-input'
     }
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.baseClassname, 'nui-form-field']
     }
   }
 }

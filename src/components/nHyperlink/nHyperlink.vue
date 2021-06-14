@@ -28,25 +28,20 @@ export default {
       default: ''
     },
     hreflang: {
-      type: String,
-      default: ''
+      type: String
     },
     download: {
-      type: String,
-      default: ''
+      type: String
     },
     ping: {
-      type: String,
-      default: ''
+      type: String
     },
     rel: {
-      type: String,
-      default: ''
+      type: String
     },
     target: {
       type: String,
-      required: false,
-      default: null
+      required: false
     },
     baseClassname: {
       type: String,
