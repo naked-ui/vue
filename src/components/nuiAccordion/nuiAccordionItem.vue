@@ -62,4 +62,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="./nAccordion.scss" />
+<style lang="scss" src="./nuiAccordion.scss" />
