@@ -24,9 +24,7 @@
     width: var(--width, 16px);
     border: solid 1px var(--color, #111);
     margin: 0;
-    margin-right: calc(
-      var(--gap, calc(var(--width, 16px) / 2))
-    ); // half width as fallback
+    margin-right: var(--gap);
     position: relative;
     outline: none;
     border-radius: 50%;
