@@ -3,7 +3,7 @@ import nuiTableRow from './nuiTableRow'
 import nuiTableCell from './nuiTableCell'
 
 export default {
-	title: 'Content/Table',
+	title: 'Table',
 	components: {
 		nuiTable,
 		nuiTableRow,
