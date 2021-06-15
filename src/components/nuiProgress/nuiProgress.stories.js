@@ -19,6 +19,10 @@ export default {
       control: 'color',
       defaultValue: '#333'
     },
+    backgroundColor: {
+      control: 'color',
+      defaultValue: '#eee'
+    },
   }
 }
 

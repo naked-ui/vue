@@ -11,6 +11,7 @@
       v-if="value != null || value != false"
       :style="`
         --color: ${color};
+        --background-color: ${backgroundColor};
       `"
     >
       {{ value }}
@@ -55,6 +56,9 @@ export default {
       type: String,
       default: '',
       required: true
+    },
+    backgroundColor: {
+      type: String
     },
     height: {
       type: String,
