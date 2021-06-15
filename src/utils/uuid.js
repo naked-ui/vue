@@ -11,7 +11,7 @@ export default {
   // },
   methods: {
     uiElementID(name) {
-      if (name && this.id) return `${this.id}_${uuid()}`
+      if (name) return `${name}_${uuid()}`
       // if (this.baseClassname) {
       //   return `${this.baseClassname}_${uuid()}`
       // }
