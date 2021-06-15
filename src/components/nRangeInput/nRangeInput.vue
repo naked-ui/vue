@@ -1,8 +1,8 @@
 <template>
   <div
-    :id="id"
+    :id="uiElementID()"
     :name="name"
-    class="nui-range-input nui-form-field"
+    :class="componentClasses"
     role="group"
     :aria-labelledby="`${baseClassname}--label`"
     :style="`
@@ -21,9 +21,10 @@
       --outputFontColor: ${this.outputFontColor};
     `"
   >
-    <label :id="`${baseClassname}--label`" v-if="label">{{ label }}</label>
+    <label :for="IDForLabel" v-if="label">{{ label }}</label>
     <div
       class="nui-range-input__wrap"
+      :id="IDForLabel"
       role="group"
       :aria-labelledby="`${baseClassname}--label`"
       :style="rangeVariables"
@@ -57,11 +58,12 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
 
 export default {
   name: 'nRangeInput',
-  mixins: [formField()],
+  mixins: [uuID, formField()],
   props: {
     baseClassname: {
       type: String,
@@ -126,6 +128,9 @@ export default {
     }
   },
   computed: {
+    componentClasses() {
+      return [this.baseClassname, 'nui-form-field']
+    },
     dots() {
       return this.ranges * 2
     },

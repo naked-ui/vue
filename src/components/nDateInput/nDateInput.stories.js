@@ -7,7 +7,7 @@ import validationArgTypes from '../../../.storybook/utils/argTypes/validationArg
 const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes }
 
 export default {
-  title: 'Form/Input/DateInput',
+  title: 'DateInput',
   component: nDateInput,
   argTypes: customArgTypes
 }

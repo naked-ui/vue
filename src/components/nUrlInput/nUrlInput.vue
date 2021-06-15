@@ -1,5 +1,5 @@
 <template>
-  <div :class="componentClasses" :style="style">
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
     <label :disabled="disabled" :for="id">
       {{ label }}
     </label>
@@ -36,11 +36,12 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 
 export default {
-  mixins: [formField()],
+  mixins: [uiID, formField()],
   name: 'nUrlInput',
   components: {
     nValidationAlerts

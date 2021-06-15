@@ -3,9 +3,10 @@
     v-bind="attrs"
     :is="tag"
     :class="componentClasses.length > 0 ? componentClasses : false"
+    :id="uiElementID()"
+    :style="style"
     :disabled="disabled || busy"
     :busy="busy"
-    :style="style"
     :buttonBusyText="buttonBusyText"
   >
     <div
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import hrefIsExternalMixin from '@/utils/hrefIsExternal'
 import styleVariables from '@/utils/styleVariables'
 import {
@@ -94,7 +96,7 @@ const componentProps = {
 
 export default {
   name: 'nButton',
-  mixins: [hrefIsExternalMixin, styleVariables(componentStyleVariables)],
+  mixins: [uuID, hrefIsExternalMixin, styleVariables(componentStyleVariables)],
   props: componentProps,
   computed: {
     tag() {
@@ -153,4 +155,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="./nButton.scss" />
+<style lang="scss" src="./nButton.scss" scoped />

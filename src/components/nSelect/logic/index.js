@@ -5,6 +5,7 @@ import eventsHandler from './eventsHandler'
 import keyboardHandler from './keyboardHandler'
 import validationHandler from './validationHandler'
 import multiSelectHandler from './multiSelectHandler'
+import formFieldID from '@/utils/formField/helpers/formFieldID.js'
 
 export default {
   props: {
@@ -20,6 +21,7 @@ export default {
     indexHandler,
     validationHandler,
     multiSelectHandler,
-    nuiHandler
+    nuiHandler,
+    formFieldID
   ]
 }

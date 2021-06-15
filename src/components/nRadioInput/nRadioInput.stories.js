@@ -2,7 +2,7 @@ import nRadioInput from './nRadioInput.vue'
 import nRadioGroup from './nRadioGroup.vue'
 
 export default {
-  title: 'Form/Input/RadioInput',
+  title: 'RadioInput',
   component: nRadioInput,
   argTypes: {
     color: { control: 'color' },
@@ -78,34 +78,6 @@ const GroupTemplate = (args, { argTypes }) => ({
 export const Group = GroupTemplate.bind({})
 Group.args = {
   ...Default.args,
-  spacing: 12
+  spacing: 12,
+  baseClassname: 'nui-radio-group'
 }
-
-// const GroupRequiredTemplate = (args, { argTypes }) => ({
-//   components: { nRadioGroup, nRadioInput },
-//   props: Object.keys(argTypes),
-//   data() {
-//     return {
-//       val: 'undefined'
-//     }
-//   },
-//   template: `<form novalidate @submit.prevent="e=>{if (!e.target.checkValidity()) return}">
-//       <nRadioGroup v-bind="$props" required v-model="val">
-//         <nRadioInput
-//           v-for="n in 3"
-//           name="radios"
-//           :key="n"
-//           :id="\`\${n}\`"
-//           :label="\`Radio \${n}\`"
-//           :value="n"
-//         />
-//       </nRadioGroup>
-//       <input style="margin-top: 16px;" type="submit" value="submit">
-//       <code style="display: block; width: 100%; margin-top: 16px;">current val: {{val}}</code>
-//     </form>`
-// })
-
-// export const GroupRequired = GroupRequiredTemplate.bind({})
-// GroupRequired.args = {
-//   ...Group.args
-// }

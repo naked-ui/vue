@@ -1,15 +1,10 @@
 .nui-progress {
-  position: relative;
-  height: var(--height);
-  width: var(--width);
-
   progress {
-    position: absolute;
     -webkit-appearance: none;
     appearance: none;
     color: var(--color);
-    height: 100%;
-    width: 100%;
+    height: var(--height);
+    width: var(--width);
     border: none;
 
     &::-webkit-progress-value,

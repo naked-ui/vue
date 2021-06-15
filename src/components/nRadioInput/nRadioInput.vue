@@ -1,12 +1,11 @@
 <template>
-  <div class="nui-radio-input" :style="style" :class="componentClasses">
-    <label class="nui-radio-input__label" :disabled="disabled" :for="id">
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
+    <label :disabled="disabled" :for="IDForLabel">
       <input
-        class="nui-radio-input__radio"
         type="radio"
         @invalid="$setValidity"
         @change="$validate"
-        :id="id"
+        :id="IDForLabel"
         :disabled="isDisabled"
         :readonly="isReadonly"
         :required="isRequired"
@@ -26,35 +25,36 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
 import validationHandler from './logic/validationHandler'
-import { color } from '@/utils/styleVariables/helpers/variables'
+// import { color } from '@/utils/styleVariables/helpers/variables'
 
-const componentStyleVariables = [color]
+// const componentStyleVariables = [color]
 
 export default {
   name: 'nRadioInput',
-  mixins: [formField(componentStyleVariables), validationHandler],
+  mixins: [uuID, formField(), validationHandler],
   props: {
     baseClassname: {
       type: String,
-      default: 'nui-form-field'
+      default: 'nui-radio-input'
     },
     // input attrs
     checked: {
       type: Boolean,
       default: false
-    },
-    color: {
-      type: String,
-      default: null
     }
+    // color: {
+    //   type: String,
+    //   default: null
+    // }
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.baseClassname, 'nui-form-field']
     }
-  },
+  }
 }
 </script>
 

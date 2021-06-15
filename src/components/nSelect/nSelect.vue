@@ -2,11 +2,12 @@
   <div
     class="nui-select"
     :class="componentClasses"
+    :id="uiElementID()"
     :style="style"
     :disabled="disabled"
     :nui-validation="validationEnabled"
   >
-    <label class="nui-select__label" v-if="label" :for="uiElementID">
+    <label v-if="label" :for="IDForLabel">
       {{ label }}
     </label>
     <div class="nui-select__inner">
@@ -17,7 +18,7 @@
           v-on="listeners"
           v-model="dummySelected"
           :tabindex="nativeTabindex"
-          :id="uiElementID"
+          :id="IDForLabel"
           :disabled="disabled"
           :nui-validation="validationEnabled"
           @blur.capture="
@@ -124,13 +125,14 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import logic from './logic'
 import clickout from '@/utils/clickout'
 
 export default {
   name: 'nSelect',
   inheritAttrs: false,
-  mixins: [logic],
+  mixins: [uuID, logic],
   directives: { clickout },
   props: {
     baseClassname: {

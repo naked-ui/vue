@@ -1,5 +1,5 @@
 <template>
-  <table :class="componentClasses" :id="uiElementID" :style="style">
+  <table :class="componentClasses" :id="uiElementID()" :style="style">
     <caption v-if="$slots['caption']">
       <slot name="caption" />
     </caption>

@@ -32,7 +32,7 @@ let customArgTypes = {
 }
 
 export default {
-  title: 'Form/Select',
+  title: 'Select',
   component: nSelect,
   argTypes: customArgTypes
 }

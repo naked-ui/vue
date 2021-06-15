@@ -3,7 +3,7 @@ import nTabs from './nTabs'
 
 export default {
   component: nTabs,
-  title: 'Content/Tabs',
+  title: 'Tabs',
   argTypes: {
     controlPadding: { control: 'text' },
     tabPadding: { control: 'text' },

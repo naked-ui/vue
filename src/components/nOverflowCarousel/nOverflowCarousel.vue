@@ -1,5 +1,5 @@
 <template>
-  <div :class="componentClasses" :style="style">
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
     <div :class="`${baseClassname}__viewport-wrapper`">
       <ul
         :class="`${baseClassname}__viewport`"
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables'
 import {
   itemsGap,
@@ -22,7 +23,7 @@ const componentStyleVariables = [itemsGap, viewportPadding]
 
 export default {
   name: 'nOverflowCarousel',
-  mixins: [styleVariables(componentStyleVariables)],
+  mixins: [uuID, styleVariables(componentStyleVariables)],
   props: {
     baseClassname: {
       type: String,

@@ -1,12 +1,11 @@
 <template>
-  <div class="checkbox-input" :style="style" :class="componentClasses">
-    <label class="checkbox-input__label" :disabled="disabled" :for="id">
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
+    <label :disabled="disabled" :for="IDForLabel">
       <input
-        class="checkbox-input__checkbox"
         type="checkbox"
         @invalid="$setValidity"
         @change="$validate"
-        :id="id"
+        :id="IDForLabel"
         :disabled="isDisabled"
         :readonly="isReadonly"
         :required="isRequired"
@@ -26,6 +25,7 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index'
 import validationHandler from './logic/validationHandler'
 import { color } from '@/utils/styleVariables/helpers/variables'
@@ -33,12 +33,12 @@ import { color } from '@/utils/styleVariables/helpers/variables'
 const componentStyleVariables = [color]
 
 export default {
-  mixins: [formField(componentStyleVariables), validationHandler],
+  mixins: [uuID, formField(componentStyleVariables), validationHandler],
   name: 'nCheckboxInput',
   props: {
     baseClassname: {
       type: String,
-      default: 'nui-form-field'
+      default: 'nui-checkbox-input'
     },
     checked: {
       type: Boolean,
@@ -51,9 +51,9 @@ export default {
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.baseClassname, 'nui-form-field']
     }
-  },
+  }
 }
 </script>
 

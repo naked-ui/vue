@@ -1,6 +1,6 @@
 // CORE STYLES
 
-.checkbox-input {
+.nui-checkbox-input {
   label {
     display: inline-flex;
     align-items: center;
@@ -9,14 +9,16 @@
 
 // CUSTOM STYLES
 
-.checkbox-input {
+.nui-checkbox-input {
+  color: var(--color);
+
   label {
     &:focus-within .checkbox-input__checkbox:invalid {
       border-color: var(--color-invalid);
     }
   }
 
-  .checkbox-input__checkbox {
+  input[type='checkbox'] {
     appearance: none;
     height: var(--height, 16px);
     width: var(--width, 16px);

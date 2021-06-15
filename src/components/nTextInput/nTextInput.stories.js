@@ -7,7 +7,7 @@ const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgType
 
 
 export default {
-  title: 'Form/Input/TextInput',
+  title: 'TextInput',
   component: nTextInput,
   argTypes: customArgTypes
 }

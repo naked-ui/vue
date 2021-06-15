@@ -1,6 +1,6 @@
 <template>
-  <div :class="componentClasses" :style="style">
-    <div v-if="$slots['background']" :class="`${componentClasses}__background`">
+  <div :class="baseClassname" :id="uiElementID()" :style="style">
+    <div v-if="$slots['background']" :class="`${baseClassname}__background`">
       <slot name="background" />
     </div>
     <nCoverBackground
@@ -10,11 +10,11 @@
       :baseClassname="baseClassname"
     />
     <div
-      :class="`${componentClasses}__content`"
+      :class="`${baseClassname}__content`"
       v-if="$slots['content'].length > 0"
     >
       <div
-        :class="`${componentClasses}__content-inner`"
+        :class="`${baseClassname}__content-inner`"
         :style="`
           --content-place-content: ${placeContent};
         `"
@@ -24,7 +24,7 @@
     </div>
     <div
       v-if="hasOverlay"
-      :class="`${componentClasses}__overlay`"
+      :class="`${baseClassname}__overlay`"
       :style="`
         --overlay-background-color: ${overlayColor};
         --overlay-opacity: ${overlayOpacity};
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import nCoverBackground from './nCoverBackground'
 import styleVariables from '@/utils/styleVariables'
 import {
@@ -48,7 +49,7 @@ export default {
   components: {
     nCoverBackground
   },
-  mixins: [styleVariables(componentStyleVariables)],
+  mixins: [uuID, styleVariables(componentStyleVariables)],
   props: {
     hasOverlay: {
       type: Boolean,

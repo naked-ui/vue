@@ -22,7 +22,7 @@ const storyArgTypes = {
 }
 
 export default {
-  title: 'Form/Button',
+  title: 'Button',
   component: nButton,
   argTypes: storyArgTypes
 }

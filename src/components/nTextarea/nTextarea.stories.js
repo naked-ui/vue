@@ -16,7 +16,7 @@ const textareaArgTypes = {
 const customArgTypes = { ...stateArgTypes, ...textareaArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes }
 
 export default {
-  title: 'Form/Textarea',
+  title: 'Textarea',
   component: nTextarea,
   argTypes: customArgTypes
 }

@@ -1,10 +1,9 @@
 <template>
-  <div :class="componentClasses" :style="style">
-    <label :disabled="disabled" :for="id">
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
+    <label :disabled="disabled" :for="IDForLabel">
       {{ label }}
     </label>
     <input
-      ref="input"
       type="text"
       :value="value"
       @invalid="onInvalid"
@@ -16,10 +15,11 @@
       @keyup="checkInputMaxLength"
       :autofocus="autofocus"
       :disabled="disabled"
-      :id="id"
+      :id="IDForLabel"
       :name="name"
       :placeholder="placeholder"
       :readonly="readonly"
+      ref="input"
       :required="required"
       :title="title"
       :nui-validation="validationEnabled"
@@ -42,12 +42,13 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 import nInputCounter from '@/utils/components/nInputCounter.vue'
 
 export default {
-  mixins: [formField()],
+  mixins: [uuID, formField()],
   name: 'nTextInput',
   components: {
     nValidationAlerts,
@@ -56,13 +57,13 @@ export default {
   props: {
     baseClassname: {
       type: String,
-      default: 'nui-form-field'
+      default: 'nui-text-input'
     }
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname]
-    },
+      return [this.baseClassname, 'nui-form-field']
+    }
   }
 }
 </script>

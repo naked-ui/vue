@@ -1,6 +1,6 @@
 <template>
-  <div :class="componentClasses" :style="style">
-    <label :disabled="disabled" :for="id">
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
+    <label :disabled="disabled" :for="IDForLabel">
       {{ label }}
     </label>
     <input
@@ -11,7 +11,7 @@
       :value="value"
       @input="onChange"
       @blur.capture="validateFormField"
-      :id="id"
+      :id="IDForLabel"
       :placeholder="placeholder"
       :disabled="disabled"
       :readonly="readonly"
@@ -43,11 +43,12 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
 import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
 
 export default {
-  mixins: [formField()],
+  mixins: [uuID, formField()],
   components: {
     nValidationAlerts
   },
@@ -62,12 +63,12 @@ export default {
     },
     baseClassname: {
       type: String,
-      default: 'nui-form-field'
+      default: 'nui-color-input'
     }
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-color-input']
+      return [this.baseClassname, 'nui-form-field']
     }
   },
   methods: {

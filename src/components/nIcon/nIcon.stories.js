@@ -2,7 +2,7 @@ import nIcon from './nIcon.vue'
 import nBadge from '@/components/nBadge/nBadge.vue'
 
 export default {
-	title: 'Content/Icon',
+	title: 'Icon',
 	component: nIcon,
 	argTypes: {
 		size: {
