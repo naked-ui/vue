@@ -7,7 +7,7 @@
 .nui-form-field {
   display: grid;
   justify-content: start;
-  row-gap: var(--gap);
+  gap: var(--gap);
   width: var(--width);
 
   progress,

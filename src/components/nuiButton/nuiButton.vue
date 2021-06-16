@@ -7,7 +7,7 @@
     :style="style"
     :disabled="disabled || busy"
     :busy="busy"
-    :buttonBusyText="buttonBusyText"
+    :busyLabel="busyLabel"
   >
     <div
       v-if="$slots['icon--left']"
@@ -73,25 +73,27 @@ const componentStyleVariables = [
 ]
 
 const componentProps = {
-  ...hyperlinkProps,
+  // UI
+  baseClassname: {
+    type: String,
+    default: 'nui-button'
+  },
   type: {
     type: String,
     default: 'button'
   },
+  // States
+  disabled,
+  busy,
+  ...hyperlinkProps,
   role: {
     type: String,
     default: 'button'
   },
-  disabled,
-  busy,
-  buttonBusyText: {
+  busyLabel: {
     type: String
   },
-  ...styleProps,
-  baseClassname: {
-    type: String,
-    default: 'nui-button'
-  }
+  ...styleProps
 }
 
 export default {

@@ -13,7 +13,7 @@ const storyArgTypes = {
     },
     defaultValue: 'Button text'
   },
-  buttonBusyText: {
+  busyLabel: {
     control: {
       type: 'text'
     },
@@ -36,7 +36,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     >
       {{ buttonText }}
       <template v-slot:busy-text>
-        {{ buttonBusyText }}
+        {{ busyLabel }}
       </template>
     </nuiButton>
   `,
@@ -65,7 +65,7 @@ const IconLeftTemplate = (args, { argTypes }) => ({
       </template>
       {{ buttonText }}
       <template v-slot:busy-text>
-        {{ buttonBusyText }}
+        {{ busyLabel }}
       </template>
     </nuiButton>
   `,

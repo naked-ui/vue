@@ -19,6 +19,30 @@
 import styleVariables from '@/utils/styleVariables'
 import uuidMixin from '@/utils/uuid'
 
+const componentProps = {
+  baseClassname: {
+    type: String,
+    default: 'nui-accordion'
+  },
+  // Styling
+  contentHeight: {
+    type: [String, Number],
+    default: ''
+  },
+  contentPadding: {
+    type: [String, Number],
+    default: ''
+  },
+  titleHeight: {
+    type: [String, Number],
+    default: '100%'
+  },
+  titlePadding: {
+    type: [String, Number],
+    default: ''
+  }
+}
+
 const componentStyleVariables = [
   { name: 'contentHeight', type: 'size' },
   { name: 'contentPadding', type: 'size' },
@@ -29,28 +53,7 @@ const componentStyleVariables = [
 export default {
   name: 'nuiAccordionitem',
   mixins: [uuidMixin, styleVariables(componentStyleVariables)],
-  props: {
-    baseClassname: {
-      type: String,
-      default: 'nui-accordion'
-    },
-    contentHeight: {
-      type: [String, Number],
-      default: ''
-    },
-    contentPadding: {
-      type: [String, Number],
-      default: ''
-    },
-    titleHeight: {
-      type: [String, Number],
-      default: '100%'
-    },
-    titlePadding: {
-      type: [String, Number],
-      default: ''
-    }
-  },
+  props: componentProps,
   computed: {
     componentClasses() {
       return [this.baseClassname]
