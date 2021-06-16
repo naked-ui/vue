@@ -28,28 +28,24 @@
 import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
 import validationHandler from './logic/validationHandler'
-// import { color } from '@/utils/styleVariables/helpers/variables'
 
-// const componentStyleVariables = [color]
+const componentProps = {
+  // UI
+  baseClassname: {
+    type: String,
+    default: 'nui-checkbox-input'
+  },
+  // States
+  checked: {
+    type: Boolean,
+    default: false
+  }
+}
 
 export default {
   name: 'nuiRadioInput',
   mixins: [uuID, formField(), validationHandler],
-  props: {
-    baseClassname: {
-      type: String,
-      default: 'nui-radio-input'
-    },
-    // input attrs
-    checked: {
-      type: Boolean,
-      default: false
-    }
-    // color: {
-    //   type: String,
-    //   default: null
-    // }
-  },
+  props: componentProps,
   computed: {
     componentClasses() {
       return [this.baseClassname, 'nui-form-field']

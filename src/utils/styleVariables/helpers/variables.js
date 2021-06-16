@@ -25,6 +25,16 @@ const gap = {
   type: 'size'
 }
 
+const columnGap = {
+  name: 'gap',
+  type: 'size'
+}
+
+const rowGap = {
+  name: 'gap',
+  type: 'size'
+}
+
 const outlineWidth = {
   name: 'outlineWidth',
   type: 'size'
@@ -124,11 +134,27 @@ const resize = {
   type: 'other'
 }
 
+const direction = {
+  name: 'direction',
+  type: 'other'
+}
+
+const orientation = {
+  name: 'orientation',
+  type: 'other'
+}
+
+// Listing only accepted values would be handy here
+
 export {
   width,
   maxWidth,
   height,
   gap,
+  columnGap,
+  rowGap,
+  direction,
+  orientation,
   outlineWidth,
   padding,
   colorValid,

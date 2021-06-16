@@ -28,10 +28,12 @@ const componentStyleVariables = [
 ]
 
 const componentProps = {
+  // UI
   baseClassname: {
     type: String,
     default: 'nui-badge'
   },
+  // Styling
   ...styleProps,
   size: {
     type: [String, Number]

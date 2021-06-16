@@ -11,6 +11,43 @@ import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables'
 import { maxWidth, padding } from '@/utils/styleVariables/helpers/variables'
 
+const componentProps = {
+  // UI
+  baseClassname: {
+    type: String,
+    default: 'nui-accordion'
+  },
+  items: {
+    type: Array,
+    required: false
+  },
+  // Styling
+  maxWidth: {
+    type: [Number, String],
+    default: ''
+  },
+  padding: {
+    type: [Number, String],
+    default: ''
+  },
+  contentPadding: {
+    type: [Number, String],
+    default: ''
+  },
+  titleHeight: {
+    type: [Number, String],
+    default: ''
+  },
+  titlePadding: {
+    type: [Number, String],
+    default: ''
+  },
+  transition: {
+    type: String,
+    default: ''
+  }
+}
+
 const componentStyleVariables = [
   maxWidth,
   padding,
@@ -23,40 +60,7 @@ const componentStyleVariables = [
 export default {
   name: 'nuiAccordion',
   mixins: [uuID, styleVariables(componentStyleVariables)],
-  props: {
-    baseClassname: {
-      type: String,
-      default: 'nui-accordion'
-    },
-    items: {
-      type: Array,
-      required: false
-    },
-    maxWidth: {
-      type: [Number, String],
-      default: ''
-    },
-    padding: {
-      type: [Number, String],
-      default: ''
-    },
-    contentPadding: {
-      type: [Number, String],
-      default: ''
-    },
-    titleHeight: {
-      type: [Number, String],
-      default: ''
-    },
-    titlePadding: {
-      type: [Number, String],
-      default: ''
-    },
-    transition: {
-      type: String,
-      default: ''
-    }
-  },
+  props: componentProps,
   computed: {
     componentClasses() {
       return [this.baseClassname]
