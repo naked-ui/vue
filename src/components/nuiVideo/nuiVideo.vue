@@ -5,6 +5,7 @@
     :style="style"
     style="content-visibility: auto"
     :autoplay="autoplay"
+    :controls="controls"
     :loop="loop"
     :loading="loading"
     :decoding="decoding"
@@ -43,6 +44,7 @@ const componentProps = {
     type: String,
     default: 'nui-picture'
   },
+  // Performance
   decoding: {
     type: String,
     default: 'async'
@@ -51,11 +53,29 @@ const componentProps = {
     type: String,
     default: 'lazy'
   },
+  // Settings
   autoplay: {
     type: Boolean
   },
+  controls: {
+    type: Boolean,
+    default: true
+  },
   loop: {
     type: Boolean
+  },
+  muted: {
+    type: Boolean
+  },
+  playsinline: {
+    type: Boolean
+  },
+  poster: {
+    type: String
+  },
+  preload: {
+    type: String,
+    default: 'auto'
   },
   // Data
   video: {

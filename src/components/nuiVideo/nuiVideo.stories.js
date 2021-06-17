@@ -29,13 +29,33 @@ export default {
       },
       // defaultValue: 'none'
     },
-    image: {
-      type: 'object'
+    autoplay: {
+      control: 'boolean'
     },
-    images: {
-      type: 'array'
+    controls: {
+      control: 'boolean',
+      defaultValue: true
+    },
+    loop: {
+      control: 'boolean'
+    },
+    muted: {
+      control: 'boolean'
+    },
+    playsinline: {
+      control: 'boolean'
+    },
+    poster: {
+      control: 'text'
+    },
+    preload: {
+      control: {
+        type: 'select',
+        options: ['none', 'metadata', 'auto']
+      },
+      defaultValue: 'auto'
     }
-  },
+  }
 }
 
 export const Default = (args, { argTypes }) => ({
