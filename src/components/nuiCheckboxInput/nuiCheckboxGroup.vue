@@ -14,6 +14,8 @@ import formField from '@/utils/formField/index.js'
 import groupValidationHandler from './logic/groupValidationHandler'
 import { color, direction, gap } from '@/utils/styleVariables/helpers/variables'
 
+const componentStyleVariables = [color, direction, gap]
+
 const componentProps = {
   // UI
   baseClassname: {
@@ -30,8 +32,6 @@ const componentProps = {
     default: 'vertical'
   }
 }
-
-const componentStyleVariables = [color, direction, gap]
 
 export default {
   name: 'nuiCheckboxGroup',

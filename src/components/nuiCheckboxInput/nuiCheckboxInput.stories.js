@@ -21,7 +21,7 @@ export default {
   }
 }
 
-const Template = (args, { argTypes }) => ({
+const DefaultTemplate = (args, { argTypes }) => ({
   components: { nuiCheckboxInput },
   props: Object.keys(argTypes),
   methods: {
@@ -38,7 +38,7 @@ const Template = (args, { argTypes }) => ({
   `
 })
 
-export const Default = Template.bind({})
+export const Default = DefaultTemplate.bind({})
 Default.argTypes = {
   // spacing: { table: { disable: true } }
   orientation: {

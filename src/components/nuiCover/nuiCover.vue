@@ -16,7 +16,7 @@
       <div
         :class="`${baseClassname}__content-inner`"
         :style="`
-          --content-place-content: ${placeContent};
+          --place-content: ${placeContent};
         `"
       >
         <slot name="content" />
@@ -26,7 +26,7 @@
       v-if="hasOverlay"
       :class="`${baseClassname}__overlay`"
       :style="`
-        --overlay-background-color: ${overlayColor};
+        --overlay-color: ${overlayColor};
         --overlay-opacity: ${overlayOpacity};
       `"
     />
@@ -45,58 +45,60 @@ import {
 
 const componentStyleVariables = [height, width, padding]
 
+const componentProps = {
+  hasOverlay: {
+    type: Boolean,
+    default: false
+  },
+  overlayColor: {
+    type: String,
+    default: '#000'
+  },
+  overlayOpacity: {
+    type: Number,
+    default: 0.3
+  },
+  width: {
+    type: String,
+    default: '100%'
+  },
+  height: {
+    type: String,
+    default: '100%'
+  },
+  placeContent: {
+    type: String,
+    default: 'center'
+  },
+  padding: {
+    type: String,
+    default: '0'
+  },
+  backgroundImage: {
+    type: Object,
+    default() {
+      return {}
+    }
+  },
+  backgroundVideo: {
+    type: Object,
+    default() {
+      return {}
+    }
+  },
+  baseClassname: {
+    type: String,
+    default: 'nui-cover'
+  }
+}
+
 export default {
   name: 'nuiCover',
   components: {
     nuiCoverBackground
   },
   mixins: [uuID, styleVariables(componentStyleVariables)],
-  props: {
-    hasOverlay: {
-      type: Boolean,
-      default: false
-    },
-    overlayColor: {
-      type: String,
-      default: '#000'
-    },
-    overlayOpacity: {
-      type: Number,
-      default: 0.3
-    },
-    width: {
-      type: String,
-      default: '100%'
-    },
-    height: {
-      type: String,
-      default: '100%'
-    },
-    placeContent: {
-      type: String,
-      default: 'center'
-    },
-    padding: {
-      type: String,
-      default: '0'
-    },
-    backgroundImage: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    backgroundVideo: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    baseClassname: {
-      type: String,
-      default: 'nui-cover'
-    }
-  },
+  props: componentProps,
   computed: {
     componentClasses() {
       return [this.baseClassname]

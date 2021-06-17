@@ -59,19 +59,6 @@ import hyperlinkProps from '@/utils/props/hyperlinkProps'
 import { disabled, busy } from '@/utils/props/stateProps'
 import styleProps from '@/utils/props/styleProps'
 
-const componentStyleVariables = [
-  color,
-  backgroundColor,
-  padding,
-  height,
-  width,
-  gap,
-  borderWidth,
-  borderStyle,
-  borderColor,
-  fontSize
-]
-
 const componentProps = {
   // UI
   baseClassname: {
@@ -95,6 +82,19 @@ const componentProps = {
   },
   ...styleProps
 }
+
+const componentStyleVariables = [
+  color,
+  backgroundColor,
+  padding,
+  height,
+  width,
+  gap,
+  borderWidth,
+  borderStyle,
+  borderColor,
+  fontSize
+]
 
 export default {
   name: 'nuiButton',
