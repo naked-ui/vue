@@ -84,24 +84,6 @@ AdditionalSources.args = {
   }
 }
 
-export const Video = (args, { argTypes }) => ({
-  components: { nuiPicture },
-  props: Object.keys(argTypes),
-  template: `
-    <nuiPicture
-      v-bind="$props"
-      :image="image"
-    />
-  `
-});
-
-Video.args = {
-  video: {
-    src: 'https://file-examples-com.github.io/uploads/2020/03/file_example_WEBM_1280_3_6MB.webm',
-    type: 'video/webm'
-  }
-}
-
 export const LazyLoading = (args, { argTypes }) => ({
   components: { nuiPicture },
   props: Object.keys(argTypes),

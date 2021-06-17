@@ -1,45 +1,35 @@
 <template>
-  <div :class="`${baseClassname}`" :id="uiElementID()" :style="style">
-    <picture
-      v-if="!video && image && image.src && image.sources"
-      style="content-visibility: auto"
-    >
-      <source
-        v-for="(image, index) in image.sources"
-        :key="index"
-        v-bind="image"
-      />
-      <img
-        loading="lazy"
-        decoding="async"
-        :src="image.src"
-        :alt="image.alt"
-        :width="width"
-        :height="height"
-      />
-    </picture>
+  <picture
+    v-if="image && image.src && image.sources"
+    :class="`${baseClassname}`"
+    :id="uiElementID()"
+    :style="style"
+    style="content-visibility: auto"
+  >
+    <source
+      v-for="(image, index) in image.sources"
+      :key="index"
+      v-bind="image"
+    />
     <img
-      v-else-if="!video"
       :loading="loading"
-      decoding="async"
-      :width="width"
-      :height="height"
+      :decoding="decoding"
       :src="image.src"
       :alt="image.alt"
-    />
-    <video
-      v-if="!image && video && video.src"
-      loading="lazy"
-      decoding="async"
       :width="width"
       :height="height"
-      style="content-visibility: auto"
-      autoplay
-      loop
-    >
-      <source v-bind="video" />
-    </video>
-  </div>
+    />
+  </picture>
+  <img
+    v-else
+    :loading="loading"
+    :decoding="decoding"
+    :width="width"
+    :height="height"
+    :src="image.src"
+    :alt="image.alt"
+    style="content-visibility: auto"
+  />
 </template>
 
 <script>
@@ -70,18 +60,16 @@ const componentProps = {
     type: String,
     default: 'nui-picture'
   },
+  decoding: {
+    type: String,
+    default: 'async'
+  },
   loading: {
     type: String,
     default: 'lazy'
   },
   // Data
   image: {
-    type: Object,
-    default() {
-      return null
-    }
-  },
-  video: {
     type: Object,
     default() {
       return null

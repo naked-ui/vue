@@ -2,13 +2,9 @@
 
 .nui-picture {
   background: var(--background);
-  &,
-  picture {
-    display: flex;
-  }
+  display: flex;
 
-  img,
-  video {
+  img {
     object-fit: var(--object-fit);
     width: var(--width, 100%);
     height: var(--height, 100%);
