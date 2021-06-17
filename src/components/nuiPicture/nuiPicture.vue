@@ -1,7 +1,7 @@
 <template>
   <div :class="`${baseClassname}`" :id="uiElementID()" :style="style">
     <picture
-      v-if="image && image.src && image.sources"
+      v-if="!video && image && image.src && image.sources"
       style="content-visibility: auto"
     >
       <source
@@ -19,7 +19,7 @@
       />
     </picture>
     <img
-      v-else
+      v-else-if="!video"
       :loading="loading"
       decoding="async"
       :width="width"
@@ -28,9 +28,11 @@
       :alt="image.alt"
     />
     <video
-      v-if="video && video.src"
+      v-if="!image && video && video.src"
       loading="lazy"
       decoding="async"
+      :width="width"
+      :height="height"
       style="content-visibility: auto"
       autoplay
       loop
@@ -76,13 +78,13 @@ const componentProps = {
   image: {
     type: Object,
     default() {
-      return {}
+      return null
     }
   },
   video: {
     type: Object,
     default() {
-      return {}
+      return null
     }
   },
   ...styleProps
