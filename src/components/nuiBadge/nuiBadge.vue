@@ -7,16 +7,16 @@
 <script>
 import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables'
-import styleProps from '@/utils/props/styleProps'
-
 import {
   borderRadius,
   size,
   fontSize,
   padding,
-  backgroundColor,
+  background,
   color
 } from '@/utils/styleVariables/helpers/variables'
+import styleProps from '@/utils/props/styleProps'
+import { disabled, busy } from '@/utils/props/stateProps'
 
 const componentProps = {
   // UI
@@ -26,9 +26,9 @@ const componentProps = {
   },
   // Styling
   ...styleProps,
-  size: {
-    type: [String, Number]
-  }
+  // States
+  disabled,
+  busy
 }
 
 const componentStyleVariables = [
@@ -36,7 +36,7 @@ const componentStyleVariables = [
   size,
   fontSize,
   padding,
-  backgroundColor,
+  background,
   color
 ]
 

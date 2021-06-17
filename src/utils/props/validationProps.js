@@ -1,20 +1,21 @@
-const validationEnabled = {
-  type: Boolean,
-  default: false
+
+const colorInvalid = {
+  type: String,
+  default: 'red'
 }
-const required = {
-  type: Boolean,
-  default: false
+const colorValid = {
+  type: String,
+  default: 'green'
 }
 const max = {
   type: [Number, String],
   default: null
 }
-const min = {
+const maxlength = {
   type: [Number, String],
   default: null
 }
-const maxlength = {
+const min = {
   type: [Number, String],
   default: null
 }
@@ -27,34 +28,34 @@ const pattern = {
   // default: '.*\\S.*'
   default: null
 }
-const colorInvalid = {
-  type: String,
-  default: 'red'
+const required = {
+  type: Boolean,
+  default: false
 }
-const colorValid = {
-  type: String,
-  default: 'green'
+const validationEnabled = {
+  type: Boolean,
+  default: false
 }
 
 export {
-  validationEnabled,
-  required,
+  colorInvalid,
+  colorValid,
   max,
-  min,
   maxlength,
+  min,
   minlength,
   pattern,
-  colorInvalid,
-  colorValid
+  required,
+  validationEnabled
 }
 export default {
-  validationEnabled,
-  required,
+  colorInvalid,
+  colorValid,
   max,
-  min,
   maxlength,
+  min,
   minlength,
   pattern,
-  colorInvalid,
-  colorValid
+  required,
+  validationEnabled
 }

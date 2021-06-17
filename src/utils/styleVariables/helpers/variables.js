@@ -166,8 +166,6 @@ export {
   gap,
   columnGap,
   rowGap,
-  direction,
-  orientation,
   outlineWidth,
   padding,
   colorValid,
