@@ -26,6 +26,9 @@ const color = {
 const backgroundColor = {
   type: [String, Number]
 }
+const background = {
+  type: [String, Number]
+}
 const borderWidth = {
   type: [String, Number]
 }
@@ -53,6 +56,7 @@ export {
   padding,
   gap,
   color,
+  background,
   backgroundColor,
   borderWidth,
   borderStyle,
@@ -69,6 +73,7 @@ export default {
   padding,
   gap,
   color,
+  background,
   backgroundColor,
   borderWidth,
   borderStyle,

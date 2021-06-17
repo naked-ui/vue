@@ -176,3 +176,34 @@ export {
   lineHeight,
   objectFit
 }
+
+export default {
+  width,
+  maxWidth,
+  height,
+  maxHeight,
+  direction,
+  orientation,
+  gap,
+  outlineWidth,
+  padding,
+  colorValid,
+  colorInvalid,
+  border,
+  borderWidth,
+  borderStyle,
+  borderColor,
+  borderRadius,
+  size,
+  fontSize,
+  color,
+  background,
+  backgroundColor,
+  textColor,
+  spacing,
+  itemsGap,
+  viewportPadding,
+  resize,
+  lineHeight,
+  objectFit
+}

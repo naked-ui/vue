@@ -1,15 +1,10 @@
 <template>
   <div :class="`${baseClassname}`" :id="uiElementID()" :style="style">
     <picture
-      v-if="image && image.src"
-      loading="lazy"
-      decoding="async"
+      v-if="image && image.src && image.sources"
       style="content-visibility: auto"
     >
       <source
-        loading="lazy"
-        decoding="async"
-        style="content-visibility: auto"
         v-for="(image, index) in image.sources"
         :key="index"
         v-bind="image"
@@ -17,11 +12,21 @@
       <img
         loading="lazy"
         decoding="async"
-        style="content-visibility: auto"
         :src="image.src"
         :alt="image.alt"
+        :width="width"
+        :height="height"
       />
     </picture>
+    <img
+      v-else
+      :loading="loading"
+      decoding="async"
+      :width="width"
+      :height="height"
+      :src="image.src"
+      :alt="image.alt"
+    />
     <video
       v-if="video && video.src"
       loading="lazy"
@@ -30,12 +35,7 @@
       autoplay
       loop
     >
-      <source
-        loading="lazy"
-        decoding="async"
-        style="content-visibility: auto"
-        v-bind="video"
-      />
+      <source v-bind="video" />
     </video>
   </div>
 </template>
@@ -43,42 +43,35 @@
 <script>
 import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables/index'
-import {
-  height as heightProp,
-  width as widthProp,
-  maxHeight as maxHeightProp,
-  maxWidth as maxWidthProp,
-  objectFit as objectFitProp
-} from '@/utils/props/styleProps'
+import styleProps from '@/utils/props/styleProps'
 
 import {
   height,
   width,
   maxHeight,
   maxWidth,
+  background,
   objectFit
 } from '@/utils/styleVariables/helpers/variables'
 
-const componentStyleVariables = {
+const componentStyleVariables = [
   height,
   width,
   maxHeight,
   maxWidth,
+  background,
   objectFit
-}
-
-const styleProps = {
-  heightProp,
-  widthProp,
-  maxHeightProp,
-  maxWidthProp,
-  objectFitProp
-}
+]
 
 const componentProps = {
+  // UI
   baseClassname: {
     type: String,
     default: 'nui-picture'
+  },
+  loading: {
+    type: String,
+    default: 'lazy'
   },
   // Data
   image: {
