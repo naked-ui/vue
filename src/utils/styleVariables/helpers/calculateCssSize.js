@@ -9,6 +9,7 @@ const units = [
   'pt',
   'em',
   'rem',
+  'vw',
   'vh',
   'vmin',
   'vmax',
