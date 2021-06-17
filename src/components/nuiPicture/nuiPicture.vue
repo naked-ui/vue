@@ -44,7 +44,6 @@
 import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables/index'
 import styleProps from '@/utils/props/styleProps'
-
 import {
   height,
   width,
