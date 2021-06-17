@@ -1,7 +1,7 @@
-<template functional>
-  <div :class="`${props.baseClassname}`" :style="style">
+<template>
+  <div :class="`${baseClassname}`" :id="uiElementID()" :style="style">
     <picture
-      v-if="props.image && props.image.src"
+      v-if="image && image.src"
       loading="lazy"
       decoding="async"
       style="content-visibility: auto"
@@ -10,7 +10,7 @@
         loading="lazy"
         decoding="async"
         style="content-visibility: auto"
-        v-for="(image, index) in props.image.sources"
+        v-for="(image, index) in image.sources"
         :key="index"
         v-bind="image"
       />
@@ -18,12 +18,12 @@
         loading="lazy"
         decoding="async"
         style="content-visibility: auto"
-        :src="props.image.src"
-        :alt="props.image.alt"
+        :src="image.src"
+        :alt="image.alt"
       />
     </picture>
     <video
-      v-if="props.video && props.video.src"
+      v-if="video && video.src"
       loading="lazy"
       decoding="async"
       style="content-visibility: auto"
@@ -34,13 +34,14 @@
         loading="lazy"
         decoding="async"
         style="content-visibility: auto"
-        v-bind="props.video"
+        v-bind="video"
       />
     </video>
   </div>
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables/index'
 import {
   height as heightProp,
@@ -97,7 +98,7 @@ const componentProps = {
 
 export default {
   name: 'nuiPicture',
-  mixins: [styleVariables(componentStyleVariables)],
+  mixins: [uuID, styleVariables(componentStyleVariables)],
   props: componentProps
 }
 </script>
