@@ -3,13 +3,13 @@
     :class="`${baseClassname}`"
     :id="uiElementID()"
     :style="style"
-    loading="lazy"
-    decoding="async"
+    style="content-visibility: auto"
+    :autoplay="autoplay"
+    :loop="loop"
+    :loading="loading"
+    :decoding="decoding"
     :width="width"
     :height="height"
-    style="content-visibility: auto"
-    autoplay
-    loop
   >
     <source v-bind="video" />
   </video>
@@ -42,6 +42,10 @@ const componentProps = {
   baseClassname: {
     type: String,
     default: 'nui-picture'
+  },
+  decoding: {
+    type: String,
+    default: 'async'
   },
   loading: {
     type: String,
