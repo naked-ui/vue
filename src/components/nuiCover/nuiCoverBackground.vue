@@ -45,6 +45,11 @@
 export default {
   name: 'nuiCoverBackground',
   props: {
+    baseClassname: {
+      type: String,
+      default: 'nui-cover'
+    },
+    // Data
     backgroundImage: {
       type: Object,
       default() {
@@ -56,10 +61,6 @@ export default {
       default() {
         return {}
       }
-    },
-    baseClassname: {
-      type: String,
-      default: 'nui-cover'
     }
   }
 }

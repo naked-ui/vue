@@ -18,15 +18,6 @@ import {
   color
 } from '@/utils/styleVariables/helpers/variables'
 
-const componentStyleVariables = [
-  borderRadius,
-  size,
-  fontSize,
-  padding,
-  backgroundColor,
-  color
-]
-
 const componentProps = {
   // UI
   baseClassname: {
@@ -39,6 +30,15 @@ const componentProps = {
     type: [String, Number]
   }
 }
+
+const componentStyleVariables = [
+  borderRadius,
+  size,
+  fontSize,
+  padding,
+  backgroundColor,
+  color
+]
 
 export default {
   name: 'nuiBadge',
