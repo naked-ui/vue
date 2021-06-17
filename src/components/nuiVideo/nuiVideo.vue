@@ -42,7 +42,7 @@ const componentProps = {
   // UI
   baseClassname: {
     type: String,
-    default: 'nui-picture'
+    default: 'nui-video'
   },
   // Performance
   decoding: {
