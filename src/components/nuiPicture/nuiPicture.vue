@@ -1,12 +1,5 @@
 <template functional>
-  <div
-    :class="`${props.baseClassname}`"
-    :style="
-      props.objectFit && props.objectFit !== 'none'
-        ? `--object-fit: ${props.objectFit}; --width: ${props.width}; --height: ${props.height}; --max-width: ${props.maxWidth}; --max-height: ${props.maxHeight};`
-        : `--width: ${props.width}; --height: ${props.height}; --max-width: ${props.maxWidth}; --max-height: ${props.maxHeight};`
-    "
-  >
+  <div :class="`${props.baseClassname}`" :style="style">
     <picture
       v-if="props.image && props.image.src"
       loading="lazy"
@@ -48,47 +41,64 @@
 </template>
 
 <script>
+import styleVariables from '@/utils/styleVariables/index'
+import {
+  height as heightProp,
+  width as widthProp,
+  maxHeight as maxHeightProp,
+  maxWidth as maxWidthProp,
+  objectFit as objectFitProp
+} from '@/utils/props/styleProps'
+
+import {
+  height,
+  width,
+  maxHeight,
+  maxWidth,
+  objectFit
+} from '@/utils/styleVariables/helpers/variables'
+
+const componentStyleVariables = {
+  height,
+  width,
+  maxHeight,
+  maxWidth,
+  objectFit
+}
+
+const styleProps = {
+  heightProp,
+  widthProp,
+  maxHeightProp,
+  maxWidthProp,
+  objectFitProp
+}
+
+const componentProps = {
+  baseClassname: {
+    type: String,
+    default: 'nui-picture'
+  },
+  // Data
+  image: {
+    type: Object,
+    default() {
+      return {}
+    }
+  },
+  video: {
+    type: Object,
+    default() {
+      return {}
+    }
+  },
+  ...styleProps
+}
+
 export default {
   name: 'nuiPicture',
-  props: {
-    baseClassname: {
-      type: String,
-      default: 'nui-picture'
-    },
-    // Data
-    image: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    video: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    height: {
-      type: String,
-      default: ''
-    },
-    width: {
-      type: String,
-      default: ''
-    },
-    maxHeight: {
-      type: String,
-      default: ''
-    },
-    maxWidth: {
-      type: String,
-      default: ''
-    },
-    objectFit: {
-      type: String,
-      default: 'none'
-    }
-  }
+  mixins: [styleVariables(componentStyleVariables)],
+  props: componentProps
 }
 </script>
 

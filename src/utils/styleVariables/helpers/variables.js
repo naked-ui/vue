@@ -15,6 +15,11 @@ const height = {
   type: 'size'
 }
 
+const maxHeight = {
+  name: 'height',
+  type: 'size'
+}
+
 const lineHeight = {
   name: 'lineHeight',
   type: 'size'
@@ -145,6 +150,9 @@ export {
   width,
   maxWidth,
   height,
+  maxHeight,
+  direction,
+  orientation,
   gap,
   outlineWidth,
   padding,

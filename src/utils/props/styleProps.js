@@ -1,8 +1,18 @@
 const height = {
-  type: [String, Number]
+  type: [String, Number],
+  default: ''
 }
 const width = {
-  type: [String, Number]
+  type: [String, Number],
+  default: ''
+}
+const maxHeight = {
+  type: [String, Number],
+  default: ''
+}
+const maxWidth = {
+  type: [String, Number],
+  default: ''
 }
 const padding = {
   type: String
@@ -31,10 +41,15 @@ const borderRadius = {
 const fontSize = {
   type: String
 }
+const objectFit = {
+  type: String
+}
 
 export {
   height,
+  maxHeight,
   width,
+  maxWidth,
   padding,
   gap,
   color,
@@ -43,11 +58,14 @@ export {
   borderStyle,
   borderColor,
   borderRadius,
-  fontSize
+  fontSize,
+  objectFit
 }
 export default {
   height,
+  maxHeight,
   width,
+  maxWidth,
   padding,
   gap,
   color,
@@ -56,5 +74,6 @@ export default {
   borderStyle,
   borderColor,
   borderRadius,
-  fontSize
+  fontSize,
+  objectFit
 }

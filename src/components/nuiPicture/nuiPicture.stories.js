@@ -15,15 +15,15 @@ export default {
     maxWidth: {
       control: 'text'
     },
-    maxHeeight: {
+    maxHeight: {
       control: 'text'
     },
     objectFit: {
       control: {
         type: 'select',
-        options: ['none', 'contain', 'cover']
+        options: ['contain', 'cover']
       },
-      defaultValue: 'none'
+      // defaultValue: 'none'
     },
     image: {
       type: 'object'
@@ -42,9 +42,25 @@ export const Default = (args, { argTypes }) => ({
   `
 });
 
-// export const Default = Template.bind({})
-
 Default.args = {
+  image: {
+    src: 'https://images.pexels.com/photos/5232570/pexels-photo-5232570.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
+    alt: 'Alt text'
+  }
+}
+
+export const AdditionalSources = (args, { argTypes }) => ({
+  components: { nuiPicture },
+  props: Object.keys(argTypes),
+  template: `
+    <nuiPicture
+      v-bind="$props"
+      :image="image"
+    />
+  `
+});
+
+AdditionalSources.args = {
   image: {
     src: 'https://images.pexels.com/photos/5232570/pexels-photo-5232570.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
     alt: 'Alt text',
