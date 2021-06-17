@@ -11,17 +11,13 @@
   >
     <div
       v-if="$slots['icon--left']"
-      :class="
-        baseClassname
-          ? `${baseClassname}__icon ${baseClassname}__icon--left`
-          : false
-      "
+      :class="namespace ? `${namespace}__icon ${namespace}__icon--left` : false"
     >
       <slot name="icon--left" />
     </div>
     <span
       v-if="$slots.default"
-      :class="baseClassname ? `${baseClassname}__text` : false"
+      :class="namespace ? `${namespace}__text` : false"
     >
       <slot v-if="!busy" />
       <slot v-else name="busy-text" />
@@ -29,9 +25,7 @@
     <div
       v-if="$slots['icon--right']"
       :class="
-        baseClassname
-          ? `${baseClassname}__icon ${baseClassname}__icon--right`
-          : false
+        namespace ? `${namespace}__icon ${namespace}__icon--right` : false
       "
     >
       <slot name="icon--right" />
@@ -61,7 +55,7 @@ import styleProps from '@/utils/props/styleProps'
 
 const componentProps = {
   // UI
-  baseClassname: {
+  namespace: {
     type: String,
     default: 'nui-button'
   },
@@ -150,7 +144,7 @@ export default {
       }
     },
     componentClasses() {
-      if (this.baseClassname.length > 0) return [this.baseClassname]
+      if (this.namespace.length > 0) return [this.namespace]
       else return false
     }
   }

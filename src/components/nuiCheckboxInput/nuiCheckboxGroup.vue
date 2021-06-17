@@ -18,7 +18,7 @@ const componentStyleVariables = [color, direction, gap]
 
 const componentProps = {
   // UI
-  baseClassname: {
+  namespace: {
     type: String,
     default: 'nui-checkbox-group'
   },
@@ -45,7 +45,7 @@ export default {
   computed: {
     componentClasses() {
       return [
-        this.baseClassname,
+        this.namespace,
         'nui-form-field',
         this.orientation === 'vertical'
           ? 'vertical'

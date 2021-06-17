@@ -43,7 +43,7 @@ export default {
       type: String,
       required: false
     },
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-hyperlink'
     }
@@ -64,7 +64,7 @@ export default {
       } else return { to: this.href }
     },
     componentClasses() {
-      return [this.baseClassname]
+      return [this.namespace]
     }
   }
 }

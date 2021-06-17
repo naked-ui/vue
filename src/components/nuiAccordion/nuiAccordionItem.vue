@@ -1,15 +1,12 @@
 <template>
   <li
-    :class="[
-      `${baseClassname}-item`,
-      active ? `${baseClassname}-item--active` : ''
-    ]"
+    :class="[`${namespace}-item`, active ? `${namespace}-item--active` : '']"
     :style="style"
   >
-    <span :class="`${baseClassname}-item__title`" @click="active = !active">
+    <span :class="`${namespace}-item__title`" @click="active = !active">
       <slot name="title" />
     </span>
-    <div :class="`${baseClassname}-item__content`" :id="uiElementID">
+    <div :class="`${namespace}-item__content`" :id="uiElementID">
       <slot name="text" />
     </div>
   </li>
@@ -20,7 +17,7 @@ import styleVariables from '@/utils/styleVariables'
 import uuidMixin from '@/utils/uuid'
 
 const componentProps = {
-  baseClassname: {
+  namespace: {
     type: String,
     default: 'nui-accordion'
   },
@@ -56,7 +53,7 @@ export default {
   props: componentProps,
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.namespace]
     }
   },
   data: () => ({

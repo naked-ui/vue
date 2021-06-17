@@ -13,7 +13,7 @@ import { maxWidth, padding } from '@/utils/styleVariables/helpers/variables'
 
 const componentProps = {
   // UI
-  baseClassname: {
+  namespace: {
     type: String,
     default: 'nui-accordion'
   },
@@ -63,7 +63,7 @@ export default {
   props: componentProps,
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.namespace]
     }
   },
   data: () => ({

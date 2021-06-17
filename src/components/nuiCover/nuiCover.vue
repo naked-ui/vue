@@ -1,20 +1,17 @@
 <template>
-  <div :class="baseClassname" :id="uiElementID()" :style="style">
-    <div v-if="$slots['background']" :class="`${baseClassname}__background`">
+  <div :class="namespace" :id="uiElementID()" :style="style">
+    <div v-if="$slots['background']" :class="`${namespace}__background`">
       <slot name="background" />
     </div>
     <nuiCoverBackground
       v-else
       :backgroundImage="backgroundImage"
       :backgroundVideo="backgroundVideo"
-      :baseClassname="baseClassname"
+      :namespace="namespace"
     />
-    <div
-      :class="`${baseClassname}__content`"
-      v-if="$slots['content'].length > 0"
-    >
+    <div :class="`${namespace}__content`" v-if="$slots['content'].length > 0">
       <div
-        :class="`${baseClassname}__content-inner`"
+        :class="`${namespace}__content-inner`"
         :style="`
           --place-content: ${placeContent};
         `"
@@ -24,7 +21,7 @@
     </div>
     <div
       v-if="hasOverlay"
-      :class="`${baseClassname}__overlay`"
+      :class="`${namespace}__overlay`"
       :style="`
         --overlay-color: ${overlayColor};
         --overlay-opacity: ${overlayOpacity};
@@ -86,7 +83,7 @@ const componentProps = {
       return {}
     }
   },
-  baseClassname: {
+  namespace: {
     type: String,
     default: 'nui-cover'
   }
@@ -101,7 +98,7 @@ export default {
   props: componentProps,
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.namespace]
     }
   }
 }

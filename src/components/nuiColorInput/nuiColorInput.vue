@@ -45,7 +45,7 @@
 <script>
 const componentProps = {
   // UI
-  baseClassname: {
+  namespace: {
     type: String,
     default: 'nui-color-input'
   },
@@ -71,7 +71,7 @@ export default {
   props: componentProps,
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-form-field']
+      return [this.namespace, 'nui-form-field']
     }
   },
   methods: {

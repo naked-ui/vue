@@ -56,7 +56,7 @@ export default {
     nuiInputCounter
   },
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-textarea'
     },
@@ -66,7 +66,7 @@ export default {
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-form-field']
+      return [this.namespace, 'nui-form-field']
     }
   }
 }

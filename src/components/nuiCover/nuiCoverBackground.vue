@@ -1,5 +1,5 @@
 <template functional>
-  <div :class="`${props.baseClassname}__background`">
+  <div :class="`${props.namespace}__background`">
     <picture
       v-if="props.backgroundImage && props.backgroundImage.src"
       loading="lazy"
@@ -27,7 +27,7 @@
       loading="lazy"
       decoding="async"
       style="content-visibility: auto"
-      :class="`${props.baseClassname}__background-video`"
+      :class="`${props.namespace}__background-video`"
       autoplay
       loop
     >
@@ -45,7 +45,7 @@
 export default {
   name: 'nuiCoverBackground',
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-cover'
     },

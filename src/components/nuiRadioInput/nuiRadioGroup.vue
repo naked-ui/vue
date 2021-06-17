@@ -20,7 +20,7 @@ export default {
   mixins: [uuID, formField(componentStyleVariables), groupValidationHandler],
   name: 'nuiRadioGroup',
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-radio-group'
     },
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-form-field']
+      return [this.namespace, 'nui-form-field']
     }
   }
 }

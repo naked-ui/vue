@@ -31,7 +31,7 @@ import validationHandler from './logic/validationHandler'
 
 const componentProps = {
   // UI
-  baseClassname: {
+  namespace: {
     type: String,
     default: 'nui-checkbox-input'
   },
@@ -48,7 +48,7 @@ export default {
   props: componentProps,
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-form-field']
+      return [this.namespace, 'nui-form-field']
     }
   }
 }
