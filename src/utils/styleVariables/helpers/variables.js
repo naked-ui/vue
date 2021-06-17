@@ -6,7 +6,7 @@ const width = {
 }
 
 const maxWidth = {
-  name: 'maxWidth',
+  name: 'maxWidth', // We might want to have these already 1:1 with CSS rules' names without parsing it to kebab-case
   type: 'size'
 }
 
@@ -124,6 +124,23 @@ const resize = {
   type: 'other'
 }
 
+const direction = {
+  name: 'direction',
+  type: 'other'
+}
+
+const orientation = {
+  name: 'orientation',
+  type: 'other'
+}
+
+const objectFit = {
+  name: 'objectFit',
+  type: 'other'
+}
+
+// Listing only accepted values would be handy here
+
 export {
   width,
   maxWidth,
@@ -149,4 +166,5 @@ export {
   viewportPadding,
   resize,
   lineHeight,
+  objectFit
 }
