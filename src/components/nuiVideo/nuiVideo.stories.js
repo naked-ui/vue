@@ -64,7 +64,6 @@ export const Default = (args, { argTypes }) => ({
   template: `
     <nuiVideo
       v-bind="$props"
-      :image="image"
     />
   `
 });
