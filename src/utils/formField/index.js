@@ -1,12 +1,14 @@
 import styleVariables from '../styleVariables'
 import formFieldProps from '../props/formFieldProps'
 import formFieldCounter from './helpers/formFieldCounter'
+import formFieldID from './helpers/formFieldID'
 import formFieldMaxLength from './helpers/formFieldMaxLength'
 import formFieldValidations from './helpers/formFieldValidations'
 import {
   gap,
   width,
   height,
+  color,
   padding,
   colorValid,
   borderWidth,
@@ -21,6 +23,7 @@ const defaultStyleVariables = [
   gap,
   width,
   height,
+  color,
   padding,
   colorValid,
   borderWidth,
@@ -36,6 +39,7 @@ export const formField = (customStyleVariables = []) => {
     mixins: [
       formFieldProps,
       formFieldCounter,
+      formFieldID,
       formFieldMaxLength,
       formFieldValidations,
       styleVariables(defaultStyleVariables, customStyleVariables)
