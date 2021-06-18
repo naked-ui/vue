@@ -10,9 +10,10 @@
   row-gap: var(--gap);
   width: var(--width);
 
-  textarea,
+  progress,
   select,
-  input:is([type='text'], [type='email'], [type='tel'], [type='pasword'], [type='date'], [type='search'], [type='time'], [type='url'], [type='password']) {
+  textarea,
+  input:is([type='color'], [type='date'], [type='email'], [type='pasword'], [type='range'], [type='search'], [type='tel'], [type='text'], [type='time'], [type='url']) {
     appearance: none;
     box-sizing: border-box;
     height: var(--height);
@@ -30,19 +31,18 @@
       color: var(--color);
     }
 
-    &[nui-validation='true'] {
+    &[nui-validation='true'][data-dirty='true'] {
       &:not(:invalid) ~ &,
       &:not(:focus):required:invalid ~ & {
         display: none;
       }
 
-      &:not(:required):invalid,
-      &:not(:placeholder-shown):required:invalid,
-      &:focus:required:invalid {
+      &:invalid,
+      &:not(:placeholder-shown):required:invalid {
         border-color: var(--color-invalid);
       }
 
-      &:not(:placeholder-shown):valid:not([data-value=""]):valid,
+      &:not(:placeholder-shown):valid:not([data-value='']):valid,
       &:required:valid {
         border-color: var(--color-valid);
       }
@@ -56,9 +56,9 @@
         cursor: not-allowed;
       }
 
-      &:not(:focus):required:invalid {
-        border-color: inherit;
-      }
+      // &:not(:focus):required:invalid {
+      //   border-color: inherit;
+      // }
     }
   }
 

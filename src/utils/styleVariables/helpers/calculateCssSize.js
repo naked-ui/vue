@@ -9,6 +9,7 @@ const units = [
   'pt',
   'em',
   'rem',
+  'vw',
   'vh',
   'vmin',
   'vmax',
@@ -25,8 +26,9 @@ export const calculateCssSize = (value) => {
   if (!value) return null
 
   if (typeof value === 'string' && value.includes(' ')) {
-    const sizes = value.split(' ')
+    if (value.includes('calc')) return value
 
+    const sizes = value.split(' ')
     return sizes.map(size => parseSizeWithUnit(size)).join(' ')
   }
 

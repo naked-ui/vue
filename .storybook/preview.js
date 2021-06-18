@@ -10,7 +10,7 @@ function deepSearch(object, key) {
     i,
     nextOb,
     keys = Object.keys(object)
-  for (i = keys.length; i--; ) {
+  for (i = keys.length; i--;) {
     nextOb = object[keys[i]]
     if (isObject(nextOb)) {
       ob = deepSearch(nextOb, key)
@@ -25,7 +25,7 @@ export const parameters = {
   options: {
     storySort: {
       method: '',
-      order: ['Core', 'Form', 'Content'],
+      // order: ['Core', 'Form', 'Content'],
       locales: ''
     }
   }
