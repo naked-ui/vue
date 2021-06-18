@@ -3,47 +3,49 @@
     <label :disabled="disabled" :for="IDForLabel">
       {{ label }}
     </label>
-    <div :class="`${baseClassname}--wrapper`">
-      <input
-        :class="`${baseClassname}--input`"
-        type="number"
-        :id="id"
-        :name="name"
-        :title="title"
-        v-model.number="inputValue"
-        :min="min"
-        :max="max"
-        :autofocus="autofocus"
-        :disabled="disabled"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        :required="required"
-        :nui-validation="validationEnabled"
-        :maxlength="maxlength"
-        :minlength="minlength"
-        @invalid="onInvalid"
-        @input="
-          emitValues
-          validateFormField($event)
-        "
-        @blur.capture="validateFormField"
-      />
-      <div :class="`${baseClassname}--buttons`">
-        <button
-          :class="`${baseClassname}--buttons__plus`"
-          :disabled="max === inputValue"
-          @click="action('increase')"
-        >
-          +
-        </button>
-        <button
-          :class="`${baseClassname}--buttons__minus`"
-          :disabled="min === inputValue"
-          @click="action('decrease')"
-        >
-          -
-        </button>
+    <div :class="`${namespace}__wrapper`">
+      <button
+        v-if="!nativeControls"
+        :class="`${namespace}__minus`"
+        :disabled="min === inputValue"
+        @click="action('decrease')"
+      >
+        -
+      </button>
+      <div :class="`${namespace}__inner`">
+        <input
+          :class="`${namespace}__input`"
+          type="number"
+          :id="id"
+          :name="name"
+          :title="title"
+          v-model.number="inputValue"
+          :min="min"
+          :max="max"
+          :autofocus="autofocus"
+          :disabled="disabled"
+          :placeholder="placeholder"
+          :readonly="readonly"
+          :required="required"
+          :nui-validation="validationEnabled"
+          :maxlength="maxlength"
+          :minlength="minlength"
+          @invalid="onInvalid"
+          @input="
+            emitValues
+            validateFormField($event)
+          "
+          @blur.capture="validateFormField"
+        />
       </div>
+      <button
+        v-if="!nativeControls"
+        :class="`${namespace}__plus`"
+        :disabled="max === inputValue"
+        @click="action('increase')"
+      >
+        +
+      </button>
     </div>
     <nuiValidationAlerts
       v-if="validationMessages.length > 0"
@@ -54,18 +56,20 @@
 
 <script>
 import uuID from '@/utils/uuid'
-import formField from '../../utils/formField/index.js'
+import formField from '@/utils/formField/index.js'
 import { outlineWidth } from '@/utils/styleVariables/helpers/variables'
-import nuiValidationAlerts from '../../utils/components/nuiValidationAlerts.vue'
+import nuiValidationAlerts from '@/utils/components/nuiValidationAlerts.vue'
+
+const componentStyleVariables = [outlineWidth, { name: 'unit', type: 'unit' }]
 
 export default {
   name: 'nuiNumberInput',
-  mixins: [uuID, formField([outlineWidth])],
+  mixins: [uuID, formField(componentStyleVariables)],
   components: {
     nuiValidationAlerts
   },
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-number-input'
     },
@@ -89,9 +93,13 @@ export default {
       type: Number,
       default: 100
     },
-    enableEmitWithUnit: {
+    nativeControls: {
       type: Boolean,
       default: false
+    },
+    unit: {
+      type: String,
+      default: ''
     }
   },
   watch: {
@@ -108,10 +116,15 @@ export default {
   }),
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-form-field']
+      return [
+        this.namespace,
+        'nui-form-field',
+        this.nativeControls ? 'native-controls' : '',
+        this.unit.length > 0 ? 'with-unit' : ''
+      ]
     },
     parsedWithUnit() {
-      if (!this.enableEmitWithUnit) return `${this.inputValue}`
+      if (!this.unit) return `${this.inputValue}`
       return `${this.inputValue}${this.unit}`
     }
   },
@@ -138,14 +151,14 @@ export default {
       this.inputValue = newValue
       this.emitValues()
     }
-  },
-  mounted() {
-    this.inputValue = this.value
-      ? typeof this.value === 'string'
-        ? this.value.replace(',', '.')
-        : this.value
-      : ''
   }
+  // mounted() {
+  //   this.inputValue = this.value
+  //     ? typeof this.value === 'string'
+  //       ? this.value.replace(',', '.')
+  //       : this.value
+  //     : ''
+  // }
 }
 </script>
 

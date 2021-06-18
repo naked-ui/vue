@@ -8,7 +8,8 @@ const fillStylingObject = ($$props, styleVariables) => {
   const types = {
     size: (val) => calculateCssSize(val),
     color: (val) => val,
-    other: (val) => val ? val : ''
+    other: (val) => val ? val : '',
+    unit: (val) => `'${val}'`
   }
 
   let style = new Object()
@@ -23,11 +24,11 @@ const fillStylingObject = ($$props, styleVariables) => {
 
 const styleVariables = (defaultStyleVariables, customStyleVariables = []) => ({
   computed: {
-    style () {
+    style() {
       const defaultVariables = fillStylingObject(this.$props, defaultStyleVariables)
       const customVariables = fillStylingObject(this.$props, customStyleVariables)
 
-      return {...defaultVariables, ...customVariables}
+      return { ...defaultVariables, ...customVariables }
     }
   }
 })

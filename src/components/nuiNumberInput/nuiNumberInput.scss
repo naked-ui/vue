@@ -1,51 +1,79 @@
-@import "../../styles/classes/form-field.scss";
-
 .nui-number-input {
-  &--wrapper {
+  &,
+  * {
+    box-sizing: border-box;
+  }
+
+  &__wrapper,
+  &__inner {
+    display: flex;
+    width: var(--width);
+  }
+
+  &__wrapper {
+    border-width: var(--border-width);
+    border-color: var(--border-color);
+    border-style: var(--border-style);
+  }
+
+  button {
+    padding: 0;
+    border-width: 0;
+    border-width: var(--border-width);
+    border-color: var(--border-color);
+    border-style: var(--border-style);
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__plus,
+  &__minus {
+    min-width: 40px;
+    background: none;
+    border: none !important;
+  }
+
+  input {
+    text-align: right;
+    width: 100% !important;
+    border: none !important;
+    outline: none !important;
+    padding-left: 0 !important;
+    padding-right: 2px !important;
+  }
+
+  // &__plus {
+  //   transform: translate(
+  //     calc(2.5 * var(--negative-factor) * var(--outline-width))
+  //   );
+  // }
+
+  &:not(.native-controls) {
     /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
-
     /* Firefox */
-    input[type="number"] {
+    input[type='number'] {
       -moz-appearance: textfield;
     }
-
-    input {
-      padding-right: 2.5rem !important;
-    }
-
-    &::after {
-      content: var(--unit);
-      position: absolute;
-      line-height: var(--height);
-      right: 5rem;
-    }
-
-    position: relative;
-    display: flex;
   }
 
-  &--buttons {
-    display: flex;
+  &.with-unit {
+    .nui-number-input__inner {
+      position: relative;
+      // padding-right: calc(2 * var(--padding));
 
-    &__plus,
-    &__minus {
-      width: 2rem;
-      background: none;
-      outline: var(--outline-width) solid;
-      outline-offset: calc(var(--negative-factor) * var(--outline-width));
-      border: none;
-    }
-
-    &__plus {
-      transform: translate(calc(var(--negative-factor) * var(--outline-width)));
-    }
-    &__minus {
-      transform: translate(calc(2 * var(--negative-factor) * var(--outline-width)));
+      &::after {
+        content: var(--unit);
+        // position: absolute;
+        line-height: var(--height);
+        right: 0;
+      }
     }
   }
 }

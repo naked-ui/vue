@@ -4,6 +4,9 @@ export default {
   title: 'NumberInput',
   component: nuiNumberInput,
   argTypes: {
+    unit: {
+      control: { type: 'text' }
+    },
     autocorrect: {
       defaultValue: null,
       description: '`autocorrect` prop is Safari only'
@@ -94,7 +97,8 @@ export const Default = Template.bind({})
 Default.args = {
   gap: 8,
   height: 48,
-  width: '280px',
+  width: '120px',
+  unit: 'kg',
   padding: '10px',
   autofocus: false,
   disabled: false,
@@ -106,18 +110,18 @@ Default.args = {
   id: 'number-input-id',
   title: 'number-input-title',
   label: 'Text input label',
-  placeholder: 'Text input placeholder',
+  placeholder: '0',
   autocorrect: 'off',
   // customMessages: { valueMissing: 'Not empty!' },
-  rules: [
-    {
-      rule: (value) => !value,
-      text: 'Value is missing.'
-    },
-    {
-      rule: (value) => !value.includes('Naked UI'),
-      text: 'Value doesn\'t include "Naked UI"'
-    }
-  ],
+  // rules: [
+  //   {
+  //     rule: (value) => !value,
+  //     text: 'Value is missing.'
+  //   },
+  //   {
+  //     rule: (value) => !value.includes('Naked UI'),
+  //     text: 'Value doesn\'t include "Naked UI"'
+  //   }
+  // ],
   required: true
 }
