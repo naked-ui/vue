@@ -1,0 +1,14 @@
+@import 'sxcss';
+
+.nui-icon {
+  cursor: pointer;
+  position: relative;
+  @include size(var(--size));
+
+  &__badge {
+    position: absolute;
+    left: 60%;
+    bottom: 60%;
+    user-select: none;
+  }
+}
