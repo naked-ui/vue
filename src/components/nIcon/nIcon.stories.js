@@ -1,5 +1,5 @@
 import nIcon from './nIcon.vue'
-import nBadge from '../nBadge/nBadge.vue'
+import nBadge from '@/components/nBadge/nBadge.vue'
 
 export default {
 	title: 'Content/Icon',
@@ -43,7 +43,7 @@ const Template = (args, { argTypes }) => ({
 			/>
 			<template v-slot:badge>
 				<nBadge
-					background="red"
+					backgroundColor="red"
 					color="white"
 					fontSize="10px"
 					:size="badgeSize"

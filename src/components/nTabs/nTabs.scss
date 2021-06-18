@@ -1,0 +1,62 @@
+.nui-tabs {
+  width: var(--width);
+  display: flex;
+
+  &:not(.nui-tabs--vertical) {
+    flex-direction: column;
+
+    .nui-tabs__controls {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .nui-tabs__control {
+      padding: var(--control-padding);
+      border-bottom: 2px solid transparent;
+
+      &--active {
+        border-bottom: 2px solid #333;
+      }
+    }
+  }
+
+  &--vertical {
+    flex-direction: row;
+
+    .nui-tabs__controls {
+      display: flex;
+      flex-direction: column;
+      white-space: nowrap;
+    }
+
+    .nui-tabs__control {
+      border-right: 2px solid transparent;
+      padding: var(--control-padding);
+
+      &--active {
+        border-right: 2px solid #333;
+      }
+    }
+  }
+
+  &__controls {
+    button {
+      font-size: inherit;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &__tab {
+    font-size: inherit;
+    width: 100%;
+    padding: var(--tab-padding);
+  }
+}

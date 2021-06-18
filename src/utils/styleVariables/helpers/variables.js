@@ -5,6 +5,11 @@ const width = {
   type: 'size'
 }
 
+const maxWidth = {
+  name: 'maxWidth',
+  type: 'size'
+}
+
 const height = {
   name: 'height',
   type: 'size'
@@ -121,6 +126,7 @@ const resize = {
 
 export {
   width,
+  maxWidth,
   height,
   gap,
   outlineWidth,
