@@ -50,7 +50,24 @@
   //   );
   // }
 
-  &:not(.native-controls) {
+  &.with-unit {
+    .nui-number-input__inner {
+      position: relative;
+      // padding-right: calc(2 * var(--padding));
+
+      &::after {
+        content: var(--unit);
+        // position: absolute;
+        line-height: var(--height);
+        right: 0;
+      }
+    }
+  }
+
+  // @supports not (-moz-appearance) {
+
+  // }
+  @supports (-moz-appearance: none) {
     /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
@@ -63,16 +80,36 @@
     }
   }
 
-  &.with-unit {
-    .nui-number-input__inner {
-      position: relative;
-      // padding-right: calc(2 * var(--padding));
+  @supports not (-moz-appearance: none) {
+    &:not(.native-controls) {
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      /* Firefox */
+      input[type='number'] {
+        -moz-appearance: textfield;
+      }
+    }
 
-      &::after {
-        content: var(--unit);
-        // position: absolute;
-        line-height: var(--height);
-        right: 0;
+    &.native-controls {
+      input {
+        padding-right: calc(4 * var(--padding)) !important;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          opacity: 1;
+          transform: translate(calc(3 * var(--padding)));
+        }
+      }
+
+      .nui-number-input__inner {
+        &::after {
+          position: absolute;
+          right: calc(3 * var(--padding));
+        }
       }
     }
   }
