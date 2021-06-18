@@ -1,0 +1,11 @@
+@import 'sxcss';
+
+.nui-video {
+  display: flex;
+  background: var(--background);
+  object-fit: var(--object-fit);
+  width: var(--width, 100%);
+  height: var(--height, 100%);
+  max-width: var(--max-width);
+  max-height: var(--max-height);
+}

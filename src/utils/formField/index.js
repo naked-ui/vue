@@ -1,30 +1,50 @@
-import formFieldProps from './formFieldProps'
-import formFieldValidations from './formFieldValidations'
-import formFieldCounter from './formFieldCounter'
-import calculateCssSizeMixin from '../calculateCssSize'
+import styleVariables from '../styleVariables'
+import formFieldProps from '../props/formFieldProps'
+import formFieldCounter from './helpers/formFieldCounter'
+import formFieldID from './helpers/formFieldID'
+import formFieldMaxLength from './helpers/formFieldMaxLength'
+import formFieldValidations from './helpers/formFieldValidations'
+import {
+  gap,
+  width,
+  height,
+  color,
+  padding,
+  colorValid,
+  borderWidth,
+  borderColor,
+  borderStyle,
+  borderRadius,
+  colorInvalid,
+  backgroundColor,
+} from '../styleVariables/helpers/variables'
 
-export default {
-  mixins: [
-    formFieldProps,
-    formFieldValidations,
-    formFieldCounter,
-    calculateCssSizeMixin
-  ],
-  computed: {
-    style () {
-      return [
-        {
-          '--gap': this.calculateCssSize(this.gap),
-          '--height': this.calculateCssSize(this.height),
-          '--width': this.calculateCssSize(this.width),
-          '--outline-width': this.calculateCssSize(this.outlineWidth),
-          '--padding': this.padding,
-          '--color-valid': this.colorValid,
-          '--color-invalid': this.colorInvalid,
-        },
-        { '--resize' : this.resize ? this.resize : '' },
-        { '--unit': this.unit ? `'${this.unit}'` : ''}
-      ]
-    }
+const defaultStyleVariables = [
+  gap,
+  width,
+  height,
+  color,
+  padding,
+  colorValid,
+  borderWidth,
+  borderColor,
+  borderStyle,
+  borderRadius,
+  colorInvalid,
+  backgroundColor,
+]
+
+export const formField = (customStyleVariables = []) => {
+  return {
+    mixins: [
+      formFieldProps,
+      formFieldCounter,
+      formFieldID,
+      formFieldMaxLength,
+      formFieldValidations,
+      styleVariables(defaultStyleVariables, customStyleVariables)
+    ],
   }
 }
+
+export default formField
