@@ -44,16 +44,9 @@
     padding-right: 2px !important;
   }
 
-  // &__plus {
-  //   transform: translate(
-  //     calc(2.5 * var(--negative-factor) * var(--outline-width))
-  //   );
-  // }
-
   &.with-unit {
     .nui-number-input__inner {
       position: relative;
-      // padding-right: calc(2 * var(--padding));
 
       &::after {
         content: var(--unit);
@@ -64,17 +57,7 @@
     }
   }
 
-  // @supports not (-moz-appearance) {
-
-  // }
   @supports (-moz-appearance: none) {
-    /* Chrome, Safari, Edge, Opera */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    /* Firefox */
     input[type='number'] {
       -moz-appearance: textfield;
     }
@@ -87,10 +70,6 @@
       input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
-      }
-      /* Firefox */
-      input[type='number'] {
-        -moz-appearance: textfield;
       }
     }
 

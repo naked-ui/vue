@@ -97,7 +97,7 @@ export const Default = Template.bind({})
 Default.args = {
   gap: 8,
   height: 48,
-  width: '120px',
+  width: '140px',
   unit: 'kg',
   padding: '10px',
   autofocus: false,
