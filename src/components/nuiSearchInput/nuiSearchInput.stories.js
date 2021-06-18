@@ -1,8 +1,8 @@
-import nSearchInput from './nSearchInput.vue'
+import nuiSearchInput from './nuiSearchInput.vue'
 
 export default {
-  title: 'Form/Input/SearchInput',
-  component: nSearchInput,
+  title: 'SearchInput',
+  component: nuiSearchInput,
   argTypes: {
     autocorrect: {
       defaultValue: null,
@@ -77,11 +77,11 @@ export default {
 }
 
 const Template = (args, { argTypes }) => ({
-  components: { nSearchInput },
+  components: { nuiSearchInput },
   props: Object.keys(argTypes),
   data: () => ({ val: '' }),
   template: `
-    <nSearchInput
+    <nuiSearchInput
       v-model="val"
       v-bind="$props"
     />
@@ -93,15 +93,16 @@ Default.args = {
   gap: 8,
   height: 48,
   width: '280px',
-  padding: '0 12px',
+  padding: '10px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px',
-  customMessages: { valueMissing: 'Not empty!' },
-  rules: [
-    (value) =>
-      !value ||
-      value.length > 2 ||
-      'This is custom rule message: field not required, but min 3 chars!'
-  ]
+  borderWidth: '2px',
+  borderStyle: 'solid',
+  name: 'search-input-name',
+  id: 'search-input-id',
+  title: 'search-input-title',
+  label: 'Text input label',
+  placeholder: 'Text input placeholder',
+  autocorrect: 'off',
+  list: ['pizza', 'orange']
 }

@@ -1,24 +1,24 @@
 <template>
-  <div
-    :class="componentClasses"
-    :style="style"
-  >
-    <label
-      :disabled="disabled"
-      :for="id"
-    >
+  <div :class="componentClasses" :id="uiElementID()" :style="style">
+    <label :disabled="disabled" :for="IDForLabel">
       {{ label }}
     </label>
     <input
       type="search"
       v-model="inputValue"
       @invalid="onInvalid"
-      @input="$emit('input', $event.target.value);validateFormField($event)"
-      @change="$emit('change', $event.target.value);validateFormField($event)"
+      @input="
+        $emit('input', $event.target.value)
+        validateFormField($event)
+      "
+      @change="
+        $emit('change', $event.target.value)
+        validateFormField($event)
+      "
       @blur.capture="validateFormField"
       :autofocus="autofocus"
       :disabled="disabled"
-      :id="id"
+      :id="IDForLabel"
       :name="name"
       :placeholder="placeholder"
       :readonly="readonly"
@@ -29,11 +29,11 @@
       :minlength="minlength"
       :list="listID"
       autocorrect="off"
-    >
+    />
     <datalist :id="listID" v-if="enableList">
       <option v-for="option in list" :key="option" :value="option" />
     </datalist>
-    <nValidationAlerts
+    <nuiValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
     />
@@ -41,45 +41,44 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import formField from '../../utils/formField/index.js'
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
-
+import nuiValidationAlerts from '../../utils/components/nuiValidationAlerts.vue'
 
 export default {
-  mixins: [formField],
-  name: 'nSearchInput',
+  mixins: [uuID, formField()],
+  name: 'nuiSearchInput',
   components: {
-    nValidationAlerts
+    nuiValidationAlerts
   },
   props: {
     baseClassname: {
       type: String,
-      default: 'n-form-field'
+      default: 'nui-search-input'
     },
     list: {
       type: Array,
-      default: () => ([])
+      default: () => []
     }
   },
   computed: {
-    componentClasses () {
-      return [
-        this.baseClassname
-      ]
+    componentClasses() {
+      return [this.baseClassname, 'nui-form-field']
     },
-    enableList () {
+    enableList() {
       return this.list && this.list.length > 0
     },
-    listID () {
+    listID() {
       return this.enableList ? `${this.id}-list` : ''
     }
   },
   data: () => ({
     inputValue: ''
   }),
-  mounted () {
+  mounted() {
     this.inputValue = this.value ? this.value : ''
   }
 }
-
 </script>
+
+<style lang="scss" src="./nuiSearchInput.scss" />
