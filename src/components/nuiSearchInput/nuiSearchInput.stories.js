@@ -104,5 +104,5 @@ Default.args = {
   label: 'Text input label',
   placeholder: 'Text input placeholder',
   autocorrect: 'off',
-  list: ['pizza', 'orange']
+  list: ['pizza', 'orange', 'apple', 'pear', 'lemon', 'grapefruit', 'grape', 'blueberry', 'blackberry', 'cranberry']
 }
