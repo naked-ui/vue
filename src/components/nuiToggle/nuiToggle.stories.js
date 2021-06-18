@@ -1,11 +1,14 @@
-import nuiToggleInput from './nuiToggleInput.vue'
+import nuiToggle from './nuiToggle.vue'
 import nuiToggleGroup from './nuiToggleGroup.vue'
 
 export default {
-  title: 'ToggleInput',
-  component: nuiToggleInput,
+  title: 'Toggle',
+  component: nuiToggle,
   argTypes: {
     color: { control: 'color' },
+    width: { control: 'text' },
+    handleContentOne: { control: 'text' },
+    handleContentTwo: { control: 'text' },
     dotColor: { control: 'color' },
     toggledColor: { control: 'color' },
     untoggledColor: { control: 'color' },
@@ -29,8 +32,8 @@ export default {
   }
 }
 
-const Template = (args, { argTypes }) => ({
-  components: { nuiToggleInput },
+const DefaultTemplate = (args, { argTypes }) => ({
+  components: { nuiToggle },
   props: Object.keys(argTypes),
   methods: {
     submit(e) {
@@ -40,31 +43,60 @@ const Template = (args, { argTypes }) => ({
   },
   template: `
     <form novalidate @submit.prevent="submit">
-      <nuiToggleInput v-bind="$props" />
+      <nuiToggle v-bind="$props" />
       <input style="margin-top: 16px;" type="submit" value="submit">
     </form>
   `
 })
 
-export const Default = Template.bind({})
+export const Default = DefaultTemplate.bind({})
+
 Default.argTypes = {
   spacing: { table: { disable: true } }
 }
 Default.args = {
   url: 'https://naked-ui.org/',
-  id: 'toggle-input-id',
-  name: 'toggle-input-name',
+  id: 'toggle-id',
+  name: 'toggle-name',
   label: 'Label text',
   gap: 8,
   validationEnabled: true,
   required: true,
   dotColor: 'white',
-  toggledColor: 'green',
-  untoggledColor: 'red'
+  toggledColor: '#999',
+  untoggledColor: '#eee'
 }
 
-const GroupTemplate = (args, { argTypes }) => ({
-  components: { nuiToggleInput, nuiToggleGroup },
+const HandleContentTemplate = (args, { argTypes }) => ({
+  components: { nuiToggle },
+  props: Object.keys(argTypes),
+  methods: {
+    submit(e) {
+      this.$emit('nui:on-form-submit')
+      if (!e.target.checkValidity()) return
+    }
+  },
+  template: `
+    <form novalidate @submit.prevent="submit">
+      <nuiToggle v-bind="$props" />
+      <input style="margin-top: 16px;" type="submit" value="submit">
+    </form>
+  `
+})
+
+export const HandleContent = HandleContentTemplate.bind({})
+HandleContent.argTypes = {
+  spacing: { table: { disable: true } }
+}
+HandleContent.args = {
+  ...Default.args,
+  width: '160px',
+  handleContentOne: 'Off',
+  handleContentTwo: 'On'
+}
+
+const ToggleGroupTemplate = (args, { argTypes }) => ({
+  components: { nuiToggle, nuiToggleGroup },
   props: Object.keys(argTypes),
   data() {
     return {
@@ -80,7 +112,7 @@ const GroupTemplate = (args, { argTypes }) => ({
   template: `
     <form novalidate @submit.prevent="submit">
       <nuiToggleGroup v-bind="$props" v-model="val">
-        <nuiToggleInput v-for="n in 3"
+        <nuiToggle v-bind="$props" v-for="n in 3"
           :nname="name"
           :key="n"
           :id="id"
@@ -94,10 +126,10 @@ const GroupTemplate = (args, { argTypes }) => ({
   `
 })
 
-export const CheckboxGroup = GroupTemplate.bind({})
+export const ToggleGroup = ToggleGroupTemplate.bind({})
 
-CheckboxGroup.args = {
+ToggleGroupTemplate.args = {
   ...Default.args,
   spacing: 12,
-  baseClassname: 'nui-toggle-group'
+  namespace: 'nui-toggle-group'
 }
