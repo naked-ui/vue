@@ -1,16 +1,11 @@
 <template>
-  <div :class="componentClasses" :style="style">
-    <div class="n-number-input--label" v-if="label">
-      <label
-        :disabled="disabled"
-        :for="id"
-      >
-        {{ label }}
-      </label>
-    </div>
-    <div class="n-number-input--wrapper">
+  <div :class="componentClasses" :style="style" :id="uiElementID()">
+    <label :disabled="disabled" :for="IDForLabel">
+      {{ label }}
+    </label>
+    <div :class="`${baseClassname}--wrapper`">
       <input
-        class="n-number-input--input"
+        :class="`${baseClassname}--input`"
         type="number"
         :id="id"
         :name="name"
@@ -27,19 +22,22 @@
         :maxlength="maxlength"
         :minlength="minlength"
         @invalid="onInvalid"
-        @input="emitValues;validateFormField($event)"
+        @input="
+          emitValues
+          validateFormField($event)
+        "
         @blur.capture="validateFormField"
-      >
-      <div class="n-number-input--buttons">
+      />
+      <div :class="`${baseClassname}--buttons`">
         <button
-          class="n-number-input--buttons__plus"
+          :class="`${baseClassname}--buttons__plus`"
           :disabled="max === inputValue"
           @click="action('increase')"
         >
           +
         </button>
         <button
-          class="n-number-input--buttons__minus"
+          :class="`${baseClassname}--buttons__minus`"
           :disabled="min === inputValue"
           @click="action('decrease')"
         >
@@ -47,7 +45,7 @@
         </button>
       </div>
     </div>
-    <nValidationAlerts
+    <nuiValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
     />
@@ -55,20 +53,25 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import formField from '../../utils/formField/index.js'
-import nValidationAlerts from '../../utils/components/nValidationAlerts.vue'
-
+import { outlineWidth } from '@/utils/styleVariables/helpers/variables'
+import nuiValidationAlerts from '../../utils/components/nuiValidationAlerts.vue'
 
 export default {
-  name: 'nNumberInput',
-  mixins: [formField],
+  name: 'nuiNumberInput',
+  mixins: [uuID, formField([outlineWidth])],
   components: {
-    nValidationAlerts
+    nuiValidationAlerts
   },
   props: {
     baseClassname: {
       type: String,
-      default: 'n-form-field'
+      default: 'nui-number-input'
+    },
+    outlineWidth: {
+      type: String,
+      default: ''
     },
     step: {
       type: Number,
@@ -92,7 +95,7 @@ export default {
     }
   },
   watch: {
-    '$props': {
+    $props: {
       immediate: true,
       deep: true,
       handler() {
@@ -104,48 +107,46 @@ export default {
     inputValue: ''
   }),
   computed: {
-    componentClasses () {
-      return [
-        this.baseClassname
-      ]
+    componentClasses() {
+      return [this.baseClassname, 'nui-form-field']
     },
-    parsedWithUnit () {
+    parsedWithUnit() {
       if (!this.enableEmitWithUnit) return `${this.inputValue}`
       return `${this.inputValue}${this.unit}`
     }
   },
   methods: {
-    emitValues () {
+    emitValues() {
       this.$emit('input', this.parsedWithUnit)
       this.$emit('change', this.parsedWithUnit)
     },
-    action (direction) {
+    action(direction) {
       if (+this.inputValue > this.max) this.inputValue = this.max
       else if (+this.inputValue < this.min) this.inputValue = this.min
 
       return direction === 'increase' ? this.increase() : this.decrease()
     },
-    increase () {
+    increase() {
       const newValue = +this.inputValue + this.step
       if (newValue > this.max) return
       this.inputValue = newValue
       this.emitValues()
     },
-    decrease () {
+    decrease() {
       const newValue = +this.inputValue - this.step
       if (newValue < this.min) return
       this.inputValue = newValue
       this.emitValues()
-    },
+    }
   },
-  mounted () {
+  mounted() {
     this.inputValue = this.value
-                      ? typeof this.value === 'string'
-                        ? this.value.replace(',', '.')
-                        : this.value
-                      : ''
+      ? typeof this.value === 'string'
+        ? this.value.replace(',', '.')
+        : this.value
+      : ''
   }
 }
 </script>
 
-<style lang="scss" src="./nNumberInput.scss" />
+<style lang="scss" src="./nuiNumberInput.scss" />

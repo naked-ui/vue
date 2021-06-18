@@ -1,0 +1,51 @@
+@import "../../styles/classes/form-field.scss";
+
+.nui-number-input {
+  &--wrapper {
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    input {
+      padding-right: 2.5rem !important;
+    }
+
+    &::after {
+      content: var(--unit);
+      position: absolute;
+      line-height: var(--height);
+      right: 5rem;
+    }
+
+    position: relative;
+    display: flex;
+  }
+
+  &--buttons {
+    display: flex;
+
+    &__plus,
+    &__minus {
+      width: 2rem;
+      background: none;
+      outline: var(--outline-width) solid;
+      outline-offset: calc(var(--negative-factor) * var(--outline-width));
+      border: none;
+    }
+
+    &__plus {
+      transform: translate(calc(var(--negative-factor) * var(--outline-width)));
+    }
+    &__minus {
+      transform: translate(calc(2 * var(--negative-factor) * var(--outline-width)));
+    }
+  }
+}
