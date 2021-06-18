@@ -1,19 +1,23 @@
-import nPasswordInput from './nPasswordInput.vue'
-import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js';
-import stateArgTypes from '../../../.storybook/utils/argTypes/stateArgTypes.js';
-import styleArgTypes from '../../../.storybook/utils/argTypes/styleArgTypes.js';
-import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js';
-const customArgTypes = { ...stateArgTypes, ...formFieldArgTypes, ...styleArgTypes, ...validationArgTypes }
-
+import nuiPasswordInput from './nuiPasswordInput.vue'
+import formFieldArgTypes from '../../../.storybook/utils/argTypes/formFieldArgTypes.js'
+import stateArgTypes from '../../../.storybook/utils/argTypes/stateArgTypes.js'
+import styleArgTypes from '../../../.storybook/utils/argTypes/styleArgTypes.js'
+import validationArgTypes from '../../../.storybook/utils/argTypes/validationArgTypes.js'
+const customArgTypes = {
+  ...stateArgTypes,
+  ...formFieldArgTypes,
+  ...styleArgTypes,
+  ...validationArgTypes
+}
 
 export default {
-  title: 'Form/Input/PasswordInput',
-  component: nPasswordInput,
+  title: 'PasswordInput',
+  component: nuiPasswordInput,
   argTypes: customArgTypes
 }
 
 const Template = (args, { argTypes }) => ({
-  components: { nPasswordInput },
+  components: { nuiPasswordInput },
   props: Object.keys(argTypes),
   methods: {
     submit(e) {
@@ -23,7 +27,7 @@ const Template = (args, { argTypes }) => ({
   data: () => ({ val: '' }),
   template: `
   <form novalidate @submit.prevent="submit">
-    <nPasswordInput
+    <nuiPasswordInput
       v-bind="$props"
       v-model="val"
     />
@@ -48,7 +52,7 @@ Default.args = {
   title: 'password-input-title',
   label: 'Password input label',
   placeholder: 'Password input placeholder',
-  autocorrect: "off",
+  autocorrect: 'off',
   // customMessages: { valueMissing: 'Not empty!' },
   rules: []
 }

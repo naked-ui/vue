@@ -1,4 +1,4 @@
-@import 'sxcss';
+@import "sxcss";
 
 :root {
   --negative-factor: -1; // We need this as CSSO compression causes always appending "-1" value after CSS Variable in calc() function and it throws parsing error for final minified CSS file
@@ -13,7 +13,7 @@
   progress,
   select,
   textarea,
-  input:is([type='color'], [type='date'], [type='email'], [type='pasword'], [type='range'], [type='search'], [type='tel'], [type='text'], [type='time'], [type='url']) {
+  input:is([type="color"], [type="date"], [type="email"], [type="password"], [type="range"], [type="search"], [type="tel"], [type="text"], [type="time"], [type="url"]) {
     appearance: none;
     box-sizing: border-box;
     height: var(--height);
@@ -26,12 +26,12 @@
     font-size: inherit;
     font-family: inherit;
 
-    &:not([disabled='disabled']):not([readonly='readonly']) {
+    &:not([disabled="disabled"]):not([readonly="readonly"]) {
       background-color: var(--background-color);
       color: var(--color);
     }
 
-    &[nui-validation='true'][data-dirty='true'] {
+    &[nui-validation="true"][data-dirty="true"] {
       &:not(:invalid) ~ &,
       &:not(:focus):required:invalid ~ & {
         display: none;
@@ -42,16 +42,16 @@
         border-color: var(--color-invalid);
       }
 
-      &:not(:placeholder-shown):valid:not([data-value='']):valid,
+      &:not(:placeholder-shown):valid:not([data-value=""]):valid,
       &:required:valid {
         border-color: var(--color-valid);
       }
 
-      &[disabled='disabled'] ~ .alerts {
+      &[disabled="disabled"] ~ .alerts {
         @include hide;
       }
 
-      &[disabled='disabled'],
+      &[disabled="disabled"],
       &:disabled {
         cursor: not-allowed;
       }

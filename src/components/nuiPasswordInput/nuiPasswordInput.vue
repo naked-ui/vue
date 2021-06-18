@@ -3,7 +3,7 @@
     <label :disabled="disabled" :for="id">
       {{ label }}
     </label>
-    <div :class="`${componentClasses}--wrapper`">
+    <div :class="`${baseClassname}--wrapper`">
       <input
         ref="input"
         :type="type"
@@ -29,18 +29,15 @@
         :autocorrect="autocorrect"
         :pattern="pattern"
       />
-      <button
-        :class="`${componentClasses}__show-password`"
-        @click="show = !show"
-      >
+      <button :class="`${baseClassname}__show-password`" @click="show = !show">
         {{ show ? 'Hide' : 'Show' }}
       </button>
     </div>
     <div
-      :class="`${componentClasses}__password-strength`"
+      :class="`${baseClassname}__password-strength`"
       :style="passwordStrengthStyle"
     />
-    <nValidationAlerts
+    <nuiValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
     />
@@ -50,28 +47,28 @@
 <script>
 import formField from '@/utils/formField/index.js'
 import passwordStrengthHandler from './logic/passwordStrengthHandler'
-import nValidationAlerts from '@/utils/components/nValidationAlerts.vue'
+import nuiValidationAlerts from '@/utils/components/nuiValidationAlerts.vue'
 
 export default {
   mixins: [formField(), passwordStrengthHandler],
   name: 'nPasswordInput',
   components: {
-    nValidationAlerts
+    nuiValidationAlerts
   },
   props: {
     baseClassname: {
       type: String,
-      default: 'nui-form-field'
+      default: 'nui-password-input'
     }
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.baseClassname, 'nui-form-field']
     },
     type() {
       if (this.show) return 'text'
       else return 'password'
-    },
+    }
   },
   data: () => ({
     show: false
@@ -79,4 +76,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="./nPasswordInput.scss" />
+<style lang="scss" src="./nuiPasswordInput.scss" />
