@@ -34,7 +34,8 @@ import validationHandler from './logic/validationHandler'
 import {
   background,
   color,
-  width
+  width,
+  height
 } from '@/utils/styleVariables/helpers/variables'
 import styleProps from '@/utils/props/styleProps'
 
@@ -42,7 +43,8 @@ const componentStyleVariables = [
   background,
   color,
   width,
-  { name: 'dotColor', type: 'color' },
+  height,
+  // { name: 'dotColor', type: 'color' },
   { name: 'toggledColor', type: 'color' },
   { name: 'untoggledColor', type: 'color' },
   { name: 'handleContentOne', type: 'string' },

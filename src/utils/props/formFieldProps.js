@@ -29,18 +29,18 @@ const constructedProps = {
   // Meta
 
   id: {
-    type: String,
+    type: [String, Number],
     required: true
   },
   form: {
-    type: String
+    type: [String, Number],
   },
   name: {
-    type: String,
+    type: [String, Number],
     required: true
   },
   title: {
-    type: String
+    type: [String, Number],
   },
 
   // General settings

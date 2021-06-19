@@ -7,9 +7,10 @@ export default {
   argTypes: {
     color: { control: 'color' },
     width: { control: 'text' },
+    height: { control: 'text' },
     handleContentOne: { control: 'text' },
     handleContentTwo: { control: 'text' },
-    dotColor: { control: 'color' },
+    // dotColor: { control: 'color' },
     toggledColor: { control: 'color' },
     untoggledColor: { control: 'color' },
     gap: {
@@ -62,7 +63,7 @@ Default.args = {
   gap: 8,
   validationEnabled: true,
   required: true,
-  dotColor: 'white',
+  color: 'white',
   toggledColor: '#999',
   untoggledColor: '#eee'
 }
@@ -111,12 +112,11 @@ const ToggleGroupTemplate = (args, { argTypes }) => ({
   },
   template: `
     <form novalidate @submit.prevent="submit">
-      <nuiToggleGroup v-bind="$props" v-model="val">
+      <nuiToggleGroup :id="'toggle-group-id'" :name="'toggle-group-name'" v-bind="$props" v-model="val">
         <nuiToggle v-bind="$props" v-for="n in 3"
-          :nname="name"
+          :name="n"
           :key="n"
-          :id="id"
-          :label="label"
+          :id="n"
           :value="n"
           />
       </nuiToggleGroup>

@@ -1,26 +1,22 @@
 @import 'sxcss';
 
 .nui-toggle {
-  input:checked + .nui-toggle__handle {
-    background-color: var(--background, #999);
-  }
+  input:checked {
+    + .nui-toggle__handle {
+      background-color: var(--background, #999);
 
-  // input:focus + .nui-toggle__handle {
-  //   box-shadow: 0 0 1px var(--toggled-color);
-  // }
-
-  input:checked + .nui-toggle__handle:before {
-    // content: var(--handle-content-two);
-    right: 4px;
-    left: calc(50% - 4px);
+      &:before {
+        right: 4px;
+        left: calc(50% - 4px);
+      }
+    }
   }
 
   &__switch {
     position: relative;
     display: inline-block;
-    width: var(--width, 56px);
-    // min-width: 58px;
-    min-height: 32px;
+    width: var(--width, 48px);
+    height: var(--height, 32px);
 
     input {
       padding: 0;
@@ -39,7 +35,7 @@
       z-index: 1;
       left: 4px;
       right: 100%;
-      min-height: 24px;
+      min-height: calc(var(--height, 32px) - 8px);
       min-width: 50%;
       top: 50%;
       transform: translateY(-50%);
@@ -73,21 +69,20 @@
       @include flex($place: center);
       position: absolute;
       right: 100%;
-      // content: var(--handle-content-one, '');
       content: '';
-      min-height: 24px;
+      min-height: calc(100% - 8px);
+      // min-width: calc(var(--height, calc(50% + 4px)) - 4px);
       min-width: 50%;
       left: 4px;
       bottom: 4px;
-      background-color: var(--dot-color);
-      -webkit-transition: 0.4s;
+      background-color: var(--color);
       transition: 0.4s;
     }
 
     &.rounded {
       &,
       &:before {
-        border-radius: 40px;
+        border-radius: 120px;
       }
     }
   }
