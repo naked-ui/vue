@@ -74,7 +74,7 @@ const GroupTemplate = (args, { argTypes }) => ({
     <form novalidate @submit.prevent="submit">
       <nuiCheckboxGroup v-bind="$props" v-model="val">
         <nuiCheckboxInput v-for="n in 3"
-          :nname="name"
+          :name="name"
           :key="n"
           :id="id"
           :label="label"

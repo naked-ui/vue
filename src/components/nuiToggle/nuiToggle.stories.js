@@ -143,11 +143,13 @@ const ToggleGroupTemplate = (args, { argTypes }) => ({
   template: `
     <form novalidate @submit.prevent="submit">
       <nuiToggleGroup id="toggle-group-id" name="toggle-group-name" v-bind="$props" v-model="val">
-        <nuiToggle v-bind="$props" v-for="n in 3"
-          :name="n"
+        <nuiToggle
+          v-for="n in 3"
+          :name="name"
           :key="n"
           :id="id"
           :value="n"
+          :label="label"
           />
       </nuiToggleGroup>
       <input style="margin-top: 16px;" type="submit" value="submit">
@@ -160,5 +162,6 @@ export const ToggleGroup = ToggleGroupTemplate.bind({})
 
 ToggleGroup.args = {
   ...Default.args,
-  namespace: 'nui-toggle-group'
+  namespace: 'nui-toggle-group',
+  gap: 16
 }
