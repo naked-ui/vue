@@ -1,6 +1,6 @@
 <template>
   <div :class="componentClasses" :id="uiElementID()" :style="style">
-    <slot></slot>
+    <slot />
     <nuiValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
@@ -12,31 +12,47 @@
 import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
 import groupValidationHandler from './logic/groupValidationHandler'
-import { color, spacing } from '@/utils/styleVariables/helpers/variables'
+import { color, direction, gap } from '@/utils/styleVariables/helpers/variables'
 
-const componentStyleVariables = [color, spacing]
+const componentStyleVariables = [color, direction, gap]
+
+const componentProps = {
+  // UI
+  namespace: {
+    type: String,
+    default: 'nui-radio-group'
+  },
+  value: {
+    type: Array,
+    required: true
+  },
+  // Styling
+  orientation: {
+    type: String,
+    default: 'vertical'
+  }
+}
 
 export default {
-  mixins: [uuID, formField(componentStyleVariables), groupValidationHandler],
   name: 'nuiRadioGroup',
-  props: {
-    namespace: {
-      type: String,
-      default: 'nui-radio-group'
-    },
-    // group attrs
-    color: {
-      type: String,
-      default: ''
-    },
-    spacing: {
-      type: [Number, String],
-      default: ''
+  mixins: [uuID, formField(componentStyleVariables), groupValidationHandler],
+  data() {
+    return {
+      selectedValue: []
     }
   },
+  props: componentProps,
   computed: {
     componentClasses() {
-      return [this.namespace, 'nui-form-field']
+      return [
+        this.namespace,
+        'nui-form-field',
+        this.orientation === 'vertical'
+          ? 'vertical'
+          : this.orientation === 'horizontal'
+          ? 'horizontal'
+          : ''
+      ]
     }
   }
 }
