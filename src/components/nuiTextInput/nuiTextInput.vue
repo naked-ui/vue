@@ -55,14 +55,14 @@ export default {
     nuiInputCounter
   },
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-text-input'
     }
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-form-field']
+      return [this.namespace, 'nui-form-field']
     }
   }
 }

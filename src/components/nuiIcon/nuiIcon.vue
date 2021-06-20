@@ -1,7 +1,7 @@
 <template>
   <a :class="componentClasses" :id="uiElementID()" :style="style">
     <slot />
-    <div v-if="$slots['badge']" :class="`${baseClassname}__badge`">
+    <div v-if="$slots['badge']" :class="`${namespace}__badge`">
       <slot name="badge" />
     </div>
   </a>
@@ -18,7 +18,7 @@ export default {
   name: 'nuiIcon',
   mixins: [uuID, styleVariables(componentStyleVariables)],
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-icon'
     },
@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.namespace]
     }
   }
 }

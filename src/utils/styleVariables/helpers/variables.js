@@ -30,6 +30,16 @@ const gap = {
   type: 'size'
 }
 
+const columnGap = {
+  name: 'gap',
+  type: 'size'
+}
+
+const rowGap = {
+  name: 'gap',
+  type: 'size'
+}
+
 const outlineWidth = {
   name: 'outlineWidth',
   type: 'size'
@@ -154,6 +164,8 @@ export {
   direction,
   orientation,
   gap,
+  columnGap,
+  rowGap,
   outlineWidth,
   padding,
   colorValid,

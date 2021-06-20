@@ -8,8 +8,8 @@
     `"
   >
     <!--SLIDER VIEWPORT -->
-    <div :class="`${baseClassname}__viewport-wrapper`">
-      <div :class="`${baseClassname}__viewport`" :id="`${refName}__viewport`">
+    <div :class="`${namespace}__viewport-wrapper`">
+      <div :class="`${namespace}__viewport`" :id="`${refName}__viewport`">
         <slot name="default" />
       </div>
     </div>
@@ -17,7 +17,7 @@
     <!--SLIDER NAVIGATION -->
     <nav
       v-if="!navigationDisabled"
-      :class="[`${baseClassname}__navigation`]"
+      :class="[`${namespace}__navigation`]"
       :style="[
         this.navigationAutohide
           ? { '--navigation-initial-opacity': 0 }
@@ -29,8 +29,8 @@
           loopEnabled ? prevLoopSlide(slideIndex) : prevSlide(slideIndex)
         "
         :class="[
-          `${baseClassname}__prev`,
-          prevDisabled && `${this.baseClassname}__prev--disabled`
+          `${namespace}__prev`,
+          prevDisabled && `${this.namespace}__prev--disabled`
         ]"
         :disabled="prevDisabled"
       >
@@ -43,8 +43,8 @@
           loopEnabled ? nextLoopSlide(slideIndex) : nextSlide(slideIndex)
         "
         :class="[
-          `${baseClassname}__next`,
-          nextDisabled && `${this.baseClassname}__next--disabled`
+          `${namespace}__next`,
+          nextDisabled && `${this.namespace}__next--disabled`
         ]"
         :disabled="nextDisabled"
       >
@@ -56,25 +56,25 @@
 
     <!--SLIDER PAGINATION -->
     <!-- <nuiSliderCarouselPagination
-      :baseClassname="baseClassname"
+      :namespace="namespace"
       :refName="refName"
       :paginationDisabled="paginationDisabled"
       :paginationItems="paginationItems"
     /> -->
     <nav
       v-if="!paginationDisabled"
-      :class="`${baseClassname}__pagination`"
+      :class="`${namespace}__pagination`"
       :style="[
         this.paginationAutohide
           ? { '--pagination-initial-opacity': 0 }
           : { '--pagination-initial-opacity': 1 }
       ]"
     >
-      <ol :class="`${baseClassname}__pagination-list`">
+      <ol :class="`${namespace}__pagination-list`">
         <li
           v-for="(item, index) in paginationItems"
           :key="index"
-          :class="`${baseClassname}__pagination-item`"
+          :class="`${namespace}__pagination-item`"
         >
           <input
             type="radio"
@@ -82,7 +82,7 @@
             @click="navigateToSlide(index + 1)"
             :value="index + 1"
             :id="`${refName}__pagination-input--${index + 1}`"
-            :class="[`${baseClassname}__pagination-input`]"
+            :class="[`${namespace}__pagination-input`]"
             :aria-label="`Go to slide ${index + 1}`"
           />
         </li>
@@ -109,14 +109,14 @@ export default {
     sliderCarouselSettings
   ],
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-slider-carousel'
     }
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.namespace]
     }
   }
 }

@@ -1,8 +1,32 @@
-const height = {
-  type: [String, Number],
-  default: ''
+
+const background = {
+  type: [String, Number]
 }
-const width = {
+const backgroundColor = {
+  type: [String, Number]
+}
+const borderColor = {
+  type: String
+}
+const borderStyle = {
+  type: String
+}
+const borderRadius = {
+  type: [String, Number]
+}
+const borderWidth = {
+  type: [String, Number]
+}
+const color = {
+  type: [String, Number]
+}
+const fontSize = {
+  type: String
+}
+const gap = {
+  type: [String, Number]
+}
+const height = {
   type: [String, Number],
   default: ''
 }
@@ -14,71 +38,58 @@ const maxWidth = {
   type: [String, Number],
   default: ''
 }
-const padding = {
-  type: String
-}
-const gap = {
-  type: [String, Number]
-}
-const color = {
-  type: [String, Number]
-}
-const backgroundColor = {
-  type: [String, Number]
-}
-const background = {
-  type: [String, Number]
-}
-const borderWidth = {
-  type: [String, Number]
-}
-const borderStyle = {
-  type: String
-}
-const borderColor = {
-  type: String
-}
-const borderRadius = {
-  type: [String, Number]
-}
-const fontSize = {
-  type: String
-}
 const objectFit = {
   type: String
 }
+const padding = {
+  type: String
+}
+const size = {
+  type: [String, Number]
+}
+const transition = {
+  type: String
+}
+const width = {
+  type: [String, Number],
+  default: ''
+}
 
 export {
-  height,
-  maxHeight,
-  width,
-  maxWidth,
-  padding,
-  gap,
-  color,
   background,
   backgroundColor,
-  borderWidth,
-  borderStyle,
   borderColor,
   borderRadius,
+  borderStyle,
+  borderWidth,
+  color,
   fontSize,
-  objectFit
+  gap,
+  height,
+  maxHeight,
+  maxWidth,
+  objectFit,
+  padding,
+  size,
+  transition,
+  width,
 }
 export default {
-  height,
-  maxHeight,
-  width,
-  maxWidth,
-  padding,
-  gap,
-  color,
   background,
   backgroundColor,
-  borderWidth,
-  borderStyle,
   borderColor,
   borderRadius,
+  borderStyle,
+  borderWidth,
+  color,
   fontSize,
-  objectFit
+  gap,
+  height,
+  maxHeight,
+  maxWidth,
+  objectFit,
+  padding,
+  size,
+  transition,
+  width,
 }

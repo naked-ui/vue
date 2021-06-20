@@ -48,7 +48,7 @@ export default {
     }
   },
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-table'
     },
@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname, this.bodyMaxHeight ? 'scrollable' : '']
+      return [this.namespace, this.bodyMaxHeight ? 'scrollable' : '']
     }
   },
   methods: {
