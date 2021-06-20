@@ -1,4 +1,8 @@
 .nui-toggle-group {
   display: grid;
-  gap: var(--spacing) !important;
+  gap: var(--gap) !important;
+
+  &.horizontal {
+    display: flex;
+  }
 }

@@ -63,10 +63,7 @@ Default.args = {
   label: 'Label text',
   gap: 8,
   validationEnabled: true,
-  required: true,
-  color: 'white',
-  toggledColor: '#999',
-  untoggledColor: '#eee'
+  required: true
 }
 
 const CustomStylesTemplate = (args, { argTypes }) => ({
@@ -88,14 +85,22 @@ const CustomStylesTemplate = (args, { argTypes }) => ({
 
 export const CustomStyles = CustomStylesTemplate.bind({})
 
-// CustomStyles.argTypes = {
-//   spacing: { table: { disable: true } }
-// }
+CustomStyles.argTypes = {
+  spacing: { table: { disable: true } }
+}
 CustomStyles.args = {
-  ...Default.args,
+  url: 'https://naked-ui.org/',
+  id: 'toggle-id',
+  name: 'toggle-name',
+  label: 'Label text',
+  gap: 8,
+  validationEnabled: true,
+  required: true,
   color: 'white',
-  toggledColor: '#999',
-  untoggledColor: '#eee'
+  background: 'blue',
+  backgroundToggled: 'red',
+  width: 120,
+  height: 40
 }
 
 const HandleContentTemplate = (args, { argTypes }) => ({
@@ -122,8 +127,8 @@ HandleContent.argTypes = {
 HandleContent.args = {
   ...Default.args,
   width: '160px',
-  handleContentOne: 'Off',
-  handleContentTwo: 'On'
+  handleContent0: 'Off',
+  handleContent1: 'On'
 }
 
 const ToggleGroupTemplate = (args, { argTypes }) => ({
@@ -150,6 +155,7 @@ const ToggleGroupTemplate = (args, { argTypes }) => ({
           :id="id"
           :value="n"
           :label="label"
+          :backgroundToggled="backgroundToggled"
           />
       </nuiToggleGroup>
       <input style="margin-top: 16px;" type="submit" value="submit">
@@ -163,5 +169,6 @@ export const ToggleGroup = ToggleGroupTemplate.bind({})
 ToggleGroup.args = {
   ...Default.args,
   namespace: 'nui-toggle-group',
-  gap: 16
+  gap: 24,
+  backgroundToggled: 'mediumseagreen'
 }

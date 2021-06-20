@@ -1,25 +1,25 @@
 <template>
   <div :class="componentClasses" :id="uiElementID()" :style="style">
     <label :disabled="disabled" :for="IDForLabel">
+      <div :class="`${namespace}__switch`">
+        <input
+          type="checkbox"
+          @invalid="$setValidity"
+          @change="$validate"
+          :id="IDForLabel"
+          :disabled="isDisabled"
+          :readonly="isReadonly"
+          :required="isRequired"
+          :checked="isChecked"
+          :value="value"
+          :name="name"
+          :nui-validation="validationEnabled"
+          :data-dirty="nui.$$dirty"
+        />
+        <span :class="[`${namespace}__handle`, { rounded }]" />
+      </div>
       {{ label }}
     </label>
-    <div :class="`${namespace}__switch`">
-      <input
-        type="checkbox"
-        @invalid="$setValidity"
-        @change="$validate"
-        :id="IDForLabel"
-        :disabled="isDisabled"
-        :readonly="isReadonly"
-        :required="isRequired"
-        :checked="isChecked"
-        :value="value"
-        :name="name"
-        :nui-validation="validationEnabled"
-        :data-dirty="nui.$$dirty"
-      />
-      <span :class="[`${namespace}__handle`, { rounded }]" />
-    </div>
     <nuiValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
@@ -44,9 +44,10 @@ const componentStyleVariables = [
   color,
   width,
   height,
+  { name: 'labelColor', type: 'color' },
   { name: 'backgroundToggled', type: 'color' },
-  { name: 'handleContentOne', type: 'string' },
-  { name: 'handleContentTwo', type: 'string' }
+  { name: 'handleContent0', type: 'string' },
+  { name: 'handleContent1', type: 'string' }
 ]
 
 const componentProps = {
@@ -58,9 +59,8 @@ const componentProps = {
     type: Boolean,
     default: false
   },
-  dotColor: {
-    type: String,
-    default: 'white'
+  labelColor: {
+    type: String
   },
   backgroundToggled: {
     type: String
@@ -69,11 +69,11 @@ const componentProps = {
     type: Boolean,
     default: true
   },
-  handleContentOne: {
+  handleContent0: {
     type: String,
     default: ''
   },
-  handleContentTwo: {
+  handleContent1: {
     type: String,
     default: ''
   },
@@ -86,7 +86,7 @@ export default {
   props: componentProps,
   computed: {
     componentClasses() {
-      return [this.namespace, 'nui-form-field']
+      return [this.namespace, 'nui-checkable-input', 'nui-form-field']
     }
   }
 }

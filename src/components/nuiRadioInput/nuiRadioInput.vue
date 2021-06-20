@@ -33,7 +33,7 @@ const componentProps = {
   // UI
   namespace: {
     type: String,
-    default: 'nui-checkbox-input'
+    default: 'nui-radio-input'
   },
   // States
   checked: {

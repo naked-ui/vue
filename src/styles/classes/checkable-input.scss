@@ -1,7 +1,7 @@
 // CORE STYLES
 
 .nui-checkable-input {
-  gap: 0 !important;
+  // gap: 0 !important;
 
   label {
     display: inline-flex;
@@ -12,7 +12,7 @@
 // CUSTOM STYLES
 
 .nui-checkable-input {
-  color: var(--color);
+  color: var(--color, #000);
 
   label {
     &:focus-within .checkbox-input__checkbox:invalid {

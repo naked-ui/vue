@@ -1,15 +1,10 @@
 @import 'sxcss';
 
 .nui-toggle {
-  input:checked {
-    + .nui-toggle__handle {
-      background-color: var(--background-toggled, var(--background, #eee));
+  width: auto;
 
-      &:before {
-        right: 4px;
-        left: calc(50% - 4px);
-      }
-    }
+  label {
+    color: var(--label-color, #000);
   }
 
   &__switch {
@@ -30,7 +25,7 @@
 
     &::before {
       @include flex($place: center);
-      content: var(--handle-content-one);
+      content: var(--handle-content0);
       position: absolute;
       z-index: 1;
       left: 4px;
@@ -43,7 +38,7 @@
 
     &::after {
       @include flex($place: center);
-      content: var(--handle-content-two);
+      content: var(--handle-content1);
       position: absolute;
       z-index: 1;
       right: 4px;
@@ -74,7 +69,7 @@
       min-width: 50%;
       left: 4px;
       bottom: 4px;
-      background-color: var(--color);
+      background-color: var(--color, #fff);
       transition: 0.4s;
     }
 
@@ -82,6 +77,20 @@
       &,
       &:before {
         border-radius: 120px;
+      }
+    }
+  }
+
+  input:checked {
+    + .nui-toggle__handle {
+      background-color: var(
+        --background-toggled,
+        var(--background, mediumseagreen)
+      );
+
+      &:before {
+        right: 4px;
+        left: calc(50% - 4px);
       }
     }
   }

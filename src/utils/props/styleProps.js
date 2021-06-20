@@ -24,7 +24,8 @@ const fontSize = {
   type: String
 }
 const gap = {
-  type: [String, Number]
+  type: [String, Number],
+  default: 8
 }
 const height = {
   type: [String, Number],
