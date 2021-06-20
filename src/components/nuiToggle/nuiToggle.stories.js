@@ -14,6 +14,12 @@ export default {
     handleContentTwo: { control: 'text' },
     background: { control: 'color' },
     backgroundToggled: { control: 'color' },
+    orientation: {
+      control: {
+        type: 'select',
+        options: ['vertical', 'horizontal']
+      }
+    },
     gap: {
       control: {
         type: 'range',

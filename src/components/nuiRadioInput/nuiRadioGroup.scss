@@ -1,3 +1,8 @@
 .nui-radio-group {
-  gap: var(--spacing) !important;
+  display: grid;
+  gap: var(--gap) !important;
+
+  &.horizontal {
+    display: flex;
+  }
 }

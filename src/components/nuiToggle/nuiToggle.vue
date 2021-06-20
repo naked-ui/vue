@@ -69,6 +69,10 @@ const componentProps = {
     type: Boolean,
     default: true
   },
+  orientation: {
+    type: String,
+    default: 'horizontal'
+  },
   handleContent0: {
     type: String,
     default: ''
@@ -86,7 +90,16 @@ export default {
   props: componentProps,
   computed: {
     componentClasses() {
-      return [this.namespace, 'nui-checkable-input', 'nui-form-field']
+      return [
+        this.namespace,
+        'nui-form-field',
+        'nui-checkable-input',
+        this.orientation === 'vertical'
+          ? 'vertical'
+          : this.orientation === 'horizontal'
+          ? 'horizontal'
+          : ''
+      ]
     }
   }
 }

@@ -97,5 +97,6 @@ CheckboxGroup.argTypes = {
 }
 
 CheckboxGroup.args = {
-  ...Default.args
+  ...Default.args,
+  gap: 20
 }
