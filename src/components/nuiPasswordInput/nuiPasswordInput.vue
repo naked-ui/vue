@@ -1,9 +1,9 @@
 <template>
   <div :class="componentClasses" :style="style">
-    <label :disabled="disabled" :for="id">
+    <label :disabled="disabled" :for="IDForLabel">
       {{ label }}
     </label>
-    <div :class="`${baseClassname}--wrapper`">
+    <div :class="`${baseClassname}__wrapper`">
       <input
         ref="input"
         :type="type"
@@ -17,7 +17,7 @@
         @keyup="checkInputMaxLength"
         :autofocus="autofocus"
         :disabled="disabled"
-        :id="id"
+        :id="IDForLabel"
         :name="name"
         :placeholder="placeholder"
         :readonly="readonly"
@@ -29,14 +29,11 @@
         :autocorrect="autocorrect"
         :pattern="pattern"
       />
-      <button :class="`${baseClassname}__show-password`" @click="show = !show">
+      <span :class="`${baseClassname}__toggle`" @click="show = !show">
         {{ show ? 'Hide' : 'Show' }}
-      </button>
+      </span>
     </div>
-    <div
-      :class="`${baseClassname}__password-strength`"
-      :style="passwordStrengthStyle"
-    />
+    <div :class="`${baseClassname}__strength`" :style="passwordStrengthStyle" />
     <nuiValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
@@ -45,13 +42,14 @@
 </template>
 
 <script>
+import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
 import passwordStrengthHandler from './logic/passwordStrengthHandler'
 import nuiValidationAlerts from '@/utils/components/nuiValidationAlerts.vue'
 
 export default {
-  mixins: [formField(), passwordStrengthHandler],
-  name: 'nPasswordInput',
+  mixins: [uuID, formField(), passwordStrengthHandler],
+  name: 'nuiPasswordInput',
   components: {
     nuiValidationAlerts
   },
