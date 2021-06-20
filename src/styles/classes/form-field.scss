@@ -6,9 +6,14 @@
 
 .nui-form-field {
   display: grid;
+  gap: var(--gap);
   justify-content: start;
-  row-gap: var(--gap);
   width: var(--width);
+
+  label {
+    display: flex;
+    gap: var(--gap);
+  }
 
   progress,
   select,

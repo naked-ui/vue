@@ -4,6 +4,9 @@ const color = {
 const backgroundColor = {
   control: 'color'
 }
+const background = {
+  control: 'text'
+}
 const height = {
   control: 'text'
 }
@@ -35,6 +38,7 @@ const fontSize = {
 export {
   color,
   backgroundColor,
+  background,
   height,
   width,
   padding,
@@ -48,6 +52,7 @@ export {
 export default {
   color,
   backgroundColor,
+  background,
   height,
   width,
   padding,

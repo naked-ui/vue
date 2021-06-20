@@ -6,27 +6,22 @@ export default {
   component: nuiCheckboxInput,
   argTypes: {
     color: { control: 'color' },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 20
-      }
-    },
-    spacing: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 20
-      }
-    },
     customMessages: {
       control: 'object'
+    },
+    gap: {
+      control: 'text'
+    },
+    orientation: {
+      control: {
+        type: 'select',
+        options: ['vertical', 'horizontal']
+      }
     }
   }
 }
 
-const Template = (args, { argTypes }) => ({
+const DefaultTemplate = (args, { argTypes }) => ({
   components: { nuiCheckboxInput },
   props: Object.keys(argTypes),
   methods: {
@@ -43,18 +38,22 @@ const Template = (args, { argTypes }) => ({
   `
 })
 
-export const Default = Template.bind({})
+export const Default = DefaultTemplate.bind({})
 Default.argTypes = {
-  spacing: { table: { disable: true } }
+  // spacing: { table: { disable: true } }
+  orientation: {
+    defaultValue: 'horizontal'
+  }
 }
 Default.args = {
   url: 'https://naked-ui.org/',
   id: 'checkbox-input-id',
   name: 'checkbox-input-name',
   label: 'Label text',
-  gap: 8,
+  gap: 4,
   validationEnabled: true,
-  required: true
+  required: true,
+  checked: false
 }
 
 const GroupTemplate = (args, { argTypes }) => ({
@@ -75,11 +74,12 @@ const GroupTemplate = (args, { argTypes }) => ({
     <form novalidate @submit.prevent="submit">
       <nuiCheckboxGroup v-bind="$props" v-model="val">
         <nuiCheckboxInput v-for="n in 3"
-          :nname="name"
+          :name="name"
           :key="n"
           :id="id"
           :label="label"
           :value="n"
+          gap="4px"
           />
       </nuiCheckboxGroup>
       <input style="margin-top: 16px;" type="submit" value="submit">
@@ -90,8 +90,13 @@ const GroupTemplate = (args, { argTypes }) => ({
 
 export const CheckboxGroup = GroupTemplate.bind({})
 
+CheckboxGroup.argTypes = {
+  orientation: {
+    defaultValue: 'vertical'
+  }
+}
+
 CheckboxGroup.args = {
   ...Default.args,
-  spacing: 12,
-  baseClassname: 'nui-checkbox-group'
+  gap: 20
 }

@@ -7,21 +7,17 @@
     :style="style"
     :disabled="disabled || busy"
     :busy="busy"
-    :buttonBusyText="buttonBusyText"
+    :busyLabel="busyLabel"
   >
     <div
       v-if="$slots['icon--left']"
-      :class="
-        baseClassname
-          ? `${baseClassname}__icon ${baseClassname}__icon--left`
-          : false
-      "
+      :class="namespace ? `${namespace}__icon ${namespace}__icon--left` : false"
     >
       <slot name="icon--left" />
     </div>
     <span
       v-if="$slots.default"
-      :class="baseClassname ? `${baseClassname}__text` : false"
+      :class="namespace ? `${namespace}__text` : false"
     >
       <slot v-if="!busy" />
       <slot v-else name="busy-text" />
@@ -29,9 +25,7 @@
     <div
       v-if="$slots['icon--right']"
       :class="
-        baseClassname
-          ? `${baseClassname}__icon ${baseClassname}__icon--right`
-          : false
+        namespace ? `${namespace}__icon ${namespace}__icon--right` : false
       "
     >
       <slot name="icon--right" />
@@ -59,6 +53,30 @@ import hyperlinkProps from '@/utils/props/hyperlinkProps'
 import { disabled, busy } from '@/utils/props/stateProps'
 import styleProps from '@/utils/props/styleProps'
 
+const componentProps = {
+  // UI
+  namespace: {
+    type: String,
+    default: 'nui-button'
+  },
+  type: {
+    type: String,
+    default: 'button'
+  },
+  // States
+  disabled,
+  busy,
+  ...hyperlinkProps,
+  role: {
+    type: String,
+    default: 'button'
+  },
+  busyLabel: {
+    type: String
+  },
+  ...styleProps
+}
+
 const componentStyleVariables = [
   color,
   backgroundColor,
@@ -71,28 +89,6 @@ const componentStyleVariables = [
   borderColor,
   fontSize
 ]
-
-const componentProps = {
-  ...hyperlinkProps,
-  type: {
-    type: String,
-    default: 'button'
-  },
-  role: {
-    type: String,
-    default: 'button'
-  },
-  disabled,
-  busy,
-  buttonBusyText: {
-    type: String
-  },
-  ...styleProps,
-  baseClassname: {
-    type: String,
-    default: 'nui-button'
-  }
-}
 
 export default {
   name: 'nuiButton',
@@ -148,7 +144,7 @@ export default {
       }
     },
     componentClasses() {
-      if (this.baseClassname.length > 0) return [this.baseClassname]
+      if (this.namespace.length > 0) return [this.namespace]
       else return false
     }
   }

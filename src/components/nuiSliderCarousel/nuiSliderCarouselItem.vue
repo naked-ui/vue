@@ -1,6 +1,6 @@
 <template>
   <li
-    :class="[`${baseClassname}__item`]"
+    :class="[`${namespace}__item`]"
     :tabindex="slideIndex"
     :ref="refName"
     :id="`${refName}--${slideIndex}`"
@@ -8,7 +8,7 @@
       --visible-items: ${visibleItems};
     `"
   >
-    <div :class="[`${baseClassname}__item-content`]">
+    <div :class="[`${namespace}__item-content`]">
       <slot />
     </div>
   </li>
@@ -22,7 +22,7 @@ export default {
       type: String,
       required: true
     },
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-slider-carousel'
     },

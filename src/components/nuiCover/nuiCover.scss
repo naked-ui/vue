@@ -50,13 +50,13 @@
 
     &-inner {
       display: grid;
-      place-content: var(--content-place-content);
+      place-content: var(--place-content);
     }
   }
 
   &__overlay {
     z-index: -1;
-    background-color: var(--overlay-background-color);
+    background-color: var(--overlay-color);
     opacity: var(--overlay-opacity);
   }
 }

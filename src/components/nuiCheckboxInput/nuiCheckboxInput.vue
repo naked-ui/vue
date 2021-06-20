@@ -28,30 +28,41 @@
 import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index'
 import validationHandler from './logic/validationHandler'
-import { color } from '@/utils/styleVariables/helpers/variables'
 
-const componentStyleVariables = [color]
+const componentProps = {
+  // UI
+  namespace: {
+    type: String,
+    default: 'nui-checkbox-input'
+  },
+  //Styling
+  orientation: {
+    type: String,
+    default: 'horizontal'
+  },
+  // States
+  checked: {
+    type: Boolean,
+    default: false
+  }
+}
 
 export default {
   name: 'nuiCheckboxInput',
-  mixins: [uuID, formField(componentStyleVariables), validationHandler],
-  props: {
-    baseClassname: {
-      type: String,
-      default: 'nui-checkbox-input'
-    },
-    checked: {
-      type: Boolean,
-      default: false
-    },
-    color: {
-      type: String,
-      default: null
-    }
-  },
+  mixins: [uuID, formField(), validationHandler],
+  props: componentProps,
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-form-field']
+      return [
+        this.namespace,
+        'nui-form-field',
+        'nui-checkable-input',
+        this.orientation === 'vertical'
+          ? 'vertical'
+          : this.orientation === 'horizontal'
+          ? 'horizontal'
+          : ''
+      ]
     }
   }
 }
