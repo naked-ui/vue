@@ -41,7 +41,7 @@ import formField from '@/utils/formField/index.js'
 import nuiValidationAlerts from '@/utils/components/nuiValidationAlerts.vue'
 
 export default {
-  mixins: [uiID, formField()],
+  mixins: [uuID, formField()],
   name: 'nuiUrlInput',
   components: {
     nuiValidationAlerts

@@ -13,10 +13,10 @@
         :value="value"
         :name="name"
         :nui-validation="validationEnabled"
-        formnovalidate
         :data-dirty="nui.$$dirty"
-      />{{ label }}</label
-    >
+      />
+      {{ label }}
+    </label>
     <nuiValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
@@ -26,14 +26,19 @@
 
 <script>
 import uuID from '@/utils/uuid'
-import formField from '@/utils/formField/index.js'
+import formField from '@/utils/formField/index'
 import validationHandler from './logic/validationHandler'
 
 const componentProps = {
   // UI
   namespace: {
     type: String,
-    default: 'nui-checkbox-input'
+    default: 'nui-radio-input'
+  },
+  //Styling
+  orientation: {
+    type: String,
+    default: 'horizontal'
   },
   // States
   checked: {
@@ -48,10 +53,17 @@ export default {
   props: componentProps,
   computed: {
     componentClasses() {
-      return [this.namespace, 'nui-form-field']
+      return [
+        this.namespace,
+        'nui-form-field',
+        'nui-checkable-input',
+        this.orientation === 'vertical'
+          ? 'vertical'
+          : this.orientation === 'horizontal'
+          ? 'horizontal'
+          : ''
+      ]
     }
   }
 }
 </script>
-
-<style lang="scss" src="./nuiRadioInput.scss" />

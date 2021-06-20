@@ -1,7 +1,7 @@
 // CORE STYLES
 
 .nui-checkable-input {
-  gap: 0 !important;
+  // gap: 0 !important;
 
   label {
     display: inline-flex;
@@ -12,43 +12,63 @@
 // CUSTOM STYLES
 
 .nui-checkable-input {
-  color: var(--color);
+  color: var(--color, #000);
 
   label {
-    &:focus-within .checkbox-input__checkbox:invalid {
+    &:focus-within input:invalid {
       border-color: var(--color-invalid);
     }
     gap: var(--gap);
   }
 
-  input:is([type='checkbox'], [type='radio']) {
-    appearance: none;
-    height: var(--height, 16px);
-    width: var(--width, 16px);
-    border: solid 1px var(--color, #111);
-    margin: 0;
-    margin-right: var(--gap);
-    position: relative;
-    outline: none;
-    border-radius: calc(var(--height, 16px) / 4);
+  input {
+    &:is([type='checkbox'], [type='radio']) {
+      appearance: none;
+      height: var(--height, 16px);
+      width: var(--width, 16px);
+      border: solid 1px var(--color, #111);
+      margin: 0;
+      margin-right: var(--gap);
+      position: relative;
+      outline: none;
 
-    &::before {
-      content: '';
-      position: absolute;
-      width: 50%;
-      height: 30%;
-      top: 50%;
-      left: 50%;
-      border-radius: 1px;
-      transition: transform 0.1s ease-in-out;
-      transform-origin: left top;
-
-      border-left: 2px solid var(--color, #111);
-      border-bottom: 2px solid var(--color, #111);
-      transform: rotate(-45deg) scale(0) translate(-50%, -50%);
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transition: transform 0.1s ease-in-out;
+        transform-origin: left top;
+      }
     }
-    &:checked::before {
-      transform: rotate(-45deg) scale(1) translate(-50%, -50%);
+
+    &:is([type='checkbox']) {
+      border-radius: calc(var(--height, 16px) / 4);
+      &::before {
+        border-radius: 1px;
+        width: 50%;
+        height: 30%;
+        border-left: 2px solid var(--color, #111);
+        border-bottom: 2px solid var(--color, #111);
+        transform: rotate(-45deg) scale(0) translate(-50%, -50%);
+      }
+      &:checked::before {
+        transform: rotate(-45deg) scale(1) translate(-50%, -50%);
+      }
+    }
+
+    &:is([type='radio']) {
+      border-radius: 50%;
+      &::before {
+        width: 8px;
+        height: 8px;
+        transform: scale(0) translate(-50%, -50%);
+        border-radius: inherit;
+        background: var(--color, #111);
+      }
+      &:checked::before {
+        transform: scale(1) translate(-50%, -50%);
+      }
     }
   }
 

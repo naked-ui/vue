@@ -1,6 +1,6 @@
 <template>
   <div :class="componentClasses" :id="uiElementID()" :style="style">
-    <slot></slot>
+    <slot />
     <nuiValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
