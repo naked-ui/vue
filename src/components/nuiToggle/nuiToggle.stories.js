@@ -8,11 +8,12 @@ export default {
     color: { control: 'color' },
     width: { control: 'text' },
     height: { control: 'text' },
+    id: { control: 'text' },
+    name: { control: 'text' },
     handleContentOne: { control: 'text' },
     handleContentTwo: { control: 'text' },
-    // dotColor: { control: 'color' },
-    toggledColor: { control: 'color' },
-    untoggledColor: { control: 'color' },
+    background: { control: 'color' },
+    backgroundToggled: { control: 'color' },
     gap: {
       control: {
         type: 'range',
@@ -68,6 +69,35 @@ Default.args = {
   untoggledColor: '#eee'
 }
 
+const CustomStylesTemplate = (args, { argTypes }) => ({
+  components: { nuiToggle },
+  props: Object.keys(argTypes),
+  methods: {
+    submit(e) {
+      this.$emit('nui:on-form-submit')
+      if (!e.target.checkValidity()) return
+    }
+  },
+  template: `
+    <form novalidate @submit.prevent="submit">
+      <nuiToggle v-bind="$props" />
+      <input style="margin-top: 16px;" type="submit" value="submit">
+    </form>
+  `
+})
+
+export const CustomStyles = CustomStylesTemplate.bind({})
+
+// CustomStyles.argTypes = {
+//   spacing: { table: { disable: true } }
+// }
+CustomStyles.args = {
+  ...Default.args,
+  color: 'white',
+  toggledColor: '#999',
+  untoggledColor: '#eee'
+}
+
 const HandleContentTemplate = (args, { argTypes }) => ({
   components: { nuiToggle },
   props: Object.keys(argTypes),
@@ -112,11 +142,11 @@ const ToggleGroupTemplate = (args, { argTypes }) => ({
   },
   template: `
     <form novalidate @submit.prevent="submit">
-      <nuiToggleGroup :id="'toggle-group-id'" :name="'toggle-group-name'" v-bind="$props" v-model="val">
+      <nuiToggleGroup id="toggle-group-id" name="toggle-group-name" v-bind="$props" v-model="val">
         <nuiToggle v-bind="$props" v-for="n in 3"
           :name="n"
           :key="n"
-          :id="n"
+          :id="id"
           :value="n"
           />
       </nuiToggleGroup>
@@ -128,8 +158,7 @@ const ToggleGroupTemplate = (args, { argTypes }) => ({
 
 export const ToggleGroup = ToggleGroupTemplate.bind({})
 
-ToggleGroupTemplate.args = {
+ToggleGroup.args = {
   ...Default.args,
-  spacing: 12,
   namespace: 'nui-toggle-group'
 }

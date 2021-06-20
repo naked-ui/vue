@@ -44,9 +44,7 @@ const componentStyleVariables = [
   color,
   width,
   height,
-  // { name: 'dotColor', type: 'color' },
-  { name: 'toggledColor', type: 'color' },
-  { name: 'untoggledColor', type: 'color' },
+  { name: 'backgroundToggled', type: 'color' },
   { name: 'handleContentOne', type: 'string' },
   { name: 'handleContentTwo', type: 'string' }
 ]
@@ -64,13 +62,8 @@ const componentProps = {
     type: String,
     default: 'white'
   },
-  toggledColor: {
-    type: String,
-    default: '#999'
-  },
-  untoggledColor: {
-    type: String,
-    default: '#eee'
+  backgroundToggled: {
+    type: String
   },
   rounded: {
     type: Boolean,

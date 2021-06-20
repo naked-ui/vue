@@ -3,7 +3,7 @@
 .nui-toggle {
   input:checked {
     + .nui-toggle__handle {
-      background-color: var(--background, #999);
+      background-color: var(--background-toggled, var(--background, #eee));
 
       &:before {
         right: 4px;
@@ -71,7 +71,6 @@
       right: 100%;
       content: '';
       min-height: calc(100% - 8px);
-      // min-width: calc(var(--height, calc(50% + 4px)) - 4px);
       min-width: 50%;
       left: 4px;
       bottom: 4px;
