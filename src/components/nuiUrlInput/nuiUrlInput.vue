@@ -47,14 +47,14 @@ export default {
     nuiValidationAlerts
   },
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-form-field'
     }
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.namespace]
     }
   }
 }

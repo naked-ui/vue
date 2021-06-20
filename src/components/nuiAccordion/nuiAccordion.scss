@@ -33,7 +33,7 @@
         right: 14px;
         top: calc(50% - 3px);
         transform: translateY(-50%) rotate(45deg);
-        transition: transform 0.1s ease-out;
+        transition: var(--transition);
         transform-origin: center;
         pointer-events: none;
       }

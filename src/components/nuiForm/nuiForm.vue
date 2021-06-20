@@ -29,7 +29,7 @@ export default {
   name: 'nuiForm',
   mixins: [uuID, styleVariables(componentStyleVariables)],
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-form'
     },
@@ -85,7 +85,7 @@ export default {
   }),
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.namespace]
     },
     areErrors() {
       if (this.novalidate) return false

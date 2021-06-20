@@ -1,6 +1,6 @@
 <template>
   <div :class="componentClasses" :id="uiElementID()" :style="style">
-    <div :class="`${baseClassname}__controls`">
+    <div :class="`${namespace}__controls`">
       <button
         :class="[
           'nui-tabs__control',
@@ -32,7 +32,7 @@ export default {
   name: 'nuiTabs',
   mixins: [uuID, styleVariables(defaultStyleVariables)],
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-tabs'
     },
@@ -63,7 +63,7 @@ export default {
   }),
   computed: {
     componentClasses() {
-      return [this.baseClassname, this.tabsDirection]
+      return [this.namespace, this.tabsDirection]
     },
     tabTitles() {
       if (this.slotTabs && this.slotTabs.length) return this.slotTabs

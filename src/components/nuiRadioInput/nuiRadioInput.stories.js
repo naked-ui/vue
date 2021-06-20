@@ -79,5 +79,5 @@ export const Group = GroupTemplate.bind({})
 Group.args = {
   ...Default.args,
   spacing: 12,
-  baseClassname: 'nui-radio-group'
+  namespace: 'nui-radio-group'
 }

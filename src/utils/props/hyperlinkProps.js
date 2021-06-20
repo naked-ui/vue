@@ -1,11 +1,12 @@
 const href = {
-  type: String,
-  default: ''
+  type: String
+}
+const rel = {
+  type: String
 }
 const target = {
-  type: String,
-  default: ''
+  type: String
 }
 
-export { href, target }
-export default { href, target }
+export { href, rel, target }
+export default { href, rel, target }

@@ -1,7 +1,7 @@
 <template>
   <picture
     v-if="image && image.src && image.sources"
-    :class="`${baseClassname}`"
+    :class="`${namespace}`"
     :id="uiElementID()"
     :style="style"
     style="content-visibility: auto"
@@ -56,7 +56,7 @@ const componentStyleVariables = [
 
 const componentProps = {
   // UI
-  baseClassname: {
+  namespace: {
     type: String,
     default: 'nui-picture'
   },

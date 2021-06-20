@@ -31,7 +31,7 @@ export default {
   name: 'nuiProgress',
   mixins: [uuID, formField(), styleVariables(componentStyleVariables)],
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-progress'
     },
@@ -75,7 +75,7 @@ export default {
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-form-field']
+      return [this.namespace, 'nui-form-field']
     }
   }
 }

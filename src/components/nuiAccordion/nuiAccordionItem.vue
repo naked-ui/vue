@@ -1,15 +1,12 @@
 <template>
   <li
-    :class="[
-      `${baseClassname}-item`,
-      active ? `${baseClassname}-item--active` : ''
-    ]"
+    :class="[`${namespace}-item`, active ? `${namespace}-item--active` : '']"
     :style="style"
   >
-    <span :class="`${baseClassname}-item__title`" @click="active = !active">
+    <span :class="`${namespace}-item__title`" @click="active = !active">
       <slot name="title" />
     </span>
-    <div :class="`${baseClassname}-item__content`" :id="uiElementID">
+    <div :class="`${namespace}-item__content`" :id="uiElementID">
       <slot name="text" />
     </div>
   </li>
@@ -18,6 +15,30 @@
 <script>
 import styleVariables from '@/utils/styleVariables'
 import uuidMixin from '@/utils/uuid'
+
+const componentProps = {
+  namespace: {
+    type: String,
+    default: 'nui-accordion'
+  },
+  // Styling
+  contentHeight: {
+    type: [String, Number],
+    default: ''
+  },
+  contentPadding: {
+    type: [String, Number],
+    default: ''
+  },
+  titleHeight: {
+    type: [String, Number],
+    default: '100%'
+  },
+  titlePadding: {
+    type: [String, Number],
+    default: ''
+  }
+}
 
 const componentStyleVariables = [
   { name: 'contentHeight', type: 'size' },
@@ -29,31 +50,10 @@ const componentStyleVariables = [
 export default {
   name: 'nuiAccordionitem',
   mixins: [uuidMixin, styleVariables(componentStyleVariables)],
-  props: {
-    baseClassname: {
-      type: String,
-      default: 'nui-accordion'
-    },
-    contentHeight: {
-      type: [String, Number],
-      default: ''
-    },
-    contentPadding: {
-      type: [String, Number],
-      default: ''
-    },
-    titleHeight: {
-      type: [String, Number],
-      default: '100%'
-    },
-    titlePadding: {
-      type: [String, Number],
-      default: ''
-    }
-  },
+  props: componentProps,
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.namespace]
     }
   },
   data: () => ({
