@@ -9,7 +9,12 @@
 <script>
 import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables'
-import { maxWidth, padding } from '@/utils/styleVariables/helpers/variables'
+import {
+  maxWidth,
+  padding,
+  transition
+} from '@/utils/styleVariables/helpers/variables'
+import styleProps from '@/utils/props'
 
 const componentProps = {
   // UI
@@ -17,41 +22,23 @@ const componentProps = {
     type: String,
     default: 'nui-accordion'
   },
-  items: {
-    type: Array,
-    required: false
-  },
   // Styling
-  maxWidth: {
-    type: [Number, String],
-    default: ''
-  },
-  padding: {
-    type: [Number, String],
-    default: ''
-  },
+  ...styleProps,
   contentPadding: {
-    type: [Number, String],
-    default: ''
+    type: [Number, String]
   },
   titleHeight: {
-    type: [Number, String],
-    default: ''
+    type: [Number, String]
   },
   titlePadding: {
-    type: [Number, String],
-    default: ''
-  },
-  transition: {
-    type: String,
-    default: ''
+    type: [Number, String]
   }
 }
 
 const componentStyleVariables = [
   maxWidth,
   padding,
-  { name: 'transition', type: 'other' },
+  transition,
   { name: 'contentPadding', type: 'size' },
   { name: 'titleHeight', type: 'size' },
   { name: 'titlePadding', type: 'size' }
@@ -64,17 +51,6 @@ export default {
   computed: {
     componentClasses() {
       return [this.namespace]
-    }
-  },
-  data: () => ({
-    accordionItems: []
-  }),
-  mounted() {
-    if (this.areItemsProvided) {
-      this.accordionItems = this.items.map((item) => ({
-        ...item,
-        active: false
-      }))
     }
   }
 }

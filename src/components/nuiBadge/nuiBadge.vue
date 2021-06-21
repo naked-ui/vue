@@ -1,5 +1,10 @@
 <template>
-  <div :class="componentClasses" :id="uiElementID()" :style="style">
+  <div
+    :class="componentClasses"
+    :id="uiElementID()"
+    :style="style"
+    :disabled="disabled"
+  >
     <slot />
   </div>
 </template>
@@ -15,20 +20,20 @@ import {
   background,
   color
 } from '@/utils/styleVariables/helpers/variables'
-import styleProps from '@/utils/props/styleProps'
-import { disabled, busy } from '@/utils/props/stateProps'
+import { styleProps, stateProps, uiProps } from '@/utils/props'
 
 const componentProps = {
   // UI
   namespace: {
-    type: String,
-    default: 'nui-badge'
+    default: 'nui-badge',
+    type: String
   },
   // Styling
   ...styleProps,
   // States
-  disabled,
-  busy
+  ...stateProps,
+  // UI
+  ...uiProps
 }
 
 const componentStyleVariables = [

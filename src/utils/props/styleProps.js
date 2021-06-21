@@ -1,3 +1,4 @@
+// Skin
 
 const background = {
   type: [String, Number]
@@ -5,8 +6,11 @@ const background = {
 const backgroundColor = {
   type: [String, Number]
 }
+const border = {
+  type: [String, Number]
+}
 const borderColor = {
-  type: String
+  type: [String, Number]
 }
 const borderStyle = {
   type: String
@@ -21,23 +25,26 @@ const color = {
   type: [String, Number]
 }
 const fontSize = {
+  type: [String, Number]
+}
+const transition = {
   type: String
 }
+
+// Structure
+
 const gap = {
   type: [String, Number],
   default: 8
 }
 const height = {
-  type: [String, Number],
-  default: ''
+  type: [String, Number]
 }
 const maxHeight = {
-  type: [String, Number],
-  default: ''
+  type: [String, Number]
 }
 const maxWidth = {
-  type: [String, Number],
-  default: ''
+  type: [String, Number]
 }
 const objectFit = {
   type: String
@@ -48,12 +55,8 @@ const padding = {
 const size = {
   type: [String, Number]
 }
-const transition = {
-  type: String
-}
 const width = {
-  type: [String, Number],
-  default: ''
+  type: [String, Number]
 }
 
 export {

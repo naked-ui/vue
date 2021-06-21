@@ -1,0 +1,3 @@
+// const namespace = {
+//   type: String
+// }

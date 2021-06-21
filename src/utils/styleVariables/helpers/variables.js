@@ -154,6 +154,11 @@ const objectFit = {
   type: 'other'
 }
 
+const transition = {
+  name: 'transition',
+  type: 'other'
+}
+
 // Listing only accepted values would be handy here
 
 export {
@@ -186,7 +191,8 @@ export {
   viewportPadding,
   resize,
   lineHeight,
-  objectFit
+  objectFit,
+  transition
 }
 
 export default {
@@ -217,5 +223,6 @@ export default {
   viewportPadding,
   resize,
   lineHeight,
-  objectFit
+  objectFit,
+  transition
 }

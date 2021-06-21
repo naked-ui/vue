@@ -6,6 +6,7 @@ const componentArgTypes = {
   background,
   padding,
   borderRadius,
+  disabled: { control: 'boolean' },
   size: { control: 'text' },
   badgeText: { control: 'text' }
 }
