@@ -137,6 +137,7 @@ export default {
       this.$emit('change', this.parsedWithUnit)
     },
     action(direction) {
+      this.clearInterval()
       if (+this.inputValue > this.max) this.inputValue = this.max
       else if (+this.inputValue < this.min) this.inputValue = this.min
 
@@ -156,9 +157,12 @@ export default {
       this.inputValue = newValue
       this.emitValues()
     },
-    onMouseUp() {
+    clearInterval() {
       clearInterval(this.interval)
       this.interval = null
+    },
+    onMouseUp() {
+      this.clearInterval()
     }
   }
   // mounted() {
