@@ -8,7 +8,8 @@
         v-if="!nativeControls"
         :class="`${namespace}__minus`"
         :disabled="min === inputValue"
-        @click="action('decrease')"
+        @mousedown="action('decrease')"
+        @mouseup="onMouseUp"
       >
         -
       </button>
@@ -42,7 +43,8 @@
         v-if="!nativeControls"
         :class="`${namespace}__plus`"
         :disabled="max === inputValue"
-        @click="action('increase')"
+        @mousedown="action('increase')"
+        @mouseup="onMouseUp"
       >
         +
       </button>
@@ -100,6 +102,10 @@ export default {
     unit: {
       type: String,
       default: ''
+    },
+    spinnerInterval: {
+      type: Number,
+      default: 150
     }
   },
   watch: {
@@ -112,7 +118,8 @@ export default {
     }
   },
   data: () => ({
-    inputValue: ''
+    inputValue: '',
+    interval: null
   }),
   computed: {
     componentClasses() {
@@ -137,7 +144,9 @@ export default {
       if (+this.inputValue > this.max) this.inputValue = this.max
       else if (+this.inputValue < this.min) this.inputValue = this.min
 
-      return direction === 'increase' ? this.increase() : this.decrease()
+      this[direction]()
+
+      this.interval = setInterval(this[direction], this.spinnerInterval)
     },
     increase() {
       const newValue = +this.inputValue + this.step
@@ -150,6 +159,10 @@ export default {
       if (newValue < this.min) return
       this.inputValue = newValue
       this.emitValues()
+    },
+    onMouseUp() {
+      clearInterval(this.interval)
+      this.interval = null
     }
   }
   // mounted() {
