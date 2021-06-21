@@ -32,10 +32,8 @@
           :maxlength="maxlength"
           :minlength="minlength"
           @invalid="onInvalid"
-          @input="
-            emitValues
-            validateFormField($event)
-          "
+          @input="emitValues"
+          @change="emitValues"
           @blur.capture="validateFormField"
         />
       </div>
