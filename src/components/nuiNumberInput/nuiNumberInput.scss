@@ -1,3 +1,5 @@
+@import 'sxcss';
+
 .nui-number-input {
   &,
   * {
@@ -75,12 +77,12 @@
 
     &.native-controls {
       input {
-        padding-right: calc(4 * var(--padding)) !important;
+        padding-right: calc(4 * var(--padding) - 4px) !important;
 
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
           opacity: 1;
-          transform: translate(calc(3 * var(--padding)));
+          transform: translate(calc(3 * var(--padding) - 4px));
         }
       }
 
@@ -89,6 +91,10 @@
           position: absolute;
           right: calc(3 * var(--padding));
         }
+      }
+
+      button {
+        @include hide;
       }
     }
   }

@@ -5,7 +5,6 @@
     </label>
     <div :class="`${namespace}__wrapper`">
       <button
-        v-if="!nativeControls"
         :class="`${namespace}__minus`"
         :disabled="min === inputValue"
         @mousedown="action('decrease')"
@@ -38,7 +37,6 @@
         />
       </div>
       <button
-        v-if="!nativeControls"
         :class="`${namespace}__plus`"
         :disabled="max === inputValue"
         @mousedown="action('increase')"
