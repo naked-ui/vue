@@ -20,7 +20,7 @@ import {
   background,
   color
 } from '@/utils/styleVariables/helpers/variables'
-import { styleProps, stateProps, uiProps } from '@/utils/props'
+import { styleProps, stateProps } from '@/utils/props'
 
 const componentProps = {
   // UI
@@ -31,9 +31,7 @@ const componentProps = {
   // Styling
   ...styleProps,
   // States
-  ...stateProps,
-  // UI
-  ...uiProps
+  ...stateProps
 }
 
 const componentStyleVariables = [

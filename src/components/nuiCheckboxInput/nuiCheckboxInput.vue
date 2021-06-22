@@ -28,6 +28,7 @@
 import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index'
 import validationHandler from './logic/validationHandler'
+import { stateProps, styleProps } from '@/utils/props'
 
 const componentProps = {
   // UI
@@ -36,15 +37,9 @@ const componentProps = {
     default: 'nui-checkbox-input'
   },
   //Styling
-  orientation: {
-    type: String,
-    default: 'horizontal'
-  },
+  ...styleProps,
   // States
-  checked: {
-    type: Boolean,
-    default: false
-  }
+  ...stateProps
 }
 
 export default {

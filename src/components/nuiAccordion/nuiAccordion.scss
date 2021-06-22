@@ -27,6 +27,7 @@
       width: 100%;
       position: relative;
       padding: var(--title-padding);
+      user-select: none;
 
       &::after {
         @include chevron;

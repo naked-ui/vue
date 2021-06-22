@@ -10,7 +10,7 @@
 
 <script>
 import uuID from '@/utils/uuid'
-import formField from '@/utils/formField/index.js'
+import formField from '@/utils/formField'
 import groupValidationHandler from './logic/groupValidationHandler'
 import { color, direction, gap } from '@/utils/styleVariables/helpers/variables'
 

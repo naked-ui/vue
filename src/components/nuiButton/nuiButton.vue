@@ -49,32 +49,30 @@ import {
   borderColor,
   fontSize
 } from '@/utils/styleVariables/helpers/variables'
-import hyperlinkProps from '@/utils/props/hyperlinkProps'
-import { disabled, busy } from '@/utils/props/stateProps'
-import styleProps from '@/utils/props/styleProps'
+import {
+  hyperlinkProps,
+  metaProps,
+  stateProps,
+  styleProps
+} from '@/utils/props'
 
 const componentProps = {
-  // UI
   namespace: {
     type: String,
     default: 'nui-button'
   },
-  type: {
-    type: String,
-    default: 'button'
-  },
-  // States
-  disabled,
-  busy,
+  // Hyperlink
   ...hyperlinkProps,
-  role: {
-    type: String,
-    default: 'button'
-  },
+  // Meta
+  ...metaProps,
+  // States
+  ...stateProps,
+  // Styling
+  ...styleProps,
+  // Other
   busyLabel: {
     type: String
-  },
-  ...styleProps
+  }
 }
 
 const componentStyleVariables = [

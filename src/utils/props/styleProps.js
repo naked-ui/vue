@@ -49,8 +49,16 @@ const maxWidth = {
 const objectFit = {
   type: String
 }
+const orientation = {
+  type: String,
+  default: 'horizontal'
+}
 const padding = {
   type: String
+}
+const placeContent = {
+  type: String,
+  default: 'center'
 }
 const size = {
   type: [String, Number]
@@ -62,6 +70,7 @@ const width = {
 export {
   background,
   backgroundColor,
+  border,
   borderColor,
   borderRadius,
   borderStyle,
@@ -73,7 +82,9 @@ export {
   maxHeight,
   maxWidth,
   objectFit,
+  orientation,
   padding,
+  placeContent,
   size,
   transition,
   width,
@@ -81,6 +92,7 @@ export {
 export default {
   background,
   backgroundColor,
+  border,
   borderColor,
   borderRadius,
   borderStyle,
@@ -92,7 +104,9 @@ export default {
   maxHeight,
   maxWidth,
   objectFit,
+  orientation,
   padding,
+  placeContent,
   size,
   transition,
   width,

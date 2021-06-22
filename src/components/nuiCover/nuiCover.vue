@@ -39,13 +39,14 @@ import {
   width,
   padding
 } from '@/utils/styleVariables/helpers/variables'
+import { styleProps, uiProps } from '@/utils/props'
 
 const componentStyleVariables = [height, width, padding]
 
 const componentProps = {
-  hasOverlay: {
-    type: Boolean,
-    default: false
+  namespace: {
+    type: String,
+    default: 'nui-cover'
   },
   overlayColor: {
     type: String,
@@ -55,38 +56,8 @@ const componentProps = {
     type: Number,
     default: 0.3
   },
-  width: {
-    type: String,
-    default: '100%'
-  },
-  height: {
-    type: String,
-    default: '100%'
-  },
-  placeContent: {
-    type: String,
-    default: 'center'
-  },
-  padding: {
-    type: String,
-    default: '0'
-  },
-  backgroundImage: {
-    type: Object,
-    default() {
-      return {}
-    }
-  },
-  backgroundVideo: {
-    type: Object,
-    default() {
-      return {}
-    }
-  },
-  namespace: {
-    type: String,
-    default: 'nui-cover'
-  }
+  ...styleProps,
+  ...uiProps
 }
 
 export default {
