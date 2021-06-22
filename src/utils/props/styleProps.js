@@ -89,6 +89,7 @@ export {
   transition,
   width,
 }
+
 export default {
   background,
   backgroundColor,

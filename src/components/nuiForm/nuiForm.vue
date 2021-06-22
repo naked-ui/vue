@@ -22,6 +22,7 @@
 import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables'
 import { gap, width } from '@/utils/styleVariables/helpers/variables'
+import { hyperlinkProps, styleProps } from '@/utils/props'
 
 const componentStyleVariables = [gap, width]
 
@@ -33,14 +34,16 @@ export default {
       type: String,
       default: 'nui-form'
     },
-    gap: {
-      type: [Number, String],
-      default: ''
-    },
-    width: {
-      type: [Number, String],
-      default: ''
-    },
+    ...hyperlinkProps,
+    ...styleProps,
+    // gap: {
+    //   type: [Number, String],
+    //   default: ''
+    // },
+    // width: {
+    //   type: [Number, String],
+    //   default: ''
+    // },
     action: {
       type: String
     },
@@ -61,13 +64,13 @@ export default {
     },
     novalidate: {
       type: String
-    },
-    rel: {
-      type: String
-    },
-    target: {
-      type: String
     }
+    // rel: {
+    //   type: String
+    // },
+    // target: {
+    //   type: String
+    // }
   },
   provide: {
     nuiForm: true

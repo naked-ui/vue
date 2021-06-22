@@ -9,4 +9,5 @@ const target = {
 }
 
 export { href, rel, target }
+
 export default { href, rel, target }

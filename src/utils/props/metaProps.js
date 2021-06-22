@@ -6,7 +6,10 @@ const type = {
   type: String,
   default: 'button'
 }
+const tabindex = {
+  type: [Number, String]
+}
 
-export { role, type }
+export { role, tabindex, type }
 
-export default { role, type }
+export default { role, tabindex, type }

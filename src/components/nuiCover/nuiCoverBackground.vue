@@ -42,26 +42,18 @@
 </template>
 
 <script>
+import { uiProps } from '@/utils/props'
+
+const componentProps = {
+  namespace: {
+    type: String,
+    default: 'nui-cover'
+  },
+  ...uiProps
+}
+
 export default {
   name: 'nuiCoverBackground',
-  props: {
-    namespace: {
-      type: String,
-      default: 'nui-cover'
-    },
-    // Data
-    backgroundImage: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    backgroundVideo: {
-      type: Object,
-      default() {
-        return {}
-      }
-    }
-  }
+  props: componentProps
 }
 </script>

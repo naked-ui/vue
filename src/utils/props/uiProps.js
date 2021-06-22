@@ -26,6 +26,20 @@ const overlayOpacity = {
   default: 0.3
 }
 
-export { backgroundImage, backgroundVideo, busyLabel, hasOverlay, overlayColor, overlayOpacity }
+export {
+  backgroundImage,
+  backgroundVideo,
+  busyLabel,
+  hasOverlay,
+  overlayColor,
+  overlayOpacity
+}
 
-export default { backgroundImage, backgroundVideo, busyLabel, hasOverlay, overlayColor, overlayOpacity }
+export default {
+  backgroundImage,
+  backgroundVideo,
+  busyLabel,
+  hasOverlay,
+  overlayColor,
+  overlayOpacity
+}

@@ -1,5 +1,5 @@
 import styleVariables from '../styleVariables'
-import formFieldProps from '../props/formFieldProps'
+import formFieldProps from './helpers/formFieldProps'
 import formFieldCounter from './helpers/formFieldCounter'
 import formFieldID from './helpers/formFieldID'
 import formFieldMaxLength from './helpers/formFieldMaxLength'
