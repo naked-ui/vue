@@ -115,7 +115,7 @@ Default.args = {
   name: 'number-input-name',
   id: 'number-input-id',
   title: 'number-input-title',
-  label: 'Text input label',
+  label: 'Number input label',
   placeholder: '0',
   autocorrect: 'off',
   required: true
@@ -152,7 +152,7 @@ WithUnit.args = {
   name: 'number-input-name',
   id: 'number-input-id',
   title: 'number-input-title',
-  label: 'Text input label',
+  label: 'Number input label',
   placeholder: '0',
   autocorrect: 'off',
   required: true
@@ -188,7 +188,7 @@ MinMax.args = {
   name: 'number-input-name',
   id: 'number-input-id',
   title: 'number-input-title',
-  label: 'Text input label',
+  label: 'Number input label',
   placeholder: '0',
   autocorrect: 'off',
   max: 20,
