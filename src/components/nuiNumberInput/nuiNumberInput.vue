@@ -102,6 +102,10 @@ export default {
     spinnerInterval: {
       type: Number,
       default: 150
+    },
+    spinnerTimeout: {
+      type: Number,
+      default: 500
     }
   },
   watch: {
@@ -115,7 +119,8 @@ export default {
   },
   data: () => ({
     inputValue: '',
-    interval: null
+    interval: null,
+    timeout: null
   }),
   computed: {
     componentClasses() {
@@ -143,7 +148,9 @@ export default {
 
       this[direction]()
 
-      this.interval = setInterval(this[direction], this.spinnerInterval)
+      this.timeout = setTimeout(() => {
+        this.interval = setInterval(this[direction], this.spinnerInterval)
+      }, this.spinnerTimeout)
     },
     increase() {
       const newValue = +this.inputValue + this.step
@@ -157,11 +164,16 @@ export default {
       this.inputValue = newValue
       this.emitValues()
     },
+    clearTimeout() {
+      clearTimeout(this.timeout)
+      this.timeout = null
+    },
     clearInterval() {
       clearInterval(this.interval)
       this.interval = null
     },
     onMouseUp() {
+      this.clearTimeout()
       this.clearInterval()
     }
   }
