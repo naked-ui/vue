@@ -84,12 +84,10 @@ export default {
       default: ''
     },
     min: {
-      type: Number,
-      default: 0
+      type: Number
     },
     max: {
-      type: Number,
-      default: 100
+      type: Number
     },
     nativeControls: {
       type: Boolean,
@@ -101,11 +99,11 @@ export default {
     },
     spinnerInterval: {
       type: Number,
-      default: 150
+      default: 50
     },
     spinnerTimeout: {
       type: Number,
-      default: 500
+      default: 150
     }
   },
   watch: {

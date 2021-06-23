@@ -49,6 +49,12 @@ export default {
     readonly: {
       control: 'boolean'
     },
+    max: {
+      control: 'text'
+    },
+    min: {
+      control: 'text'
+    },
     counterEnabled: {
       defaultValue: false
     },
@@ -79,7 +85,7 @@ export default {
   }
 }
 
-const Template = (args, { argTypes }) => ({
+const DefaultTemplate = (args, { argTypes }) => ({
   components: { nuiNumberInput },
   props: Object.keys(argTypes),
   data: () => ({
@@ -93,8 +99,45 @@ const Template = (args, { argTypes }) => ({
     `
 })
 
-export const Default = Template.bind({})
+export const Default = DefaultTemplate.bind({})
+
 Default.args = {
+  gap: 8,
+  height: 48,
+  width: '140px',
+  padding: '10px',
+  autofocus: false,
+  disabled: false,
+  outlineWidth: '2px',
+  borderWidth: '2px',
+  borderStyle: 'solid',
+  pattern: '.*\\S.*',
+  name: 'number-input-name',
+  id: 'number-input-id',
+  title: 'number-input-title',
+  label: 'Text input label',
+  placeholder: '0',
+  autocorrect: 'off',
+  required: true
+}
+
+const WithUnitTemplate = (args, { argTypes }) => ({
+  components: { nuiNumberInput },
+  props: Object.keys(argTypes),
+  data: () => ({
+    val: 0
+  }),
+  template: `
+        <div>
+          <nuiNumberInput v-bind="$props" v-model="val" />
+          <pre> {{ val }} </pre>
+        </div>
+    `
+})
+
+export const WithUnit = WithUnitTemplate.bind({})
+
+WithUnit.args = {
   gap: 8,
   height: 48,
   width: '140px',
@@ -112,16 +155,43 @@ Default.args = {
   label: 'Text input label',
   placeholder: '0',
   autocorrect: 'off',
-  // customMessages: { valueMissing: 'Not empty!' },
-  // rules: [
-  //   {
-  //     rule: (value) => !value,
-  //     text: 'Value is missing.'
-  //   },
-  //   {
-  //     rule: (value) => !value.includes('Naked UI'),
-  //     text: 'Value doesn\'t include "Naked UI"'
-  //   }
-  // ],
+  required: true
+}
+
+const MinMaxTemplate = (args, { argTypes }) => ({
+  components: { nuiNumberInput },
+  props: Object.keys(argTypes),
+  data: () => ({
+    val: 0
+  }),
+  template: `
+        <div>
+          <nuiNumberInput v-bind="$props" v-model="val" />
+          <pre> {{ val }} </pre>
+        </div>
+    `
+})
+
+export const MinMax = MinMaxTemplate.bind({})
+
+WithUnit.args = {
+  gap: 8,
+  height: 48,
+  width: '140px',
+  padding: '10px',
+  autofocus: false,
+  disabled: false,
+  outlineWidth: '2px',
+  borderWidth: '2px',
+  borderStyle: 'solid',
+  pattern: '.*\\S.*',
+  name: 'number-input-name',
+  id: 'number-input-id',
+  title: 'number-input-title',
+  label: 'Text input label',
+  placeholder: '0',
+  autocorrect: 'off',
+  max: 20,
+  min: -20,
   required: true
 }
