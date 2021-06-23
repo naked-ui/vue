@@ -1,0 +1,48 @@
+@import '@/styles/utils/chevron.scss';
+
+.nui-accordion {
+  list-style: none;
+  margin: 0;
+  padding: var(--padding);
+  max-width: var(--max-width);
+
+  &-item {
+    width: 100%;
+
+    &--active {
+      .nui-accordion-item__title::after {
+        transform: translateY(calc(-50% + 4px)) rotate(225deg);
+      }
+      .nui-accordion-item__content {
+        max-height: var(--content-height, 999px);
+        opacity: 1;
+        padding: var(--content-padding);
+      }
+    }
+
+    &__title {
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      width: 100%;
+      position: relative;
+      padding: var(--title-padding);
+
+      &::after {
+        @include chevron;
+        right: 14px;
+        top: calc(50% - 3px);
+        transform: translateY(-50%) rotate(45deg);
+        transition: var(--transition);
+        transform-origin: center;
+        pointer-events: none;
+      }
+    }
+
+    &__content {
+      opacity: 0;
+      max-height: 0;
+      transition: var(--transition);
+    }
+  }
+}

@@ -1,0 +1,83 @@
+<template>
+  <ul :class="componentClasses" :style="style" :id="uiElementID()">
+    <template>
+      <slot />
+    </template>
+  </ul>
+</template>
+
+<script>
+import uuID from '@/utils/uuid'
+import styleVariables from '@/utils/styleVariables'
+import { maxWidth, padding } from '@/utils/styleVariables/helpers/variables'
+
+const componentProps = {
+  // UI
+  namespace: {
+    type: String,
+    default: 'nui-accordion'
+  },
+  items: {
+    type: Array,
+    required: false
+  },
+  // Styling
+  maxWidth: {
+    type: [Number, String],
+    default: ''
+  },
+  padding: {
+    type: [Number, String],
+    default: ''
+  },
+  contentPadding: {
+    type: [Number, String],
+    default: ''
+  },
+  titleHeight: {
+    type: [Number, String],
+    default: ''
+  },
+  titlePadding: {
+    type: [Number, String],
+    default: ''
+  },
+  transition: {
+    type: String,
+    default: ''
+  }
+}
+
+const componentStyleVariables = [
+  maxWidth,
+  padding,
+  { name: 'transition', type: 'other' },
+  { name: 'contentPadding', type: 'size' },
+  { name: 'titleHeight', type: 'size' },
+  { name: 'titlePadding', type: 'size' }
+]
+
+export default {
+  name: 'nuiAccordion',
+  mixins: [uuID, styleVariables(componentStyleVariables)],
+  props: componentProps,
+  computed: {
+    componentClasses() {
+      return [this.namespace]
+    }
+  },
+  data: () => ({
+    accordionItems: []
+  }),
+  mounted() {
+    if (this.areItemsProvided) {
+      this.accordionItems = this.items.map((item) => ({
+        ...item,
+        active: false
+      }))
+    }
+  }
+}
+</script>
+
+<style lang="scss" src="./nuiAccordion.scss" />

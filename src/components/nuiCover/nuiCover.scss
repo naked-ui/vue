@@ -1,0 +1,62 @@
+@import 'sxcss';
+
+.nui-cover {
+  display: flex;
+  position: relative;
+  padding: var(--padding);
+  width: var(--width);
+  height: var(--height);
+  box-sizing: border-box;
+
+  &__background {
+    z-index: -2;
+    overflow: hidden;
+
+    img {
+      @include size(100%);
+      object-fit: cover;
+    }
+
+    video {
+      width: 100%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__background {
+    width: 100%;
+    height: var(--height);
+  }
+
+  &__content,
+  &__overlay {
+    @include size(100%);
+  }
+
+  &__background,
+  &__overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    &-inner {
+      display: grid;
+      place-content: var(--place-content);
+    }
+  }
+
+  &__overlay {
+    z-index: -1;
+    background-color: var(--overlay-color);
+    opacity: var(--overlay-opacity);
+  }
+}

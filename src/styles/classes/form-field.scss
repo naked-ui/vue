@@ -1,0 +1,82 @@
+@import "sxcss";
+
+:root {
+  --negative-factor: -1; // We need this as CSSO compression causes always appending "-1" value after CSS Variable in calc() function and it throws parsing error for final minified CSS file
+}
+
+.nui-form-field {
+  display: grid;
+  gap: var(--gap);
+  justify-content: start;
+  width: var(--width);
+
+  label {
+    display: flex;
+    gap: var(--gap);
+  }
+
+  progress,
+  select,
+  textarea,
+  input:is([type="color"], [type="date"], [type="email"], [type="pasword"], [type="range"], [type="search"], [type="tel"], [type="text"], [type="time"], [type="url"], [type="number"]) {
+    appearance: none;
+    box-sizing: border-box;
+    height: var(--height);
+    width: var(--width);
+    padding: var(--padding);
+    margin: 0;
+    border-width: var(--border-width);
+    border-style: var(--border-style);
+    border-color: var(--border-color);
+    font-size: inherit;
+    font-family: inherit;
+
+    &:not([disabled="disabled"]):not([readonly="readonly"]) {
+      background-color: var(--background-color);
+      color: var(--color);
+    }
+
+    &[nui-validation="true"][data-dirty="true"] {
+      &:not(:invalid) ~ &,
+      &:not(:focus):required:invalid ~ & {
+        display: none;
+      }
+
+      &:invalid,
+      &:not(:placeholder-shown):required:invalid {
+        border-color: var(--color-invalid);
+      }
+
+      &:not(:placeholder-shown):valid:not([data-value=""]):valid,
+      &:required:valid {
+        border-color: var(--color-valid);
+      }
+
+      &[disabled="disabled"] ~ .alerts {
+        @include hide;
+      }
+
+      &[disabled="disabled"],
+      &:disabled {
+        cursor: not-allowed;
+      }
+
+      // &:not(:focus):required:invalid {
+      //   border-color: inherit;
+      // }
+    }
+  }
+
+  textarea {
+    resize: var(--resize);
+  }
+
+  .nui-validation-alerts {
+    display: grid;
+    gap: calc(var(--gap) / 4);
+  }
+
+  .nui-validation-alert {
+    color: var(--color, var(--color-invalid));
+  }
+}
