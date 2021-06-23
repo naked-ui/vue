@@ -55,10 +55,17 @@
 <script>
 import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
-import { outlineWidth } from '@/utils/styleVariables/helpers/variables'
+import {
+  outlineWidth,
+  textAlign
+} from '@/utils/styleVariables/helpers/variables'
 import nuiValidationAlerts from '@/utils/components/nuiValidationAlerts.vue'
 
-const componentStyleVariables = [outlineWidth, { name: 'unit', type: 'string' }]
+const componentStyleVariables = [
+  outlineWidth,
+  textAlign,
+  { name: 'unit', type: 'string' }
+]
 
 export default {
   name: 'nuiNumberInput',
@@ -92,6 +99,10 @@ export default {
     nativeControls: {
       type: Boolean,
       default: false
+    },
+    textAlign: {
+      type: String,
+      default: 'center'
     },
     unit: {
       type: String,

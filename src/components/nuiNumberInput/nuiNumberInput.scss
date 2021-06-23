@@ -38,7 +38,7 @@
   }
 
   input {
-    text-align: right;
+    text-align: var(--text-align);
     width: 100% !important;
     border: none !important;
     outline: none !important;
@@ -55,6 +55,10 @@
         // position: absolute;
         line-height: var(--height);
         right: 0;
+      }
+
+      input {
+        text-align: right;
       }
     }
   }
