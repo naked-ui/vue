@@ -17,36 +17,17 @@
 <script>
 import uuID from '@/utils/uuid'
 import hrefIsExternalMixin from '@/utils/hrefIsExternal'
+import { hyperlinkProps } from '@/utils/props'
 
 export default {
   name: 'nuiHyperlink',
   mixins: [uuID, hrefIsExternalMixin],
   props: {
-    href: {
-      type: String,
-      required: true,
-      default: ''
-    },
-    hreflang: {
-      type: String
-    },
-    download: {
-      type: String
-    },
-    ping: {
-      type: String
-    },
-    rel: {
-      type: String
-    },
-    target: {
-      type: String,
-      required: false
-    },
     namespace: {
       type: String,
       default: 'nui-hyperlink'
-    }
+    },
+    ...hyperlinkProps
   },
   computed: {
     tag() {

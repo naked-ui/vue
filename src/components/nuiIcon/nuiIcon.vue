@@ -11,6 +11,7 @@
 import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables/index.js'
 import { size } from '@/utils/styleVariables/helpers/variables'
+import styleProps from '@/utils/props/styleProps'
 
 const componentStyleVariables = [size]
 
@@ -22,9 +23,7 @@ export default {
       type: String,
       default: 'nui-icon'
     },
-    size: {
-      type: [String, Number]
-    }
+    ...styleProps
   },
   computed: {
     componentClasses() {

@@ -27,10 +27,6 @@ const inputmode = {
 const label = {
   type: String
 }
-const name = {
-  type: [String, Number],
-  required: true
-}
 const placeholder = {
   type: String
 }
@@ -38,7 +34,7 @@ const spellcheck = {
   type: Boolean
 }
 const value = {
-  type: [String, Array]
+  type: [Number, String, Array]
 }
 
 export {
@@ -50,7 +46,6 @@ export {
   form,
   inputmode,
   label,
-  name,
   placeholder,
   spellcheck,
   value
@@ -65,7 +60,6 @@ export default {
   form,
   inputmode,
   label,
-  name,
   placeholder,
   spellcheck,
   value

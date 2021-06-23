@@ -1,3 +1,8 @@
+
+const name = {
+  type: [String, Number],
+  // required: true
+}
 const role = {
   type: String,
   default: 'button'

@@ -14,7 +14,7 @@ import {
   padding,
   transition
 } from '@/utils/styleVariables/helpers/variables'
-import styleProps from '@/utils/props'
+import { styleProps } from '@/utils/props'
 
 const componentProps = {
   // UI
