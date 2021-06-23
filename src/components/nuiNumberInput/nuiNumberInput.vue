@@ -153,13 +153,13 @@ export default {
     },
     increase() {
       const newValue = +this.inputValue + this.step
-      if (newValue > this.max) return
+      if (this.max && newValue > this.max) return
       this.inputValue = newValue
       this.emitValues()
     },
     decrease() {
       const newValue = +this.inputValue - this.step
-      if (newValue < this.min) return
+      if (this.min && newValue < this.min) return
       this.inputValue = newValue
       this.emitValues()
     },
