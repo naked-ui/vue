@@ -141,8 +141,9 @@ export default {
     },
     action(direction) {
       this.clearInterval()
-      if (+this.inputValue > this.max) this.inputValue = this.max
-      else if (+this.inputValue < this.min) this.inputValue = this.min
+      if (this.max && +this.inputValue > this.max) this.inputValue = this.max
+      else if (this.min && +this.inputValue < this.min)
+        this.inputValue = this.min
 
       this[direction]()
 
