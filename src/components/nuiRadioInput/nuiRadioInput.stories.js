@@ -6,68 +6,81 @@ export default {
   component: nuiRadioInput,
   argTypes: {
     color: { control: 'color' },
-    gap: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 20
-      }
-    },
-    spacing: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 20
-      }
-    },
     customMessages: {
       control: 'object'
+    },
+    gap: {
+      control: 'text'
+    },
+    orientation: {
+      control: {
+        type: 'select',
+        options: ['vertical', 'horizontal']
+      }
     }
   }
 }
 
-const Template = (args, { argTypes }) => ({
+const DefaultTemplate = (args, { argTypes }) => ({
   components: { nuiRadioInput },
   props: Object.keys(argTypes),
+  methods: {
+    submit(e) {
+      this.$emit('nui:on-form-submit')
+      if (!e.target.checkValidity()) return
+    }
+  },
   template: `
-    <form novalidate @submit.prevent="e=>{if (!e.target.checkValidity()) return}">
+    <form novalidate @submit.prevent="submit">
       <nuiRadioInput v-bind="$props" />
       <input style="margin-top: 16px;" type="submit" value="submit">
     </form>
   `
 })
 
-export const Default = Template.bind({})
+export const Default = DefaultTemplate.bind({})
 Default.argTypes = {
-  spacing: { table: { disable: true } }
+  // spacing: { table: { disable: true } }
+  orientation: {
+    defaultValue: 'horizontal'
+  }
 }
 Default.args = {
+  url: 'https://naked-ui.org/',
   id: 'radio-input-id',
   name: 'radio-input-name',
-  label: 'Radio input label',
-  gap: 8,
+  label: 'Label text',
+  gap: 4,
   validationEnabled: true,
-  required: true
+  required: true,
+  checked: false
 }
 
 const GroupTemplate = (args, { argTypes }) => ({
-  components: { nuiRadioGroup, nuiRadioInput },
+  components: { nuiRadioInput, nuiRadioGroup },
   props: Object.keys(argTypes),
   data() {
     return {
-      val: null
+      val: []
+    }
+  },
+  methods: {
+    submit(e) {
+      this.$emit('nui:on-form-submit')
+      if (!e.target.checkValidity()) return
     }
   },
   template: `
-    <form novalidate @submit.prevent="e=>{if (!e.target.checkValidity()) return}">
+    <form novalidate @submit.prevent="submit">
       <nuiRadioGroup v-bind="$props" v-model="val">
         <nuiRadioInput v-for="n in 3"
-          name="radios"
+          :name="name"
           :key="n"
-          :id="\`radio\-input\-\${n}\`"
-          :label="\`Radio \${n}\`"
+          :id="id"
+          :label="label"
           :value="n"
-        />
+          gap="4px"
+          />
       </nuiRadioGroup>
       <input style="margin-top: 16px;" type="submit" value="submit">
       <code style="display: block; width: 100%; margin-top: 16px;">current val: {{val}}</code>
@@ -75,9 +88,15 @@ const GroupTemplate = (args, { argTypes }) => ({
   `
 })
 
-export const Group = GroupTemplate.bind({})
-Group.args = {
+export const CheckboxGroup = GroupTemplate.bind({})
+
+CheckboxGroup.argTypes = {
+  orientation: {
+    defaultValue: 'vertical'
+  }
+}
+
+CheckboxGroup.args = {
   ...Default.args,
-  spacing: 12,
-  baseClassname: 'nui-radio-group'
+  gap: 20
 }

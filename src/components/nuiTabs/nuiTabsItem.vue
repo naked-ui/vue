@@ -1,5 +1,5 @@
 <template>
-  <div v-show="show" :class="`${baseClassname}__tab`">
+  <div v-show="show" :class="`${namespace}__tab`">
     <slot />
   </div>
 </template>
@@ -8,7 +8,7 @@
 export default {
   name: 'nuiTabsItem',
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-tabs'
     },

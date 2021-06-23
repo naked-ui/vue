@@ -1,6 +1,6 @@
 <template>
   <li :class="componentClasses" :style="style">
-    <div :class="[`${baseClassname}-content`]">
+    <div :class="[`${namespace}-content`]">
       <slot />
     </div>
   </li>
@@ -16,7 +16,7 @@ export default {
   name: 'nuiOverflowCarouselItem',
   mixins: [styleVariables(componentStyleVariables)],
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-overflow-carousel__item'
     },
@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     componentClasses() {
-      return [`${this.baseClassname}`]
+      return [`${this.namespace}`]
     }
   }
 }

@@ -9,7 +9,7 @@ const fillStylingObject = ($$props, styleVariables) => {
     size: (val) => calculateCssSize(val),
     color: (val) => val,
     other: (val) => val ? val : '',
-    unit: (val) => `'${val}'`
+    string: (val) => `'${val}'`
   }
 
   let style = new Object()

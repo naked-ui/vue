@@ -1,9 +1,9 @@
 import nuiBadge from './nuiBadge.vue'
-import { color, backgroundColor, padding, borderRadius } from '../../../.storybook/utils/argTypes/styleArgTypes'
+import { color, background, padding, borderRadius } from '../../../.storybook/utils/argTypes/styleArgTypes'
 
 const componentArgTypes = {
   color,
-  backgroundColor,
+  background,
   padding,
   borderRadius,
   size: { control: 'text' },
@@ -30,7 +30,7 @@ export const Default = Template.bind({})
 
 Default.args = {
   size: '24px',
-  backgroundColor: '#ff1100',
+  background: '#ff1100',
   color: '#fff',
   padding: '6px',
   badgeText: '123',

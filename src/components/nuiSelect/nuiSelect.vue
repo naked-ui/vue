@@ -135,7 +135,7 @@ export default {
   mixins: [uuID, logic],
   directives: { clickout },
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-form-field'
     },
@@ -178,7 +178,7 @@ export default {
   computed: {
     componentClasses() {
       return [
-        this.baseClassname,
+        this.namespace,
         { 'nui-select--error': this.isError },
         { 'nui-select--active': this.showOptions },
         { 'nui-select--search-active': this.showSearchInput },

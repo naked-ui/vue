@@ -4,7 +4,7 @@
     :name="name"
     :class="componentClasses"
     role="group"
-    :aria-labelledby="`${baseClassname}--label`"
+    :aria-labelledby="`${namespace}--label`"
     :style="`
       --gap: ${isNaN(gap) ? gap : gap + 'px'};
       --height: ${isNaN(height) ? height : height + 'px'};
@@ -26,7 +26,7 @@
       class="nui-range-input__wrap"
       :id="IDForLabel"
       role="group"
-      :aria-labelledby="`${baseClassname}--label`"
+      :aria-labelledby="`${namespace}--label`"
       :style="rangeVariables"
     >
       <template v-for="index in dots">
@@ -65,7 +65,7 @@ export default {
   name: 'nuiRangeInput',
   mixins: [uuID, formField()],
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-range-input'
     },
@@ -129,7 +129,7 @@ export default {
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-form-field']
+      return [this.namespace, 'nui-form-field']
     },
     dots() {
       return this.ranges * 2

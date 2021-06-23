@@ -1,8 +1,8 @@
 <template>
   <div :class="componentClasses" :id="uiElementID()" :style="style">
-    <div :class="`${baseClassname}__viewport-wrapper`">
+    <div :class="`${namespace}__viewport-wrapper`">
       <ul
-        :class="`${baseClassname}__viewport`"
+        :class="`${namespace}__viewport`"
         :style="!snapItems ? `scroll-snap-type: none !important;` : false"
       >
         <slot />
@@ -25,16 +25,16 @@ export default {
   name: 'nuiOverflowCarousel',
   mixins: [uuID, styleVariables(componentStyleVariables)],
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-overflow-carousel'
     },
     itemsGap: {
-      type: Number,
+      type: [String, Number],
       default: 0
     },
     viewportPadding: {
-      type: Number,
+      type: [String, Number],
       default: 0
     },
     snapItems: {
@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.namespace]
     }
   }
 }

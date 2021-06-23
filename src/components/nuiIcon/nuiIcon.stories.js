@@ -13,8 +13,7 @@ export default {
 
 const DefaultTemplate = (args, { argTypes }) => ({
 	components: {
-		nuiIcon,
-		nuiBadge
+		nuiIcon
 	},
 	props: Object.keys(argTypes),
 	template: `
@@ -47,7 +46,7 @@ const WithBadgeTemplate = (args, { argTypes }) => ({
 		</svg>
 		<template v-slot:badge>
 			<nuiBadge
-				backgroundColor="red"
+				background="red"
 				color="white"
 				fontSize="10px"
 				:size="badgeSize"

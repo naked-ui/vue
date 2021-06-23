@@ -4,7 +4,7 @@
       {{ label }}
     </label>
     <input
-      v-if="textValueEnabled"
+      v-if="textInputEnabled"
       pattern="#[a-fA-F\d]+"
       type="text"
       @invalid="onInvalid"
@@ -43,6 +43,21 @@
 </template>
 
 <script>
+const componentProps = {
+  // UI
+  namespace: {
+    type: String,
+    default: 'nui-color-input'
+  },
+  value: {
+    type: String,
+    default: '#000000'
+  },
+  textInputEnabled: {
+    type: Boolean,
+    default: true
+  }
+}
 import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
 import nuiValidationAlerts from '@/utils/components/nuiValidationAlerts.vue'
@@ -53,23 +68,10 @@ export default {
   components: {
     nuiValidationAlerts
   },
-  props: {
-    value: {
-      type: String,
-      default: '#000000'
-    },
-    textValueEnabled: {
-      type: Boolean,
-      default: true
-    },
-    baseClassname: {
-      type: String,
-      default: 'nui-color-input'
-    }
-  },
+  props: componentProps,
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-form-field']
+      return [this.namespace, 'nui-form-field']
     }
   },
   methods: {
