@@ -18,7 +18,7 @@
   progress,
   select,
   textarea,
-  input:is([type="color"], [type="date"], [type="email"], [type="password"], [type="range"], [type="search"], [type="tel"], [type="text"], [type="time"], [type="url"]) {
+  input:is([type="color"], [type="date"], [type="email"], [type="pasword"], [type="range"], [type="search"], [type="tel"], [type="text"], [type="time"], [type="url"], [type="number"]) {
     appearance: none;
     box-sizing: border-box;
     height: var(--height);

@@ -139,6 +139,11 @@ const resize = {
   type: 'other'
 }
 
+const textAlign = {
+  name: 'textAlign',
+  type: 'color'
+}
+
 const direction = {
   name: 'direction',
   type: 'other'
@@ -181,6 +186,7 @@ export {
   background,
   backgroundColor,
   textColor,
+  textAlign,
   spacing,
   itemsGap,
   viewportPadding,
@@ -212,6 +218,7 @@ export default {
   background,
   backgroundColor,
   textColor,
+  textAlign,
   spacing,
   itemsGap,
   viewportPadding,

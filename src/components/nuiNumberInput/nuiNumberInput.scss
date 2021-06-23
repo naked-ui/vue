@@ -1,0 +1,105 @@
+@import 'sxcss';
+
+.nui-number-input {
+  &,
+  * {
+    box-sizing: border-box;
+  }
+
+  &__wrapper,
+  &__inner {
+    display: flex;
+    width: var(--width);
+  }
+
+  &__wrapper {
+    border-width: var(--border-width);
+    border-color: var(--border-color);
+    border-style: var(--border-style);
+  }
+
+  button {
+    padding: 0;
+    border-width: 0;
+    border-width: var(--border-width);
+    border-color: var(--border-color);
+    border-style: var(--border-style);
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__plus,
+  &__minus {
+    min-width: 40px;
+    background: none;
+    border: none !important;
+  }
+
+  input {
+    text-align: var(--text-align);
+    width: 100% !important;
+    border: none !important;
+    outline: none !important;
+    padding-left: 0 !important;
+    padding-right: 2px !important;
+  }
+
+  &.with-unit {
+    .nui-number-input__inner {
+      position: relative;
+
+      &::after {
+        content: var(--unit);
+        // position: absolute;
+        line-height: var(--height);
+        right: 0;
+      }
+
+      input {
+        text-align: right;
+      }
+    }
+  }
+
+  @supports (-moz-appearance: none) {
+    input[type='number'] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  @supports not (-moz-appearance: none) {
+    &:not(.native-controls) {
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+
+    &.native-controls {
+      input {
+        padding-right: calc(4 * var(--padding) - 4px) !important;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          opacity: 1;
+          transform: translate(calc(3 * var(--padding) - 4px));
+        }
+      }
+
+      .nui-number-input__inner {
+        &::after {
+          position: absolute;
+          right: calc(3 * var(--padding));
+        }
+      }
+
+      button {
+        @include hide;
+      }
+    }
+  }
+}
