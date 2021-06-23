@@ -174,7 +174,7 @@ const MinMaxTemplate = (args, { argTypes }) => ({
 
 export const MinMax = MinMaxTemplate.bind({})
 
-WithUnit.args = {
+MinMax.args = {
   gap: 8,
   height: 48,
   width: '140px',
