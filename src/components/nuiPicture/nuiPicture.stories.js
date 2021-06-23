@@ -26,7 +26,7 @@ export default {
       control: {
         type: 'select',
         options: ['contain', 'cover']
-      },
+      }
       // defaultValue: 'none'
     },
     image: {
@@ -35,7 +35,7 @@ export default {
     images: {
       type: 'array'
     }
-  },
+  }
 }
 
 export const Default = (args, { argTypes }) => ({
@@ -47,7 +47,7 @@ export const Default = (args, { argTypes }) => ({
       :image="image"
     />
   `
-});
+})
 
 Default.args = {
   image: {
@@ -65,7 +65,7 @@ export const AdditionalSources = (args, { argTypes }) => ({
       :image="image"
     />
   `
-});
+})
 
 AdditionalSources.args = {
   image: {
@@ -73,11 +73,13 @@ AdditionalSources.args = {
     alt: 'Alt text',
     sources: [
       {
-        srcset: 'https://images.pexels.com/photos/6762258/pexels-photo-6762258.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        srcset:
+          'https://images.pexels.com/photos/6762258/pexels-photo-6762258.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         media: '(max-width: 767px)'
       },
       {
-        srcset: 'https://images.pexels.com/photos/7082674/pexels-photo-7082674.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        srcset:
+          'https://images.pexels.com/photos/7082674/pexels-photo-7082674.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         media: '(min-width: 768px) and (max-width: 980px)'
       }
     ]
@@ -87,16 +89,26 @@ AdditionalSources.args = {
 export const LazyLoading = (args, { argTypes }) => ({
   components: { nuiPicture },
   props: Object.keys(argTypes),
+  methods: {
+    onLoad() {
+      console.log('nui picture loaded')
+    },
+    onError() {
+      console.log('nui pciture errored')
+    }
+  },
   template: `
     <div>
       <nuiPicture
         v-for="(image, index) in images" :key="index"
         v-bind="$props"
         :image="image"
+        @load="onLoad"
+        @error="onError"
       />
     </div>
   `
-});
+})
 
 LazyLoading.args = {
   width: '600px',
@@ -363,7 +375,6 @@ LazyLoading.args = {
           media: '(min-width: 768px) and (max-width: 980px)'
         }
       ]
-    },
+    }
   ]
 }
-
