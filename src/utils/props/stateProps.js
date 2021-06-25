@@ -1,11 +1,19 @@
-const disabled = {
-  type: Boolean,
-  default: false
-}
 const busy = {
   type: Boolean,
   default: false
 }
+const checked = {
+  type: Boolean,
+  default: false
+}
+const disabled = {
+  type: Boolean,
+  default: false
+}
+const readonly = {
+  type: Boolean,
+  default: false
+}
 
-export { disabled, busy }
-export default { disabled, busy }
+export { busy, checked, disabled, readonly }
+export default { busy, checked, disabled, readonly }

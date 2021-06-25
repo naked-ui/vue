@@ -2,49 +2,35 @@ import stateProps from '@/utils/props/stateProps'
 import styleProps from '@/utils/props/styleProps'
 import validationProps from '@/utils/props/validationProps'
 
-const constructedProps = {
+const props = {
   value: null,
-
   // States
-
   ...stateProps,
-  readonly: {
-    type: Boolean,
-    default: false
-  },
-
   // UI Text
-
   label: {
     type: String
   },
   placeholder: {
     type: String
   },
-
   // Styling
-
   ...styleProps,
-
   // Meta
-
   id: {
-    type: String,
+    type: [String, Number],
     required: true
   },
   form: {
-    type: String
+    type: [String, Number],
   },
   name: {
-    type: String,
+    type: [String, Number],
     required: true
   },
   title: {
-    type: String
+    type: [String, Number],
   },
-
   // General settings
-
   counterEnabled: {
     type: Boolean,
     default: false
@@ -62,12 +48,10 @@ const constructedProps = {
     type: [Number, String],
     default: 0
   },
-
   // Validation
-
   ...validationProps
 }
 
 export default {
-  props: constructedProps
+  props: props
 }

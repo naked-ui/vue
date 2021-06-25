@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" :class="`${baseClassname}__cell`" :style="style">
+  <component :is="tag" :class="`${namespace}__cell`" :style="style">
     <slot />
   </component>
 </template>
@@ -29,7 +29,7 @@ export default {
   name: 'nuiTableCell',
   mixins: [uuID, styleVariables(componentStyleVariables)],
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-table'
     },

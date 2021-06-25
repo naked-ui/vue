@@ -13,10 +13,10 @@
         :value="value"
         :name="name"
         :nui-validation="validationEnabled"
-        formnovalidate
         :data-dirty="nui.$$dirty"
-      />{{ label }}</label
-    >
+      />
+      {{ label }}
+    </label>
     <nuiValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
@@ -26,36 +26,44 @@
 
 <script>
 import uuID from '@/utils/uuid'
-import formField from '@/utils/formField/index.js'
+import formField from '@/utils/formField/index'
 import validationHandler from './logic/validationHandler'
-// import { color } from '@/utils/styleVariables/helpers/variables'
 
-// const componentStyleVariables = [color]
+const componentProps = {
+  // UI
+  namespace: {
+    type: String,
+    default: 'nui-radio-input'
+  },
+  //Styling
+  orientation: {
+    type: String,
+    default: 'horizontal'
+  },
+  // States
+  checked: {
+    type: Boolean,
+    default: false
+  }
+}
 
 export default {
   name: 'nuiRadioInput',
   mixins: [uuID, formField(), validationHandler],
-  props: {
-    baseClassname: {
-      type: String,
-      default: 'nui-radio-input'
-    },
-    // input attrs
-    checked: {
-      type: Boolean,
-      default: false
-    }
-    // color: {
-    //   type: String,
-    //   default: null
-    // }
-  },
+  props: componentProps,
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-form-field']
+      return [
+        this.namespace,
+        'nui-form-field',
+        'nui-checkable-input',
+        this.orientation === 'vertical'
+          ? 'vertical'
+          : this.orientation === 'horizontal'
+          ? 'horizontal'
+          : ''
+      ]
     }
   }
 }
 </script>
-
-<style lang="scss" src="./nuiRadioInput.scss" />

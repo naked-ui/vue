@@ -7,36 +7,38 @@
 <script>
 import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables'
-import styleProps from '@/utils/props/styleProps'
-
 import {
   borderRadius,
   size,
   fontSize,
   padding,
-  backgroundColor,
+  background,
   color
 } from '@/utils/styleVariables/helpers/variables'
+import styleProps from '@/utils/props/styleProps'
+import { disabled, busy } from '@/utils/props/stateProps'
+
+const componentProps = {
+  // UI
+  namespace: {
+    type: String,
+    default: 'nui-badge'
+  },
+  // Styling
+  ...styleProps,
+  // States
+  disabled,
+  busy
+}
 
 const componentStyleVariables = [
   borderRadius,
   size,
   fontSize,
   padding,
-  backgroundColor,
+  background,
   color
 ]
-
-const componentProps = {
-  baseClassname: {
-    type: String,
-    default: 'nui-badge'
-  },
-  ...styleProps,
-  size: {
-    type: [String, Number]
-  }
-}
 
 export default {
   name: 'nuiBadge',
@@ -44,7 +46,7 @@ export default {
   props: componentProps,
   computed: {
     componentClasses() {
-      return [this.baseClassname]
+      return [this.namespace]
     }
   }
 }

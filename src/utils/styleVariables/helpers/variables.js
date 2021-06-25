@@ -30,6 +30,16 @@ const gap = {
   type: 'size'
 }
 
+const columnGap = {
+  name: 'gap',
+  type: 'size'
+}
+
+const rowGap = {
+  name: 'gap',
+  type: 'size'
+}
+
 const outlineWidth = {
   name: 'outlineWidth',
   type: 'size'
@@ -129,6 +139,11 @@ const resize = {
   type: 'other'
 }
 
+const textAlign = {
+  name: 'textAlign',
+  type: 'color'
+}
+
 const direction = {
   name: 'direction',
   type: 'other'
@@ -154,6 +169,8 @@ export {
   direction,
   orientation,
   gap,
+  columnGap,
+  rowGap,
   outlineWidth,
   padding,
   colorValid,
@@ -169,6 +186,7 @@ export {
   background,
   backgroundColor,
   textColor,
+  textAlign,
   spacing,
   itemsGap,
   viewportPadding,
@@ -200,6 +218,7 @@ export default {
   background,
   backgroundColor,
   textColor,
+  textAlign,
   spacing,
   itemsGap,
   viewportPadding,
