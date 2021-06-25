@@ -117,6 +117,7 @@ LazyLoading.args = {
   images: [
     {
       src: 'https://placekitten.com/1200/1300',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/300',
@@ -130,6 +131,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1301',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/301',
@@ -143,6 +145,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1302',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/302',
@@ -156,6 +159,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1303',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/303',
@@ -169,6 +173,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1304',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/304',
@@ -182,6 +187,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1305',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/305',
@@ -195,6 +201,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1306',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/306',
@@ -208,6 +215,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1307',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/307',
@@ -221,6 +229,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1308',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/308',
@@ -234,6 +243,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1309',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/309',
@@ -248,6 +258,7 @@ LazyLoading.args = {
 
     {
       src: 'https://placekitten.com/1200/1310',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/310',
@@ -261,6 +272,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1311',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/311',
@@ -274,6 +286,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1312',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/312',
@@ -287,6 +300,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1313',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/313',
@@ -300,6 +314,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1314',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/314',
@@ -313,6 +328,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1315',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/315',
@@ -326,6 +342,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1316',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/316',
@@ -339,6 +356,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1317',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/317',
@@ -352,6 +370,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1318',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/318',
@@ -365,6 +384,7 @@ LazyLoading.args = {
     },
     {
       src: 'https://placekitten.com/1200/1319',
+      alt: 'Kitten',
       sources: [
         {
           srcset: 'https://placekitten.com/200/319',
