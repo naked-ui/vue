@@ -9,10 +9,7 @@
       :max="max"
       :value="value"
       v-if="value != null || value != false"
-      :style="`
-        --color: ${color};
-        --background-color: ${backgroundColor};
-      `"
+      :style="style"
     >
       {{ value }}
     </progress>
@@ -23,9 +20,19 @@
 import uuID from '@/utils/uuid'
 import formField from '@/utils/formField'
 import styleVariables from '@/utils/styleVariables'
-import { width, height, gap } from '@/utils/styleVariables/helpers/variables'
+import {
+  width,
+  height,
+  gap,
+  color,
+  backgroundColor
+} from '@/utils/styleVariables/helpers/variables'
 
-const componentStyleVariables = [width, height, gap]
+import { id } from '@/utils/props/globalProps'
+import { label, max, value } from '@/utils/props/inputProps'
+import { styleProps } from '@/utils/props'
+
+const componentStyleVariables = [width, height, gap, color, backgroundColor]
 
 export default {
   name: 'nuiProgress',
@@ -35,43 +42,15 @@ export default {
       type: String,
       default: 'nui-progress'
     },
-    label: {
-      type: String,
-      defualt: ''
-    },
-    id: {
-      type: String,
-      default: '',
-      required: true
-    },
+    label,
+    id,
+    // max,
     max: {
       type: Number,
       default: 100
     },
-    value: {
-      type: Number,
-      required: true
-    },
-    color: {
-      type: String,
-      default: '',
-      required: true
-    },
-    backgroundColor: {
-      type: String
-    },
-    height: {
-      type: String,
-      default: ''
-    },
-    width: {
-      type: String,
-      default: ''
-    },
-    gap: {
-      type: String,
-      default: ''
-    }
+    value,
+    ...styleProps
   },
   computed: {
     componentClasses() {

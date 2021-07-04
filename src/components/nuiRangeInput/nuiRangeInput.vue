@@ -4,7 +4,6 @@
     :name="name"
     :class="componentClasses"
     role="group"
-    :aria-labelledby="`${namespace}--label`"
     :style="`
       --gap: ${isNaN(gap) ? gap : gap + 'px'};
       --height: ${isNaN(height) ? height : height + 'px'};
@@ -153,15 +152,6 @@ export default {
 
       return valuesVariables + limitationsVariables + fill
     }
-    // colorVariables() {
-    //   const dotColor = this.dotColor ? `--fillDot: ${this.dotColor};` : ''
-    //   const rangeColor = this.rangeColor ? `--fillRange: ${this.rangeColor};` : ''
-    //   const backgroundColor = this.backgroundColor ? `--fillBg: ${this.backgroundColor};` : ''
-    //   const outputBackgroundColor = this.outputBackgroundColor ? `--fillOutput: ${this.outputBackgroundColor};` : ''
-    //   const outputFontColor = this.outputFontColor ? `--outputFontColor: ${this.outputFontColor};` : ''
-
-    //   return dotColor + rangeColor + backgroundColor + outputFontColor + outputBackgroundColor
-    // }
   },
   methods: {
     defineRanges() {

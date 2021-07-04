@@ -25,11 +25,6 @@ const componentProps = {
   value: {
     type: Array,
     required: true
-  },
-  // Styling
-  orientation: {
-    type: String,
-    default: 'vertical'
   }
 }
 

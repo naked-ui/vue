@@ -1,14 +1,6 @@
 const autocapitalize = {
   type: String
 }
-const contenteditable = {
-  type: Boolean,
-  default: true
-}
-const counterEnabled = {
-  type: Boolean,
-  default: false
-}
 const autofocus = {
   type: Boolean,
   default: false
@@ -17,6 +9,14 @@ const autocorrect = {
   type: String,
   default: null,
   validator: (v) => ['on', 'off'].includes(v)
+}
+const contenteditable = {
+  type: Boolean,
+  default: true
+}
+const counterEnabled = {
+  type: Boolean,
+  default: false
 }
 const form = {
   type: [String, Number],
@@ -50,7 +50,7 @@ const step = {
   default: 1
 }
 const value = {
-  type: [Number, String, Array]
+  type: [Number, String, Array, Object]
 }
 
 export {

@@ -28,23 +28,14 @@
 import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index'
 import validationHandler from './logic/validationHandler'
+import { checked } from '@/utils/props/stateProps'
 
 const componentProps = {
-  // UI
   namespace: {
     type: String,
     default: 'nui-radio-input'
   },
-  //Styling
-  orientation: {
-    type: String,
-    default: 'horizontal'
-  },
-  // States
-  checked: {
-    type: Boolean,
-    default: false
-  }
+  checked
 }
 
 export default {

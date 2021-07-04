@@ -3,7 +3,7 @@
     <label :disabled="disabled" :for="IDForLabel">
       {{ label }}
     </label>
-    <div :class="`${baseClassname}__wrapper`">
+    <div :class="`${namespace}__wrapper`">
       <input
         ref="input"
         :type="type"
@@ -29,11 +29,11 @@
         :autocorrect="autocorrect"
         :pattern="pattern"
       />
-      <span :class="`${baseClassname}__toggle`" @click="show = !show">
+      <span :class="`${namespace}__toggle`" @click="show = !show">
         {{ show ? 'Hide' : 'Show' }}
       </span>
     </div>
-    <div :class="`${baseClassname}__strength`" :style="passwordStrengthStyle" />
+    <div :class="`${namespace}__strength`" :style="passwordStrengthStyle" />
     <nuiValidationAlerts
       v-if="validationMessages.length > 0"
       :validationMessages="validationMessages"
@@ -54,14 +54,14 @@ export default {
     nuiValidationAlerts
   },
   props: {
-    baseClassname: {
+    namespace: {
       type: String,
       default: 'nui-password-input'
     }
   },
   computed: {
     componentClasses() {
-      return [this.baseClassname, 'nui-form-field']
+      return [this.namespace, 'nui-form-field']
     },
     type() {
       if (this.show) return 'text'

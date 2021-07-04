@@ -105,6 +105,7 @@ export const LazyLoading = (args, { argTypes }) => ({
         :image="image"
         @load="onLoad"
         @error="onError"
+        style="margin-bottom: 16px;"
       />
     </div>
   `

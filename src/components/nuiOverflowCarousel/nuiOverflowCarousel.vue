@@ -21,27 +21,29 @@ import {
 
 const componentStyleVariables = [itemsGap, viewportPadding]
 
+const componentProps = {
+  namespace: {
+    type: String,
+    default: 'nui-overflow-carousel'
+  },
+  itemsGap: {
+    type: [String, Number],
+    default: 0
+  },
+  viewportPadding: {
+    type: [String, Number],
+    default: 0
+  },
+  snapItems: {
+    type: Boolean,
+    default: true
+  }
+}
+
 export default {
   name: 'nuiOverflowCarousel',
   mixins: [uuID, styleVariables(componentStyleVariables)],
-  props: {
-    namespace: {
-      type: String,
-      default: 'nui-overflow-carousel'
-    },
-    itemsGap: {
-      type: [String, Number],
-      default: 0
-    },
-    viewportPadding: {
-      type: [String, Number],
-      default: 0
-    },
-    snapItems: {
-      type: Boolean,
-      default: true
-    }
-  },
+  props: componentProps,
   computed: {
     componentClasses() {
       return [this.namespace]
