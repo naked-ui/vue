@@ -45,6 +45,10 @@ const placeholder = {
 const spellcheck = {
   type: Boolean
 }
+const step = {
+  type: [Number, String],
+  default: 1
+}
 const value = {
   type: [Number, String, Array]
 }
@@ -64,6 +68,7 @@ export {
   minlength,
   placeholder,
   spellcheck,
+  step,
   value
 }
 
@@ -82,5 +87,6 @@ export default {
   minlength,
   placeholder,
   spellcheck,
+  step,
   value
 }

@@ -10,7 +10,7 @@
         @mousedown="uiAction('decrease')"
         @mouseup="onMouseUp"
       >
-        -
+        <slot name="decrease-symbol"> - </slot>
       </button>
       <div :class="`${namespace}__inner`">
         <input
@@ -42,7 +42,7 @@
         @mousedown="uiAction('increase')"
         @mouseup="onMouseUp"
       >
-        +
+        <slot name="increase-symbol"> + </slot>
       </button>
     </div>
     <nuiValidationAlerts
@@ -55,17 +55,41 @@
 <script>
 import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
-import {
-  outlineWidth,
-  textAlign
-} from '@/utils/styleVariables/helpers/variables'
 import nuiValidationAlerts from '@/utils/components/nuiValidationAlerts.vue'
+import styleProps, { min, max } from '@/utils/props'
 
-const componentStyleVariables = [
-  outlineWidth,
-  textAlign,
-  { name: 'unit', type: 'string' }
-]
+const componentStyleVariables = [{ name: 'unit', type: 'string' }]
+
+const componentProps = {
+  namespace: {
+    type: String,
+    default: 'nui-number-input'
+  },
+  ...styleProps,
+  min,
+  max,
+  // step,
+  step: {
+    type: Number,
+    default: 1
+  },
+  nativeControls: {
+    type: Boolean,
+    default: false
+  },
+  spinnerInterval: {
+    type: Number,
+    default: 50
+  },
+  spinnerTimeout: {
+    type: Number,
+    default: 150
+  },
+  unit: {
+    type: String,
+    default: ''
+  }
+}
 
 export default {
   name: 'nuiNumberInput',
@@ -73,50 +97,7 @@ export default {
   components: {
     nuiValidationAlerts
   },
-  props: {
-    namespace: {
-      type: String,
-      default: 'nui-number-input'
-    },
-    outlineWidth: {
-      type: String,
-      default: ''
-    },
-    step: {
-      type: Number,
-      default: 1
-    },
-    unit: {
-      type: String,
-      default: ''
-    },
-    min: {
-      type: Number
-    },
-    max: {
-      type: Number
-    },
-    nativeControls: {
-      type: Boolean,
-      default: false
-    },
-    textAlign: {
-      type: String,
-      default: 'center'
-    },
-    unit: {
-      type: String,
-      default: ''
-    },
-    spinnerInterval: {
-      type: Number,
-      default: 50
-    },
-    spinnerTimeout: {
-      type: Number,
-      default: 150
-    }
-  },
+  props: componentProps,
   watch: {
     $props: {
       immediate: true,
@@ -150,18 +131,6 @@ export default {
       this.$emit('input', this.parsedWithUnit)
       this.$emit('change', this.parsedWithUnit)
     },
-    uiAction(direction) {
-      this.clearInterval()
-      if (this.max && +this.inputValue > this.max) this.inputValue = this.max
-      else if (this.min && +this.inputValue < this.min)
-        this.inputValue = this.min
-
-      this[direction]()
-
-      this.timeout = setTimeout(() => {
-        this.interval = setInterval(this[direction], this.spinnerInterval)
-      }, this.spinnerTimeout)
-    },
     increase() {
       const newValue = +this.inputValue + this.step
       if (this.max && newValue > this.max) return
@@ -185,15 +154,21 @@ export default {
     onMouseUp() {
       this.clearTimeout()
       this.clearInterval()
+    },
+    uiAction(direction) {
+      if (this.readonly) return
+      this.clearInterval()
+      if (this.max && +this.inputValue > this.max) this.inputValue = this.max
+      else if (this.min && +this.inputValue < this.min)
+        this.inputValue = this.min
+
+      this[direction]()
+
+      this.timeout = setTimeout(() => {
+        this.interval = setInterval(this[direction], this.spinnerInterval)
+      }, this.spinnerTimeout)
     }
   }
-  // mounted() {
-  //   this.inputValue = this.value
-  //     ? typeof this.value === 'string'
-  //       ? this.value.replace(',', '.')
-  //       : this.value
-  //     : ''
-  // }
 }
 </script>
 
