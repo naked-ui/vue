@@ -56,7 +56,8 @@
 import uuID from '@/utils/uuid'
 import formField from '@/utils/formField/index.js'
 import nuiValidationAlerts from '@/utils/components/nuiValidationAlerts.vue'
-import styleProps, { min, max } from '@/utils/props'
+import styleProps from '@/utils/props'
+import { min, max } from '@/utils/props/inputProps'
 
 const componentStyleVariables = [{ name: 'unit', type: 'string' }]
 
