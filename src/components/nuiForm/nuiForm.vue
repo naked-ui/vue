@@ -26,18 +26,20 @@ import { formProps, hyperlinkProps, styleProps } from '@/utils/props'
 
 const componentStyleVariables = [gap, width]
 
+const componentProps = {
+  namespace: {
+    type: String,
+    default: 'nui-form'
+  },
+  ...formProps,
+  ...hyperlinkProps,
+  ...styleProps
+}
+
 export default {
   name: 'nuiForm',
   mixins: [uuID, styleVariables(componentStyleVariables)],
-  props: {
-    namespace: {
-      type: String,
-      default: 'nui-form'
-    },
-    ...formProps,
-    ...hyperlinkProps,
-    ...styleProps
-  },
+  props: componentProps,
   provide: {
     nuiForm: true
   },

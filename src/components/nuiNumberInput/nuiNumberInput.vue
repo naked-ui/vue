@@ -7,7 +7,7 @@
       <button
         :class="`${namespace}__minus`"
         :disabled="min === inputValue"
-        @mousedown="action('decrease')"
+        @mousedown="uiAction('decrease')"
         @mouseup="onMouseUp"
       >
         -
@@ -39,7 +39,7 @@
       <button
         :class="`${namespace}__plus`"
         :disabled="max === inputValue"
-        @mousedown="action('increase')"
+        @mousedown="uiAction('increase')"
         @mouseup="onMouseUp"
       >
         +
@@ -150,7 +150,7 @@ export default {
       this.$emit('input', this.parsedWithUnit)
       this.$emit('change', this.parsedWithUnit)
     },
-    action(direction) {
+    uiAction(direction) {
       this.clearInterval()
       if (this.max && +this.inputValue > this.max) this.inputValue = this.max
       else if (this.min && +this.inputValue < this.min)

@@ -7,6 +7,11 @@ export default {
     unit: {
       control: { type: 'text' }
     },
+    nativeControls: {
+      control: {
+        type: 'boolean'
+      }
+    },
     autocorrect: {
       defaultValue: null,
       description: '`autocorrect` prop is Safari only'

@@ -27,6 +27,18 @@ const inputmode = {
 const label = {
   type: String
 }
+const max = {
+  type: [Number, String]
+}
+const maxlength = {
+  type: [Number, String]
+}
+const min = {
+  type: [Number, String]
+}
+const minlength = {
+  type: [Number, String]
+}
 const placeholder = {
   type: String
 }
@@ -46,6 +58,10 @@ export {
   form,
   inputmode,
   label,
+  max,
+  maxlength,
+  min,
+  minlength,
   placeholder,
   spellcheck,
   value
@@ -60,6 +76,10 @@ export default {
   form,
   inputmode,
   label,
+  max,
+  maxlength,
+  min,
+  minlength,
   placeholder,
   spellcheck,
   value

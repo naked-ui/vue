@@ -19,16 +19,18 @@ import uuID from '@/utils/uuid'
 import hrefIsExternalMixin from '@/utils/hrefIsExternal'
 import { hyperlinkProps } from '@/utils/props'
 
+const componentProps = {
+  namespace: {
+    type: String,
+    default: 'nui-hyperlink'
+  },
+  ...hyperlinkProps
+}
+
 export default {
   name: 'nuiHyperlink',
   mixins: [uuID, hrefIsExternalMixin],
-  props: {
-    namespace: {
-      type: String,
-      default: 'nui-hyperlink'
-    },
-    ...hyperlinkProps
-  },
+  props: componentProps,
   computed: {
     tag() {
       if (!this.href) return

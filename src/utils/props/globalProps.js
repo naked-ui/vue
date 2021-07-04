@@ -23,6 +23,6 @@ const translate = {
   type: String
 }
 
-export { tabindex, title }
+export { dir, draggable, enterkeyhint, id, tabindex, title, translate }
 
-export default { tabindex, title }
+export default { dir, draggable, enterkeyhint, id, tabindex, title, translate }
