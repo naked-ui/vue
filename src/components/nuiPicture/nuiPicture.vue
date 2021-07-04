@@ -18,6 +18,8 @@
       :alt="image.alt"
       :width="width"
       :height="height"
+      @load="onLoad"
+      @error="onError"
     />
   </picture>
   <img
@@ -29,6 +31,8 @@
     :src="image.src"
     :alt="image.alt"
     style="content-visibility: auto"
+    @load="onLoad"
+    @error="onError"
   />
 </template>
 
@@ -81,7 +85,15 @@ const componentProps = {
 export default {
   name: 'nuiPicture',
   mixins: [uuID, styleVariables(componentStyleVariables)],
-  props: componentProps
+  props: componentProps,
+  methods: {
+    onLoad(e) {
+      this.$emit('load')
+    },
+    onError(e) {
+      this.$emit('error')
+    }
+  }
 }
 </script>
 

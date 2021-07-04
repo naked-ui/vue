@@ -30,11 +30,11 @@ export default {
       default: 'nui-overflow-carousel'
     },
     itemsGap: {
-      type: Number,
+      type: [String, Number],
       default: 0
     },
     viewportPadding: {
-      type: Number,
+      type: [String, Number],
       default: 0
     },
     snapItems: {

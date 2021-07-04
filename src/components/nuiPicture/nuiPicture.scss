@@ -3,6 +3,7 @@
 .nui-picture {
   background: var(--background);
   display: flex;
+  color: transparent;
 
   img {
     object-fit: var(--object-fit);
