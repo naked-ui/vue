@@ -11,21 +11,22 @@
 import uuID from '@/utils/uuid'
 import styleVariables from '@/utils/styleVariables/index.js'
 import { size } from '@/utils/styleVariables/helpers/variables'
+import styleProps from '@/utils/props/styleProps'
 
 const componentStyleVariables = [size]
+
+const componentProps = {
+  namespace: {
+    type: String,
+    default: 'nui-icon'
+  },
+  ...styleProps
+}
 
 export default {
   name: 'nuiIcon',
   mixins: [uuID, styleVariables(componentStyleVariables)],
-  props: {
-    namespace: {
-      type: String,
-      default: 'nui-icon'
-    },
-    size: {
-      type: [String, Number]
-    }
-  },
+  props: componentProps,
   computed: {
     componentClasses() {
       return [this.namespace]

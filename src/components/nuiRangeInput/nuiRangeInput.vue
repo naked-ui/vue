@@ -59,7 +59,7 @@
 
 <script>
 import uuID from '@/utils/uuid'
-import formField from '@/utils/formField/index.js'
+import formField from '@/utils/formField'
 
 export default {
   name: 'nuiRangeInput',

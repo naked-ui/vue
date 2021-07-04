@@ -23,20 +23,17 @@ const componentProps = {
   },
   // Styling
   contentHeight: {
-    type: [String, Number],
-    default: ''
+    type: [String, Number]
   },
   contentPadding: {
-    type: [String, Number],
-    default: ''
+    type: [String, Number]
   },
   titleHeight: {
     type: [String, Number],
     default: '100%'
   },
   titlePadding: {
-    type: [String, Number],
-    default: ''
+    type: [String, Number]
   }
 }
 

@@ -38,12 +38,16 @@
   }
 
   input {
-    text-align: var(--text-align);
+    text-align: var(--text-align, center);
     width: 100% !important;
     border: none !important;
     outline: none !important;
     padding-left: 0 !important;
     padding-right: 2px !important;
+  }
+
+  button {
+    cursor: pointer;
   }
 
   &.with-unit {

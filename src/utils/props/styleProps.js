@@ -1,3 +1,4 @@
+// Skin
 
 const background = {
   type: [String, Number]
@@ -5,8 +6,11 @@ const background = {
 const backgroundColor = {
   type: [String, Number]
 }
+const border = {
+  type: [String, Number]
+}
 const borderColor = {
-  type: String
+  type: [String, Number]
 }
 const borderStyle = {
   type: String
@@ -21,44 +25,52 @@ const color = {
   type: [String, Number]
 }
 const fontSize = {
-  type: String
-}
-const gap = {
-  type: [String, Number],
-  default: 8
-}
-const height = {
-  type: [String, Number],
-  default: ''
-}
-const maxHeight = {
-  type: [String, Number],
-  default: ''
-}
-const maxWidth = {
-  type: [String, Number],
-  default: ''
-}
-const objectFit = {
-  type: String
-}
-const padding = {
-  type: String
-}
-const size = {
   type: [String, Number]
 }
 const transition = {
   type: String
 }
-const width = {
+
+// Structure
+
+const gap = {
   type: [String, Number],
-  default: ''
+  default: 8
+}
+const height = {
+  type: [String, Number]
+}
+const maxHeight = {
+  type: [String, Number]
+}
+const maxWidth = {
+  type: [String, Number]
+}
+const objectFit = {
+  type: String
+}
+const orientation = {
+  type: String,
+  default: 'horizontal'
+}
+const padding = {
+  type: String
+}
+const placeContent = {
+  type: String,
+  default: 'center'
+}
+const size = {
+  type: [String, Number]
+}
+const width = {
+  type: [String, Number]
 }
 
 export {
   background,
   backgroundColor,
+  border,
   borderColor,
   borderRadius,
   borderStyle,
@@ -70,14 +82,18 @@ export {
   maxHeight,
   maxWidth,
   objectFit,
+  orientation,
   padding,
+  placeContent,
   size,
   transition,
   width,
 }
+
 export default {
   background,
   backgroundColor,
+  border,
   borderColor,
   borderRadius,
   borderStyle,
@@ -89,7 +105,9 @@ export default {
   maxHeight,
   maxWidth,
   objectFit,
+  orientation,
   padding,
+  placeContent,
   size,
   transition,
   width,

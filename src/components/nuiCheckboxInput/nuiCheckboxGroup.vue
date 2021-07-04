@@ -10,9 +10,10 @@
 
 <script>
 import uuID from '@/utils/uuid'
-import formField from '@/utils/formField/index.js'
+import formField from '@/utils/formField'
 import groupValidationHandler from './logic/groupValidationHandler'
 import { color, direction, gap } from '@/utils/styleVariables/helpers/variables'
+import { dataProps, styleProps } from '@/utils/props'
 
 const componentStyleVariables = [color, direction, gap]
 
@@ -22,15 +23,10 @@ const componentProps = {
     type: String,
     default: 'nui-checkbox-group'
   },
-  value: {
-    type: Array,
-    required: true
-  },
+  // Data
+  ...dataProps,
   // Styling
-  orientation: {
-    type: String,
-    default: 'vertical'
-  }
+  ...styleProps
 }
 
 export default {

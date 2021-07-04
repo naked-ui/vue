@@ -41,7 +41,7 @@
 
 <script>
 import uuID from '@/utils/uuid'
-import formField from '@/utils/formField/index.js'
+import formField from '@/utils/formField'
 import nuiValidationAlerts from '@/utils/components/nuiValidationAlerts.vue'
 import nuiInputCounter from '@/utils/components/nuiInputCounter.vue'
 import { resize } from '@/utils/styleVariables/helpers/variables'

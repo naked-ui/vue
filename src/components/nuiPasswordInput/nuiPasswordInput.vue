@@ -43,7 +43,7 @@
 
 <script>
 import uuID from '@/utils/uuid'
-import formField from '@/utils/formField/index.js'
+import formField from '@/utils/formField'
 import passwordStrengthHandler from './logic/passwordStrengthHandler'
 import nuiValidationAlerts from '@/utils/components/nuiValidationAlerts.vue'
 

@@ -7,6 +7,11 @@ export default {
     unit: {
       control: { type: 'text' }
     },
+    nativeControls: {
+      control: {
+        type: 'boolean'
+      }
+    },
     autocorrect: {
       defaultValue: null,
       description: '`autocorrect` prop is Safari only'
@@ -108,7 +113,7 @@ Default.args = {
   padding: '10px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px',
+  borderWidth: '2px',
   borderWidth: '2px',
   borderStyle: 'solid',
   pattern: '.*\\S.*',
@@ -145,7 +150,7 @@ WithUnit.args = {
   padding: '10px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px',
+  borderWidth: '2px',
   borderWidth: '2px',
   borderStyle: 'solid',
   pattern: '.*\\S.*',
@@ -181,7 +186,7 @@ MinMax.args = {
   padding: '10px',
   autofocus: false,
   disabled: false,
-  outlineWidth: '2px',
+  borderWidth: '2px',
   borderWidth: '2px',
   borderStyle: 'solid',
   pattern: '.*\\S.*',
