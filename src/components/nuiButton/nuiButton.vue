@@ -16,11 +16,11 @@
       <slot name="icon--left" />
     </div>
     <span
-      v-if="$slots.default"
+      v-if="$slots.default || $slots['busy-text']"
       :class="namespace ? `${namespace}__text` : false"
     >
-      <slot v-if="!busy" />
-      <slot v-else name="busy-text" />
+      <slot />
+      <slot name="busy-text" />
     </span>
     <div
       v-if="$slots['icon--right']"
@@ -114,7 +114,7 @@ export default {
         this.href.includes('mailto:') ||
         this.href.includes('tel:')
       ) {
-        if (!this.disabled || !this.busy) {
+        if (!this.disabled && !this.busy) {
           return {
             href: this.href,
             target: this.target,
