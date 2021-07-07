@@ -35,9 +35,6 @@ const DefaultTemplate = (args, { argTypes }) => ({
       v-bind="$props"
     >
       {{ buttonText }}
-      <template v-slot:busy-text>
-        {{ busyLabel }}
-      </template>
     </nuiButton>
   `,
 });
@@ -46,6 +43,30 @@ export const Default = DefaultTemplate.bind({});
 Default.args = {
   href: 'https://naked-ui.org',
   backgroundColor: '#333',
+  color: '#fff',
+  padding: '12px',
+  height: '48px'
+}
+
+const BusyTemplate = (args, { argTypes }) => ({
+  components: { nuiButton },
+  props: Object.keys(argTypes),
+  template: `
+    <nuiButton
+      v-bind="$props"
+    >
+      <template v-slot:busy-text>
+        {{ busyLabel }}
+      </template>
+    </nuiButton>
+  `,
+});
+
+export const Busy = BusyTemplate.bind({});
+Busy.args = {
+  busy: true,
+  href: 'https://naked-ui.org',
+  backgroundColor: '#999',
   color: '#fff',
   padding: '12px',
   height: '48px'
@@ -64,9 +85,6 @@ const IconLeftTemplate = (args, { argTypes }) => ({
       </svg>
       </template>
       {{ buttonText }}
-      <template v-slot:busy-text>
-        {{ busyLabel }}
-      </template>
     </nuiButton>
   `,
 });
